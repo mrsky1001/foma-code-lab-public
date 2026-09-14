@@ -37,7 +37,7 @@ type: theory
 ```html
 <div class="card">
   <div class="card-img-wrap">
-    <img src="room.jpg" alt="Переговорная" class="card-img">
+    <img src="https://placehold.co/300x200/4A90E2/FFF?text=Комната" alt="Переговорная" class="card-img">
   </div>
 
 </div>
@@ -47,7 +47,7 @@ type: theory
 ```html
 <div class="card">
   <div class="card-img-wrap">
-    <img src="room.jpg" alt="Переговорная" class="card-img">
+    <img src="https://placehold.co/300x200/4A90E2/FFF?text=Комната" alt="Переговорная" class="card-img">
   </div>
 
   <div class="card-content">
@@ -62,7 +62,7 @@ type: theory
 ```html
 <div class="card">
   <div class="card-img-wrap">
-    <img src="room.jpg" alt="Переговорная" class="card-img">
+    <img src="https://placehold.co/300x200/4A90E2/FFF?text=Комната" alt="Переговорная" class="card-img">
   </div>
 
   <div class="card-content">
@@ -83,7 +83,7 @@ type: theory
 ```html
 <div class="card">                         <!-- контейнер карточки -->
   <div class="card-img-wrap">              <!-- обёртка изображения -->
-    <img src="room.jpg" alt="Переговорная" class="card-img">
+    <img src="https://placehold.co/300x200/4A90E2/FFF?text=Комната" alt="Переговорная" class="card-img">
   </div>
   <div class="card-content">              <!-- блок с текстом -->
     <h3 class="card-title">Переговорная «Альфа»</h3>
@@ -129,6 +129,23 @@ type: theory
 <div class="card-img-wrap">
   <div class="card-content">
 </div>  ← непонятно что закрывается!
+```
+
+---
+
+## 🖼 Изображения для вставки
+
+Чтобы использовать картинки в задании — скопируйте одну из готовых ссылок:
+
+```
+https://placehold.co/300x200/4A90E2/FFF?text=Комната+1
+https://placehold.co/300x200/7B68EE/FFF?text=Комната+2
+https://placehold.co/300x200/48A999/FFF?text=Комната+3
+```
+
+Вставьте её в атрибут `src` тега `<img>`:
+```html
+<img src="https://placehold.co/300x200/4A90E2/FFF?text=Комната+1" alt="Переговорная" class="card-img">
 ```
 
 ## 🛠 Задание

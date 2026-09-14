@@ -1,5 +1,6 @@
 import type { CodeFiles } from '../types/lesson';
 import { formatCode } from './formatCode';
+import { stripCodeComments } from './stripComments';
 
 export interface CodeDiffRange {
   hasChanges: boolean;
@@ -25,7 +26,9 @@ export function computeDiffRange(
   rawSolutionCode: string
 ): CodeDiffRange {
   const formattedStart = formatCode(lang, rawStartCode || '').replace(/\r\n/g, '\n');
-  const formattedSolution = formatCode(lang, rawSolutionCode || '').replace(/\r\n/g, '\n');
+  // Strip comments from solution BEFORE diffing — keeps editor clean
+  const strippedSolution = stripCodeComments(lang, rawSolutionCode || '');
+  const formattedSolution = formatCode(lang, strippedSolution).replace(/\r\n/g, '\n');
 
   if (!formattedSolution.trim()) {
     return {
