@@ -42,6 +42,14 @@
   }
 }
 
+.toast-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
 .toast-message {
   font-size: 12px;
   font-weight: 500;

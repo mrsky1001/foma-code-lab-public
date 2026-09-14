@@ -150,6 +150,24 @@ function isValidDraft(draft: unknown, startCode: CodeFiles): draft is CodeFiles 
     }, DRAFT_DEBOUNCE_MS);
   }, []);
 
+  const saveImmediately = useCallback(() => {
+    if (draftTimerRef.current) {
+      clearTimeout(draftTimerRef.current);
+      draftTimerRef.current = null;
+    }
+    const currentLesson = lessons[lessonIndex];
+    if (!currentLesson) return;
+    try {
+      const key = `foma-draft-v3-${currentLesson.id}-${stepIndex}`;
+      localStorage.setItem(key, JSON.stringify(code));
+      localStorage.setItem('foma-last-lesson-id', String(currentLesson.id));
+      localStorage.setItem('foma-last-step-idx', String(stepIndex + 1));
+      localStorage.setItem(`foma-lesson-${currentLesson.id}-step`, String(stepIndex));
+    } catch {
+      /* ignore */
+    }
+  }, [lessons, lessonIndex, stepIndex, code]);
+
   const clearDraft = useCallback((lIdx: number, sIdx: number) => {
     try {
       localStorage.removeItem(`foma-draft-v3-${lessons[lIdx].id}-${sIdx}`);
@@ -404,6 +422,7 @@ function isValidDraft(draft: unknown, startCode: CodeFiles): draft is CodeFiles 
     prevLesson,
     resetCode,
     resetAllDrafts,
+    saveImmediately,
     toggleSolution,
     isShowingSolution,
     solutionTarget,

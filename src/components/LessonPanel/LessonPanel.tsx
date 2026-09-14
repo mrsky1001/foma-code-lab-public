@@ -338,7 +338,7 @@ export function LessonPanel({
           <div className="task-progress-box" id="task-progress-box">
             <div className="task-progress-header">
               <span className="task-progress-label">
-                {taskSimilarity >= 80 || isShowingSolution ? 'Задание выполнено' : 'Сходство с решением'}
+                {taskSimilarity >= 80 || isShowingSolution ? 'Задание выполнено' : 'Процент выполнения задания'}
               </span>
               <span className={`task-progress-pct ${(taskSimilarity >= 80 || isShowingSolution) ? 'done' : ''}`}>
                 {isShowingSolution ? '100%' : `${taskSimilarity}%`}

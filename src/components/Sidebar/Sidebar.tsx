@@ -368,8 +368,7 @@ export function Sidebar({
                                     : stepDone
                                     ? `${s.title} (пройдено)`
                                     : hasCodeTask(s.startCode, s.solutionCode)
-                                    ? `${s.title} (требуется выполнить задание или показать решение)`
-                                    : s.title
+                                    ? `${s.title} (требуется выполнить задание)`                                    : s.title
                                   }
                                 >
                                   <span className={`step-list-num ${!stepAccessible ? 'locked' : ''}`}>
@@ -410,7 +409,7 @@ export function Sidebar({
                                     ? 'Шаг заблокирован. Сначала пройдите предыдущий шаг'
                                     : stepDone
                                     ? `${s.title} (пройдено)`
-                                    : `${s.title} (требуется выполнить задание или показать решение)`
+                                    : `${s.title} (требуется выполнить задание)`
                                   }
                                 >
                                   <span className={`step-list-num ${!stepAccessible ? 'locked' : ''}`}>

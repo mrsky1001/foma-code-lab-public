@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { BookOpen, Code2, Play } from 'lucide-react';
+import { BookOpen, Code2, Play, Check } from 'lucide-react';
 import { Header } from './components/Header/Header';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { LessonPanel } from './components/LessonPanel/LessonPanel';
 import { CodeEditor, type ViewOnlyFile } from './components/CodeEditor/CodeEditor';
+import { Toast } from './components/Toast/Toast';
 import { Preview } from './components/Preview/Preview';
 import { QuizPanel } from './components/Quiz/QuizPanel';
 import { useLesson } from './hooks/useLesson';
@@ -204,6 +205,7 @@ export default function App() {
     prevLesson,
     resetCode,
     resetAllDrafts,
+    saveImmediately,
     toggleSolution,
     isShowingSolution,
     solutionTarget,
@@ -390,6 +392,30 @@ export default function App() {
     goToLessonStep(lessonId, sIdx);
     if (isMobile) setSidebarCollapsed(true);
   };
+
+  // Manual save toast state
+  const [saveToast, setSaveToast] = useState<{ id: number; message: string } | null>(null);
+
+  const handleManualSave = useCallback(() => {
+    saveImmediately();
+    setSaveToast({ id: Date.now(), message: 'Данные сохранены' });
+  }, [saveImmediately]);
+
+  // Global hotkey: Ctrl+S / Cmd+S (supports Russian 'ы' and standard 's', suppresses browser save)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        (e.key === 's' || e.key === 'S' || e.key === 'ы' || e.key === 'Ы' || e.code === 'KeyS')
+      ) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleManualSave();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => window.removeEventListener('keydown', handleKeyDown, { capture: true });
+  }, [handleManualSave]);
 
   // View-only file selected from project file tree
   const [viewOnlyFile, setViewOnlyFile] = useState<ViewOnlyFile | null>(null);
@@ -665,6 +691,7 @@ export default function App() {
                   onCloseViewOnly={() => setViewOnlyFile(null)}
                   onSelectTab={() => setViewOnlyFile(null)}
                   solutionTarget={solutionTarget}
+                  onSave={handleManualSave}
                 />
               </div>
 
@@ -700,6 +727,16 @@ export default function App() {
           </>
         )}
       </div>
+
+      {saveToast && (
+        <Toast
+          key={saveToast.id}
+          message={saveToast.message}
+          icon={<Check size={14} />}
+          duration={2500}
+          onClose={() => setSaveToast(null)}
+        />
+      )}
     </div>
   );
 }

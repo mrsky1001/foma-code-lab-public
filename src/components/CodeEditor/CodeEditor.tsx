@@ -81,6 +81,7 @@ interface SingleEditorPaneProps {
   viewOnlyFile?: ViewOnlyFile | null;
   onCloseViewOnly?: () => void;
   solutionTarget?: SolutionTarget | null;
+  onSave?: () => void;
 }
 
 function SingleEditorPane({
@@ -99,6 +100,7 @@ function SingleEditorPane({
   viewOnlyFile,
   onCloseViewOnly,
   solutionTarget,
+  onSave,
 }: SingleEditorPaneProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const viewRef = useRef<EditorView | null>(null);
@@ -106,6 +108,8 @@ function SingleEditorPane({
   onChangeRef.current = onCodeChange;
   const onFormatRef = useRef(onFormat);
   onFormatRef.current = onFormat;
+  const onSaveRef = useRef(onSave);
+  onSaveRef.current = onSave;
 
   const isReadOnly = !!viewOnlyFile;
   const currentLang = isReadOnly ? viewOnlyFile.lang : tab;
@@ -155,6 +159,15 @@ function SingleEditorPane({
             run: expandAbbreviation,
           },
           ...completionKeymap,
+          {
+            key: 'Mod-s',
+            run: () => {
+              if (onSaveRef.current) {
+                onSaveRef.current();
+              }
+              return true;
+            },
+          },
           {
             key: 'Shift-Alt-f',
             run: () => {
@@ -363,6 +376,7 @@ interface CodeEditorProps {
   onCloseViewOnly?: () => void;
   onSelectTab?: (tab: TabKey) => void;
   solutionTarget?: SolutionTarget | null;
+  onSave?: () => void;
 }
 
 export function CodeEditor({
@@ -379,6 +393,7 @@ export function CodeEditor({
   onCloseViewOnly,
   onSelectTab,
   solutionTarget,
+  onSave,
 }: CodeEditorProps) {
   const [isSplit, setIsSplit] = useState<boolean>(() => {
     return localStorage.getItem('foma-editor-split') === 'true';
@@ -611,6 +626,7 @@ export function CodeEditor({
           viewOnlyFile={viewOnlyFile}
           onCloseViewOnly={onCloseViewOnly}
           solutionTarget={solutionTarget}
+          onSave={onSave}
         />
 
         {isSplit && (
@@ -635,6 +651,7 @@ export function CodeEditor({
               style={{ flex: 1 }}
               fileConfig={fileConfig}
               solutionTarget={solutionTarget}
+              onSave={onSave}
             />
           </>
         )}

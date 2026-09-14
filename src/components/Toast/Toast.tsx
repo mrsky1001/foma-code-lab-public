@@ -5,12 +5,13 @@ import './Toast.css';
 
 interface ToastProps {
   message: string;
+  icon?: React.ReactNode;
   onUndo?: () => void;
   onClose: () => void;
   duration?: number;
 }
 
-export function Toast({ message, onUndo, onClose, duration = TOAST_DURATION_MS }: ToastProps) {
+export function Toast({ message, icon, onUndo, onClose, duration = TOAST_DURATION_MS }: ToastProps) {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export function Toast({ message, onUndo, onClose, duration = TOAST_DURATION_MS }
 
   return (
     <div className={`toast ${exiting ? 'toast-exit' : ''}`} role="alert" id="undo-toast">
+      {icon && <span className="toast-icon">{icon}</span>}
       <span className="toast-message">{message}</span>
       {onUndo && (
         <button className="toast-undo-btn" onClick={handleUndo} id="undo-reset-btn">
