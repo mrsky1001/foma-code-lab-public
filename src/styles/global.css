@@ -380,12 +380,12 @@ body.is-resizing-row iframe {
 }
 
 .md-content pre {
-  background-color: var(--bg-editor);
+  /* background-color: var(--bg-editor);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 14px 16px;
   margin-bottom: 12px;
-  overflow-x: auto;
+  overflow-x: auto; */
 }
 
 .md-content pre code {
