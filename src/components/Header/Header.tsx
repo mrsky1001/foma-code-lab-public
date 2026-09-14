@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Sun, Moon, FlaskConical, ChevronDown, ShieldOff, ShieldCheck, Eye } from 'lucide-react';
+import { BUILD_INFO } from '../../version';
 import './Header.css';
 
 interface HeaderProps {
@@ -48,8 +49,17 @@ export function Header({
         </button>
         <div className="header-logo">
           <div className="header-logo-mark">F</div>
-          <span className="header-logo-text">Foma Code Lab</span>
-          <span className="header-badge-beta">Beta</span>
+          <div className="header-brand-group">
+            <div className="header-brand-title-row">
+              <span className="header-logo-text">Foma Code Lab</span>
+              <span className="header-badge-beta">Beta</span>
+            </div>
+            <div className="header-version-info" title={`Коммит: ${BUILD_INFO.commit} от ${BUILD_INFO.date}`}>
+              <span className="header-commit-hash">{BUILD_INFO.commit}</span>
+              <span className="header-version-dot">·</span>
+              <span className="header-commit-date">{BUILD_INFO.date}</span>
+            </div>
+          </div>
         </div>
       </div>
       <div className="header-right">

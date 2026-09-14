@@ -45,6 +45,46 @@
   white-space: nowrap;
 }
 
+.header-brand-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.header-brand-title-row {
+  display: flex;
+  align-items: center;
+  line-height: 1.15;
+}
+
+.header-version-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+
+.header-commit-hash {
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.header-version-dot {
+  opacity: 0.45;
+}
+
+.header-commit-date {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .header-badge-beta {
   font-size: 10px;
   font-weight: 600;
