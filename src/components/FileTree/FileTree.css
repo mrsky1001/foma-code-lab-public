@@ -1,0 +1,283 @@
+/* ══════════════════════════════════════════════
+   FileTree — Виртуальный проводник файлов
+   ══════════════════════════════════════════════ */
+
+.file-tree {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-sidebar);
+  border-top: 1px solid var(--border-subtle);
+  font-size: 11.5px;
+  font-family: var(--font-sans);
+  width: 100%;
+  min-width: 0;
+  min-height: 32px;
+  flex-shrink: 0;
+  overflow: hidden;
+  user-select: none;
+  transition: height var(--transition-smooth);
+}
+
+.file-tree.ft-collapsed {
+  height: 32px !important;
+}
+
+/* ─── Заголовок ────────────────────────────────── */
+.ft-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  height: 32px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  flex-shrink: 0;
+}
+
+.ft-header-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.ft-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  padding: 0;
+  transition: background var(--transition-smooth), color var(--transition-smooth);
+}
+
+.ft-toggle-btn:hover {
+  background: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* ─── Тело дерева ──────────────────────────────── */
+.ft-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 0;
+}
+
+.ft-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.ft-body::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 2px;
+}
+
+/* ─── Папка ────────────────────────────────────── */
+.ft-folder {
+  display: flex;
+  flex-direction: column;
+}
+
+.ft-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  height: 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  font-family: var(--font-sans);
+  text-align: left;
+  transition: background var(--transition-smooth), color var(--transition-smooth);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ft-folder-row:hover {
+  background: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.ft-folder-icon {
+  color: var(--accent-amber);
+  flex-shrink: 0;
+}
+
+.ft-chevron {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.ft-folder-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ft-folder-children {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Файл ─────────────────────────────────────── */
+.ft-file-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  height: 22px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  font-family: var(--font-sans);
+  text-align: left;
+  transition: background var(--transition-smooth), color var(--transition-smooth);
+  white-space: nowrap;
+  overflow: hidden;
+  border-left: 2px solid transparent;
+}
+
+.ft-file-row:hover {
+  background: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* Файл, открытый в редакторе */
+.ft-file-row.ft-selected {
+  background: rgba(90, 160, 211, 0.12);
+  color: var(--text-primary);
+  border-left-color: var(--accent-blue);
+  font-weight: 500;
+}
+
+/* Целевой файл шага (с заданием) */
+.ft-file-row.ft-active-target {
+  border-left-color: var(--accent-coral);
+}
+
+.ft-file-row.ft-selected.ft-active-target {
+  background: var(--accent-coral-dim);
+  border-left-color: var(--accent-coral);
+}
+
+.ft-lock-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-right: 4px;
+  opacity: 0.6;
+}
+
+/* ─── Иконки файлов ────────────────────────────── */
+.ft-file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  font-size: 8px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ft-icon-html {
+  background: rgba(228, 77, 38, 0.18);
+  color: #e4550f;
+}
+
+.ft-icon-css {
+  background: rgba(38, 143, 228, 0.18);
+  color: #268fe4;
+}
+
+.ft-icon-js {
+  background: rgba(240, 194, 26, 0.18);
+  color: #b89206;
+}
+
+[data-theme="dark"] .ft-icon-js {
+  color: #f0c21a;
+}
+
+.ft-file-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.5px;
+}
+
+/* ─── Бейдж "редактируется" ────────────────────── */
+.ft-badge-active {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--accent-coral);
+  background: var(--accent-coral-dim);
+  padding: 1px 4px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+/* ─── Иконка глаза (просмотр) ──────────────────── */
+.ft-eye-icon {
+  color: var(--accent-blue);
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+/* ─── Подсказка preview ────────────────────────── */
+.ft-preview-hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 10px;
+  color: var(--accent-blue);
+  background: rgba(90, 160, 211, 0.07);
+  flex-shrink: 0;
+}
+
+.ft-preview-hint strong {
+  font-weight: 600;
+}
+
+.ft-close-preview {
+  margin-left: auto;
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 1px 3px;
+  border-radius: 2px;
+  transition: color var(--transition-smooth);
+  line-height: 1;
+}
+
+.ft-close-preview:hover {
+  color: var(--accent-red);
+}
+
+/* ─── Свёрнутое состояние ──────────────────────── */
+.file-tree.ft-collapsed .ft-header {
+  border-bottom: none;
+}

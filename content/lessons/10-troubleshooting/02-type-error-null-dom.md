@@ -1,0 +1,98 @@
+---
+title: "TypeError: Cannot read properties of null"
+highlight: js
+type: theory
+---
+
+# TypeError: Cannot read properties of null
+
+Это абсолютный рекордсмен по частоте среди ошибок начинающих фронтенд-разработчиков:
+
+> **✕ Uncaught TypeError: Cannot read properties of null (reading 'addEventListener')**  
+> *(или reading 'value', reading 'textContent', reading 'classList')*
+
+Она означает: вы попытались вызвать метод или прочитать свойство у переменной, в которой лежит `null` (ничего нет).
+
+---
+
+## 🔍 Три главные причины
+
+### 1. Скрипт запустился раньше, чем браузер построил HTML-дерево
+Если скрипт подключён в `<head>` без атрибута `defer`, браузер останавливает чтение HTML и сразу выполняет JS. В этот момент элементов на странице ещё просто не существует!
+
+```html
+<!-- ОШИБКА: скрипт запустится до отрисовки <button> -->
+<head>
+  <script src="main.js"></script>
+</head>
+```
+
+**Решение:** всегда добавляйте атрибут `defer` или оборачивайте код в `DOMContentLoaded`:
+```html
+<!-- ПРАВИЛЬНО: браузер загрузит скрипт параллельно, но запустит ПОСЛЕ готовности DOM -->
+<script src="main.js" defer></script>
+```
+
+### 2. Опечатка в названии id или класса
+Если написать в JS `#authBtn`, а в HTML `id="auth-btn"` — `querySelector` вернёт `null`.
+
+```js
+// Если элемент не найден, btn равен null:
+const btn = document.querySelector('#authBtn'); // null!
+btn.addEventListener('click', () => {});        // ОШИБКА! null.addEventListener
+```
+
+### 3. Элемент генерируется динамически
+Например, карточки комнат или кнопки «Забронировать» создаются из массива через `map`. Если попытаться найти их до рендера — их ещё нет в DOM.
+
+---
+
+## 🛡 Как защитить свой код от падений (Graceful Handling)
+
+### Способ 1. Условная проверка (`Guard Clause`)
+```js
+const submitBtn = document.getElementById('submitBooking');
+
+// Проверяем существование элемента перед использованием
+if (submitBtn) {
+  submitBtn.addEventListener('click', handleBooking);
+}
+```
+
+### Способ 2. Опциональная цепочка (`Optional Chaining ?.`)
+Современный стандарт JavaScript позволяет обращаться к свойствам безопасно:
+```js
+// Если getElementById вернёт null, код просто вернёт undefined и не выбросит ошибку
+document.getElementById('promoInput')?.addEventListener('input', applyPromo);
+```
+
+---
+
+## 🛠 Задание
+
+Исправьте функцию `bindSearchEvent()`, чтобы она не падала с ошибкой, если на текущей странице нет поля поиска `#searchInput`.
+
+```js:start
+// Функция привязки события поиска
+function bindSearchEvent() {
+  const searchInput = document.querySelector('#searchInput');
+  // Опасно: если searchInput равен null, страница упадет с ошибкой
+  searchInput.addEventListener('input', (e) => {
+    console.log('Поиск:', e.target.value);
+  });
+}
+```
+
+```js:solution
+// Функция привязки события поиска
+function bindSearchEvent() {
+  const searchInput = document.querySelector('#searchInput');
+  // Безопасная проверка: выходим из функции, если поля поиска нет на странице
+  if (!searchInput) return;
+
+  searchInput.addEventListener('input', (e) => {
+    // Безопасно считываем значение введенного текста
+    console.log('Поиск:', e.target.value);
+  });
+}
+```

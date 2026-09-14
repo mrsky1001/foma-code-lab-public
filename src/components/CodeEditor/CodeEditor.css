@@ -1,0 +1,405 @@
+/* ─── Оболочка редактора ─── */
+.code-editor-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+/* Основной редактор — занимает 100% места */
+.code-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 90px;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--panel-header-height, 38px);
+  min-height: var(--panel-header-height, 38px);
+  background-color: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 10px 0 4px;
+  flex-shrink: 0;
+  transition: background-color 200ms ease;
+}
+
+.editor-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.editor-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.editor-tab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px;
+  height: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  white-space: nowrap;
+}
+
+.editor-tab:hover {
+  color: var(--text-primary);
+}
+
+.editor-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-coral);
+}
+
+.editor-tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.editor-tab-dot.html { background-color: #e44d26; }
+.editor-tab-dot.css  { background-color: #2965f1; }
+.editor-tab-dot.js   { background-color: #f7df1e; }
+
+/* ── Splitter Resizer ── */
+.editor-splitter {
+  height: 6px;
+  background-color: var(--bg-sidebar);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  cursor: row-resize;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  z-index: 10;
+}
+
+.editor-splitter::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+}
+
+.editor-splitter::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--border-medium);
+  transition: background-color 150ms ease;
+}
+
+.editor-splitter:hover,
+.editor-splitter.dragging {
+  background-color: var(--accent-coral-dim);
+  border-color: rgba(255, 122, 69, 0.4);
+}
+
+.editor-splitter:hover::before,
+.editor-splitter.dragging::before {
+  background-color: var(--accent-coral);
+}
+
+/* ── Editor Action Buttons ── */
+.btn-editor-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  white-space: nowrap;
+}
+
+.btn-editor-action:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--border-active);
+}
+
+.btn-editor-icon-only {
+  width: 26px;
+  height: 24px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.btn-editor-icon-only.active {
+  background-color: var(--accent-coral-dim);
+  color: var(--accent-coral);
+  border-color: transparent;
+}
+
+.btn-editor-split {
+  color: var(--text-muted);
+}
+
+.btn-editor-split.active {
+  background-color: var(--accent-coral-dim);
+  color: var(--accent-coral);
+  border-color: transparent;
+}
+
+.btn-close-split {
+  color: var(--text-muted);
+}
+
+.btn-close-split:hover {
+  color: var(--accent-red);
+  border-color: var(--accent-red-dim);
+  background-color: var(--accent-red-dim);
+}
+
+/* ── Editor Body & CM6 Styles ── */
+.editor-body {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+.editor-body .cm-editor {
+  height: 100%;
+}
+
+.editor-body .cm-editor .cm-scroller {
+  font-family: var(--font-mono);
+  font-size: var(--editor-font-size, 13px);
+  line-height: 1.6;
+}
+
+.editor-body .cm-editor.cm-focused {
+  outline: none;
+}
+
+.editor-body .cm-editor .cm-gutters {
+  background-color: var(--bg-main);
+  border-right: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.editor-body .cm-editor .cm-content {
+  padding: 8px 0;
+}
+
+/* ── CodeMirror Lint Diagnostics & Error Highlighting ── */
+.cm-lintRange-error {
+  background: none;
+  border-bottom: 2px wavy var(--accent-red);
+}
+
+.cm-lintRange-warning {
+  background: none;
+  border-bottom: 2px wavy var(--accent-amber);
+}
+
+.cm-gutter-lint {
+  width: 14px;
+}
+
+.cm-lint-marker-error {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent-red);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+  margin-top: 6px;
+  margin-left: 3px;
+  display: inline-block;
+}
+
+.cm-tooltip-lint {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+  padding: 6px 10px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  color: var(--text-primary) !important;
+  max-width: 360px !important;
+  z-index: 100 !important;
+}
+
+.cm-diagnostic {
+  padding: 4px 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+}
+
+.cm-diagnostic-error {
+  border-left: 3px solid var(--accent-red) !important;
+  padding-left: 8px !important;
+}
+
+/* ── Вкладка и баннер режима «Только чтение» ── */
+.editor-tab.read-only-tab {
+  background-color: rgba(90, 160, 211, 0.12);
+  color: var(--text-primary);
+  border-bottom-color: var(--accent-blue);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tab-name {
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.tab-readonly-badge {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  background: rgba(90, 160, 211, 0.18);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+.tab-close-icon {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px;
+  font-size: 10px;
+  line-height: 1;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-smooth);
+}
+
+.tab-close-icon:hover {
+  background-color: var(--accent-red-dim);
+  color: var(--accent-red);
+}
+
+.editor-readonly-notice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background-color: rgba(90, 160, 211, 0.08);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+.notice-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.notice-icon {
+  color: var(--accent-blue);
+  flex-shrink: 0;
+}
+
+.notice-left strong {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.btn-return-edit {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-blue);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-smooth);
+}
+
+.btn-return-edit:hover {
+  background-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* ─── CodeMirror Selection Styling ─── */
+.cm-selectionBackground,
+.cm-selectionLayer .cm-selectionBackground {
+  background-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+.cm-focused .cm-selectionBackground,
+.cm-focused .cm-selectionLayer .cm-selectionBackground {
+  background-color: rgba(56, 189, 248, 0.45) !important;
+}
+
+:root[data-theme='light'] .cm-selectionBackground,
+:root[data-theme='light'] .cm-selectionLayer .cm-selectionBackground,
+.light .cm-selectionBackground,
+.light .cm-selectionLayer .cm-selectionBackground {
+  background-color: rgba(2, 132, 199, 0.28) !important;
+}
+
+:root[data-theme='light'] .cm-focused .cm-selectionBackground,
+:root[data-theme='light'] .cm-focused .cm-selectionLayer .cm-selectionBackground,
+.light .cm-focused .cm-selectionBackground,
+.light .cm-focused .cm-selectionLayer .cm-selectionBackground {
+  background-color: rgba(2, 132, 199, 0.38) !important;
+}
+
+
