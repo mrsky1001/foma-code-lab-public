@@ -490,38 +490,48 @@ export function LessonPanel({
           ) : null}
         </div>
         <div className="lesson-panel-footer-right" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          {hasNextStep ? (
-            <button
-              className={`btn btn-sm ${isCurrentStepCompleted ? 'btn-accent' : ''}`}
-              style={!isCurrentStepCompleted ? { opacity: 0.45, cursor: 'not-allowed', display: 'flex', alignItems: 'center', gap: 6 } : undefined}
-              onClick={isCurrentStepCompleted ? onNextStep : undefined}
-              disabled={!isCurrentStepCompleted}
-              id="next-step-btn"
-              title={!isCurrentStepCompleted
-                ? hasTask
-                  ? `Сначала выполните задание (прогресс ${taskSimilarity}%, порог 80%) или нажмите «Показать решение»`
-                  : 'Сначала изучите материал'
-                : 'Следующий шаг'
-              }
-            >
-              {!isCurrentStepCompleted && <Lock size={12} strokeWidth={1.5} />}
-              Далее
-              {isCurrentStepCompleted && <ChevronRight size={14} />}
-            </button>
-          ) : hasNextLesson ? (
-            <button
-              className={`btn btn-sm ${isNextLessonAccessible ? 'btn-accent' : ''}`}
-              style={!isNextLessonAccessible ? { opacity: 0.45, cursor: 'not-allowed', display: 'flex', alignItems: 'center', gap: 6 } : undefined}
-              onClick={isNextLessonAccessible ? onNextLesson : undefined}
-              disabled={!isNextLessonAccessible}
-              id="next-lesson-btn"
-              title={!isNextLessonAccessible ? 'Сдайте тест текущего модуля, чтобы открыть следующий' : 'Следующий модуль'}
-            >
-              {!isNextLessonAccessible && <Lock size={12} strokeWidth={1.5} />}
-              След. модуль
-              {isNextLessonAccessible && <ChevronRight size={14} />}
-            </button>
-          ) : null}
+          {(() => {
+            const canGoNext = Boolean(isCurrentStepCompleted || (hasTask ? taskSimilarity >= 80 : true));
+            if (hasNextStep) {
+              return (
+                <button
+                  className={`btn btn-sm ${canGoNext ? 'btn-accent' : ''}`}
+                  style={!canGoNext ? { opacity: 0.45, cursor: 'not-allowed', display: 'flex', alignItems: 'center', gap: 6 } : undefined}
+                  onClick={canGoNext ? onNextStep : undefined}
+                  disabled={!canGoNext}
+                  id="next-step-btn"
+                  title={!canGoNext
+                    ? hasTask
+                      ? `Сначала выполните задание (прогресс ${taskSimilarity}%, порог 80%) или нажмите «Показать решение»`
+                      : 'Сначала изучите материал'
+                    : 'Следующий шаг'
+                  }
+                >
+                  {!canGoNext && <Lock size={12} strokeWidth={1.5} />}
+                  Далее
+                  {canGoNext && <ChevronRight size={14} />}
+                </button>
+              );
+            }
+            if (hasNextLesson) {
+              const canGoNextLesson = Boolean(isNextLessonAccessible || canGoNext);
+              return (
+                <button
+                  className={`btn btn-sm ${canGoNextLesson ? 'btn-accent' : ''}`}
+                  style={!canGoNextLesson ? { opacity: 0.45, cursor: 'not-allowed', display: 'flex', alignItems: 'center', gap: 6 } : undefined}
+                  onClick={canGoNextLesson ? onNextLesson : undefined}
+                  disabled={!canGoNextLesson}
+                  id="next-lesson-btn"
+                  title={!canGoNextLesson ? 'Сдайте тест текущего модуля, чтобы открыть следующий' : 'Следующий модуль'}
+                >
+                  {!canGoNextLesson && <Lock size={12} strokeWidth={1.5} />}
+                  След. модуль
+                  {canGoNextLesson && <ChevronRight size={14} />}
+                </button>
+              );
+            }
+            return null;
+          })()}
           {hasQuiz && !hasNextStep && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
               <button

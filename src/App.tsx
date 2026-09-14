@@ -310,11 +310,15 @@ export default function App() {
       } else {
         const sim = calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
         setTaskSimilarity(sim);
+        if (sim >= 80) {
+          progress.markStepCompleted(lesson.id, stepIndex);
+          setCheckStatus('success');
+        }
       }
     } else {
       setTaskSimilarity(100);
     }
-  }, [lesson.id, stepIndex, stepHasTask, step.startCode, step.solutionCode, step.highlight, code, isShowingSolution, progress.practiceDone]);
+  }, [lesson.id, stepIndex, stepHasTask, step.startCode, step.solutionCode, step.highlight, code, isShowingSolution, progress.practiceDone, progress.markStepCompleted]);
 
   // Check button status: 'idle' | 'success' | 'error'
   const [checkStatus, setCheckStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -349,8 +353,12 @@ export default function App() {
       const updatedCode = { ...code, [lang]: value };
       const sim = calculateCodeSimilarity(updatedCode, step.startCode, step.solutionCode, step.highlight);
       setTaskSimilarity(sim);
+      if (sim >= 80) {
+        progress.markStepCompleted(lesson.id, stepIndex);
+        setCheckStatus('success');
+      }
     }
-  }, [updateCode, stepHasTask, code, step.startCode, step.solutionCode, step.highlight, checkStatus, clearErrorResetTimer]);
+  }, [updateCode, stepHasTask, code, step.startCode, step.solutionCode, step.highlight, checkStatus, clearErrorResetTimer, progress.markStepCompleted, lesson.id, stepIndex]);
 
   // Handle explicit check button click (both practice and theory)
   const handleCheckSolution = useCallback(() => {
@@ -392,6 +400,13 @@ export default function App() {
     goToLessonStep(lessonId, sIdx);
     if (isMobile) setSidebarCollapsed(true);
   };
+
+  const handleNextStep = useCallback(() => {
+    if (taskSimilarity >= 80 || !stepHasTask) {
+      progress.markStepCompleted(lesson.id, stepIndex);
+    }
+    nextStep();
+  }, [taskSimilarity, stepHasTask, progress, lesson.id, stepIndex, nextStep]);
 
   // Manual save toast state
   const [saveToast, setSaveToast] = useState<{ id: number; message: string } | null>(null);
@@ -637,7 +652,7 @@ export default function App() {
               isShowingSolution={isShowingSolution}
               onToggleSolution={handleToggleSolution}
               onPrevStep={prevStep}
-              onNextStep={nextStep}
+              onNextStep={handleNextStep}
               onPrevLesson={prevLesson}
               onNextLesson={nextLesson}
               onGoToStep={goToStep}
