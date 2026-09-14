@@ -378,6 +378,7 @@ export default function App() {
 
   const handleSelectLesson = (id: number) => {
     if (!progress.isLessonAccessible(id)) return;
+    if (id === lesson.id) return;
     resetQuiz();
     goToLesson(id);
     if (isMobile) setSidebarCollapsed(true);

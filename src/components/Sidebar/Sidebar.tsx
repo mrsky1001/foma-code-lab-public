@@ -287,7 +287,9 @@ export function Sidebar({
                         className={`lesson-item ${isActive ? 'active' : ''} ${isComplete ? 'completed' : ''} ${!accessible ? 'locked' : ''}`}
                         onClick={() => {
                           if (accessible) {
-                            onSelectLesson(lesson.id);
+                            if (!isActive) {
+                              onSelectLesson(lesson.id);
+                            }
                             toggleLesson(lesson.id);
                           }
                         }}

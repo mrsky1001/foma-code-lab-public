@@ -193,6 +193,7 @@ function isValidDraft(draft: unknown, startCode: CodeFiles): draft is CodeFiles 
 
       localStorage.setItem('foma-last-lesson-id', String(currentLesson.id));
       localStorage.setItem('foma-last-step-idx', String(stepIndex + 1));
+      localStorage.setItem(`foma-lesson-${currentLesson.id}-step`, String(stepIndex));
     } catch {
       // Ignore
     }
@@ -253,12 +254,28 @@ function isValidDraft(draft: unknown, startCode: CodeFiles): draft is CodeFiles 
   const goToLesson = useCallback((id: number) => {
     const idx = lessons.findIndex((l) => l.id === id);
     if (idx !== -1) {
+      if (idx === lessonIndex) {
+        return; // Already on this lesson — do not reset step!
+      }
+      let targetStep = 0;
+      try {
+        const savedStep = localStorage.getItem(`foma-lesson-${id}-step`);
+        if (savedStep !== null) {
+          const parsed = Number(savedStep);
+          if (!isNaN(parsed) && parsed >= 0 && parsed < lessons[idx].steps.length) {
+            targetStep = parsed;
+          }
+        }
+      } catch {
+        // Ignore
+      }
+
       setLessonIndex(idx);
-      setStepIndex(0);
-      setCode(loadCodeForStep(idx, 0));
+      setStepIndex(targetStep);
+      setCode(loadCodeForStep(idx, targetStep));
       resetSolutionState();
     }
-  }, [resetSolutionState, loadCodeForStep]);
+  }, [lessonIndex, resetSolutionState, loadCodeForStep]);
 
   const goToLessonStep = useCallback((lessonId: number, sIdx: number) => {
     const lIdx = lessons.findIndex((l) => l.id === lessonId);
