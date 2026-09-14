@@ -5,6 +5,8 @@
  * course class explanations, property meanings, and extracted inline comments.
  */
 
+import { pluralize } from './pluralize';
+
 export type LineKind =
   | 'html-doctype'
   | 'html-tag'
@@ -715,7 +717,7 @@ export function annotateCodeLine(rawLine: string, lang: string): LineAnnotation 
       return {
         badge: `${ms} мс`,
         label: 'Задержка таймера',
-        detail: comment || `Время задержки таймера: ${ms} миллисекунд (${Number(ms) / 1000} сек)`,
+        detail: comment || `Время задержки таймера: ${pluralize(Number(ms), 'миллисекунда', 'миллисекунды', 'миллисекунд')} (${Number(ms) / 1000} сек)`,
         comment,
         kind: 'js-timer',
         color: '#fb923c',

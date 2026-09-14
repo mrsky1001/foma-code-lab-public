@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { X, Send, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Clock, AlertTriangle, ShieldAlert, Check, RefreshCw, CheckCheck } from "lucide-react";
 import confetti from "canvas-confetti";
 import { type QuizQuestion, type QuizResult, ACHIEVEMENT_RANKS } from "../../types/quiz";
+import { pluralize } from "../../utils/pluralize";
 import "./QuizPanel.css";
 
 interface Props {
@@ -148,7 +149,7 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
             </div>
           </div>
           <p className="quiz-prestart-count">
-            {questions.length} вопросов с вариантами ответа
+            {pluralize(questions.length, 'вопрос', 'вопроса', 'вопросов')} с вариантами ответа
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
             <button

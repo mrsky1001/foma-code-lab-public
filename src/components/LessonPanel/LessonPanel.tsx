@@ -7,6 +7,7 @@ import { Eye, EyeOff, ChevronLeft, ChevronRight, BookOpen, Wrench, Copy, Check, 
 import type { Lesson, LessonStep } from '../../types/lesson';
 import { analyzeStepSolution } from '../../utils/codeDiff';
 import { hasCodeTask } from '../../utils/codeMatch';
+import { pluralize } from '../../utils/pluralize';
 import './LessonPanel.css';
 
 // Custom dark theme that matches the app's color palette
@@ -415,7 +416,7 @@ export function LessonPanel({
                     <span className="solution-preview-lines-range">
                       {curRange.hasChanges
                         ? `Строки ${fromLine}–${toLine}`
-                        : `${fullLines.length} строк`}
+                        : pluralize(fullLines.length, 'строка', 'строки', 'строк')}
                     </span>
                   </div>
                   <button

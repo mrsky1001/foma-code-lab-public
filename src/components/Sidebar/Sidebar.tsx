@@ -5,6 +5,7 @@ import type { Lesson } from '../../types/lesson';
 import { ACHIEVEMENT_RANKS, INITIAL_RANK } from '../../types/quiz';
 import { FileTree } from '../FileTree/FileTree';
 import { hasCodeTask } from '../../utils/codeMatch';
+import { pluralize } from '../../utils/pluralize';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -250,7 +251,7 @@ export function Sidebar({
               >
                 {isGroupCollapsed ? <ChevronRight size={14} /> : <ChevronDown size={14} />}
                 <span className="sidebar-discipline-name">{discipline}</span>
-                <span className="sidebar-discipline-count" title={`${groupLessons.length} модулей · ${totalGroupSteps} шагов`}>
+                <span className="sidebar-discipline-count" title={`${pluralize(groupLessons.length, 'модуль', 'модуля', 'модулей')} · ${pluralize(totalGroupSteps, 'шаг', 'шага', 'шагов')}`}>
                   {groupLessons.length} · {totalGroupSteps}
                 </span>
               </div>
@@ -310,7 +311,7 @@ export function Sidebar({
                           <span className="lesson-title">{lesson.title}</span>
                           <div className="lesson-meta">
                             <span className="lesson-step-count">
-                              {!accessible ? 'Заблокировано' : `${lesson.steps.length} шагов`}
+                              {!accessible ? 'Заблокировано' : pluralize(lesson.steps.length, 'шаг', 'шага', 'шагов')}
                             </span>
                             {accessible && completedCount > 0 && (
                               <div className="lesson-progress-bar" title={`${completedCount}/${lesson.steps.length} пройдено`}>
@@ -633,7 +634,7 @@ export function Sidebar({
                         {isUnlocked ? rank.name : 'Звание скрыто'}
                       </div>
                       <div style={{ fontSize: '11px', color: 'var(--text-muted)', lineHeight: 1.3 }}>
-                        {isUnlocked ? rank.description : `Сдайте ${rank.level} тестов для получения этого звания`}
+                        {isUnlocked ? rank.description : `Сдайте ${pluralize(rank.level, 'тест', 'теста', 'тестов')} для получения этого звания`}
                       </div>
                     </div>
                   </div>
