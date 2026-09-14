@@ -304,21 +304,23 @@ export default function App() {
   // Re-calculate similarity when step changes or code changes
   useEffect(() => {
     if (stepHasTask) {
-      const isAlreadyDone = progress.practiceDone.has(`foma-practice-done-${lesson.id}-${stepIndex}`);
-      if (isAlreadyDone || isShowingSolution) {
+      if (isShowingSolution) {
+        // While solution panel is open, always show 100% visually
         setTaskSimilarity(100);
-      } else {
-        const sim = calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
-        setTaskSimilarity(sim);
-        if (sim >= 80) {
-          progress.markStepCompleted(lesson.id, stepIndex);
-          setCheckStatus('success');
-        }
+        return;
+      }
+      // Always compute actual similarity so the progress bar reflects real code state.
+      // isAlreadyDone only affects whether we auto-mark completion again, not the display.
+      const sim = calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
+      setTaskSimilarity(sim);
+      if (sim >= 90) {
+        progress.markStepCompleted(lesson.id, stepIndex);
+        setCheckStatus('success');
       }
     } else {
       setTaskSimilarity(100);
     }
-  }, [lesson.id, stepIndex, stepHasTask, step.startCode, step.solutionCode, step.highlight, code, isShowingSolution, progress.practiceDone, progress.markStepCompleted]);
+  }, [lesson.id, stepIndex, stepHasTask, step.startCode, step.solutionCode, step.highlight, code, isShowingSolution, progress.markStepCompleted]);
 
   // Check button status: 'idle' | 'success' | 'error'
   const [checkStatus, setCheckStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -353,7 +355,7 @@ export default function App() {
       const updatedCode = { ...code, [lang]: value };
       const sim = calculateCodeSimilarity(updatedCode, step.startCode, step.solutionCode, step.highlight);
       setTaskSimilarity(sim);
-      if (sim >= 80) {
+      if (sim >= 90) {
         progress.markStepCompleted(lesson.id, stepIndex);
         setCheckStatus('success');
       }
@@ -365,7 +367,7 @@ export default function App() {
     clearErrorResetTimer();
     const sim = calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
     setTaskSimilarity(sim);
-    if (sim >= 80) {
+    if (sim >= 90) {
       setCheckStatus('success');
       progress.markStepCompleted(lesson.id, stepIndex);
     } else {
@@ -381,10 +383,12 @@ export default function App() {
   const handleToggleSolution = useCallback(() => {
     clearErrorResetTimer();
     toggleSolution();
-    setTaskSimilarity(100);
-    progress.markStepCompleted(lesson.id, stepIndex);
-    setCheckStatus('success');
-  }, [toggleSolution, lesson.id, stepIndex, progress, clearErrorResetTimer]);
+    // NOTE: We intentionally do NOT mark the step as completed here.
+    // Viewing the solution is a hint, not a submission. The step is only
+    // marked done when the user's own code reaches >= 90% similarity.
+    setTaskSimilarity(100); // Show 100% while solution is visible
+    setCheckStatus('idle');
+  }, [toggleSolution, clearErrorResetTimer]);
 
   const handleSelectLesson = (id: number) => {
     if (!progress.isLessonAccessible(id)) return;
@@ -402,7 +406,7 @@ export default function App() {
   };
 
   const handleNextStep = useCallback(() => {
-    if (taskSimilarity >= 80 || !stepHasTask) {
+    if (taskSimilarity >= 90 || !stepHasTask) {
       progress.markStepCompleted(lesson.id, stepIndex);
     }
     nextStep();

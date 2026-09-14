@@ -6,71 +6,112 @@ type: theory
 
 # Метод .map() и шаблонные строки
 
-## .map() — трансформация массива
+`.map()` создаёт **новый массив**, преобразуя каждый элемент по функции. Оригинал не изменяется.
 
-`.map()` создаёт **новый** массив, преобразуя каждый элемент по заданному правилу.
+## Базовое использование
 
 ```js
-const numbers = [1, 2, 3, 4];
-const doubled = numbers.map(n => n * 2); // каждое число умножается на 2
-// результат: [2, 4, 6, 8]
+const prices = [450, 800, 1200];
 
-const rooms = [
-  { name: 'Focus', price: 450 },
-  { name: 'Alpha', price: 1200 }
-];
-
-const names = rooms.map(room => room.name); // из каждого объекта берём только поле name
-// результат: ['Focus', 'Alpha']
+const doubled = prices.map(p => p * 2);     // [900, 1600, 2400]
+const labels  = prices.map(p => `${p} ₽`); // ['450 ₽', '800 ₽', '1200 ₽']
 ```
 
 ## Шаблонные строки (Template Literals)
 
-Вместо склейки строк через `+` используют обратные кавычки `` ` ``:
-
 ```js
-const name  = 'Focus';
-const price = 450;
+const name = 'Альфа';
+const price = 800;
 
-// Старый способ — неудобный:
-const old    = '<div>' + name + ' — ' + price + ' ₽</div>';
+// Старый способ — конкатенация
+const old = 'Комната ' + name + ' стоит ' + price + ' ₽';
 
-// Шаблонная строка — читается как обычный текст:
-const modern = `<div>${name} — ${price} ₽</div>`; // ${} — вставка переменной
+// Новый способ — шаблонная строка (обратные кавычки)
+const modern = `Комната ${name} стоит ${price} ₽`;
+// Внутри ${} можно любое выражение:
+const info = `Итого: ${price * 3} ₽`;   // → 'Итого: 2400 ₽'
 ```
 
-## .map() для генерации HTML
+## Многострочные шаблоны — генерация HTML
 
 ```js
-const html = rooms.map(room => `
-  <div class="card">
-    <h3>${room.name}</h3>     <!-- вставляем название комнаты -->
-    <p>${room.price} ₽/час</p> <!-- вставляем цену -->
-  </div>
-`).join(''); // .join('') склеивает все строки массива в одну без разделителей
+const room = { name: 'Альфа', price: 800 };
 
-container.innerHTML = html; // вставляем сгенерированный HTML в DOM
+const html = `
+  <div class="card">
+    <h3 class="card-title">${room.name}</h3>
+    <p class="card-price">${room.price} ₽/час</p>
+  </div>
+`;
+// Обратные кавычки сохраняют переносы строк
+```
+
+## map для генерации карточек
+
+```js
+const rooms = [
+  { id: 1, name: 'Фокус', price: 450, isAvailable: true },
+  { id: 2, name: 'Альфа', price: 800, isAvailable: false }
+];
+
+// Генерируем массив HTML-строк и объединяем через join('')
+catalog.innerHTML = rooms.map(room => `
+  <div class="card" data-id="${room.id}">
+    <h3>${room.name}</h3>
+    <p>${room.price} ₽/час</p>
+    ${room.isAvailable
+      ? '<span class="badge badge-green">Свободна</span>'
+      : '<span class="badge badge-red">Занята</span>'
+    }
+  </div>
+`).join('');
+// join('') убирает запятые между строками
+```
+
+## Условный рендеринг в шаблоне
+
+```js
+// Тернарный оператор в шаблоне
+`${isAvailable ? '<span>Свободна</span>' : '<span>Занята</span>'}`
+
+// Показать элемент только если условие true (или пустую строку)
+`${isNew ? '<span class="badge">Новинка</span>' : ''}`
 ```
 
 ## 🛠 Задание
 
-Преобразуйте массив имён в массив HTML-строк `<li>Имя</li>` и объедините в одну строку.
+Сгенерируйте список карточек из массива. Каждая карточка должна показывать название, цену, и бейдж «Свободна» / «Занята» через условный рендеринг.
 
 ```js:start
-const names = ['Алексей', 'Мария', 'Дмитрий'];
+const rooms = [
+  { id: 1, name: 'Фокус', price: 450, isAvailable: true  },
+  { id: 2, name: 'Альфа', price: 800, isAvailable: false }
+];
 
-const html = names.map(name => {
-  // Верните строку <li>...</li>
-}).join('');
-
-console.log(html);
+const container = document.querySelector('#catalog');
+container.innerHTML = rooms.map(room => `
+  <!-- Напишите шаблон карточки с условным бейджем -->
+`).join('');
 ```
 
 ```js:solution
-const names = ['Алексей', 'Мария', 'Дмитрий'];
+const rooms = [
+  { id: 1, name: 'Фокус', price: 450, isAvailable: true  },
+  { id: 2, name: 'Альфа', price: 800, isAvailable: false }
+];
 
-const html = names.map(name => `<li>${name}</li>`).join(''); // каждое имя → <li>Имя</li>, затем всё склеивается
+const container = document.querySelector('#catalog');
 
-console.log(html);
-// <li>Алексей</li><li>Мария</li><li>Дмитрий</li>
+// map: преобразуем каждый объект в HTML-строку
+// join(''): склеиваем строки без разделителя
+container.innerHTML = rooms.map(room => `
+  <div class="card" data-id="${room.id}">
+    <h3 class="card-title">${room.name}</h3>
+    <p class="card-price">${room.price} ₽/час</p>
+    ${room.isAvailable
+      ? '<span class="badge badge--green">Свободна</span>'   <!-- условие true -->
+      : '<span class="badge badge--red">Занята</span>'       <!-- условие false -->
+    }
+  </div>
+`).join(''); // join('') убирает запятые между карточками
 ```

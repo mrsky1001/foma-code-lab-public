@@ -1,69 +1,111 @@
 ---
-title: "Таймеры и localStorage"
+title: "setTimeout и setInterval — таймеры"
 highlight: js
 type: theory
 ---
 
-# Таймеры и localStorage
+# setTimeout и setInterval — таймеры
 
-## setTimeout — выполнить один раз через N миллисекунд
+JavaScript — **однопоточный** язык: он выполняет код строчку за строчкой. Но иногда нужно отложить действие или повторять его регулярно. Для этого есть таймеры.
+
+## setTimeout — выполнить один раз через задержку
 
 ```js
-setTimeout(() => {
-  console.log('Прошла 1 секунда!'); // выполнится один раз через 1000 мс
-}, 1000); // 1000 мс = 1 секунда
+const timerId = setTimeout(() => {  // запустить через 2 секунды
+  console.log('Прошло 2 секунды!'); // код выполнится один раз
+}, 2000); // 2000 мс = 2 секунды
+
+// setTimeout возвращает id — он нужен чтобы отменить таймер
 ```
 
-## setInterval — повторять каждые N миллисекунд
-
+**Отменить до срабатывания:**
 ```js
-const timerId = setInterval(() => {
-  console.log('Тик!'); // будет вызываться каждые 500 мс бесконечно
-}, 500); // 500 мс = 0.5 секунды
-
-// Остановить интервал:
-clearInterval(timerId); // передаём тот же id, что вернул setInterval
+clearTimeout(timerId); // таймер отменён, код не выполнится
 ```
 
-## localStorage — постоянное хранилище в браузере
-
-Данные сохраняются между перезагрузками страницы.
+## setInterval — повторять действие через интервал
 
 ```js
-// Сохранить строку по ключу
-localStorage.setItem('username', 'Иван'); // ключ — 'username', значение — 'Иван'
+const intervalId = setInterval(() => {
+  console.log('Тик!');   // выполняется каждые 1000 мс
+}, 1000); // каждую секунду
 
-// Прочитать по ключу
-const name = localStorage.getItem('username'); // → 'Иван' (или null, если нет)
+// setInterval тоже возвращает id — сохраните для остановки!
+```
 
-// Сохранить объект (нужно преобразовать в строку через JSON)
-const user = { name: 'Иван', role: 'admin' };
-localStorage.setItem('user', JSON.stringify(user)); // JSON.stringify → '{"name":"Иван",...}'
+**Остановить интервал:**
+```js
+clearInterval(intervalId); // передаём id, который вернул setInterval
+```
 
-// Прочитать объект обратно
-const savedUser = JSON.parse(localStorage.getItem('user')); // JSON.parse → объект
-console.log(savedUser.name); // → 'Иван'
+## Паттерн автослайдера со сбросом при клике
 
-// Удалить ключ из хранилища
-localStorage.removeItem('username');
+```js
+let timerId = null; // null — таймер ещё не запущен
+
+function startAuto() {
+  timerId = setInterval(() => {  // запустить и сохранить id
+    nextSlide();                  // переключать слайды каждые 3 сек
+  }, 3000);
+}
+
+function stopAuto() {
+  clearInterval(timerId);  // остановить таймер по сохранённому id
+}
+
+function resetTimer() {
+  stopAuto();   // сначала остановить текущий
+  startAuto();  // потом запустить заново — отсчёт с нуля
+}
+
+// При клике пользователя — сбросить автоматику
+nextBtn.addEventListener('click', () => {
+  nextSlide();    // переключить слайд вручную
+  resetTimer();   // перезапустить отсчёт (чтобы не переключился сразу)
+});
+
+startAuto(); // запустить при старте страницы
+```
+
+## Важно: не забывать остановить!
+
+Если интервал не остановить — он продолжит работать даже после ухода пользователя со страницы. Это называется **утечка памяти**:
+
+```js
+// Остановить при уходе со страницы
+window.addEventListener('beforeunload', () => {
+  clearInterval(intervalId);
+});
 ```
 
 ## 🛠 Задание
 
-Сохраните объект `{ name: 'Студент', score: 42 }` в localStorage. Прочитайте его и выведите имя в консоль.
+Создайте счётчик, который увеличивается каждую секунду. Кнопка «Стоп» останавливает счётчик. Кнопка «Сброс» обнуляет и перезапускает.
 
 ```js:start
-const data = { name: 'Студент', score: 42 };
+let count = 0;
+let timerId = null;
 
-// Сохраните data в localStorage под ключом 'progress'
-// Прочитайте обратно и выведите name
+// Запустите setInterval который увеличивает count и обновляет #counter
+
+// Обработчик кнопки Стоп
+document.querySelector('#stopBtn').addEventListener('click', () => {
+  // Остановите таймер
+});
 ```
 
 ```js:solution
-const data = { name: 'Студент', score: 42 }; // объект с данными
+let count = 0;
+let timerId = null;
 
-localStorage.setItem('progress', JSON.stringify(data)); // сохранить: ключ 'progress', значение — JSON-строка
+const counter = document.querySelector('#counter'); // элемент для отображения числа
 
-const saved = JSON.parse(localStorage.getItem('progress')); // прочитать и распарсить обратно в объект
-console.log(saved.name); // → 'Студент'
+timerId = setInterval(() => {      // запустить и сохранить id таймера
+  count++;                         // увеличивать счётчик каждую секунду
+  counter.textContent = count;     // обновить текст в блоке #counter
+}, 1000); // 1000 мс = 1 секунда
+
+document.querySelector('#stopBtn').addEventListener('click', () => {
+  clearInterval(timerId);          // остановить таймер по сохранённому id
+});
 ```

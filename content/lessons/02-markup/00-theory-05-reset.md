@@ -1,68 +1,101 @@
 ---
-title: "CSS Reset — зачем сбрасывать стили браузера?"
+title: "CSS Reset"
 highlight: css
 type: theory
 ---
 
-# CSS Reset — зачем сбрасывать стили браузера?
+# CSS Reset
 
-У каждого браузера есть **встроенные стили** — Chrome, Firefox, Safari показывают элементы немного по-разному. Это приводит к багам верстки.
+Разные браузеры применяют **разные стили по умолчанию** к HTML-элементам. Chrome делает `<h1>` немного крупнее чем Firefox. У `<body>` есть margin в одних браузерах и нет в других.
 
-CSS Reset убирает эти различия и даёт чистый лист.
+CSS Reset сбрасывает эти стили до нулевой точки — так мы получаем **одинаковую базу** во всех браузерах.
 
-## Минимальный CSS Reset
+## Минимальный modern reset
 
 ```css
-* {                          /* универсальный селектор — применяется ко ВСЕМ элементам */
-  box-sizing: border-box;    /* padding и border входят в width/height (не добавляются) */
-  margin: 0;                 /* убрать все внешние отступы по умолчанию */
-  padding: 0;                /* убрать все внутренние отступы по умолчанию */
+/* Сброс отступов и рамок */
+*, *::before, *::after {
+  box-sizing: border-box; /* ширина включает padding и border */
+  margin: 0;              /* убрать внешние отступы у всех */
+  padding: 0;             /* убрать внутренние отступы у всех */
+}
+
+/* Базовые настройки страницы */
+body {
+  font-family: sans-serif; /* системный шрифт без засечек */
+  line-height: 1.5;        /* межстрочный интервал */
+  -webkit-font-smoothing: antialiased; /* сглаживание шрифта на macOS */
+}
+
+/* Адаптивные картинки */
+img, video, svg {
+  max-width: 100%;  /* картинка не выйдет за пределы контейнера */
+  height: auto;     /* высота масштабируется пропорционально */
+  display: block;   /* убрать baseline gap (пространство снизу) */
+}
+
+/* Удобная работа с шрифтами в форм-элементах */
+input, button, textarea, select {
+  font: inherit; /* унаследовать шрифт страницы (браузеры задают свой) */
 }
 ```
 
-**`box-sizing: border-box`** — революционное правило. Теперь padding и border входят в размер элемента, а не добавляются к нему.
+## Зачем box-sizing: border-box?
 
-Без него: `width: 200px + padding: 20px = 240px` (неожиданно!)
-С ним: `width: 200px + padding: 20px = 200px` (как ожидалось!)
+Без него: `width: 200px` + `padding: 16px` = реальная ширина **232px** (padding добавляется).  
+С ним: `width: 200px` + `padding: 16px` = реальная ширина ровно **200px** (padding внутри).
 
-**`margin: 0; padding: 0`** — убирает отступы по умолчанию у заголовков, абзацев, списков.
+```
+content-box (по умолчанию):
+┌──────────────────────────────┐
+│ padding │  content  │ padding│  = 200px + 16 + 16 = 232px
+└──────────────────────────────┘
+
+border-box:
+┌──────────────────────────────┐
+│ p │      content      │ p   │  = 200px (padding внутри)
+└──────────────────────────────┘
+```
 
 ## 🛠 Задание
 
-Добавьте CSS Reset. Убедитесь, что у `<h1>` и `<p>` нет лишних отступов.
-
-```html:start
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>CSS Reset</title>
-  <style>
-    /* Добавьте Reset здесь */
-
-    body { font-family: sans-serif; padding: 20px; background: #fff; }
-  </style>
-</head>
-<body>
-  <h1>Заголовок без лишних отступов</h1>
-  <p>Абзац без лишних отступов</p>
-</body>
-</html>
-```
+Добавьте к существующему reset правила для `img` (адаптивность) и `input/button` (наследование шрифта).
 
 ```css:start
-/* Добавьте Reset */
-body { font-family: sans-serif; padding: 20px; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+/* Добавьте правила для img и input/button/textarea */
 ```
 
 ```css:solution
-* {                          /* CSS сброс: ко всем элементам */
-  box-sizing: border-box;    /* размеры включают padding и border */
-  margin: 0;                 /* сброс внешних отступов */
-  padding: 0;                /* сброс внутренних отступов */
+*, *::before, *::after {
+  box-sizing: border-box; /* ширина включает padding — интуитивно */
+  margin: 0;              /* убрать отступы браузера по умолчанию */
+  padding: 0;
 }
+
 body {
-  font-family: sans-serif;   /* базовый шрифт без засечек */
-  padding: 20px;             /* отступ внутри body */
+  font-family: sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased; /* сглаживание на macOS */
+}
+
+img, video, svg {
+  max-width: 100%;  /* адаптивность: не выходить за контейнер */
+  height: auto;     /* пропорциональная высота */
+  display: block;   /* убрать baseline gap */
+}
+
+input, button, textarea, select {
+  font: inherit;    /* унаследовать шрифт страницы */
 }
 ```

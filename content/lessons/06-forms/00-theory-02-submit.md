@@ -6,46 +6,104 @@ type: theory
 
 # Событие submit и preventDefault
 
-Когда пользователь нажимает кнопку типа `submit` внутри формы — срабатывает событие `submit`. По умолчанию браузер **перезагружает страницу**. Нам нужно это отменить.
+Когда пользователь нажимает кнопку `type="submit"` — форма генерирует событие `submit`. По умолчанию браузер **перезагружает страницу** и отправляет данные на сервер. Нам это не нужно — мы перехватываем событие через JS.
 
-## Перехват submit
+## preventDefault — отменить действие по умолчанию
 
 ```js
-const form = document.getElementById('loginForm'); // найти форму по id
+const form = document.querySelector('#bookingForm');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault(); // отменить стандартное поведение — перезагрузку страницы
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // отменить перезагрузку страницы и отправку на сервер
 
-  // Теперь наш код выполняется без перезагрузки
+  // Теперь можно читать данные и делать что угодно
   console.log('Форма отправлена!');
 });
 ```
 
-## Почему preventDefault?
+**Что происходит без `e.preventDefault()`:** страница мигает (перезагружается), поля сбрасываются, URL меняется (`?name=...`).
 
-Без него:
-1. Пользователь нажал «Войти»
-2. Браузер перезагрузил страницу — все данные потеряны!
+## Чтение полей — FormData
 
-С ним:
-1. Пользователь нажал «Войти»
-2. Мы читаем поля, проверяем, отправляем на сервер — всё под нашим контролем.
+`FormData` — современный способ читать все поля формы сразу:
+
+```js
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const data = new FormData(form);   // создать объект из всех полей формы
+
+  const name  = data.get('name');    // значение поля name="name"
+  const email = data.get('email');   // значение поля name="email"
+  const date  = data.get('date');
+
+  console.log({ name, email, date });
+});
+```
+
+**Имена полей** в `data.get('...')` берутся из атрибута `name` тега `<input>`.
+
+## Чтение полей напрямую
+
+```js
+const nameInput  = document.querySelector('[name="name"]');
+const emailInput = document.querySelector('[name="email"]');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name  = nameInput.value.trim();   // .trim() убирает лишние пробелы
+  const email = emailInput.value.trim();
+
+  if (!name) {
+    alert('Введите имя');
+    return; // прекратить выполнение
+  }
+
+  console.log({ name, email });
+});
+```
+
+## Сброс формы после отправки
+
+```js
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  // ... обработать данные ...
+
+  form.reset(); // сбросить все поля в начальное состояние
+});
+```
 
 ## 🛠 Задание
 
-Добавьте к форме обработчик submit. Отмените перезагрузку и выведите в консоль «Форма перехвачена!».
+Перехватите submit формы. Прочитайте поля `name` и `email` через `FormData`. Выведите в консоль объект с данными.
 
 ```js:start
-const form = document.querySelector('#myForm');
+const form = document.querySelector('#bookingForm');
 
-// Добавьте обработчик submit
+form.addEventListener('submit', (e) => {
+  // Отмените поведение по умолчанию
+  // Прочитайте name и email через FormData
+  // Выведите через console.log
+});
 ```
 
 ```js:solution
-const form = document.querySelector('#myForm'); // найти форму в DOM
+const form = document.querySelector('#bookingForm');
 
-form.addEventListener('submit', (event) => {  // слушать событие отправки формы
-  event.preventDefault();                     // отменить перезагрузку страницы
-  console.log('Форма перехвачена!');          // наш код выполнился — страница не перезагрузилась
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // отменить перезагрузку страницы
+
+  const data  = new FormData(form);      // прочитать все поля формы
+  const name  = data.get('name');        // поле с name="name"
+  const email = data.get('email');       // поле с name="email"
+
+  console.log({ name, email });
+  // → { name: 'Иван', email: 'ivan@mail.ru' }
+
+  form.reset(); // сбросить поля после успешной обработки
 });
 ```

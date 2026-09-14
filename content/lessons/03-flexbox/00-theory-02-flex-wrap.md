@@ -6,104 +6,110 @@ type: theory
 
 # flex-wrap и адаптивная сетка
 
-По умолчанию Flexbox пытается уместить все элементы в одну строку, сжимая их. `flex-wrap: wrap` разрешает перенос на новую строку.
+По умолчанию Flexbox пытается уместить все элементы в одну строку, сжимая их. `flex-wrap` позволяет переносить элементы на следующую строку.
 
 ## flex-wrap
 
 ```css
-.grid {
-  display: flex;           /* включить Flexbox */
-  flex-wrap: wrap;         /* разрешить перенос элементов на новую строку */
-  gap: 20px;               /* отступ между карточками */
+.catalog {
+  display: flex;
+  flex-wrap: nowrap;   /* по умолчанию: всё в одну строку, сжимать */
+  flex-wrap: wrap;     /* переносить на следующую строку если не помещается */
+  flex-wrap: wrap-reverse; /* перенос в обратном направлении */
 }
 ```
 
-## Как задать ширину элементов в сетке?
+## Адаптивная сетка карточек
 
 ```css
+.catalog {
+  display: flex;
+  flex-wrap: wrap;        /* разрешить перенос */
+  gap: 16px;              /* отступы между карточками */
+}
+
 .card {
-  width: 300px;            /* фиксированная ширина карточки */
+  flex: 1 1 280px;
+  /* flex-grow: 1   — растягиваться если есть место */
+  /* flex-shrink: 1 — сжиматься если не хватает */
+  /* flex-basis: 280px — желаемая ширина */
 }
 ```
 
-Или гибкий вариант:
+Результат: карточки занимают столько места сколько помещается, переносясь на следующую строку.
+
+## flex: 1 1 280px vs width: 280px
+
+```css
+/* width: 280px — жёсткая ширина, всегда 280px */
+.card { width: 280px; }
+
+/* flex: 1 1 280px — гибкая ширина:
+   начинаем с 280px, но можем расти и сжиматься */
+.card { flex: 1 1 280px; }
+```
+
+С `flex: 1 1 280px` карточки равномерно заполняют строку — нет некрасивых «хвостов».
+
+## min-width — защита от слишком узких карточек
+
 ```css
 .card {
-  flex: 1 1 300px;         /* flex-grow flex-shrink flex-basis: расти, сжиматься, базовая 300px */
-  min-width: 280px;        /* минимальная ширина — не меньше 280px */
+  flex: 1 1 280px;
+  min-width: 200px; /* не сжиматься меньше 200px */
+}
+```
+
+## gap vs margin
+
+```css
+/* Старый способ — margin на карточках */
+.card { margin: 8px; }       /* отступ по всем сторонам */
+
+/* Современный способ — gap на контейнере */
+.catalog {
+  display: flex;
+  gap: 16px;          /* промежутки между карточками, без внешних отступов */
+  /* или по осям: */
+  row-gap: 24px;      /* вертикальные промежутки */
+  column-gap: 16px;   /* горизонтальные промежутки */
 }
 ```
 
 ## 🛠 Задание
 
-Создайте сетку из 4 карточек. При нехватке места карточки должны переноситься на следующую строку.
-
-```html:start
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>flex-wrap</title>
-  <style>
-    .grid {
-      display: flex;
-      /* Добавьте flex-wrap и gap */
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    .card {
-      width: 200px;
-      height: 120px;
-      background: #007bff;
-      border-radius: 8px;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-    }
-  </style>
-</head>
-<body>
-  <div class="grid">
-    <div class="card">Карточка 1</div>
-    <div class="card">Карточка 2</div>
-    <div class="card">Карточка 3</div>
-    <div class="card">Карточка 4</div>
-  </div>
-</body>
-</html>
-```
+Создайте адаптивную сетку карточек: 4 в ряд на широком экране, 2 на среднем, 1 на узком. Используйте `flex-wrap` и `flex-basis`.
 
 ```css:start
-.grid {
+.catalog {
   display: flex;
   /* Добавьте flex-wrap и gap */
-  padding: 20px;
-  background: #f5f5f5;
 }
+
 .card {
-  width: 200px; height: 120px;
-  background: #007bff; border-radius: 8px;
-  color: white; display: flex;
-  align-items: center; justify-content: center;
-  font-weight: 600;
+  /* Задайте flex с basis 220px */
+  min-width: 160px;
+  background: #f0f4f8;
+  padding: 16px;
+  border-radius: 8px;
 }
 ```
 
 ```css:solution
-.grid {                     /* CSS селектор: контейнер сетки */
-  display: flex;            /* включить Flexbox */
-  flex-wrap: wrap;          /* разрешить перенос на новую строку при нехватке места */
-  gap: 20px;                /* отступ между карточками */
-  padding: 20px;            /* внутренний отступ сетки */
-  background: #f5f5f5;      /* фон сетки */
+.catalog {
+  display: flex;
+  flex-wrap: wrap;     /* переносить карточки на следующую строку */
+  gap: 16px;           /* промежутки между карточками */
 }
-.card {                     /* CSS селектор: отдельная карточка */
-  width: 200px; height: 120px;          /* фиксированные размеры карточки */
-  background: #007bff; border-radius: 8px;  /* синий фон, скруглённые углы */
-  color: white; display: flex;           /* белый текст, Flexbox внутри */
-  align-items: center; justify-content: center;  /* текст по центру */
-  font-weight: 600;          /* полужирный шрифт */
+
+.card {
+  flex: 1 1 220px;     /* базовая ширина 220px, растягиваться/сжиматься */
+  min-width: 160px;    /* не сжимать меньше 160px */
+  background: #f0f4f8;
+  padding: 16px;
+  border-radius: 8px;
 }
+/* При ширине контейнера ~900px — 4 карточки в ряд
+   При ~500px — 2 карточки
+   При ~340px — 1 карточка */
 ```

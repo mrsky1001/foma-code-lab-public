@@ -6,77 +6,110 @@ type: theory
 
 # Метод .filter() — фильтрация массива
 
-`.filter()` создаёт новый массив, оставляя только те элементы, для которых условие вернуло `true`.
+`.filter()` создаёт **новый** массив, оставляя только те элементы, для которых условие вернуло `true`. Оригинальный массив не изменяется.
 
 ```js
 const rooms = [
-  { name: 'Focus', price: 450,  capacity: 1  },
-  { name: 'Alpha', price: 1200, capacity: 10 },
-  { name: 'Hub',   price: 250,  capacity: 5  }
+  { name: 'Фокус', price: 450,  capacity: 1  },
+  { name: 'Альфа', price: 1200, capacity: 10 },
+  { name: 'Хаб',   price: 800,  capacity: 5  }
 ];
 
 // Только дешевле 500
 const cheap = rooms.filter(room => room.price < 500);
-// результат: [{ name: 'Focus', ... }, { name: 'Hub', ... }]
+// → [{ name: 'Фокус', ... }]
 
 // Только большие (вместимость > 4)
 const large = rooms.filter(room => room.capacity > 4);
-// результат: [{ name: 'Alpha', ... }, { name: 'Hub', ... }]
+// → [{ name: 'Альфа', ... }, { name: 'Хаб', ... }]
 ```
 
 ## Поиск по строке
 
 ```js
-const query = 'фо'; // строка поиска
+const query = 'фо';
 
 const found = rooms.filter(room =>
   room.name.toLowerCase().includes(query.toLowerCase())
-  // .toLowerCase() — перевести в нижний регистр для поиска без учёта регистра
-  // .includes() — проверить, содержит ли строка подстроку
+  // .toLowerCase() — нижний регистр для регистронезависимого поиска
+  // .includes() — содержит ли строка подстроку
 );
 ```
 
-## Комбинирование фильтров
+## Фильтрация по нескольким полям
 
 ```js
-const filtered = rooms
-  .filter(r => r.price < 500)                        // сначала по цене
-  .filter(r => r.name.toLowerCase().includes(query)); // потом по названию
-// результат — пересечение обоих условий
+// Фильтр с тремя условиями одновременно
+function applyFilters(rooms, { query, maxPrice, minCapacity }) {
+  return rooms.filter(r =>
+    r.name.toLowerCase().includes(query.toLowerCase())   // по названию
+    && r.price <= maxPrice                               // && — И (все условия)
+    && r.capacity >= minCapacity                         // по вместимости
+  );
+}
+
+const result = applyFilters(rooms, {
+  query: '',
+  maxPrice: 1000,
+  minCapacity: 3
+});
+// → [{ name: 'Хаб', price: 800, capacity: 5 }]
 ```
+
+## .reduce() — суммирование и группировка
+
+`reduce` — мощный метод для сворачивания массива в одно значение:
+
+```js
+// Сумма цен всех комнат
+const totalPrice = rooms.reduce((sum, room) => sum + room.price, 0);
+// 0 — начальное значение accumulator (sum)
+// → 450 + 1200 + 800 = 2450
+
+// Средняя цена
+const avgPrice = totalPrice / rooms.length; // → 816.67
+```
+
+## filter vs find
+
+| | `.filter()` | `.find()` |
+|-|-------------|-----------|
+| Возвращает | Массив (все подходящие) | Один элемент (первый) / undefined |
+| Когда | Нужно несколько результатов | Нужен один результат по id |
 
 ## 🛠 Задание
 
-Отфильтруйте массив товаров: оставьте только те, у которых цена меньше 1000 и название содержит «про».
+Отфильтруйте комнаты по трём критериям одновременно: цена ≤ 1000, вместимость ≥ 3 и название содержит «Hub» / «Хаб».
 
 ```js:start
-const products = [
-  { name: 'Ноутбук Pro',    price: 800  },
-  { name: 'Мышь',           price: 200  },
-  { name: 'Монитор Pro',    price: 1500 },
-  { name: 'Клавиатура Pro', price: 600  }
+const rooms = [
+  { name: 'Hub Focus', price: 450,  capacity: 2 },
+  { name: 'Hub Alpha', price: 800,  capacity: 5 },
+  { name: 'Mega Hub',  price: 1200, capacity: 8 },
+  { name: 'Focus',     price: 300,  capacity: 1 }
 ];
 
-const result = products.filter(p => {
-  // Ваше условие
+const result = rooms.filter(r => {
+  // Напишите условие с тремя критериями
 });
 
-console.log(result.map(p => p.name));
+console.log(result.map(r => r.name));
 ```
 
 ```js:solution
-const products = [
-  { name: 'Ноутбук Pro',    price: 800  },
-  { name: 'Мышь',           price: 200  },
-  { name: 'Монитор Pro',    price: 1500 },
-  { name: 'Клавиатура Pro', price: 600  }
+const rooms = [
+  { name: 'Hub Focus', price: 450,  capacity: 2 },
+  { name: 'Hub Alpha', price: 800,  capacity: 5 },
+  { name: 'Mega Hub',  price: 1200, capacity: 8 },
+  { name: 'Focus',     price: 300,  capacity: 1 }
 ];
 
-const result = products.filter(p =>
-  p.price < 1000                            // цена меньше 1000
-  && p.name.toLowerCase().includes('про')   // && — И; название содержит 'про'
+const result = rooms.filter(r =>
+  r.price <= 1000                                   // цена не больше 1000
+  && r.capacity >= 3                                // вместимость не меньше 3
+  && r.name.toLowerCase().includes('hub')           // название содержит 'hub'
 );
 
-console.log(result.map(p => p.name));
-// ['Ноутбук Pro', 'Клавиатура Pro']
+console.log(result.map(r => r.name));
+// → ['Hub Alpha'] — единственная комната удовлетворяющая всем условиям
 ```

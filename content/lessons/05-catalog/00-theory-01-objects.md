@@ -6,74 +6,134 @@ type: theory
 
 # Объекты в JavaScript
 
-Объект — способ хранить связанные данные вместе. Вместо трёх отдельных переменных — один объект.
+Объект — это коллекция **пар «ключ: значение»**. Используется для хранения структурированных данных.
+
+## Создание и обращение к свойствам
 
 ```js
-// Без объекта — плохо: переменные не связаны:
-const roomName     = 'Переговорная Alpha';
-const roomPrice    = 800;
-const roomCapacity = 8;
-
-// С объектом — хорошо: всё об одной комнате в одном месте:
 const room = {
-  name:        'Переговорная Alpha', // строковое поле: название комнаты
-  price:       800,                  // числовое поле: цена в рублях за час
-  capacity:    8,                    // числовое поле: вместимость (человек)
-  isAvailable: true                  // булево поле: доступна ли для бронирования
+  name: 'Переговорная «Альфа»',   // ключ: 'name', значение: строка
+  price: 800,                      // ключ: 'price', значение: число
+  capacity: 8,                     // ключ: 'capacity', значение: число
+  isAvailable: true                // ключ: 'isAvailable', значение: boolean
 };
+
+// Два способа обратиться к свойству:
+room.name          // точечная нотация → 'Переговорная «Альфа»'
+room['price']      // скобочная нотация → 800 (нужна для динамических ключей)
 ```
 
-## Доступ к свойствам
+## Изменение и добавление свойств
 
 ```js
-room.name           // 'Переговорная Alpha' — через точку (чаще всего)
-room['price']       // 800 — через скобки (удобно, если ключ хранится в переменной)
-room.isAvailable    // true
+room.price = 900;              // изменить существующее свойство
+room.floor = 3;                // добавить новое свойство
+delete room.isAvailable;       // удалить свойство
 ```
 
-## Изменение и добавление
+## Деструктуризация — удобное извлечение
+
+Вместо того чтобы каждый раз писать `room.name`, `room.price` — используйте деструктуризацию:
 
 ```js
-room.price = 900;          // изменить существующее свойство
-room.floor = 3;            // добавить новое свойство (если его не было)
-delete room.isAvailable;   // удалить свойство из объекта
+// Без деструктуризации — многословно
+const name = room.name;
+const price = room.price;
+const capacity = room.capacity;
+
+// С деструктуризацией — чисто и коротко
+const { name, price, capacity } = room;
+// Теперь name, price, capacity — самостоятельные переменные
+
+console.log(name);     // → 'Переговорная «Альфа»'
+console.log(price);    // → 900
+```
+
+Деструктуризация с переименованием:
+```js
+const { name: roomName, price: roomPrice } = room;
+// roomName = 'Переговорная «Альфа»', roomPrice = 900
+```
+
+## Spread оператор — копирование и обновление
+
+```js
+// Создать копию объекта с изменением одного поля
+const updatedRoom = { ...room, price: 1000 };
+// { name: 'Альфа', price: 1000, capacity: 8 } — новый объект, оригинал не тронут
+
+// Слить два объекта
+const extra = { wifi: true, projector: false };
+const fullRoom = { ...room, ...extra };
+// Все поля room + все поля extra
+```
+
+## Object.keys, Object.values, Object.entries
+
+```js
+Object.keys(room)    // → ['name', 'price', 'capacity', 'isAvailable'] — массив ключей
+Object.values(room)  // → ['Альфа', 800, 8, true] — массив значений
+Object.entries(room) // → [['name','Альфа'], ['price',800], ...] — массив пар [ключ, значение]
+
+// Удобно для перебора объекта:
+Object.entries(room).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);  // → 'name: Альфа', 'price: 800', ...
+});
 ```
 
 ## Вложенные объекты
 
 ```js
-const room = {
-  name: 'Alpha',
-  equipment: {              // значение поля — другой объект
-    wifi:      true,        // есть ли Wi-Fi
-    projector: true,        // есть ли проектор
-    capacity:  8            // вместимость (внутри вложенного объекта)
-  }
+const booking = {
+  room: { name: 'Альфа', price: 800 },  // вложенный объект
+  user: { name: 'Иван', email: 'ivan@mail.ru' },
+  date: '2024-01-15'
 };
 
-console.log(room.equipment.capacity); // 8 — обращаемся через две точки
+// Доступ к вложенным полям:
+booking.room.name     // → 'Альфа'
+booking.user.email    // → 'ivan@mail.ru'
+
+// Деструктуризация вложенного:
+const { room: { name: roomName } } = booking;  // roomName = 'Альфа'
 ```
 
 ## 🛠 Задание
 
-Создайте объект `office` с полями: `name` (строка), `floor` (число), `hasKitchen` (булево). Выведите в консоль название и этаж.
+Создайте объект комнаты и используйте деструктуризацию для извлечения полей. Создайте обновлённую копию через spread.
 
 ```js:start
-// Создайте объект office
-const office = {
-  // ...
+const room = {
+  name: 'Мини-офис «Фокус»',
+  price: 450,
+  capacity: 2,
+  isAvailable: true
 };
 
-// Выведите name и floor
+// 1. Деструктурируйте: извлеките name, price, capacity
+
+// 2. Создайте копию с price: 500 через spread
+
+// 3. Выведите оба объекта
 ```
 
 ```js:solution
-const office = {
-  name:       'СмартОфис Центр', // название офиса
-  floor:      4,                  // этаж в здании
-  hasKitchen: true                // есть ли кухня
+const room = {
+  name: 'Мини-офис «Фокус»',
+  price: 450,
+  capacity: 2,
+  isAvailable: true
 };
 
-console.log(office.name);  // → 'СмартОфис Центр'
-console.log(office.floor); // → 4
+// Деструктуризация: создаём отдельные переменные из полей объекта
+const { name, price, capacity } = room;
+console.log(name);     // → 'Мини-офис «Фокус»'
+console.log(price);    // → 450
+
+// Spread: копия объекта с изменением одного поля
+const updatedRoom = { ...room, price: 500 };
+// { name: 'Фокус', price: 500, capacity: 2, isAvailable: true }
+
+console.log(room.price);        // → 450 — оригинал не изменился!
+console.log(updatedRoom.price); // → 500 — только в копии
 ```

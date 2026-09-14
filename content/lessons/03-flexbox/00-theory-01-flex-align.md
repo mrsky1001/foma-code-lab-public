@@ -6,83 +6,130 @@ type: theory
 
 # Выравнивание во Flexbox
 
-Flexbox даёт мощные инструменты выравнивания. Разберём каждый.
+Flexbox — система вёрстки для расположения элементов в строку или колонку. Включается одним свойством и даёт мощные инструменты выравнивания.
 
-## justify-content — по главной оси (горизонталь в row)
+## Оси Flexbox
 
-| Значение | Что делает |
-|----------| -----------|
-| `flex-start` | Прижать к началу (по умолчанию) |
-| `flex-end` | Прижать к концу |
-| `center` | По центру |
-| `space-between` | Равные промежутки между элементами |
-| `space-around` | Равные промежутки вокруг каждого |
+Главное что нужно понять: Flexbox работает с двумя осями.
 
-## align-items — по поперечной оси (вертикаль в row)
+```
+flex-direction: row (по умолчанию)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━→  Главная ось (main axis)
+│ [элем] [элем] [элем]
+↓  Поперечная ось (cross axis)
 
-| Значение | Что делает |
-|----------| -----------|
-| `stretch` | Растянуть (по умолчанию) |
-| `center` | По центру |
-| `flex-start` | По верхнему краю |
-| `flex-end` | По нижнему краю |
+flex-direction: column
+│  Главная ось (main axis)
+↓
+[элем]
+[элем]
+[элем]
+──────────────────→  Поперечная ось (cross axis)
+```
 
-## gap — расстояние между элементами
+**Ключевой момент:** при `flex-direction: column` оси меняются местами!
+
+## justify-content — выравнивание по главной оси
 
 ```css
-gap: 20px;           /* одинаковый отступ по всем направлениям между дочерними */
-gap: 10px 20px;      /* row-gap (вертикальный) и column-gap (горизонтальный) */
+.container {
+  display: flex;
+  justify-content: flex-start;    /* по умолчанию: элементы в начале */
+  justify-content: flex-end;      /* элементы в конце */
+  justify-content: center;        /* элементы по центру */
+  justify-content: space-between; /* первый — слева, последний — справа, остальные равномерно */
+  justify-content: space-around;  /* равные отступы вокруг каждого */
+  justify-content: space-evenly;  /* строго равные промежутки между всеми */
+}
+```
+
+## align-items — выравнивание по поперечной оси
+
+```css
+.container {
+  display: flex;
+  align-items: stretch;     /* по умолчанию: растянуть до высоты контейнера */
+  align-items: flex-start;  /* к началу поперечной оси (вверх при row) */
+  align-items: flex-end;    /* к концу поперечной оси (вниз при row) */
+  align-items: center;      /* по центру поперечной оси */
+  align-items: baseline;    /* выровнять по базовой линии текста */
+}
+```
+
+## flex-direction — направление главной оси
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;            /* по умолчанию: элементы в строку (слева направо) */
+  flex-direction: row-reverse;    /* в строку, но справа налево */
+  flex-direction: column;         /* в колонку (сверху вниз) */
+  flex-direction: column-reverse; /* в колонку снизу вверх */
+}
+```
+
+## flex-grow и flex-shrink — как элементы делят пространство
+
+```css
+.sidebar {
+  flex: 0 0 250px;  /* flex-grow: 0, flex-shrink: 0, flex-basis: 250px */
+  /* не растягивается, не сжимается, всегда 250px */
+}
+
+.main-content {
+  flex: 1;          /* сокращение от flex: 1 1 0 */
+  /* займёт всё оставшееся место */
+}
+```
+
+## Практический пример — шапка
+
+```css
+.header {
+  display: flex;              /* включить flexbox */
+  justify-content: space-between; /* logo — слева, nav — справа */
+  align-items: center;        /* вертикально по центру */
+  padding: 0 24px;
+}
 ```
 
 ## 🛠 Задание
 
-Сделайте горизонтальное меню с пунктами, расположёнными через `space-between`, выровненными по центру по вертикали.
-
-```html:start
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Выравнивание Flexbox</title>
-  <style>
-    .nav {
-      background: #222;
-      padding: 0 20px;
-      height: 56px;
-      /* Добавьте flex-свойства */
-    }
-    .nav a { color: #fff; text-decoration: none; font-size: 14px; }
-  </style>
-</head>
-<body>
-  <nav class="nav">
-    <a href="#">Главная</a>
-    <a href="#">Каталог</a>
-    <a href="#">О нас</a>
-    <a href="#">Войти</a>
-  </nav>
-</body>
-</html>
-```
+Создайте контейнер с тремя карточками. Расположите их в строку с `space-between`. Затем добавьте второй вариант — с `flex-direction: column` и элементами по центру.
 
 ```css:start
-.nav {
-  background: #222;
-  padding: 0 20px;
-  height: 56px;
-  /* Добавьте flex свойства */
+.container {
+  display: flex;
+  /* Добавьте justify-content и align-items */
 }
-.nav a { color: #fff; text-decoration: none; font-size: 14px; }
+
+.card {
+  width: 100px;
+  height: 80px;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+}
 ```
 
 ```css:solution
-.nav {                              /* CSS селектор: навигационная панель */
-  display: flex;                    /* включить Flexbox */
-  justify-content: space-between;   /* ссылки равномерно по горизонтали */
-  align-items: center;              /* ссылки по вертикали: по центру */
-  background: #222;                 /* тёмный фон навигации */
-  padding: 0 20px;                  /* горизонтальные внутренние отступы */
-  height: 56px;                     /* фиксированная высота навигации */
+.container {
+  display: flex;                   /* включить flexbox */
+  justify-content: space-between; /* равномерно с отступами по краям */
+  align-items: center;             /* вертикально по центру */
+  padding: 16px;
+  background: #f0f4f8;
+  border-radius: 12px;
 }
-.nav a { color: #fff; text-decoration: none; font-size: 14px; }  /* стиль ссылок */
+
+.card {
+  width: 100px;                   /* ширина карточки */
+  height: 80px;                   /* высота карточки */
+  background: #007bff;            /* синий фон */
+  color: white;                   /* белый текст */
+  border-radius: 8px;             /* скруглённые углы */
+  display: flex;                  /* flexbox внутри карточки */
+  align-items: center;            /* вертикально по центру текст */
+  justify-content: center;        /* горизонтально по центру текст */
+}
 ```

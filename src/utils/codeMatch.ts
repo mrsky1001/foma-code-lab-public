@@ -143,7 +143,24 @@ export function calculateCodeSimilarity(
       matchedTokens += Math.min(expCount, uCount);
     }
 
-    const pct = Math.min(100, Math.round((matchedTokens / totalExpected) * 100));
+    let pct = Math.min(100, Math.round((matchedTokens / totalExpected) * 100));
+
+    // ── Structural keyword guard ─────────────────────────────────────────────
+    // If the solution introduces new *word* tokens (tag names, identifiers,
+    // class names, etc.), every one of them MUST appear in the user's additions.
+    // This prevents a high punctuation-token overlap from faking a passing score
+    // on structural tasks like "wrap code in <body>" where the student only
+    // pressed Enter without adding the required element.
+    const requiredKeywords = [...expectedFreq.keys()].filter(t =>
+      /^[a-zA-Z\u0400-\u04FF]/.test(t) // word tokens only (letters/Cyrillic)
+    );
+    const missingKeywords = requiredKeywords.filter(t => (userAddedFreq.get(t) || 0) === 0);
+    if (missingKeywords.length > 0) {
+      // Cap score so it never crosses the 90% completion threshold
+      pct = Math.min(pct, 70);
+    }
+    // ────────────────────────────────────────────────────────────────────────
+
     totalPct += pct;
   }
 

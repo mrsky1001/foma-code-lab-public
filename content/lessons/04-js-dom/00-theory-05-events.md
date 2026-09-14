@@ -1,72 +1,114 @@
 ---
-title: "События и слушатели (addEventListener)"
+title: "События и слушатели"
 highlight: js
 type: theory
 ---
 
-# События и слушатели
+# События и addEventListener
 
-Пользователь нажал кнопку, ввёл текст, прокрутил страницу — всё это **события**. JavaScript позволяет «слушать» их и реагировать.
+**Событие** — это уведомление о том, что что-то произошло: клик, нажатие клавиши, отправка формы. JavaScript может «слушать» события и реагировать на них.
 
-## addEventListener
-
-```js
-element.addEventListener('тип события', функция-обработчик);
-//                        ↑ строка      ↑ вызывается при срабатывании события
-```
+## addEventListener — подписаться на событие
 
 ```js
-const btn = document.querySelector('.btn'); // найти кнопку
+element.addEventListener('событие', функция-обработчик);
 
-// Обычная функция:
-btn.addEventListener('click', function() {
-  alert('Кнопка нажата!'); // всплывающее окно при клике
-});
-
-// Стрелочная функция (современный стиль):
-btn.addEventListener('click', () => {
-  console.log('Клик!'); // вывод в консоль при каждом клике
+const btn = document.querySelector('#myBtn');
+btn.addEventListener('click', () => {        // при клике на кнопку
+  console.log('Кнопка нажата!');
 });
 ```
 
-## Объект события (event)
+## Объект события (e)
+
+Функция-обработчик получает объект события — он содержит информацию о том, что произошло:
 
 ```js
-form.addEventListener('submit', (event) => {
-  event.preventDefault(); // отменить стандартное поведение: форма не перезагрузит страницу
-  console.log('Форма отправлена без перезагрузки!');
+btn.addEventListener('click', (e) => {    // e — объект события
+  console.log(e.target);                  // элемент на который кликнули
+  console.log(e.type);                    // тип события: 'click'
+  console.log(e.clientX, e.clientY);      // координаты мыши
+});
+
+document.addEventListener('keydown', (e) => {
+  console.log(e.key);                     // нажатая клавиша: 'Enter', 'Escape', 'a'
+  if (e.key === 'Enter') { /* ... */ }
 });
 ```
 
-## Популярные типы событий
+## e.target vs e.currentTarget
 
-| Событие | Когда срабатывает |
-|---------|-------------------|
-| `click` | Клик мышью |
-| `submit` | Отправка формы |
-| `input` | Изменение поля ввода |
-| `change` | Смена значения select |
-| `DOMContentLoaded` | HTML загружен и распознан |
+```js
+list.addEventListener('click', (e) => {
+  e.target          // элемент на который кликнули (может быть дочерний)
+  e.currentTarget   // элемент на котором висит слушатель (list)
+});
+```
+
+## Делегирование событий
+
+Вместо того чтобы вешать обработчик на каждый элемент списка — вешаем **один** обработчик на родителя:
+
+```js
+// Плохо: 100 карточек = 100 обработчиков
+cards.forEach(card => {
+  card.addEventListener('click', handleClick);
+});
+
+// Хорошо: один обработчик на контейнер
+const catalog = document.querySelector('.catalog');
+catalog.addEventListener('click', (e) => {
+  // e.target — конкретный элемент на который кликнули
+  const card = e.target.closest('.card');  // найти ближайшую карточку-предка
+  if (!card) return;                       // кликнули не по карточке — выйти
+
+  const id = card.dataset.id;             // прочитать id из data-атрибута
+  openCard(id);
+});
+```
+
+## Управление обработчиками
+
+```js
+function handleClick() {
+  console.log('клик');
+}
+
+btn.addEventListener('click', handleClick);   // подписаться
+
+btn.removeEventListener('click', handleClick); // отписаться (нужна та же функция!)
+
+// Сработать один раз и автоматически отписаться:
+btn.addEventListener('click', handleClick, { once: true });
+```
 
 ## 🛠 Задание
 
-Добавьте кнопке обработчик клика. При каждом клике увеличивайте счётчик и показывайте его в блоке `#counter`.
+Создайте список элементов. Через **делегирование** определяйте клик по кнопке удаления внутри `<li>` и удаляйте весь `<li>`.
 
 ```js:start
-let count = 0;
-const btn = document.querySelector('#btn');
-const counter = document.querySelector('#counter');
+// HTML:
+// <ul id="list">
+//   <li>Пункт 1 <button class="del">✕</button></li>
+//   <li>Пункт 2 <button class="del">✕</button></li>
+// </ul>
 
-// Добавьте обработчик клика
+const list = document.querySelector('#list');
+
+// Повесьте ОДИН обработчик на list
+// Через e.target определяйте клик по .del
+// Удаляйте родительский <li>
 ```
 
 ```js:solution
-let count = 0;                                    // счётчик кликов, начинаем с 0
-const btn     = document.querySelector('#btn');     // найти кнопку по id
-const counter = document.querySelector('#counter'); // найти блок для отображения счётчика
+const list = document.querySelector('#list');
 
-btn.addEventListener('click', () => { // слушать событие 'click' на кнопке
-  count++;                            // увеличить счётчик на 1
-  counter.textContent = 'Кликов: ' + count; // обновить текст в блоке #counter
+// Один обработчик на весь список — делегирование событий
+list.addEventListener('click', (e) => {
+  // e.target — элемент на который кликнули (может быть span, button и т.д.)
+  if (!e.target.matches('.del')) return; // выйти если кликнули не по кнопке удаления
+
+  const li = e.target.closest('li');    // найти ближайший родительский <li>
+  li.remove();                           // удалить его из DOM
 });
 ```

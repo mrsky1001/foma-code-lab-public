@@ -6,7 +6,7 @@ type: theory
 
 # Состояние программы (State)
 
-**Состояние** — это переменная, которая хранит текущее положение дел в программе. Когда состояние меняется — меняется и интерфейс.
+**Состояние** — это переменная (или объект), которая хранит текущее положение дел в программе. Когда состояние меняется — меняется и интерфейс.
 
 ## Пример: текущий слайд
 
@@ -16,45 +16,106 @@ let currentSlide = 0; // начинаем с 0-го слайда (индекс �
 
 // Функция отображения: читает состояние и обновляет DOM
 function showSlide(index) {
-  slides.forEach(s => s.classList.remove('active')); // убрать active со всех слайдов
-  slides[index].classList.add('active');             // добавить active только нужному
+  slides.forEach(s => s.classList.remove('active')); // убрать active со всех
+  slides[index].classList.add('active');              // добавить только нужному
 }
 
 // Изменение состояния → вызов функции → обновление интерфейса
 nextBtn.addEventListener('click', () => {
-  currentSlide++;              // меняем состояние (увеличиваем индекс)
-  showSlide(currentSlide);    // функция сама знает что делать с новым значением
+  currentSlide++;               // меняем состояние
+  showSlide(currentSlide);      // функция обновляет UI под новое состояние
 });
 ```
 
-## Зачем переменная-состояние?
+## Single Source of Truth — единый источник правды
 
-Без неё: «Какой слайд сейчас активен? Нужно читать DOM...»  
-С ней: «Текущий слайд = `currentSlide`. Просто!»
+Ключевой принцип: **состояние живёт только в JS-переменной**, DOM — лишь отражение.
+
+```js
+// АНТИПАТТЕРН: читать состояние из DOM — хрупко и медленно
+function nextSlide() {
+  const current = document.querySelector('.slide.active'); // искать в DOM?!
+  current.classList.remove('active');
+  current.nextElementSibling.classList.add('active');
+}
+
+// ПРАВИЛЬНО: читать из переменной, писать в DOM
+let currentIndex = 0; // состояние — в JS
+
+function nextSlide() {
+  currentIndex = (currentIndex + 1) % slides.length; // circular: 0,1,2,0,1...
+  render(); // перерисовать
+}
+
+function render() {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === currentIndex); // true/false
+  });
+}
+```
+
+## Паттерн render(state)
+
+Для более сложных случаев — хранить всё состояние в одном объекте:
+
+```js
+// Состояние — один объект
+const state = {
+  currentSlide: 0,
+  isAutoplay: true,
+  totalSlides: 5
+};
+
+// Функция render — полностью перерисовывает UI по состоянию
+function render(state) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === state.currentSlide);
+  });
+  counter.textContent = `${state.currentSlide + 1} / ${state.totalSlides}`;
+}
+
+// Изменить состояние и перерисовать
+function goToSlide(index) {
+  state.currentSlide = index; // обновить состояние
+  render(state);               // перерисовать UI
+}
+```
 
 ## 🛠 Задание
 
-Напишите простой переключатель: переменная `isOpen` (true/false). По клику на кнопку меняйте состояние и выводите «Открыто» или «Закрыто».
+Напишите простой переключатель: переменная `isOpen` (true/false). По клику на кнопку — меняйте состояние и обновляйте текст через функцию `render`.
 
 ```js:start
 let isOpen = false;
 const btn    = document.querySelector('#toggleBtn');
 const status = document.querySelector('#status');
 
+function render() {
+  // Обновите текст status и btn на основе isOpen
+}
+
 btn.addEventListener('click', () => {
-  // Измените isOpen на противоположное
-  // Обновите текст в status
+  // Измените isOpen и вызовите render
 });
+
+render(); // начальная отрисовка
 ```
 
 ```js:solution
-let isOpen = false;                            // начальное состояние — закрыто
+let isOpen = false;                              // начальное состояние — закрыто
 const btn    = document.querySelector('#toggleBtn');
 const status = document.querySelector('#status');
 
+// render: полностью перерисовывает UI под текущее состояние
+function render() {
+  status.textContent = isOpen ? 'Открыто' : 'Закрыто'; // тернарный оператор
+  btn.textContent    = isOpen ? 'Закрыть' : 'Открыть'; // текст кнопки тоже
+}
+
 btn.addEventListener('click', () => {
-  isOpen = !isOpen;                                         // инвертировать состояние (true↔false)
-  status.textContent = isOpen ? 'Открыто' : 'Закрыто';    // тернарный оператор: если true → 'Открыто'
-  btn.textContent    = isOpen ? 'Закрыть' : 'Открыть';    // текст кнопки тоже меняется
+  isOpen = !isOpen;  // инвертировать состояние (true↔false)
+  render();          // перерисовать UI под новое состояние
 });
+
+render(); // начальная отрисовка при загрузке страницы
 ```

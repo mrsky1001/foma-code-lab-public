@@ -6,50 +6,98 @@ type: theory
 
 # querySelector и querySelectorAll
 
-Это два главных метода для поиска элементов в DOM.
+Чтобы работать с элементом через JavaScript — его сначала нужно найти. Для этого используются методы `querySelector` и `querySelectorAll`.
 
 ## querySelector — найти один элемент
 
+Возвращает **первый** найденный элемент или `null` если ничего не нашлось:
+
 ```js
-const btn  = document.querySelector('.btn');    // первая кнопка с классом .btn
-const nav  = document.querySelector('nav');     // первый тег <nav> на странице
-const logo = document.querySelector('#logo');   // элемент с атрибутом id="logo"
-const link = document.querySelector('nav a');   // первая ссылка <a> внутри <nav>
+document.querySelector('.card')        // первая карточка на странице
+document.querySelector('#main-nav')    // элемент с id="main-nav"
+document.querySelector('h1')           // первый тег h1
+document.querySelector('[data-id="3"]') // атрибутный селектор
+document.querySelector('.catalog .card') // комбинирование
 ```
 
-Возвращает **первый** найденный элемент или `null` если не найден.
+## querySelectorAll — найти все элементы
 
-## querySelectorAll — найти все
+Возвращает **NodeList** — список всех подходящих элементов:
 
 ```js
-const links = document.querySelectorAll('.nav-link');   // все .nav-link (NodeList)
-const cards = document.querySelectorAll('.room-card');  // все .room-card
+const cards = document.querySelectorAll('.card'); // все карточки
 
-// Перебрать все найденные элементы
-cards.forEach(card => {                    // forEach перебирает каждый элемент
-  card.style.border = '2px solid red';    // добавить красную рамку каждой карточке
+// Перебор через forEach — работает напрямую
+cards.forEach(card => {
+  card.classList.add('visible');
 });
 ```
 
-Возвращает **NodeList** — похожий на массив список всех найденных элементов.
+## NodeList vs Array
+
+`querySelectorAll` возвращает `NodeList`, **а не массив**. У него нет `.map()`, `.filter()`, `.find()`. Конвертируйте:
+
+```js
+const cards = document.querySelectorAll('.card');
+
+// Способ 1: spread-оператор
+const cardsArray = [...cards];
+
+// Способ 2: Array.from()
+const cardsArray = Array.from(cards);
+
+// Теперь доступны все методы массива:
+const prices = cardsArray.map(card => card.dataset.price);
+```
+
+## Поиск внутри элемента
+
+Поиск не обязан начинаться с `document` — можно искать внутри конкретного элемента:
+
+```js
+const card = document.querySelector('.card');
+
+// Поиск ВНУТРИ card, а не по всему документу
+const title = card.querySelector('h3');       // h3 внутри этой карточки
+const buttons = card.querySelectorAll('button'); // все кнопки внутри карточки
+```
+
+## closest — поиск предка
+
+Двигается **вверх** по DOM-дереву и находит ближайшего предка с нужным селектором:
+
+```js
+// Пользователь кликнул на кнопку внутри карточки
+deleteBtn.addEventListener('click', (e) => {
+  const card = e.target.closest('.card');  // найти ближайший родитель .card
+  // Не важно насколько глубоко вложена кнопка
+  card.remove();
+});
+```
 
 ## 🛠 Задание
 
-Найдите все элементы с классом `.item` и добавьте им класс `highlighted`.
+Найдите все карточки, конвертируйте NodeList в массив и отфильтруйте только доступные (с `data-available="true"`).
 
 ```js:start
-// Найдите все .item и добавьте им класс highlighted
-const items = document.querySelectorAll(/* ? */);
+// HTML: несколько <div class="card" data-available="true/false">
 
-items.forEach(item => {
-  // добавьте класс
-});
+const allCards = document.querySelectorAll('.card');
+
+// 1. Конвертируйте в массив через spread или Array.from
+// 2. Отфильтруйте: оставьте только data-available="true"
+// 3. Выведите количество доступных
 ```
 
 ```js:solution
-const items = document.querySelectorAll('.item'); // найти все элементы с классом .item
+const allCards = document.querySelectorAll('.card'); // NodeList всех карточек
 
-items.forEach(item => {                           // перебрать каждый найденный элемент
-  item.classList.add('highlighted');              // добавить класс highlighted к каждому
-});
+// Конвертировать NodeList → Array чтобы использовать .filter()
+const cardsArray = [...allCards];
+
+// Отфильтровать: оставить только те где data-available="true"
+const available = cardsArray.filter(card => card.dataset.available === 'true');
+// dataset.available всегда строка, поэтому сравниваем с 'true' а не true
+
+console.log('Доступно:', available.length); // количество доступных карточек
 ```

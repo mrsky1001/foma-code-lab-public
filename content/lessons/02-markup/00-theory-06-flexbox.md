@@ -1,92 +1,117 @@
 ---
-title: "Первое знакомство с Flexbox"
+title: "Подключение Flexbox"
 highlight: css
 type: theory
 ---
 
-# Первое знакомство с Flexbox
+# Подключение Flexbox
 
-Flexbox — это система расположения элементов в одну строку или колонку. До Flexbox разработчики использовали float и position, что было мучительно сложно.
+**Flexbox** — это современный способ расположения элементов в одну строку или колонку. Включается одним свойством на **родительском** контейнере.
 
-## Включаем Flexbox
-
-Достаточно одного свойства на **родительском** элементе:
+## display: flex
 
 ```css
-.container {               /* CSS селектор: блок-контейнер */
-  display: flex;           /* CSS свойство: включить Flexbox — дети встают в ряд */
+.catalog {
+  display: flex; /* включить Flexbox на контейнере */
 }
 ```
 
-Теперь все **дочерние** элементы автоматически встают в ряд.
+Сразу после этого все прямые дочерние элементы `.catalog` становятся **flex-items** и выстраиваются в строку.
 
-## Основные свойства
+```
+Без flex:            С flex:
+[Карточка 1]         [Карточка 1] [Карточка 2] [Карточка 3]
+[Карточка 2]
+[Карточка 3]
+```
+
+## Flex-контейнер и flex-items
+
+```html
+<div class="catalog">            <!-- flex-контейнер: display: flex -->
+  <div class="card">...</div>    <!-- flex-item: управляется родителем -->
+  <div class="card">...</div>    <!-- flex-item -->
+  <div class="card">...</div>    <!-- flex-item -->
+</div>
+```
+
+**Правило:** свойства `justify-content`, `align-items`, `flex-direction`, `gap` применяются к **контейнеру**. Свойство `flex` применяется к **дочернему элементу**.
+
+## Базовый набор свойств
 
 ```css
-.container {
-  display: flex;                /* включить Flexbox-режим */
-  flex-direction: row;          /* направление: row (ряд) или column (колонка) */
-  justify-content: center;      /* выравнивание по главной оси (горизонталь для row) */
-  align-items: center;          /* выравнивание по поперечной оси (вертикаль для row) */
-  gap: 16px;                    /* расстояние между дочерними элементами */
+.catalog {
+  display: flex;              /* включить Flexbox */
+  gap: 16px;                  /* промежутки между карточками */
+  flex-wrap: wrap;            /* перенос на следующую строку */
+  justify-content: flex-start; /* горизонтальное выравнивание */
+  align-items: stretch;       /* вертикальное выравнивание */
+}
+```
+
+## Горизонтальная навигация
+
+Одно из самых частых применений Flexbox — меню в строку:
+
+```css
+nav {
+  display: flex;
+  gap: 24px;
+  align-items: center; /* вертикально по центру */
+}
+```
+
+```html
+<nav>
+  <a href="/">Главная</a>       <!-- flex-item -->
+  <a href="/catalog">Каталог</a> <!-- flex-item -->
+  <a href="/about">О нас</a>    <!-- flex-item -->
+</nav>
+```
+
+## Шапка — логотип слева, меню справа
+
+```css
+.header {
+  display: flex;
+  justify-content: space-between; /* первый — слева, последний — справа */
+  align-items: center;            /* вертикально по центру */
+  padding: 0 24px;
 }
 ```
 
 ## 🛠 Задание
 
-Расположите три цветных блока в ряд с отступом 16px между ними, выровняйте по центру контейнера.
-
-```html:start
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Flexbox</title>
-  <style>
-    .container {
-      /* Включите flex здесь */
-      height: 200px;
-      background: #f0f4f8;
-    }
-    .box { width: 80px; height: 80px; border-radius: 8px; }
-    .box-1 { background: #007bff; }
-    .box-2 { background: #28a745; }
-    .box-3 { background: #dc3545; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="box box-1"></div>
-    <div class="box box-2"></div>
-    <div class="box box-3"></div>
-  </div>
-</body>
-</html>
-```
+Превратите блок `.catalog` в Flex-контейнер: элементы в строку с `gap: 16px` и переносом. Убедитесь что карточки выравниваются по верхнему краю.
 
 ```css:start
-.container {
-  /* Добавьте flex-свойства */
-  height: 200px;
-  background: #f0f4f8;
+.catalog {
+  /* Включите Flexbox */
+  /* Добавьте gap и flex-wrap */
 }
-.box { width: 80px; height: 80px; border-radius: 8px; }
-.box-1 { background: #007bff; }
-.box-2 { background: #28a745; }
-.box-3 { background: #dc3545; }
+
+.card {
+  flex: 1 1 200px;
+  min-width: 160px;
+  padding: 16px;
+  background: #f0f4f8;
+  border-radius: 8px;
+}
 ```
 
 ```css:solution
-.container {                      /* CSS селектор: родительский контейнер */
-  display: flex;                  /* включить Flexbox */
-  justify-content: center;        /* горизонтальное выравнивание: по центру */
-  align-items: center;            /* вертикальное выравнивание: по центру */
-  gap: 16px;                      /* отступ 16px между каждым дочерним блоком */
-  height: 200px;                  /* высота контейнера */
-  background: #f0f4f8;            /* цвет фона */
+.catalog {
+  display: flex;           /* включить Flexbox на контейнере */
+  gap: 16px;               /* промежутки между дочерними карточками */
+  flex-wrap: wrap;         /* перенос карточек на следующую строку */
+  align-items: flex-start; /* выровнять карточки по верхнему краю */
 }
-.box { width: 80px; height: 80px; border-radius: 8px; }  /* базовые стили квадрата */
-.box-1 { background: #007bff; }   /* синий блок */
-.box-2 { background: #28a745; }   /* зелёный блок */
-.box-3 { background: #dc3545; }   /* красный блок */
+
+.card {
+  flex: 1 1 200px;   /* растягиваться/сжиматься, базовая ширина 200px */
+  min-width: 160px;  /* не сжимать меньше 160px */
+  padding: 16px;
+  background: #f0f4f8;
+  border-radius: 8px;
+}
 ```

@@ -1,80 +1,121 @@
 ---
-title: "Метод .find() — поиск в массиве"
+title: "Метод .find() и поиск в массивах"
 highlight: js
 type: theory
 ---
 
-# Метод .find() — поиск в массиве
+# Метод .find() и поиск в массивах
 
-`.find()` находит **первый** элемент массива, для которого условие возвращает `true`.
+## .find() — найти один элемент
+
+`.find()` возвращает **первый элемент** для которого условие вернуло `true`. Если не нашлось — `undefined`.
 
 ```js
 const rooms = [
-  { id: 1, name: 'Focus', price: 450  },
-  { id: 2, name: 'Alpha', price: 1200 },
-  { id: 3, name: 'Hub',   price: 250  }
+  { id: 1, name: 'Альфа',  price: 1200, isAvailable: true  },
+  { id: 2, name: 'Фокус',  price: 450,  isAvailable: false },
+  { id: 3, name: 'Хаб',    price: 800,  isAvailable: true  }
 ];
 
-// Найти комнату с id === 2
-const room = rooms.find(r => r.id === 2); // r — текущий элемент; === — строгое равенство
-console.log(room.name); // 'Alpha'
+const room = rooms.find(r => r.id === 2);
+// → { id: 2, name: 'Фокус', price: 450, isAvailable: false }
 
-// Найти первую комнату дешевле 500 рублей
-const cheap = rooms.find(r => r.price < 500);
-console.log(cheap.name); // 'Focus' (первая подходящая)
+const notFound = rooms.find(r => r.id === 99);
+// → undefined (не нашлось)
 ```
 
-## Если не найдено — возвращает undefined
-
+**Типичное использование** — найти комнату по ID из URL:
 ```js
-const notFound = rooms.find(r => r.id === 99); // нет комнаты с id 99
-console.log(notFound); // undefined
-
-// Всегда проверяйте результат перед использованием!
-if (!notFound) {
-  console.log('Комната не найдена'); // защита от ошибки при обращении к undefined
+const id = parseInt(new URLSearchParams(location.search).get('id'));
+const room = rooms.find(r => r.id === id);
+if (!room) {
+  // комната не найдена — показать 404
 }
 ```
 
 ## .findIndex() — найти индекс
 
+Возвращает **индекс** первого подходящего элемента (-1 если не нашлось):
+
 ```js
-const idx = rooms.findIndex(r => r.id === 2); // вернёт позицию в массиве, не сам объект
-console.log(idx); // 1 (нумерация с нуля: первый — 0, второй — 1)
+const idx = rooms.findIndex(r => r.id === 2); // → 1
 ```
+
+Используется для удаления или обновления элемента:
+```js
+// Удалить элемент по id
+const idx = rooms.findIndex(r => r.id === 2);
+if (idx !== -1) {
+  rooms.splice(idx, 1); // удалить 1 элемент с позиции idx
+}
+```
+
+## .some() — хоть один подходит?
+
+Возвращает `true` если хотя бы один элемент удовлетворяет условию:
+
+```js
+const hasAvailable = rooms.some(r => r.isAvailable === true);
+// → true (хотя бы одна комната свободна)
+
+const hasExpensive = rooms.some(r => r.price > 2000);
+// → false (ни одной дороже 2000)
+```
+
+## .every() — все подходят?
+
+Возвращает `true` только если **все** элементы удовлетворяют условию:
+
+```js
+const allAvailable = rooms.every(r => r.isAvailable === true);
+// → false (Фокус недоступен)
+
+const allAffordable = rooms.every(r => r.price < 2000);
+// → true (все дешевле 2000)
+```
+
+## Сравнение методов поиска
+
+| Метод | Возвращает | Когда |
+|-------|-----------|-------|
+| `.find()` | Первый подходящий элемент / `undefined` | Найти объект по id |
+| `.findIndex()` | Индекс / `-1` | Найти позицию для удаления/замены |
+| `.some()` | `true/false` | Проверить есть ли хоть один |
+| `.every()` | `true/false` | Проверить все ли подходят |
+| `.filter()` | Новый массив | Получить все подходящие |
 
 ## 🛠 Задание
 
-Найдите в массиве студентов того, у кого оценка 5. Выведите его имя. Если не найден — выведите «Отличников нет».
+Найдите комнату с id=3. Проверьте через `.some()` есть ли хоть одна свободная комната. Проверьте через `.every()` все ли комнаты дешевле 2000 ₽.
 
 ```js:start
-const students = [
-  { name: 'Алексей', grade: 4 },
-  { name: 'Мария',   grade: 5 },
-  { name: 'Дмитрий', grade: 3 }
+const rooms = [
+  { id: 1, name: 'Альфа', price: 1200, isAvailable: true  },
+  { id: 2, name: 'Фокус', price: 450,  isAvailable: false },
+  { id: 3, name: 'Хаб',   price: 800,  isAvailable: true  }
 ];
 
-const topStudent = students.find(/* ? */);
-
-if (topStudent) {
-  console.log(/* ? */);
-} else {
-  console.log('Отличников нет');
-}
+// 1. Найдите комнату с id=3 через .find()
+// 2. Проверьте есть ли хоть одна свободная (isAvailable) через .some()
+// 3. Проверьте все ли дешевле 2000 через .every()
 ```
 
 ```js:solution
-const students = [
-  { name: 'Алексей', grade: 4 },
-  { name: 'Мария',   grade: 5 },
-  { name: 'Дмитрий', grade: 3 }
+const rooms = [
+  { id: 1, name: 'Альфа', price: 1200, isAvailable: true  },
+  { id: 2, name: 'Фокус', price: 450,  isAvailable: false },
+  { id: 3, name: 'Хаб',   price: 800,  isAvailable: true  }
 ];
 
-const topStudent = students.find(s => s.grade === 5); // найти первого с оценкой 5
+// .find() — вернёт первый элемент где r.id === 3
+const room = rooms.find(r => r.id === 3);
+console.log(room); // → { id: 3, name: 'Хаб', price: 800, isAvailable: true }
 
-if (topStudent) {                          // если нашли — объект, не undefined
-  console.log(topStudent.name);           // → 'Мария'
-} else {                                   // если не нашли — undefined
-  console.log('Отличников нет');
-}
+// .some() — true если хотя бы одна комната свободна
+const hasAvailable = rooms.some(r => r.isAvailable === true);
+console.log('Есть свободные:', hasAvailable); // → true
+
+// .every() — true только если ВСЕ дешевле 2000
+const allAffordable = rooms.every(r => r.price < 2000);
+console.log('Все дешевле 2000:', allAffordable); // → true
 ```

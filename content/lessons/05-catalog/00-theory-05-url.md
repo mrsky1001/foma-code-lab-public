@@ -1,78 +1,99 @@
 ---
-title: "URLSearchParams — чтение параметров из URL"
+title: "URLSearchParams — параметры URL"
 highlight: js
 type: theory
 ---
 
-# URLSearchParams — чтение параметров из URL
+# URLSearchParams — параметры URL
 
-Страницы каталога часто передают данные через URL. Например:
-`catalog.html?id=3&sort=price`
+`URLSearchParams` позволяет читать и записывать параметры в адресной строке браузера (`?key=value`).
 
-Параметры после `?` называются **query string** (строка запроса).
-
-## Как прочитать параметры?
+## Читать параметры URL
 
 ```js
-// Текущий URL: page.html?id=3&sort=price
+// URL: https://smartoffice.ru/room.html?id=3&date=2024-01-15
 
 const params = new URLSearchParams(window.location.search);
-// window.location.search → '?id=3&sort=price'
-// URLSearchParams разбирает эту строку на пары ключ=значение
+// window.location.search → '?id=3&date=2024-01-15'
 
-const id   = params.get('id');    // '3' — всегда возвращает строку!
-const sort = params.get('sort');  // 'price'
-const page = params.get('page');  // null — параметра нет в URL
+params.get('id')    // → '3' (всегда строка!)
+params.get('date')  // → '2024-01-15'
+params.get('foo')   // → null (параметр не найден)
 ```
 
-## Преобразование типов
+**Важно:** `.get()` всегда возвращает **строку**. Для числовых значений нужно конвертировать:
 
 ```js
-const id = parseInt(params.get('id'), 10); // строку '3' → число 3 (10 — десятичная система)
+const id = parseInt(params.get('id'));   // '3' → 3
+// или
+const id = Number(params.get('id'));     // '3' → 3
 ```
 
-## Проверка наличия параметра
+## Полезные свойства location
 
 ```js
-if (params.has('id')) {
-  // параметр 'id' есть в URL → можно безопасно делать params.get('id')
-}
+window.location.href      // полный URL: 'https://smartoffice.ru/room.html?id=3'
+window.location.pathname  // только путь: '/room.html'
+window.location.search    // только параметры: '?id=3&date=2024-01-15'
+window.location.hash      // якорь: '#contacts'
+window.location.origin    // происхождение: 'https://smartoffice.ru'
 ```
 
-## Практический пример — страница детали
+## Переход на другую страницу с параметром
 
 ```js
-// URL: room.html?id=2
-const params = new URLSearchParams(window.location.search); // прочитать строку запроса
-const roomId = parseInt(params.get('id'), 10);              // получить id как число
+// Перейти на страницу комнаты при клике на карточку
+card.addEventListener('click', () => {
+  const id = card.dataset.id;
+  window.location.href = `room.html?id=${id}`; // редирект с параметром
+});
+```
 
-const room = rooms.find(r => r.id === roomId); // найти комнату по id в массиве данных
+## Записать параметры (без перезагрузки)
 
-if (!room) {                                              // если комната не найдена:
-  document.body.innerHTML = '<h1>Комната не найдена</h1>'; // показать сообщение
-  return;                                                  // прекратить выполнение
-}
+```js
+const url = new URL(window.location.href);
+url.searchParams.set('sort', 'price');   // изменить или добавить параметр
+url.searchParams.delete('filter');        // удалить параметр
+
+// Обновить URL без перезагрузки страницы
+window.history.pushState({}, '', url);    // URL меняется, страница остаётся
 ```
 
 ## 🛠 Задание
 
-Прочитайте параметры `name` и `age` из URL `profile.html?name=Иван&age=25` и выведите их.
+Прочитайте параметр `id` из URL и найдите соответствующую комнату в массиве. Используйте `parseInt` для конвертации.
 
 ```js:start
-// Допустим URL: ?name=Иван&age=25
-const params = new URLSearchParams('name=Иван&age=25');
+// URL: room.html?id=2
+const rooms = [
+  { id: 1, name: 'Фокус', price: 450  },
+  { id: 2, name: 'Альфа', price: 1200 },
+  { id: 3, name: 'Хаб',   price: 800  }
+];
 
-const name = /* ? */;
-const age  = /* ? */;
-
-console.log(`${name}, ${age} лет`);
+// 1. Прочитайте параметр id через URLSearchParams
+// 2. Конвертируйте в число
+// 3. Найдите комнату через .find()
+// 4. Выведите название или 'Комната не найдена'
 ```
 
 ```js:solution
-const params = new URLSearchParams('name=Иван&age=25'); // разобрать строку запроса
+const rooms = [
+  { id: 1, name: 'Фокус', price: 450  },
+  { id: 2, name: 'Альфа', price: 1200 },
+  { id: 3, name: 'Хаб',   price: 800  }
+];
 
-const name = params.get('name');                // → 'Иван' (строка)
-const age  = parseInt(params.get('age'), 10);   // → 25 (число, преобразовали из строки)
+const params = new URLSearchParams(window.location.search); // прочитать параметры URL
+const rawId  = params.get('id');   // → '2' — строка или null
+const id     = parseInt(rawId);    // → 2 — число; parseInt(null) → NaN
 
-console.log(`${name}, ${age} лет`); // → 'Иван, 25 лет'
+const room = rooms.find(r => r.id === id); // найти комнату по id
+
+if (room) {
+  console.log('Комната:', room.name, room.price + ' ₽/час');
+} else {
+  console.log('Комната не найдена');
+}
 ```
