@@ -4,114 +4,148 @@ highlight: js
 type: theory
 ---
 
-# setInterval и clearInterval
+# setInterval и clearInterval: автослайдер
 
-`setInterval` и `clearInterval` уже разобраны в уроке «Таймеры» (модуль 04). Здесь — их применение в контексте автослайдера.
+В то время как `setTimeout` выполняет действие **один раз** с задержкой, метод **`setInterval`** предназначен для **регулярного циклического повторения** функции через заданный интервал времени.
 
-## setInterval — повторять действие
+Именно на `setInterval` строятся автоматические слайдеры, тикающие часы и периодический опрос обновлений.
+
+---
+
+## Синтаксис `setInterval` и `clearInterval`
 
 ```js
+// Запускаем повторение каждые 3000 мс (3 секунды):
 const timerId = setInterval(() => {
-  console.log('Тик!');
-}, 2000); // каждые 2000 мс = 2 секунды
+  console.log('Прошло 3 секунды: переключаем слайд!');
+}, 3000);
 
-// setInterval возвращает id — нужен для остановки
+// Останавливаем интервал по идентификатору:
+clearInterval(timerId);
 ```
 
-## clearInterval — остановить
+---
 
-```js
-clearInterval(timerId); // передаём id → таймер остановлен
+## ⚠️ Главная ловушка: «Бешеные таймеры» (Умножение интервалов)
+
+Самый частый баг у начинающих разработчиков при создании слайдера: при каждом клике на стрелку «Вперёд» вызывается `startAuto()`, но старый таймер не останавливается:
+
+```
+Клик 1 ➔ запустился таймер 1 (слайд раз в 3 сек)
+Клик 2 ➔ запустился таймер 2 (+ ещё раз в 3 сек)
+Клик 3 ➔ запустился таймер 3 (+ ещё раз в 3 сек)
+ИТОГ: три таймера работают одновременно, картинки мелькают как стробоскоп!
 ```
 
-## Паттерн автослайдера со сбросом при клике
+> [!CAUTION]
+> **Золотое правило работы с интервалами:**
+> 1. Перед запуском нового `setInterval` **всегда** останавливайте старый через `clearInterval(timerId)`.
+> 2. Храните идентификатор в переменной `let timerId = null` и проверяйте: если таймер уже активен, не создавайте дубликат!
+
+---
+
+## Архитектура слайдера с ручным сбросом
+
+Когда пользователь сам кликает на стрелку «Следующий слайд» или точку-индикатор, автоматический таймер должен **сброситься и начать отсчёт 3 секунд с нуля** (иначе слайдер переключится сразу после ручного клика):
 
 ```js
-let timerId = null; // null — таймер не запущен
+let timerId = null; // Единственный источник правды для таймера
 
 function startAuto() {
+  if (timerId) return; // Защита: если таймер уже тикает, выходим
   timerId = setInterval(() => {
-    nextSlide();     // переключать каждые 3 сек
+    nextSlide(); // перелистываем слайд
   }, 3000);
 }
 
 function stopAuto() {
-  clearInterval(timerId); // остановить
-  timerId = null;         // сбросить в null
+  clearInterval(timerId); // останавливаем интервал в браузере
+  timerId = null;         // сбрасываем идентификатор
 }
 
 function resetTimer() {
-  stopAuto();   // остановить текущий
-  startAuto();  // запустить заново — отсчёт с нуля
+  stopAuto();  // 1. Убиваем старый отсчёт
+  startAuto(); // 2. Запускаем новый отсчёт с нуля
 }
 
-// При ручном переключении — сбросить таймер
+// При ручном клике пользователя:
 nextBtn.addEventListener('click', () => {
   nextSlide();
-  resetTimer(); // чтобы автопереключение не произошло сразу
+  resetTimer(); // сбрасываем автоматику
 });
 
-startAuto(); // запустить при старте
+// Запускаем автолистание при загрузке страницы:
+startAuto();
 ```
 
-## Утечка памяти — остановить при уходе
+---
 
-Если интервал не остановить — он продолжит работать даже когда пользователь ушёл:
+## Пауза при наведении курсора (UX Best Practice)
+
+Хорошим тоном в веб-разработке считается останавливать автослайдер, когда пользователь наводит мышь на фотографию (чтобы он мог спокойно рассмотреть детали или прочитать текст):
 
 ```js
-window.addEventListener('beforeunload', () => {
-  clearInterval(timerId); // освободить ресурс при закрытии страницы
-});
+const sliderElement = document.querySelector('.slider');
+
+// Мышь над слайдером — пауза
+sliderElement.addEventListener('mouseenter', stopAuto);
+
+// Мышь ушла со слайдера — возобновляем автолистание
+sliderElement.addEventListener('mouseleave', startAuto);
 ```
 
-## requestAnimationFrame — для анимаций
-
-Для плавных анимаций `setInterval` менее эффективен. Браузер синхронизирует `requestAnimationFrame` с частотой обновления экрана (обычно 60 раз/сек):
-
-```js
-function animate() {
-  // обновить позицию, прозрачность и т.п.
-  requestAnimationFrame(animate); // вызвать себя снова на следующем кадре
-}
-
-requestAnimationFrame(animate); // запустить цикл анимации
-```
+---
 
 ## 🛠 Задание
 
-Создайте счётчик, который увеличивается каждую секунду. Кнопка «Стоп» останавливает, кнопка «Старт» запускает заново.
+Реализуйте функции `start()` и `stop()` для счетчика слайдов:
+1. В функции `start`: если `timerId` уже существует, ничего не делайте. Иначе запустите `setInterval`, который каждую секунду увеличивает `slideIndex` на 1 и обновляет `display.textContent = slideIndex`.
+2. В функции `stop`: остановите таймер через `clearInterval` и сбросьте `timerId` в `null`.
+3. Привяжите `start` к кнопке `#playBtn`, а `stop` — к кнопке `#pauseBtn`.
 
 ```js:start
-let count = 0;
+let slideIndex = 1;
 let timerId = null;
 
-// Реализуйте start() и stop()
-// Повесьте обработчики на кнопки #startBtn и #stopBtn
+const display = document.querySelector('#slideNum');
+const playBtn = document.querySelector('#playBtn');
+const pauseBtn = document.querySelector('#pauseBtn');
+
+function start() {
+  // Запустите интервал с защитой от дублирования
+}
+
+function stop() {
+  // Остановите интервал и сбросьте timerId
+}
+
+// Привяжите слушатели клика
 ```
 
 ```js:solution
-let count   = 0;
+let slideIndex = 1;
 let timerId = null;
 
-const counter  = document.querySelector('#counter');
-const startBtn = document.querySelector('#startBtn');
-const stopBtn  = document.querySelector('#stopBtn');
+const display = document.querySelector('#slideNum');
+const playBtn = document.querySelector('#playBtn');
+const pauseBtn = document.querySelector('#pauseBtn');
 
 function start() {
-  if (timerId) return;            // уже запущен — не запускать второй
+  if (timerId) return; // защита от накопления таймеров
   timerId = setInterval(() => {
-    count++;
-    counter.textContent = count; // обновлять дисплей каждую секунду
+    slideIndex++;
+    display.textContent = slideIndex;
   }, 1000);
 }
 
 function stop() {
-  clearInterval(timerId);        // остановить
-  timerId = null;                // сбросить в null
+  clearInterval(timerId);
+  timerId = null; // очищаем переменную
 }
 
-startBtn.addEventListener('click', start);
-stopBtn.addEventListener('click',  stop);
+playBtn.addEventListener('click', start);
+pauseBtn.addEventListener('click', stop);
 
-start(); // запустить при загрузке
+// Запуск по умолчанию
+start();
 ```
