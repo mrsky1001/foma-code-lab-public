@@ -143,6 +143,19 @@ const CONSOLE_INTERCEPT_SCRIPT = `<script>
       window.parent.postMessage({ type: 'foma-runtime-error', msg: String(msg), line: line, col: col }, '*');
     } catch(e) {}
   };
+  window.addEventListener('error', function(event) {
+    try {
+      if (event && event.message) {
+        window.parent.postMessage({ type: 'foma-runtime-error', msg: String(event.message), line: event.lineno, col: event.colno }, '*');
+      }
+    } catch(e) {}
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    try {
+      var reason = event && event.reason ? (event.reason.message || String(event.reason)) : 'Unhandled Promise Rejection';
+      window.parent.postMessage({ type: 'foma-runtime-error', msg: reason }, '*');
+    } catch(e) {}
+  });
   ['log','warn','error'].forEach(function(method) {
     var orig = console[method];
     console[method] = function() {
@@ -555,8 +568,11 @@ export const Preview = memo(function Preview({
     const sanitizedUserJs = sanitizeNavigation(code.js || '');
     const sanitizedCanonicalJs = isIsolatedTheory ? '' : sanitizeNavigation(CANONICAL_PROJECT_FILES['main.js'] || '');
 
+    const isModuleScript = /(?:^|\n)\s*(?:import|export)\s+/.test(sanitizedUserJs);
     const userScript = sanitizedUserJs
-      ? `<script>\ntry {\n${sanitizedUserJs}\n} catch(e) { window.parent.postMessage({ type: 'foma-runtime-error', msg: String(e) }, '*'); }\n${CLOSE_SCRIPT}`
+      ? (isModuleScript
+          ? `<script type="module">\n${sanitizedUserJs}\n${CLOSE_SCRIPT}`
+          : `<script>\ntry {\n${sanitizedUserJs}\n} catch(e) { window.parent.postMessage({ type: 'foma-runtime-error', msg: String(e) }, '*'); }\n${CLOSE_SCRIPT}`)
       : '';
     const canonicalScript = sanitizedCanonicalJs
       ? `<script>\ntry {\n${sanitizedCanonicalJs}\n} catch(e) {}\n${CLOSE_SCRIPT}`

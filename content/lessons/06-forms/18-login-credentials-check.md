@@ -652,7 +652,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
-  initLoginForm();
 });
 
 function showNotification(message, type = 'success') {
@@ -875,7 +874,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
-  initLoginForm();
 });
 
 function showNotification(message, type = 'success') {
@@ -1090,7 +1088,9 @@ function initLoginForm() {
     const alertBox = document.getElementById('loginAlert');
 
     if (login === 'admin' && pass === '12345') {
-      // Успешный вход
+      // success
+    } else {
+      // error
     }
   });
 }

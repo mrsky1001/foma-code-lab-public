@@ -475,11 +475,9 @@ body {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initCatalogFilters();
-  initRoomDetails();
+  renderCatalog();
 });
 
-// Функция всплывающих уведомлений (Toast) справа внизу
 function showNotification(message, type = 'success') {
   let container = document.getElementById('toastContainer');
   if (!container) {
@@ -502,6 +500,7 @@ function showNotification(message, type = 'success') {
     setTimeout(() => toast.remove(), 300);
   }, 3500);
 }
+
 function initNavigation() {
   const links = document.querySelectorAll('.nav-link');
   const current = window.location.pathname;
@@ -560,122 +559,9 @@ function updateAuthNav() {
   }
 }
 
-function initCatalogFilters() {
+function renderCatalog() {
   const container = document.getElementById('catalogContainer');
-  const searchInput = document.getElementById('searchInput');
-  const sortAscBtn = document.getElementById('sortAsc');
-  const sortDescBtn = document.getElementById('sortDesc');
   if (!container || typeof OFFICE_ROOMS === 'undefined') return;
-
-  let displayedRooms = [...OFFICE_ROOMS];
-
-  function render(rooms) {
-    if (!rooms.length) {
-      container.innerHTML = '<p class="empty-message">Комнаты не найдены</p>';
-      return;
-    }
-    container.innerHTML = rooms.map(room => `
-      <div class="room-card">
-        <div class="card-img-wrap">
-          <a href="room-details.html?id=${room.id}">
-            <img src="${room.image}" alt="${room.title}" class="card-img" onerror="this.src='../img/no-image.svg'">
-          </a>
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">
-            <a href="room-details.html?id=${room.id}" style="text-decoration: none; color: inherit;">${room.title}</a>
-          </h3>
-          <ul class="card-equipment">
-            ${room.equipment.map(item => `<li>${item}</li>`).join('')}
-          </ul>
-          <div class="card-footer">
-            <div class="card-price">${room.pricePerHour} ₽ <span>/ час</span></div>
-            <div class="card-btns">
-              <a href="room-details.html?id=${room.id}" class="btn-icon" title="Подробнее о комнате" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
-              <a href="booking.html?room=${room.id}" class="btn btn-primary">Забронировать</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  function applyFilter() {
-    const q = (searchInput ? searchInput.value : '').toLowerCase().trim();
-    displayedRooms = OFFICE_ROOMS.filter(r => r.title.toLowerCase().includes(q));
-    render(displayedRooms);
-  }
-
-  if (searchInput) searchInput.addEventListener('input', applyFilter);
-
-  if (sortAscBtn) {
-    sortAscBtn.addEventListener('click', () => {
-      displayedRooms.sort((a, b) => a.pricePerHour - b.pricePerHour);
-      render(displayedRooms);
-    });
-  }
-
-  if (sortDescBtn) {
-    sortDescBtn.addEventListener('click', () => {
-      displayedRooms.sort((a, b) => b.pricePerHour - a.pricePerHour);
-      render(displayedRooms);
-    });
-  }
-
-  render(displayedRooms);
-}
-function initRoomDetails() {
-  const container = document.getElementById('roomDetailsContainer');
-  if (!container || typeof OFFICE_ROOMS === 'undefined') return;
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const roomId = urlParams.get('id') || urlParams.get('room');
-  const room = OFFICE_ROOMS.find(r => r.id === roomId);
-
-  if (!room) {
-    container.innerHTML = `
-      <div class="empty-message">
-        <h2>Комната не найдена</h2>
-        <p style="margin: 10px 0 20px 0;">Возможно, ссылка устарела или комната была удалена.</p>
-        <a href="catalog.html" class="btn btn-primary">Вернуться в каталог</a>
-      </div>
-    `;
-    return;
-  }
-
-  container.innerHTML = `
-    <div class="room-details-card">
-      <div class="room-details-gallery">
-        <img src="${room.image}" alt="${room.title}" class="room-details-img" onerror="this.src='../img/no-image.svg'">
-      </div>
-      <div class="room-details-info">
-        <div class="room-details-header">
-          <h1 class="room-details-title">${room.title}</h1>
-          <div class="room-details-price">${room.pricePerHour} ₽ <span>/ час</span></div>
-        </div>
-
-        <div class="room-badges">
-          <span class="room-badge">${room.capacity}</span>
-          <span class="room-badge">${room.area}</span>
-          ${room.isPopular ? '<span class="room-badge badge-popular">Популярное</span>' : ''}
-        </div>
-
-        <p class="room-description">${room.description}</p>
-
-        <div class="room-specs">
-          <h3>Оснащение и удобства:</h3>
-          <ul class="card-equipment">
-            ${room.equipment.map(item => `<li>${item}</li>`).join('')}
-          </ul>
-        </div>
-
-        <div class="room-details-actions">
-          <a href="booking.html?room=${room.id}" class="btn btn-primary" style="padding: 10px 20px; font-size: 15px;">Забронировать эту комнату</a>
-          <a href="catalog.html" class="btn btn-outline" style="padding: 10px 18px; font-size: 15px;">← Назад в каталог</a>
-        </div>
-      </div>
-    </div>
-  `;
 }
 ```
 

@@ -52,6 +52,8 @@ smart-office/
 Исправьте пути подключения логотипа, стилей и скрипта в файле `pages/catalog.html`, расположенном во вложенной папке `pages/`.
 
 ```html:start
+<!DOCTYPE html>
+<html lang="ru">
 <!-- Ошибочные пути из вложенной страницы pages/catalog.html: -->
 <head>
   <!-- Ошибка: папки css нет внутри pages -->
@@ -59,6 +61,17 @@ smart-office/
   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
   <script src="js/data.js" defer></script>
 </head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../img/logo.svg" alt="Логотип" onerror="this.style.display='none'">
+      <span>СмартОфис (Каталог)</span>
+    </div>
+    <span>pages/catalog.html</span>
+  </header>
+  <p style="margin-top: 16px; color: #64748b;">Проверьте относительные пути подключения стилей и ресурсов в &lt;head&gt; выше.</p>
+</body>
+</html>
 ```
 
 ```css:start
@@ -69,10 +82,23 @@ header { background: #0f172a; color: white; padding: 16px 24px; display: flex; j
 ```
 
 ```html:solution
+<!DOCTYPE html>
+<html lang="ru">
 <!-- Исправленные относительные пути с выходом на уровень выше ../ -->
 <head>
   <link rel="stylesheet" href="../css/style.css">              <!-- выходим в корень и идем в папку css -->
   <link rel="icon" type="image/svg+xml" href="../img/logo.svg"> <!-- выходим в корень и идем в папку img -->
   <script src="../js/data.js" defer></script>                  <!-- подключаем скрипт данных из корня -->
 </head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../img/logo.svg" alt="Логотип" onerror="this.style.display='none'">
+      <span>СмартОфис (Каталог)</span>
+    </div>
+    <span>pages/catalog.html</span>
+  </header>
+  <p style="margin-top: 16px; color: #64748b;">Проверьте относительные пути подключения стилей и ресурсов в &lt;head&gt; выше.</p>
+</body>
+</html>
 ```

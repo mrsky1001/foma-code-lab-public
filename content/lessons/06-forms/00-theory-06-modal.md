@@ -85,12 +85,12 @@ closeBtn.addEventListener('click', () => {
 3. По клику на `#closeBtn` закрывайте окно методом `.close()`.
 
 ```html:start
-<button id="openBtn">Забронировать</button>
+<button id="openBtn" class="btn">Забронировать</button>
 
 <dialog id="confirmModal">
   <h3>Подтвердите действие</h3>
   <p>Вы уверены, что хотите продолжить?</p>
-  <button id="closeBtn">Закрыть</button>
+  <button id="closeBtn" class="btn">Закрыть</button>
 </dialog>
 ```
 
@@ -110,12 +110,12 @@ const closeBtn = document.querySelector('#closeBtn');
 ```
 
 ```html:solution
-<button id="openBtn">Забронировать</button>
+<button id="openBtn" class="btn">Забронировать</button>
 
 <dialog id="confirmModal">
   <h3>Подтвердите действие</h3>
   <p>Вы уверены, что хотите продолжить?</p>
-  <button id="closeBtn">Закрыть</button>
+  <button id="closeBtn" class="btn">Закрыть</button>
 </dialog>
 ```
 

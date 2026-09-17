@@ -653,7 +653,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
-  initLoginForm();
 });
 
 function showNotification(message, type = 'success') {
@@ -874,6 +873,8 @@ function initLoginForm() {
       setTimeout(() => {
         window.location.href = 'my-bookings.html';
       }, 1000);
+    } else {
+      // error
     }
   });
 }
@@ -886,7 +887,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
-  initLoginForm();
 });
 
 function showNotification(message, type = 'success') {

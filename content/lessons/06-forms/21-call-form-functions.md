@@ -653,7 +653,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
-  initLoginForm();
 });
 
 function showNotification(message, type = 'success') {
