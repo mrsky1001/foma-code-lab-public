@@ -513,6 +513,9 @@
   min-width: 0;
   white-space: pre;
   color: #e2e8f0;
+  /* Disable Cascadia Code ligatures: -- would merge into – and --> into → */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
 }
 
 .theory-annotation-tag {
