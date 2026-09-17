@@ -61,6 +61,13 @@ smart-office/
 </head>
 ```
 
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; margin: 0; }
+header { background: #0f172a; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-radius: 8px; }
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: white; font-weight: 700; }
+.logo img { width: 24px; height: 24px; }
+```
+
 ```html:solution
 <!-- Исправленные относительные пути с выходом на уровень выше ../ -->
 <head>

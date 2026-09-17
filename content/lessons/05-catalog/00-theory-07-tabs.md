@@ -102,6 +102,47 @@ tabBtns.forEach(btn => {
 2. При клике снимайте класс `'active'` со всех кнопок и всех панелей `.tab-pane`.
 3. Добавляйте `'active'` нажатой кнопке и панели с `id === btn.dataset.tab`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интерактивные вкладки</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div class="tabs-nav">
+      <button class="tab-btn active" data-tab="tab1">Мини-офисы</button>
+      <button class="tab-btn" data-tab="tab2">Конференц-залы</button>
+      <button class="tab-btn" data-tab="tab3">Опенспейс</button>
+    </div>
+    <div class="tabs-content">
+      <div id="tab1" class="tab-pane active">Индивидуальные пространства Focus</div>
+      <div id="tab2" class="tab-pane">Презентационные залы Alpha и Beta</div>
+      <div id="tab3" class="tab-pane">Рабочие места в общем пространстве Hub</div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 600px; margin: 0 auto; }
+.tabs-nav { display: flex; gap: 8px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+.tab-btn { background: none; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 500; cursor: pointer; color: #64748b; }
+.tab-btn.active { background: #e0f2fe; color: #0369a1; font-weight: 600; }
+.tabs-content { margin-top: 16px; background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.tab-pane { display: none; font-size: 15px; }
+.tab-pane.active { display: block; }
+```
+
 ```js:start
 const btns = document.querySelectorAll('.tab-btn');
 const panes = document.querySelectorAll('.tab-pane');

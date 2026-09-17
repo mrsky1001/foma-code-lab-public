@@ -16,6 +16,7 @@ interface PreviewProps {
   allPages?: Record<string, string>;
   onNavigate?: (pageKey: string, search: string) => void;
   onResetPage?: () => void;
+  isTheory?: boolean;
 }
 
 /** Console log entry from iframe */
@@ -247,7 +248,9 @@ export const Preview = memo(function Preview({
   allPages,
   onNavigate,
   onResetPage,
+  isTheory,
 }: PreviewProps) {
+  const isIsolatedTheory = Boolean(isTheory || lessonNumber === 1);
   const stepConfig = useMemo(() => getStepFileConfig(lessonNumber, (stepNumber || 1) - 1), [lessonNumber, stepNumber]);
   const defaultHtmlFile = stepConfig.htmlName || 'index.html';
 
@@ -491,13 +494,15 @@ export const Preview = memo(function Preview({
   }, []);
 
   const srcdoc = useMemo(() => {
-    const rawHtml = (allPages && allPages[currentHtmlKey]) ||
-      (currentHtmlKey === defaultHtmlFile ? code.html : CANONICAL_PROJECT_FILES[currentHtmlKey]) ||
-      code.html || '';
+    const rawHtml = isIsolatedTheory
+      ? (code.html || '')
+      : ((allPages && allPages[currentHtmlKey]) ||
+         (currentHtmlKey === defaultHtmlFile ? code.html : CANONICAL_PROJECT_FILES[currentHtmlKey]) ||
+         code.html || '');
     const hasDocType = rawHtml.includes('<!DOCTYPE') || rawHtml.includes('<html');
     const zoomCss = getZoomStyle(zoomLevel);
-    const locationScript = getLocationScript(currentHtmlKey, currentSearch);
-    const dataScript = getDataScript();
+    const locationScript = isIsolatedTheory ? '' : getLocationScript(currentHtmlKey, currentSearch);
+    const dataScript = isIsolatedTheory ? '' : getDataScript();
 
     // 1. Remove external style.css / data.js / main.js to prevent 404s against Vite dev server
     let html = rawHtml
@@ -531,7 +536,9 @@ export const Preview = memo(function Preview({
       html = scriptsToInject + html;
     }
 
-    const cssContent = code.css || CANONICAL_PROJECT_FILES['style.css'] || '';
+    const cssContent = isIsolatedTheory
+      ? (code.css || '')
+      : (code.css || CANONICAL_PROJECT_FILES['style.css'] || '');
     const styleTag = `<style id="foma-inlined-css">\n${cssContent}\n</style>`;
     if (html.includes('</head>')) {
       html = html.replace('</head>', `  ${styleTag}\n</head>`);
@@ -546,7 +553,7 @@ export const Preview = memo(function Preview({
         .replace(/(?:window\.)?location\.href\s*=\s*([^;\r\n]+);?/g, 'window.__fomaNavigate($1);');
     };
     const sanitizedUserJs = sanitizeNavigation(code.js || '');
-    const sanitizedCanonicalJs = sanitizeNavigation(CANONICAL_PROJECT_FILES['main.js'] || '');
+    const sanitizedCanonicalJs = isIsolatedTheory ? '' : sanitizeNavigation(CANONICAL_PROJECT_FILES['main.js'] || '');
 
     const userScript = sanitizedUserJs
       ? `<script>\ntry {\n${sanitizedUserJs}\n} catch(e) { window.parent.postMessage({ type: 'foma-runtime-error', msg: String(e) }, '*'); }\n${CLOSE_SCRIPT}`
@@ -583,7 +590,7 @@ ${html}
 ${allScripts}
 </body>
 </html>`;
-  }, [code.html, code.css, code.js, zoomLevel, baseHref, currentHtmlKey, currentSearch, allPages, defaultHtmlFile]);
+  }, [code.html, code.css, code.js, zoomLevel, baseHref, currentHtmlKey, currentSearch, allPages, defaultHtmlFile, isIsolatedTheory]);
 
   const handleSaveToFolder = async () => {
     const res = await saveProjectToFolder(code);
@@ -610,17 +617,21 @@ ${allScripts}
     const playerHtml = generateFullscreenPlayer({
       initialPage: currentHtmlKey,
       initialSearch: currentSearch,
-      pages: allPages || CANONICAL_PROJECT_FILES,
-      css: code.css || CANONICAL_PROJECT_FILES['style.css'] || '',
+      pages: isIsolatedTheory
+        ? { [defaultHtmlFile]: code.html || '' }
+        : (allPages || CANONICAL_PROJECT_FILES),
+      css: isIsolatedTheory
+        ? (code.css || '')
+        : (code.css || CANONICAL_PROJECT_FILES['style.css'] || ''),
       userJs: code.js || '',
-      canonicalJs: CANONICAL_PROJECT_FILES['main.js'] || '',
-      dataJs: CANONICAL_PROJECT_FILES['data.js'] || '',
+      canonicalJs: isIsolatedTheory ? '' : (CANONICAL_PROJECT_FILES['main.js'] || ''),
+      dataJs: isIsolatedTheory ? '' : (CANONICAL_PROJECT_FILES['data.js'] || ''),
       baseHref,
     });
     const blob = new Blob([playerHtml], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
-  }, [currentHtmlKey, currentSearch, allPages, code.css, code.js, baseHref]);
+  }, [currentHtmlKey, currentSearch, allPages, code.css, code.js, baseHref, isIsolatedTheory, defaultHtmlFile]);
 
   const handleContainerWheel = (e: React.WheelEvent) => {
     if (e.ctrlKey) {

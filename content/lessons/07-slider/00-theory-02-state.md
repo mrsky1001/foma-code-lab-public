@@ -85,6 +85,37 @@ function goToSlide(index) {
 
 Напишите простой переключатель: переменная `isOpen` (true/false). По клику на кнопку — меняйте состояние и обновляйте текст через функцию `render`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Состояние программы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div style="margin-bottom: 12px; font-weight: 600;">
+      Статус: <span id="status" class="status-badge">Закрыто</span>
+    </div>
+    <button id="toggleBtn" class="btn">Открыть</button>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 30px; }
+.sandbox { max-width: 440px; margin: 0 auto; text-align: center; }
+.btn { background: #0ea5e9; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+.status-badge { color: #0284c7; font-weight: 700; }
+```
+
 ```js:start
 let isOpen = false;
 const btn    = document.querySelector('#toggleBtn');

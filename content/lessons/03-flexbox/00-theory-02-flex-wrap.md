@@ -80,22 +80,74 @@ type: theory
 
 Создайте адаптивную сетку карточек: 4 в ряд на широком экране, 2 на среднем, 1 на узком. Используйте `flex-wrap` и `flex-basis`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex-wrap и сетка</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div class="catalog">
+      <div class="card">Мини-офис Focus</div>
+      <div class="card">Конференц-зал Alpha</div>
+      <div class="card">Опенспейс Hub</div>
+      <div class="card">Переговорная Solo</div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  margin: 0;
+  padding: 24px;
+}
+
+.sandbox {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .catalog {
   display: flex;
   /* Добавьте flex-wrap и gap */
 }
 
 .card {
-  /* Задайте flex с basis 220px */
-  min-width: 160px;
-  background: #f0f4f8;
-  padding: 16px;
+  /* Задайте flex: 1 1 220px и min-width */
+  background: #ffffff;
+  padding: 20px;
   border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  font-weight: 500;
 }
 ```
 
 ```css:solution
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  margin: 0;
+  padding: 24px;
+}
+
+.sandbox {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .catalog {
   display: flex;
   flex-wrap: wrap;     /* переносить карточки на следующую строку */
@@ -105,11 +157,11 @@ type: theory
 .card {
   flex: 1 1 220px;     /* базовая ширина 220px, растягиваться/сжиматься */
   min-width: 160px;    /* не сжимать меньше 160px */
-  background: #f0f4f8;
-  padding: 16px;
+  background: #ffffff;
+  padding: 20px;
   border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  font-weight: 500;
 }
-/* При ширине контейнера ~900px — 4 карточки в ряд
-   При ~500px — 2 карточки
-   При ~340px — 1 карточка */
 ```

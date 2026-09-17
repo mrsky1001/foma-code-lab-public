@@ -1,5 +1,5 @@
 ---
-type: theory
+type: practice
 title: "ФИНАЛ!"
 ---
 

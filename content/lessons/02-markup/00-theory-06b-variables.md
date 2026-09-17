@@ -93,28 +93,110 @@ body.dark-theme {
    - `--brand-radius` со значением `6px`.
 2. Примените их к классу `.badge`: установите `background-color` через `var(--brand-color)` и `border-radius` через `var(--brand-radius)`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS-переменные</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>СмартОфис: рабочие пространства</h1>
+    <p>Аренда комфортных рабочих мест и переговорных комнат.</p>
+    <button class="btn">Забронировать</button>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
 :root {
-  /* Объявите переменные --brand-color и --brand-radius */
+  /* Объявите --brand-color и --brand-dark */
 }
 
-.badge {
-  color: #ffffff;
-  padding: 4px 8px;
-  /* Примените переменные */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  padding: 32px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+h1 {
+  /* Используйте var(--brand-color) */
+  margin-bottom: 12px;
+}
+
+p {
+  color: #64748b;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.btn {
+  /* Используйте var(--brand-color) */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
 }
 ```
 
 ```css:solution
 :root {
   --brand-color: #0ea5e9;
-  --brand-radius: 6px;
+  --brand-dark: #0284c7;
 }
 
-.badge {
-  color: #ffffff;
-  padding: 4px 8px;
-  background-color: var(--brand-color);
-  border-radius: var(--brand-radius);
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  padding: 32px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+h1 {
+  color: var(--brand-color);
+  margin-bottom: 12px;
+}
+
+p {
+  color: #64748b;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.btn {
+  background: var(--brand-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
 }
 ```

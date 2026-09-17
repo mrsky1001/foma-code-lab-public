@@ -104,6 +104,37 @@ searchInput.addEventListener('keyup', (e) => {
 
 Реализуйте поиск по массиву имён с debounce 300ms. При нажатии Escape очищайте результаты.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Событие input: живой поиск</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Живой поиск</h2>
+    <input type="text" id="search" class="search-input" placeholder="Введите название...">
+    <ul id="list" class="results-list"></ul>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.search-input { width: 100%; box-sizing: border-box; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 15px; }
+.results-list { list-style: none; padding: 0; margin-top: 12px; }
+.results-list li { background: #ffffff; padding: 10px 14px; border-radius: 4px; border: 1px solid #e2e8f0; margin-bottom: 6px; }
+```
+
 ```js:start
 const names = ['Алексей', 'Мария', 'Александра', 'Дмитрий', 'Марина'];
 const input = document.querySelector('#search');

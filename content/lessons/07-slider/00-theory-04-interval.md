@@ -103,6 +103,37 @@ sliderElement.addEventListener('mouseleave', startAuto);
 2. В функции `stop`: остановите таймер через `clearInterval` и сбросьте `timerId` в `null`.
 3. Привяжите `start` к кнопке `#playBtn`, а `stop` — к кнопке `#pauseBtn`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>setInterval автослайдер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Слайдер: <span id="slideNum" style="color: #0ea5e9;">1</span></h2>
+    <div style="margin-top: 16px; display: flex; gap: 8px; justify-content: center;">
+      <button id="playBtn" class="btn">Старт</button>
+      <button id="pauseBtn" class="btn btn-stop">Стоп</button>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 40px; text-align: center; }
+.btn { background: #0ea5e9; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+.btn-stop { background: #ef4444; }
+```
+
 ```js:start
 let slideIndex = 1;
 let timerId = null;

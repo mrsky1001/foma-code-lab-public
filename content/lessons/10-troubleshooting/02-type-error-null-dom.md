@@ -72,6 +72,33 @@ document.getElementById('promoInput')?.addEventListener('input', applyPromo);
 
 Исправьте функцию `bindSearchEvent()`, чтобы она не падала с ошибкой, если на текущей странице нет поля поиска `#searchInput`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeError: null DOM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Безопасный поиск элементов</h2>
+    <p>На этой странице нет поля <code>#searchInput</code>. Скрипт должен безопасно проверить наличие элемента перед добавлением слушателя.</p>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+```
+
 ```js:start
 // Функция привязки события поиска
 function bindSearchEvent() {

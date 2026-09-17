@@ -79,7 +79,65 @@ img {
 
 Создайте карточку с изображением 16:9 через `aspect-ratio`. Картинка должна заполнять блок без деформации через `object-fit: cover`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overflow и object-fit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="card">
+    <div class="card-img-wrap">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format&fit=crop&q=80" alt="Офис" class="card-img">
+    </div>
+    <div class="card-body">
+      <h3>Офис Focus</h3>
+      <p>Просторное рабочее место</p>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-body h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.card-body p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
 .card-img-wrap {
   /* Задайте соотношение 16:9 и скройте выход за границы */
 }
@@ -92,6 +150,37 @@ img {
 ```
 
 ```css:solution
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-body h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.card-body p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
 .card-img-wrap {
   aspect-ratio: 16 / 9;  /* соотношение сторон блока */
   overflow: hidden;       /* обрезать картинку по границам */

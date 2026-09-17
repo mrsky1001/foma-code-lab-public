@@ -86,7 +86,49 @@ type: theory
 2. Задайте расстояние между ячейками `gap: 20px`;
 3. Настройте адаптивные колонки с помощью `repeat(auto-fit, minmax(250px, 1fr))`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <h3>Мини-офис Focus</h3>
+      <p>450 ₽/час</p>
+    </div>
+    <div class="room-card">
+      <h3>Конференц-зал Alpha</h3>
+      <p>1200 ₽/час</p>
+    </div>
+    <div class="room-card">
+      <h3>Опенспейс Hub</h3>
+      <p>250 ₽/час</p>
+    </div>
+    <div class="room-card">
+      <h3>Переговорная Solo</h3>
+      <p>600 ₽/час</p>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+  padding: 24px;
+}
+
 .rooms-grid {
   /* Включите CSS Grid */
   /* Задайте отступы gap */
@@ -95,12 +137,30 @@ type: theory
 
 .room-card {
   background: #ffffff;
-  padding: 16px;
+  padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.room-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.room-card p {
+  margin: 0;
+  color: #0ea5e9;
+  font-weight: 600;
 }
 ```
 
 ```css:solution
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+  padding: 24px;
+}
+
 .rooms-grid {
   display: grid;
   gap: 20px;
@@ -109,7 +169,19 @@ type: theory
 
 .room-card {
   background: #ffffff;
-  padding: 16px;
+  padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.room-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.room-card p {
+  margin: 0;
+  color: #0ea5e9;
+  font-weight: 600;
 }
 ```

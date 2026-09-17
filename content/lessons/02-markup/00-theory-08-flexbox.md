@@ -84,34 +84,114 @@ nav {
 
 Превратите блок `.catalog` в Flex-контейнер: элементы в строку с `gap: 16px` и переносом. Убедитесь что карточки выравниваются по верхнему краю.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подключение Flexbox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="catalog">
+      <div class="catalog-item">
+        <h3>Мини-офис Focus</h3>
+        <p>450 ₽/час</p>
+      </div>
+      <div class="catalog-item">
+        <h3>Конференц-зал Alpha</h3>
+        <p>1200 ₽/час</p>
+      </div>
+      <div class="catalog-item">
+        <h3>Опенспейс Hub</h3>
+        <p>250 ₽/час</p>
+      </div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
-.catalog {
-  /* Включите Flexbox */
-  /* Добавьте gap и flex-wrap */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  padding: 24px;
+  margin: 0;
 }
 
-.card {
-  flex: 1 1 200px;
-  min-width: 160px;
-  padding: 16px;
-  background: #f0f4f8;
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.catalog {
+  /* Сделайте flex-контейнером */
+}
+
+.catalog-item {
+  flex: 1;
+  min-width: 200px;
+  background: #ffffff;
+  padding: 20px;
   border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.catalog-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.catalog-item p {
+  margin: 0;
+  color: #0ea5e9;
+  font-weight: 600;
 }
 ```
 
 ```css:solution
-.catalog {
-  display: flex;           /* включить Flexbox на контейнере */
-  gap: 16px;               /* промежутки между дочерними карточками */
-  flex-wrap: wrap;         /* перенос карточек на следующую строку */
-  align-items: flex-start; /* выровнять карточки по верхнему краю */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  padding: 24px;
+  margin: 0;
 }
 
-.card {
-  flex: 1 1 200px;   /* растягиваться/сжиматься, базовая ширина 200px */
-  min-width: 160px;  /* не сжимать меньше 160px */
-  padding: 16px;
-  background: #f0f4f8;
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.catalog {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.catalog-item {
+  flex: 1;
+  min-width: 200px;
+  background: #ffffff;
+  padding: 20px;
   border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.catalog-item h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+
+.catalog-item p {
+  margin: 0;
+  color: #0ea5e9;
+  font-weight: 600;
 }
 ```

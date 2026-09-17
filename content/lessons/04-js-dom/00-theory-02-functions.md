@@ -83,6 +83,38 @@ button.addEventListener('click', () => {
 2. Напишите однострочную стрелочную функцию `formatBadge(name, count)`, которая возвращает строку вида: `[name]: count комнат`.
 3. Вызовите обе функции с тестовыми данными и выведите результаты в консоль через `console.log`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Функции в JavaScript</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Калькулятор бронирования</h2>
+    <div class="calc-card">
+      <p>Тариф: <strong>450 ₽/час</strong>, Длительность: <strong>4 часа</strong></p>
+      <div class="calc-result" id="calcOutput">Итог: рассчитывается...</div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.calc-card { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.calc-result { margin-top: 16px; font-size: 18px; font-weight: 700; color: #0ea5e9; }
+```
+
 ```js:start
 // 1. Напишите функцию calcCost(price, hours)
 

@@ -102,6 +102,47 @@ form.addEventListener('submit', (e) => {
 
 Напишите функцию `showError(input, message)` и `clearError(input)`. Используйте `closest('.field-wrap')` для поиска контейнера.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Визуальная валидация</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <form id="testForm" class="form-card">
+      <div class="field-wrap">
+        <label>Имя</label>
+        <input type="text" id="nameField" placeholder="Введите имя">
+        <span class="error-msg"></span>
+      </div>
+      <button type="submit" class="btn">Сохранить</button>
+    </form>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 440px; margin: 0 auto; }
+.form-card { background: #ffffff; padding: 24px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.field-wrap { margin-bottom: 16px; }
+label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+input { width: 100%; box-sizing: border-box; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; }
+.field-wrap.error input { border-color: #ef4444; }
+.error-msg { display: none; color: #ef4444; font-size: 12px; margin-top: 4px; }
+.field-wrap.error .error-msg { display: block; }
+.btn { width: 100%; background: #0ea5e9; color: #ffffff; border: none; padding: 10px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+```
+
 ```js:start
 function showError(input, message) {
   // Добавьте класс 'error' на input

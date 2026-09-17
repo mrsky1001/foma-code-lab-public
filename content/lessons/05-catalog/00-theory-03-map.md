@@ -95,6 +95,37 @@ const hotBadge = `${room.isPopular ? '<span class="tag">🔥 Хит</span>' : ''
 3. Добавьте бейдж со статусом через тернарный оператор (`isAvailable ? 'Свободна' : 'Занята'`);
 4. Не забудьте объединить строки через `.join('')`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.map() и рендер HTML</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Каталог комнат</h2>
+    <div id="catalog" class="rooms-grid"></div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 700px; margin: 0 auto; }
+.rooms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px; }
+.room-card { background: #ffffff; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.room-card h3 { margin: 0 0 8px 0; font-size: 16px; }
+.room-card p { margin: 0; color: #0ea5e9; font-weight: 600; }
+```
+
 ```js:start
 const rooms = [
   { id: 1, name: 'Фокус', price: 450, isAvailable: true },

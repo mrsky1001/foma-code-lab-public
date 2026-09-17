@@ -122,6 +122,35 @@ function handleSubmit(e) {
 
 Перепишите функцию `applyStyles` без повторений. Вынесите общую логику и добавьте guard clause.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Рефакторинг и DRY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <header id="header" style="margin-bottom: 12px; padding: 12px; background: #e2e8f0; border-radius: 6px;">Шапка сайта</header>
+    <div id="output" class="output-box" style="margin-bottom: 12px;">Основное содержимое</div>
+    <footer id="footer" style="padding: 12px; background: #e2e8f0; border-radius: 6px;">Подвал сайта</footer>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.output-box { background: #ffffff; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; }
+```
+
 ```js:start
 // ПЛОХО:
 function applyStyles() {

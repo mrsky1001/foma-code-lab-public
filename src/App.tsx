@@ -463,6 +463,8 @@ export default function App() {
     setPreviewSearch('');
   }, [lesson.id, stepIndex, stepFileConfig.htmlName]);
 
+  const isTheory = step.type === 'theory' || lesson.id === 1;
+
   // Handle clicking a file in FileTree
   const handleSelectProjectFile = (fileKey: string, lang: 'html' | 'css' | 'js', isEditable: boolean) => {
     if (fileKey.endsWith('.html')) {
@@ -474,7 +476,7 @@ export default function App() {
       if (fileKey === stepFileConfig.htmlName) setTabOverride('html');
       else if (fileKey === stepFileConfig.cssName) setTabOverride('css');
       else if (fileKey === stepFileConfig.jsName) setTabOverride('js');
-    } else {
+    } else if (!isTheory) {
       const content = CANONICAL_PROJECT_FILES[fileKey] || '';
       setViewOnlyFile({ key: fileKey, name: fileKey, content, lang });
     }
@@ -490,6 +492,7 @@ export default function App() {
 
   // Handle navigating inside the preview
   const handlePreviewNavigate = useCallback((pageKey: string, search: string) => {
+    if (isTheory) return;
     setActivePreviewPage(pageKey);
     setPreviewSearch(search);
     if (pageKey !== stepFileConfig.htmlName && CANONICAL_PROJECT_FILES[pageKey]) {
@@ -503,7 +506,7 @@ export default function App() {
       setViewOnlyFile(null);
       setTabOverride('html');
     }
-  }, [stepFileConfig.htmlName]);
+  }, [stepFileConfig.htmlName, isTheory]);
 
   const handleResetPreviewPage = useCallback(() => {
     setActivePreviewPage(stepFileConfig.htmlName);
@@ -515,8 +518,8 @@ export default function App() {
   }, [stepFileConfig.htmlName, viewOnlyFile]);
 
   const allVirtualPages = useMemo(() => {
-    return getAllVirtualPages(code, lesson.id, stepIndex);
-  }, [code, lesson.id, stepIndex]);
+    return getAllVirtualPages(code, lesson.id, stepIndex, isTheory);
+  }, [code, lesson.id, stepIndex, isTheory]);
 
   return (
     <div className={`app ${theme}`} id="app-root">
@@ -596,6 +599,8 @@ export default function App() {
           highlight={step.highlight}
           selectedFileKey={selectedProjectFileKey}
           onSelectFile={handleSelectProjectFile}
+          isTheory={isTheory}
+          code={code}
           isQuizCompleted={progress.isQuizCompleted}
           hasQuizForLesson={hasQuizForLesson}
           isLessonUnlocked={progress.isLessonUnlocked}
@@ -740,6 +745,7 @@ export default function App() {
                   allPages={allVirtualPages}
                   onNavigate={handlePreviewNavigate}
                   onResetPage={handleResetPreviewPage}
+                  isTheory={isTheory}
                 />
               </div>
             </div>

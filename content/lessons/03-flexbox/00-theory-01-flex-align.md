@@ -97,9 +97,51 @@ flex-direction: column
 
 Создайте контейнер с тремя карточками. Расположите их в строку с `space-between`. Затем добавьте второй вариант — с `flex-direction: column` и элементами по центру.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Выравнивание во Flexbox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div class="container">
+      <div class="card">1</div>
+      <div class="card">2</div>
+      <div class="card">3</div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  margin: 0;
+  padding: 30px;
+}
+
+.sandbox {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .container {
   display: flex;
+  min-height: 180px;
+  padding: 16px;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
   /* Добавьте justify-content и align-items */
 }
 
@@ -109,27 +151,48 @@ flex-direction: column
   background: #007bff;
   color: white;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
 }
 ```
 
 ```css:solution
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  margin: 0;
+  padding: 30px;
+}
+
+.sandbox {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .container {
-  display: flex;                   /* включить flexbox */
-  justify-content: space-between; /* равномерно с отступами по краям */
-  align-items: center;             /* вертикально по центру */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 180px;
   padding: 16px;
-  background: #f0f4f8;
+  background: #ffffff;
+  border: 2px dashed #cbd5e1;
   border-radius: 12px;
 }
 
 .card {
-  width: 100px;                   /* ширина карточки */
-  height: 80px;                   /* высота карточки */
-  background: #007bff;            /* синий фон */
-  color: white;                   /* белый текст */
-  border-radius: 8px;             /* скруглённые углы */
-  display: flex;                  /* flexbox внутри карточки */
-  align-items: center;            /* вертикально по центру текст */
-  justify-content: center;        /* горизонтально по центру текст */
+  width: 100px;
+  height: 80px;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
 }
 ```

@@ -86,6 +86,38 @@ el.style.color   // инлайн-стиль: '' (пусто если не зад
 
 Найдите элемент с атрибутом `data-id="1"`, прочитайте его `data-id` через `dataset`, измените `textContent` заголовка h3 внутри.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM — дерево документа</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div class="card" data-id="1">
+      <h3>Старый заголовок</h3>
+      <p>800 ₽/час</p>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 30px; }
+.sandbox { max-width: 400px; margin: 0 auto; }
+.card { background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.card h3 { margin: 0 0 8px 0; font-size: 18px; color: #0ea5e9; }
+.card p { margin: 0; color: #64748b; }
+```
+
 ```js:start
 // HTML: <div class="card" data-id="1"><h3>Старый заголовок</h3></div>
 

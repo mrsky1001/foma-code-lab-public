@@ -69,7 +69,45 @@ type: theory
 1. Переопределите блок `.room-grid`: задайте `flex-direction: column` и `gap: 12px`.
 2. Задайте элементам `.card` ширину `100%`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Медиа-запросы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="room-grid">
+    <div class="card">
+      <h3>Мини-офис Focus</h3>
+      <p>Тихое место для 1-2 человек</p>
+    </div>
+    <div class="card">
+      <h3>Конференц-зал Alpha</h3>
+      <p>Просторный зал до 15 человек</p>
+    </div>
+    <div class="card">
+      <h3>Опенспейс Hub</h3>
+      <p>Выделенный стол в open-space</p>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+  padding: 24px;
+}
+
 .room-grid {
   display: flex;
   flex-wrap: wrap;
@@ -78,12 +116,33 @@ type: theory
 
 .card {
   flex: 1 1 300px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
 }
 
 /* Добавьте медиа-запрос для max-width: 768px ниже */
 ```
 
 ```css:solution
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+  padding: 24px;
+}
+
 .room-grid {
   display: flex;
   flex-wrap: wrap;
@@ -92,6 +151,21 @@ type: theory
 
 .card {
   flex: 1 1 300px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
 }
 
 /* Адаптивные стили для мобильных экранов */

@@ -75,6 +75,35 @@ tabs.forEach((tab, index) => {
 
 По клику на кнопку переключайте класс `dark` на элементе `body` (тёмная/светлая тема). Обновляйте текст кнопки.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управление classList</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Тёмная и светлая тема</h2>
+    <button id="themeBtn" class="btn">Включить тёмную тему</button>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; padding: 40px; text-align: center; transition: all 0.3s; }
+body.dark { background: #0f172a; color: #f8fafc; }
+body.dark .btn { background: #38bdf8; color: #0f172a; }
+.btn { background: #0ea5e9; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+```
+
 ```js:start
 const themeBtn = document.querySelector('#themeBtn');
 

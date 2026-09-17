@@ -90,18 +90,107 @@ type: theory
 2. Отцентрируйте блок по горизонтали с помощью `margin: 0 auto`;
 3. Задайте внутренние боковые отступы `0 20px` (сверху/снизу 0, слева/справа 20px).
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Паттерн Container</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <strong>СмартОфис</strong>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="content-box">
+        <h1>Контент страницы</h1>
+        <p>Этот блок ограничен по ширине и отцентрирован внутри окна браузера.</p>
+      </div>
+    </div>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background: #f1f5f9;
+}
+
+.header {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 16px 0;
+}
+
 .container {
-  /* Задайте max-width */
-  /* Отцентрируйте через margin */
-  /* Добавьте padding */
+  /* Задайте max-width, margin и padding */
+}
+
+.content-box {
+  background: #ffffff;
+  padding: 24px;
+  margin-top: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+h1 {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+}
+
+p {
+  margin: 0;
+  color: #64748b;
 }
 ```
 
 ```css:solution
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background: #f1f5f9;
+}
+
+.header {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 16px 0;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 16px;
+}
+
+.content-box {
+  background: #ffffff;
+  padding: 24px;
+  margin-top: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+h1 {
+  margin: 0 0 12px 0;
+  font-size: 24px;
+}
+
+p {
+  margin: 0;
+  color: #64748b;
 }
 ```

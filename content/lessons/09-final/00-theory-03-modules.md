@@ -99,6 +99,34 @@ import showToast from './toast.js';
 
 В коде ниже экспортируйте константу `APP_NAME` со значением `'СмартОфис'` и стрелочную функцию `calcTax(sum)`, возвращающую 20% от суммы (`sum * 0.2`).
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES-модули</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>ES-модули: import и export</h2>
+    <div id="output" class="output-box">Модули готовы к экспорту.</div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.output-box { background: #ffffff; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; }
+```
+
 ```js:start
 // 1. Экспортируйте константу APP_NAME = 'СмартОфис'
 

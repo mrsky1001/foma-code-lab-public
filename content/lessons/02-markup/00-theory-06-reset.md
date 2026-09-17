@@ -61,6 +61,35 @@ border-box:
 
 Добавьте к существующему reset правила для `img` (адаптивность) и `input/button` (наследование шрифта).
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Reset</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="preview-box">
+    <h1>Заголовок h1</h1>
+    <p>Параграф текста с базовыми отступами.</p>
+    <div style="margin: 16px 0;">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&auto=format&fit=crop&q=80" alt="Офис">
+    </div>
+    <div style="display: flex; gap: 8px;">
+      <input type="text" placeholder="Поле ввода">
+      <button>Кнопка</button>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
 *, *::before, *::after {
   box-sizing: border-box;
@@ -69,33 +98,58 @@ border-box:
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
   line-height: 1.5;
+  padding: 24px;
+  background: #f8fafc;
 }
 
-/* Добавьте правила для img и input/button/textarea */
+.preview-box {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Добавьте правила для img и input/button ниже */
 ```
 
 ```css:solution
 *, *::before, *::after {
-  box-sizing: border-box; /* ширина включает padding — интуитивно */
-  margin: 0;              /* убрать отступы браузера по умолчанию */
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
   line-height: 1.5;
-  -webkit-font-smoothing: antialiased; /* сглаживание на macOS */
+  padding: 24px;
+  background: #f8fafc;
 }
 
-img, video, svg {
-  max-width: 100%;  /* адаптивность: не выходить за контейнер */
-  height: auto;     /* пропорциональная высота */
-  display: block;   /* убрать baseline gap */
+.preview-box {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-input, button, textarea, select {
-  font: inherit;    /* унаследовать шрифт страницы */
+/* Добавьте правила для img и input/button ниже */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+input, button {
+  font-family: inherit;
+  font-size: inherit;
 }
 ```

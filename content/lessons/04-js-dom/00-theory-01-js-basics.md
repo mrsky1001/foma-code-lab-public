@@ -113,6 +113,41 @@ console.error('Ошибка: не удалось связаться с серв�
 `Добро пожаловать в СмартОфис! Доступно комнат: 8.`  
 Выведите `statusText` в консоль через `console.log`.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Основы JavaScript</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Основы JavaScript: переменные</h2>
+    <div class="info-card">
+      <div class="info-row"><span>Сервис:</span> <strong id="nameEl">—</strong></div>
+      <div class="info-row"><span>Комнат:</span> <strong id="countEl">—</strong></div>
+      <div class="info-row"><span>Доступен:</span> <strong id="availEl">—</strong></div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+h2 { margin-bottom: 16px; font-size: 20px; }
+.info-card { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+.info-row:last-child { border-bottom: none; }
+```
+
 ```js:start
 // 1. Объявите переменные officeName, roomsCount, isOpen
 

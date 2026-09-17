@@ -78,6 +78,36 @@ function logout() {
 
 Напишите функцию `saveUser(name, email)` которая сохраняет объект в localStorage. Напишите `loadUser()` с try/catch. Если данные есть — заполните поля формы автоматически.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage пользователя</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div class="form-card">
+      <h2>Данные бронирования</h2>
+      <p id="statusMsg" style="color: #0ea5e9; margin-top: 8px;"></p>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 440px; margin: 0 auto; }
+.form-card { background: #ffffff; padding: 24px; border-radius: 8px; border: 1px solid #e2e8f0; }
+```
+
 ```js:start
 function saveUser(name, email) {
   // Сохраните { name, email } в localStorage под ключом 'currentUser'

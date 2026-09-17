@@ -1,6 +1,6 @@
 ---
 title: "Элемент <select> и динамическое заполнение"
-highlight: html
+highlight: js
 type: theory
 ---
 
@@ -87,6 +87,36 @@ select.addEventListener('change', () => {
 ## 🛠 Задание
 
 Динамически заполните `<select>` из массива комнат сгруппированных по типу (через `<optgroup>`). При изменении — выведите название выбранной комнаты.
+
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Элемент select</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Выбор категории</h2>
+    <select id="roomSelect" class="select-box">
+      <option value="">Выберите категорию...</option>
+    </select>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 440px; margin: 0 auto; }
+.select-box { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; }
+```
 
 ```js:start
 const rooms = [

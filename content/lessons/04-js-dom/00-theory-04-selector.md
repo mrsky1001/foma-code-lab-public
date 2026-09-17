@@ -79,6 +79,51 @@ deleteBtn.addEventListener('click', (e) => {
 
 Найдите все карточки, конвертируйте NodeList в массив и отфильтруйте только доступные (с `data-available="true"`).
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>querySelector и querySelectorAll</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div class="cards-list">
+      <div class="card" data-available="true">
+        <h3>Мини-офис Focus</h3>
+        <span class="status available">Свободно</span>
+      </div>
+      <div class="card" data-available="false">
+        <h3>Конференц-зал Alpha</h3>
+        <span class="status occupied">Занято</span>
+      </div>
+      <div class="card" data-available="true">
+        <h3>Опенспейс Hub</h3>
+        <span class="status available">Свободно</span>
+      </div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.cards-list { display: flex; flex-direction: column; gap: 12px; }
+.card { display: flex; justify-content: space-between; align-items: center; background: #ffffff; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.card h3 { margin: 0; font-size: 16px; }
+.status { font-size: 12px; padding: 4px 8px; border-radius: 4px; font-weight: 600; }
+.status.available { background: #dcfce7; color: #16a34a; }
+.status.occupied { background: #fee2e2; color: #dc2626; }
+```
+
 ```js:start
 // HTML: несколько <div class="card" data-available="true/false">
 

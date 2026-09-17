@@ -100,42 +100,81 @@ type: theory
 
 Создайте карточку с бейджем «Новинка» в правом верхнем углу. Используйте паттерн `relative` на карточке + `absolute` на бейдже.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS position</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <div class="card">
+      <span class="badge">Новинка</span>
+      <h3>Мини-офис Focus</h3>
+      <p>Идеальное пространство для концентрации.</p>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 40px; }
+.sandbox { max-width: 380px; margin: 0 auto; }
 .card {
-  width: 200px;
-  height: 150px;
-  background: #f0f4f8;
-  border-radius: 8px;
-  /* Добавьте position */
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  /* Сделайте карточку точкой отсчёта для абсолютного позиционирования */
 }
 
 .badge {
-  background: #28a745;
+  background: #ef4444;
   color: white;
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 12px;
-  /* Сделайте absolute, поместите в правый верхний угол */
+  font-weight: 600;
+  /* Позиционируйте абсолютно в правом верхнем углу */
 }
+
+h3 { margin: 0 0 8px 0; font-size: 18px; }
+p { margin: 0; color: #64748b; font-size: 14px; }
 ```
 
 ```css:solution
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 40px; }
+.sandbox { max-width: 380px; margin: 0 auto; }
 .card {
-  width: 200px;           /* ширина карточки */
-  height: 150px;          /* высота карточки */
-  background: #f0f4f8;    /* светло-серый фон */
-  border-radius: 8px;     /* скруглённые углы */
-  position: relative;     /* точка отсчёта для дочернего .badge */
+  position: relative;  /* точка отсчёта для абсолютно позиционированных детей */
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
 .badge {
-  background: #28a745;    /* зелёный фон бейджа */
-  color: white;           /* белый текст */
-  padding: 4px 10px;      /* отступы внутри бейджа */
-  border-radius: 20px;    /* форма таблетки */
-  font-size: 12px;        /* маленький размер шрифта */
-  position: absolute;     /* позиционировать относительно .card */
-  top: 10px;              /* 10px от верхнего края карточки */
-  right: 10px;            /* 10px от правого края карточки */
+  position: absolute;  /* вынуть из потока */
+  top: 12px;           /* 12px от верхнего края card */
+  right: 12px;         /* 12px от правого края card */
+  background: #ef4444;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
 }
+
+h3 { margin: 0 0 8px 0; font-size: 18px; }
+p { margin: 0; color: #64748b; font-size: 14px; }
 ```

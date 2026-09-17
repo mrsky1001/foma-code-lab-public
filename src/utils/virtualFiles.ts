@@ -88,10 +88,14 @@ export function resolveVirtualPage(href: string): { pageKey: string; search: str
 export function getAllVirtualPages(
   code: CodeFiles,
   lessonId: number,
-  stepIndex: number
+  stepIndex: number,
+  isTheory?: boolean
 ): Record<string, string> {
-  const result: Record<string, string> = { ...CANONICAL_PROJECT_FILES };
   const { htmlName } = getStepFileConfig(lessonId, stepIndex);
+  if (isTheory || lessonId === 1) {
+    return { [htmlName]: code.html || '' };
+  }
+  const result: Record<string, string> = { ...CANONICAL_PROJECT_FILES };
   if (htmlName && code.html) {
     result[htmlName] = code.html;
   }

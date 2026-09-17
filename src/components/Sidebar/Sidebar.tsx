@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ChevronDown, ChevronRight, X, Check, BookOpen, Wrench, Trophy, ClipboardCheck, Lock, RotateCcw, AlertTriangle } from 'lucide-react';
-import type { Lesson } from '../../types/lesson';
+import type { Lesson, CodeFiles } from '../../types/lesson';
 import { ACHIEVEMENT_RANKS, INITIAL_RANK } from '../../types/quiz';
 import { FileTree } from '../FileTree/FileTree';
 import { hasCodeTask } from '../../utils/codeMatch';
@@ -24,6 +24,8 @@ interface SidebarProps {
   highlight?: 'html' | 'css' | 'js';
   selectedFileKey: string;
   onSelectFile: (fileKey: string, lang: 'html' | 'css' | 'js', isEditable: boolean) => void;
+  isTheory?: boolean;
+  code?: CodeFiles;
   // Quiz & Access
   isQuizCompleted?: (lessonId: number) => boolean;
   hasQuizForLesson?: (lessonId: number) => boolean;
@@ -52,6 +54,8 @@ export function Sidebar({
   highlight,
   selectedFileKey,
   onSelectFile,
+  isTheory,
+  code,
   isQuizCompleted,
   hasQuizForLesson,
   isLessonUnlocked,
@@ -498,6 +502,8 @@ export function Sidebar({
             onSelectFile={onSelectFile}
             height={filesHeight}
             collapsed={isFileTreeCollapsed}
+            isTheory={isTheory}
+            code={code}
             onToggleCollapse={() => {
               setIsFileTreeCollapsed(prev => {
                 const next = !prev;

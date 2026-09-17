@@ -96,6 +96,14 @@ textarea {
 </form>
 ```
 
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+form { max-width: 460px; margin: 0 auto; background: #ffffff; padding: 24px; border-radius: 8px; border: 1px solid #e2e8f0; }
+label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #334155; }
+input, select, textarea { width: 100%; box-sizing: border-box; padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 14px; margin-bottom: 14px; }
+button[type="submit"] { background: #0ea5e9; color: white; border: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%; }
+```
+
 ```html:solution
 <form id="bookingForm">
   <input type="text" name="name" placeholder="Ваше имя" required>

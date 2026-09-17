@@ -82,6 +82,37 @@ function loadUser() {
 
 Сохраните объект пользователя в `localStorage`. Загрузите его обратно через `JSON.parse` с защитой `try/catch`. Если данных нет — выведите «Нет сохранённых данных».
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>localStorage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Профиль пользователя</h2>
+    <div class="profile-card">
+      <p>Данные сохраняются в хранилище браузера (localStorage).</p>
+      <div id="userDisplay" style="margin-top: 12px; font-weight: 600; color: #0ea5e9;"></div>
+    </div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 30px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.profile-card { background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
+```
+
 ```js:start
 const user = { name: 'Студент', theme: 'dark' };
 

@@ -103,14 +103,43 @@ button:disabled {            /* кнопка с атрибутом disabled -->
 
 Создайте кнопку с тремя состояниями через псевдоклассы: обычное (синий), hover (темнее + подъём), active (ещё темнее + уменьшение). Добавьте плавный transition.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Псевдоклассы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div style="display: flex; justify-content: center; align-items: center; min-height: 200px;">
+    <button class="btn">Забронировать офис</button>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
 ```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  margin: 0;
+}
+
 .btn {
   background: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
   border-radius: 6px;
   font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
   /* Добавьте transition */
 }
 
@@ -118,13 +147,20 @@ button:disabled {            /* кнопка с атрибутом disabled -->
 ```
 
 ```css:solution
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8fafc;
+  margin: 0;
+}
+
 .btn {
   background: #007bff;          /* синий фон по умолчанию */
   color: white;                 /* белый текст */
-  padding: 10px 20px;           /* отступы */
+  padding: 12px 24px;           /* отступы */
   border: none;                 /* убрать рамку */
   border-radius: 6px;           /* скруглённые углы */
   font-size: 16px;              /* размер шрифта */
+  font-weight: 600;
   cursor: pointer;              /* курсор-рука */
   transition: background 0.2s ease,   /* плавная смена фона */
               transform 0.1s ease;     /* плавная смена масштаба */

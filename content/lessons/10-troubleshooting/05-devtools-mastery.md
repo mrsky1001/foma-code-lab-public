@@ -63,6 +63,34 @@ console.timeEnd('Поиск комнат'); // Выведет: Поиск ком
 4. Выводит результат в консоль в виде таблицы `console.table()`.
 5. Возвращает отфильтрованный массив.
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мастерство DevTools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Отладка производительности</h2>
+    <div id="output" class="output-box">Замеры времени выводятся в DevTools Console...</div>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.output-box { background: #ffffff; padding: 16px; border-radius: 8px; border: 1px solid #e2e8f0; }
+```
+
 ```js:start
 // Функция фильтрации с отладкой
 function debugFilterRooms(rooms, maxPrice) {

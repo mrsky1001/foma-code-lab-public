@@ -162,6 +162,82 @@ https://placehold.co/300x200/48A999/FFF?text=Комната+3
 </div>
 ```
 
+```css:start
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-img-wrap {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-title {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #1e293b;
+}
+
+.card-text {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 16px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.card-price {
+  font-weight: 700;
+  font-size: 16px;
+  color: #0ea5e9;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #0ea5e9;
+  color: #ffffff;
+}
+```
+
 ```html:solution
 <div class="card">                              <!-- HTML структура: контейнер карточки -->
   <div class="card-img-wrap">                   <!-- HTML структура: обёртка изображения -->

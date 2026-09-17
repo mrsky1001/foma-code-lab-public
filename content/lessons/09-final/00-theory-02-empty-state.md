@@ -1,6 +1,6 @@
 ---
 title: "Пустые состояния (Empty State)"
-highlight: html
+highlight: js
 type: theory
 ---
 
@@ -79,6 +79,40 @@ function renderBookings(bookings) {
 ## 🛠 Задание
 
 Напишите функцию `renderList(items)`, которая показывает Empty State если массив пуст, или список если есть элементы.
+
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пустые состояния</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="sandbox">
+    <h2>Каталог бронирований</h2>
+    <div class="empty empty-state">
+      <div class="empty-icon">📭</div>
+      <h3>Бронирований пока нет</h3>
+      <p>Выберите подходящую комнату в каталоге.</p>
+    </div>
+    <ul class="list" style="display: none; padding-left: 20px; margin-top: 12px;"></ul>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
+```
+
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 24px; }
+.sandbox { max-width: 500px; margin: 0 auto; }
+.empty-state { text-align: center; padding: 32px 16px; background: #ffffff; border-radius: 8px; border: 1px dashed #cbd5e1; color: #64748b; }
+.empty-icon { font-size: 32px; margin-bottom: 8px; }
+```
 
 ```js:start
 function renderList(items) {

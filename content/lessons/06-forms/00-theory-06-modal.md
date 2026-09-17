@@ -94,6 +94,13 @@ closeBtn.addEventListener('click', () => {
 </dialog>
 ```
 
+```css:start
+body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 40px; text-align: center; }
+dialog { border: none; border-radius: 12px; padding: 24px; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+dialog::backdrop { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(2px); }
+.btn { background: #0ea5e9; color: #ffffff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+```
+
 ```js:start
 const modal = document.querySelector('#confirmModal');
 const openBtn = document.querySelector('#openBtn');

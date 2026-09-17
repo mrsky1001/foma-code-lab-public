@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, FolderOpen, Folder, FileCode, Lock } from 'lucide-react';
 import { isStepEditableFile, getStepFileConfig } from '../../utils/virtualFiles';
+import type { CodeFiles } from '../../types/lesson';
 import './FileTree.css';
 
 export type VirtualFile = {
@@ -21,7 +22,30 @@ type TreeNode = {
 };
 
 // ─── Доступные файлы по модулю ─────────────────────────────────────────────
-function getAvailableFiles(lessonId: number): VirtualFile[] {
+function getAvailableFiles(
+  lessonId: number,
+  isTheory?: boolean,
+  code?: CodeFiles,
+  highlight?: 'html' | 'css' | 'js',
+  stepIndex?: number
+): VirtualFile[] {
+  if (isTheory || lessonId === 1) {
+    const list: VirtualFile[] = [
+      { key: 'index.html', name: 'index.html', lang: 'html', icon: 'html' },
+    ];
+    // Include style.css if present or highlighted (except Module 1 steps 0-7 where CSS is not taught yet)
+    const hasCss = (code && code.css && code.css.trim().length > 0) || highlight === 'css';
+    if (hasCss && !(lessonId === 1 && (stepIndex ?? 0) < 8)) {
+      list.push({ key: 'style.css', name: 'style.css', lang: 'css', icon: 'css' });
+    }
+    // Include main.js if present or highlighted (only from module 4 onwards)
+    const hasJs = (code && code.js && code.js.trim().length > 0) || highlight === 'js';
+    if (hasJs && lessonId >= 4) {
+      list.push({ key: 'main.js', name: 'main.js', lang: 'js', icon: 'js' });
+    }
+    return list;
+  }
+
   const base: VirtualFile[] = [
     { key: 'index.html', name: 'index.html', lang: 'html', icon: 'html' },
     { key: 'style.css',  name: 'style.css',  lang: 'css',  icon: 'css'  },
@@ -104,6 +128,7 @@ function TreeItem({
   lessonId,
   stepIndex,
   onSelectFile,
+  isTheory,
 }: {
   node: TreeNode;
   depth: number;
@@ -112,6 +137,7 @@ function TreeItem({
   lessonId: number;
   stepIndex: number;
   onSelectFile: (fileKey: string, lang: 'html' | 'css' | 'js', isEditable: boolean) => void;
+  isTheory?: boolean;
 }) {
   const [open, setOpen] = useState(true);
   const isFolder = !!node.children;
@@ -143,6 +169,7 @@ function TreeItem({
                 lessonId={lessonId}
                 stepIndex={stepIndex}
                 onSelectFile={onSelectFile}
+                isTheory={isTheory}
               />
             ))}
           </div>
@@ -155,7 +182,7 @@ function TreeItem({
 
   const isTarget = file.key === targetKey;
   const isSelected = file.key === selectedKey;
-  const isEditable = isStepEditableFile(file.key, lessonId, stepIndex);
+  const isEditable = isTheory ? true : isStepEditableFile(file.key, lessonId, stepIndex);
 
   return (
     <button
@@ -188,6 +215,8 @@ export interface FileTreeProps {
   height?: number;
   collapsed?: boolean;
   onToggleCollapse?: () => void;
+  isTheory?: boolean;
+  code?: CodeFiles;
 }
 
 export function FileTree({
@@ -199,6 +228,8 @@ export function FileTree({
   height = 220,
   collapsed: controlledCollapsed,
   onToggleCollapse,
+  isTheory,
+  code,
 }: FileTreeProps) {
   const [internalCollapsed, setInternalCollapsed] = useState(false);
   const isCollapsed = controlledCollapsed !== undefined ? controlledCollapsed : internalCollapsed;
@@ -214,7 +245,7 @@ export function FileTree({
   const { htmlName, cssName, jsName } = getStepFileConfig(lessonId, stepIndex);
   const targetKey = highlight === 'css' ? cssName : highlight === 'js' ? jsName : htmlName;
 
-  const files = getAvailableFiles(lessonId);
+  const files = getAvailableFiles(lessonId, isTheory, code, highlight, stepIndex);
   const tree = buildTree(files);
 
   return (
@@ -226,7 +257,7 @@ export function FileTree({
       <div className="ft-header">
         <span className="ft-header-label">
           <FileCode size={12} />
-          ФАЙЛЫ ПРОЕКТА
+          {isTheory ? 'ФАЙЛЫ ШАГА' : 'ФАЙЛЫ ПРОЕКТА'}
         </span>
         <button
           className="ft-toggle-btn"
@@ -251,6 +282,7 @@ export function FileTree({
               lessonId={lessonId}
               stepIndex={stepIndex}
               onSelectFile={onSelectFile}
+              isTheory={isTheory}
             />
           ))}
         </div>
