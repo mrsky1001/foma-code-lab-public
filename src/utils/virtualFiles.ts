@@ -77,7 +77,7 @@ export function getVirtualFileContent(
 }
 
 export function resolveVirtualPage(href: string): { pageKey: string; search: string } {
-  if (!href) return { pageKey: 'index.html', search: '' };
+  if (!href || href === '#' || href.startsWith('#')) return { pageKey: 'index.html', search: '' };
   const [pathPart, searchPart] = href.split('?');
   const clean = pathPart.replace(/^(\.\.\/|\.\/|\/)*/, '').replace(/^pages\//, '');
   const pageKey = !clean || clean === 'index' ? 'index.html' : clean.endsWith('.html') ? clean : `${clean}.html`;

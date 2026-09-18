@@ -39,23 +39,64 @@ const RUNTIME_INTERCEPTOR_SCRIPT = `(function() {
     try { Object.defineProperty(window, "sessionStorage", { value: createFallbackStorage(), configurable: true, enumerable: true, writable: true }); } catch(err) {}
   }
   window.__fomaNavigate = function(href) {
+    if (!href) return;
     try { window.parent.postMessage({ type: "foma-navigate", href: String(href) }, "*"); } catch(e) {}
   };
   try { window.location.assign = window.location.replace = window.__fomaNavigate; } catch(e) {}
+
   document.addEventListener("click", function(e) {
-    var a = e.target && e.target.closest ? e.target.closest("a") : null;
+    var a = e.target && e.target.closest ? e.target.closest("a, area") : null;
     if (!a) return;
-    var href = a.getAttribute("href");
-    if (!href) return;
-    if (href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:")) return;
-    if (href.startsWith("http://") || href.startsWith("https://") || href.startsWith("//")) {
-      a.setAttribute("target", "_blank");
-      return;
-    }
+
     e.preventDefault();
     e.stopPropagation();
+
+    var href = (a.getAttribute("href") || "").trim();
+    if (!href || href === "#" || href === "javascript:void(0)" || href === "javascript:;") {
+      return;
+    }
+
+    if (href.startsWith("#")) {
+      try {
+        var targetEl = document.querySelector(href);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth" });
+        }
+      } catch(err) {}
+      return;
+    }
+
+    if (href.startsWith("javascript:")) {
+      try {
+        var codeToRun = decodeURIComponent(href.slice(11));
+        new Function(codeToRun)();
+      } catch(err) {}
+      return;
+    }
+
+    if (href.startsWith("http://") || href.startsWith("https://") || href.startsWith("//") || href.startsWith("mailto:") || href.startsWith("tel:")) {
+      try {
+        window.parent.postMessage({ type: "foma-open-external", href: href }, "*");
+      } catch(err) {}
+      return;
+    }
+
     window.__fomaNavigate(href);
   }, true);
+
+  document.addEventListener("submit", function(e) {
+    if (!e.defaultPrevented) {
+      e.preventDefault();
+      e.stopPropagation();
+      var form = e.target;
+      var action = (form && form.getAttribute("action")) || "";
+      action = action.trim();
+      if (action && !action.startsWith("#") && action !== "") {
+        window.__fomaNavigate(action);
+      }
+    }
+  }, false);
+
   window.addEventListener("error", function(e) {
     if (e.target && e.target.tagName === "IMG") {
       var src = e.target.getAttribute("src");
@@ -117,7 +158,7 @@ export function generateFullscreenPlayer({
 <body>
   <iframe
     id="foma-player-frame"
-    sandbox="allow-scripts allow-modals allow-same-origin allow-forms"
+    sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
     title="СмартОфис Превью"
   ></iframe>
 
@@ -136,7 +177,7 @@ export function generateFullscreenPlayer({
     var iframe = document.getElementById('foma-player-frame');
 
     function resolveVirtualPage(href) {
-      if (!href) return { pageKey: 'index.html', search: '' };
+      if (!href || href === '#' || href.startsWith('#')) return { pageKey: 'index.html', search: '' };
       var parts = href.split('?');
       var pathPart = parts[0].replace(/^(\\.\\.\\/|\\.\\/|\\/)*/, '').replace(/^pages\\//, '');
       var pageKey = !pathPart || pathPart === 'index' ? 'index.html' : (pathPart.endsWith('.html') ? pathPart : pathPart + '.html');
@@ -201,7 +242,7 @@ export function generateFullscreenPlayer({
       var sanitizeNavigation = function(code) {
         return (code || '')
           .replace(/(?:window\\.)?location\\.(?:assign|replace)\\(([^)]+)\\);?/g, 'window.__fomaNavigate($1);')
-          .replace(/(?:window\\.)?location\\.href\\s*=\\s*([^;\\r\\n]+);?/g, 'window.__fomaNavigate($1);');
+          .replace(/(?:window\\.)?location(?:\.href)?\\s*=\\s*([^;\\r\\n]+);?/g, 'window.__fomaNavigate($1);');
       };
       var sanitizedUserJs = sanitizeNavigation(USER_JS);
       var sanitizedCanonicalJs = sanitizeNavigation(CANONICAL_JS);
@@ -265,6 +306,10 @@ export function generateFullscreenPlayer({
         } else {
           window.location.hash = targetHash;
         }
+      } else if (e.data && e.data.type === 'foma-open-external' && typeof e.data.href === 'string') {
+        try {
+          window.open(e.data.href, '_blank', 'noopener,noreferrer');
+        } catch(err) {}
       }
     });
 

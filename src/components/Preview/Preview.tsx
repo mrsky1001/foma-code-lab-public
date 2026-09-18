@@ -176,10 +176,11 @@ const CONSOLE_INTERCEPT_SCRIPT = `<script>
 })();
 ${CLOSE_SCRIPT}`;
 
-/** Script injected into srcdoc to capture link clicks and programmatic navigation */
+/** Script injected into srcdoc to capture link clicks, form submissions, and programmatic navigation */
 const NAV_INTERCEPT_SCRIPT = `<script id="foma-nav-interceptor">
 (function() {
   window.__fomaNavigate = function(href) {
+    if (!href) return;
     try {
       window.parent.postMessage({ type: 'foma-navigate', href: String(href) }, '*');
     } catch(e) {}
@@ -189,19 +190,60 @@ const NAV_INTERCEPT_SCRIPT = `<script id="foma-nav-interceptor">
   } catch(e) {}
 
   document.addEventListener('click', function(e) {
-    var a = e.target && e.target.closest ? e.target.closest('a') : null;
+    var a = e.target && e.target.closest ? e.target.closest('a, area') : null;
     if (!a) return;
-    var href = a.getAttribute('href');
-    if (!href) return;
-    if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
-    if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//')) {
-      a.setAttribute('target', '_blank');
-      return;
-    }
+
+    // CRITICAL: Always prevent browser's native link navigation in preview iframe.
+    // Because iframe has <base href>, unprevented clicks on '#' or relative links
+    // cause the browser to navigate the iframe to the parent host app URL!
     e.preventDefault();
     e.stopPropagation();
+
+    var href = (a.getAttribute('href') || '').trim();
+    if (!href || href === '#' || href === 'javascript:void(0)' || href === 'javascript:;') {
+      return;
+    }
+
+    if (href.startsWith('#')) {
+      try {
+        var targetEl = document.querySelector(href);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      } catch(err) {}
+      return;
+    }
+
+    if (href.startsWith('javascript:')) {
+      try {
+        var codeToRun = decodeURIComponent(href.slice(11));
+        new Function(codeToRun)();
+      } catch(err) {}
+      return;
+    }
+
+    if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+      try {
+        window.parent.postMessage({ type: 'foma-open-external', href: href }, '*');
+      } catch(err) {}
+      return;
+    }
+
     window.__fomaNavigate(href);
   }, true);
+
+  document.addEventListener('submit', function(e) {
+    if (!e.defaultPrevented) {
+      e.preventDefault();
+      e.stopPropagation();
+      var form = e.target;
+      var action = (form && form.getAttribute('action')) || '';
+      action = action.trim();
+      if (action && !action.startsWith('#') && action !== '') {
+        window.__fomaNavigate(action);
+      }
+    }
+  }, false);
 
   window.addEventListener('error', function(e) {
     if (e.target && e.target.tagName === 'IMG') {
@@ -460,6 +502,12 @@ export const Preview = memo(function Preview({
             onNavigate(pageKey, search);
           }
         }
+      } else if (e.data.type === 'foma-open-external') {
+        if (typeof e.data.href === 'string') {
+          try {
+            window.open(e.data.href, '_blank', 'noopener,noreferrer');
+          } catch(err) {}
+        }
       }
     };
     window.addEventListener('message', handler);
@@ -563,7 +611,7 @@ export const Preview = memo(function Preview({
     const sanitizeNavigation = (jsCode: string) => {
       return (jsCode || '')
         .replace(/(?:window\.)?location\.(?:assign|replace)\(([^)]+)\);?/g, 'window.__fomaNavigate($1);')
-        .replace(/(?:window\.)?location\.href\s*=\s*([^;\r\n]+);?/g, 'window.__fomaNavigate($1);');
+        .replace(/(?:window\.)?location(?:\.href)?\s*=\s*([^;\r\n]+);?/g, 'window.__fomaNavigate($1);');
     };
     const sanitizedUserJs = sanitizeNavigation(code.js || '');
     const sanitizedCanonicalJs = isIsolatedTheory ? '' : sanitizeNavigation(CANONICAL_PROJECT_FILES['main.js'] || '');
@@ -849,10 +897,10 @@ ${allScripts}
       <div className="preview-body" onWheel={handleContainerWheel}>
         <iframe
           ref={iframeRef}
-          key={refreshKey}
+          key={`${lessonNumber}-${stepNumber}-${currentHtmlKey}-${refreshKey}`}
           srcDoc={srcdoc}
           title="Preview"
-          sandbox="allow-scripts allow-modals allow-same-origin allow-forms"
+          sandbox="allow-scripts allow-modals allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
           id="preview-iframe"
         />
       </div>
