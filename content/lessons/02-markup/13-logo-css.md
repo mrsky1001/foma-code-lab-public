@@ -4,6 +4,7 @@ highlight: css
 type: practice
 ---
 
+
 # CSS логотипа
 
 Стилизуем ссылку-логотип:
@@ -33,7 +34,7 @@ type: practice
 }
 ```
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -50,7 +51,7 @@ type: practice
   <header class="header">
     <div class="container header-container">
       <a href="index.html" class="logo">
-        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+        <img src="img/logo.svg" alt="Логотип" class="logo-icon" onerror="this.style.display='none'">
         <span>СмартОфис</span>
       </a>
     </div>

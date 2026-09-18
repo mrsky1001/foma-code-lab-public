@@ -4,6 +4,7 @@ highlight: css
 type: practice
 ---
 
+
 # CSS шапки
 
 Оформляем шапку:
@@ -30,7 +31,7 @@ type: practice
 }
 ```
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -46,6 +47,7 @@ type: practice
 <body>
   <header class="header">
     <div class="container header-container">
+      
     </div>
   </header>
 </body>

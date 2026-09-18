@@ -4,6 +4,7 @@ highlight: css
 type: practice
 ---
 
+
 # CSS подвала
 
 Финальный аккорд модуля — стилизуем footer.
@@ -43,7 +44,7 @@ type: practice
 
 **Готово! Модуль 2 завершён. У вас есть полноценная структура страницы с шапкой, главным блоком и подвалом!**
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -60,14 +61,14 @@ type: practice
   <header class="header">
     <div class="container header-container">
       <a href="index.html" class="logo">
-        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+        <img src="img/logo.svg" alt="Логотип" class="logo-icon" onerror="this.style.display='none'">
         <span>СмартОфис</span>
       </a>
       <nav class="nav">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">Главная</a></li>
+          <li><a href="index.html" class="nav-link active">Главная</a></li>
           <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
-          <li><a href="pages/login.html" class="nav-link nav-btn">Войти</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
         </ul>
       </nav>
     </div>
@@ -104,14 +105,11 @@ type: practice
 
   <footer class="footer">
     <div class="container footer-container">
-      <div class="footer-info">
-        <p><strong>СмартОфис</strong> — Сервис бронирования офисных комнат</p>
-        <p>© 2026 СмартОфис. Все права защищены.</p>
-      </div>
       <div class="footer-contacts">
-        <p>Email: <a href="mailto:info@smartoffice.ru">info@smartoffice.ru</a></p>
-        <p>Телефон: <a href="tel:+78005553535">+7 (800) 555-35-35</a></p>
+        <p>СмартОфис — умное бронирование</p>
+        <p>Email: <a href="mailto:info@smartofis.ru">info@smartofis.ru</a></p>
       </div>
+      <p>© 2024 СмартОфис</p>
     </div>
   </footer>
 </body>

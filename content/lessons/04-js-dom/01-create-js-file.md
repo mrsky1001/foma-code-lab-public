@@ -4,6 +4,7 @@ highlight: html
 type: practice
 ---
 
+
 # Подключение JS к HTML
 
 JavaScript — третий язык веба (после HTML и CSS). HTML = структура, CSS = стили, JS = поведение.
@@ -18,6 +19,153 @@ JavaScript — третий язык веба (после HTML и CSS). HTML = �
 ```html
 <!-- Подключение JS-скрипта. Атрибут defer откладывает выполнение до полной загрузки HTML -->
 <script src="js/main.js" defer></script>
+```
+
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СмартОфис — Бронирование офисных комнат</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.svg" alt="СмартОфис" class="logo-icon" onerror="this.style.display='none'">
+        СмартОфис
+      </a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Главная</a></li>
+          <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
+          <li id="my-bookings-nav" style="display: none;"><a href="pages/my-bookings.html" class="nav-link">Мои бронирования</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="auth-nav-btn">Войти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="hero-section">
+        <h1 class="hero-title">
+          Портал бронирования офисных комнат <span class="brand-highlight">«СмартОфис»</span>
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-subtitle">Быстро найдите и забронируйте идеальное пространство для работы и переговоров</p>
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-val">120+</span>
+              <span class="metric-lbl">Офисных комнат</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">15 мин</span>
+              <span class="metric-lbl">Среднее время брони</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">98%</span>
+              <span class="metric-lbl">Довольных клиентов</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular-section">
+        <h2 class="page-title">Популярные офисные комнаты</h2>
+        <p class="page-subtitle">Наиболее востребованные пространства с полным техническим оснащением</p>
+        <div class="rooms-grid">
+          <div class="room-card">
+            <div class="card-img-wrap">
+              <a href="pages/catalog.html">
+                <img src="img/room-1.jpg" alt="Мини-офис Focus" class="card-img" onerror="this.src='img/no-image.svg'">
+              </a>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
+              <ul class="card-equipment">
+                <li>Wi-Fi 500 Мбит/с</li>
+                <li>4K Монитор</li>
+                <li>Эргономичное кресло</li>
+              </ul>
+              <div class="card-footer">
+                <div class="card-price">450 ₽ <span>/ час</span></div>
+                <div class="card-btns">
+                  <a href="pages/catalog.html" class="btn-icon" title="Подробнее" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/catalog.html" class="btn btn-primary">Забронировать</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="room-card">
+            <div class="card-img-wrap">
+              <a href="pages/catalog.html">
+                <img src="img/room-2.jpg" alt="Конференц-зал Alpha" class="card-img" onerror="this.src='img/no-image.svg'">
+              </a>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Конференц-зал Alpha</a></h3>
+              <ul class="card-equipment">
+                <li>Проектор 4K</li>
+                <li>Спикерфон</li>
+                <li>Флипчарт</li>
+              </ul>
+              <div class="card-footer">
+                <div class="card-price">1200 ₽ <span>/ час</span></div>
+                <div class="card-btns">
+                  <a href="pages/catalog.html" class="btn-icon" title="Подробнее" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/catalog.html" class="btn btn-primary">Забронировать</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="room-card">
+            <div class="card-img-wrap">
+              <a href="pages/catalog.html">
+                <img src="img/room-3.jpg" alt="Опенспейс Hub" class="card-img" onerror="this.src='img/no-image.svg'">
+              </a>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Опенспейс Hub</a></h3>
+              <ul class="card-equipment">
+                <li>Личный стол</li>
+                <li>Wi-Fi</li>
+                <li>Кофе-поинт</li>
+              </ul>
+              <div class="card-footer">
+                <div class="card-price">250 ₽ <span>/ час</span></div>
+                <div class="card-btns">
+                  <a href="pages/catalog.html" class="btn-icon" title="Подробнее" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/catalog.html" class="btn btn-primary">Забронировать</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="center-action">
+          <a href="pages/catalog.html" class="btn btn-outline">Больше офисов</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-contacts">
+        <p>СмартОфис — умное бронирование</p>
+        <p>Email: <a href="mailto:info@smartofis.ru">info@smartofis.ru</a></p>
+      </div>
+      <p>© 2024 СмартОфис</p>
+    </div>
+  </footer>
+</body>
+</html>
 ```
 
 ```html:solution
@@ -38,18 +186,20 @@ JavaScript — третий язык веба (после HTML и CSS). HTML = �
   <header class="header">
     <div class="container header-container">
       <a href="index.html" class="logo">
-        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
-        <span>СмартОфис</span>
+        <img src="img/logo.svg" alt="СмартОфис" class="logo-icon" onerror="this.style.display='none'">
+        СмартОфис
       </a>
-      <nav class="nav">
+      <nav>
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link">Главная</a></li>
           <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
-          <li><a href="pages/login.html" class="nav-link nav-btn">Войти</a></li>
+          <li id="my-bookings-nav" style="display: none;"><a href="pages/my-bookings.html" class="nav-link">Мои бронирования</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="auth-nav-btn">Войти</a></li>
         </ul>
       </nav>
     </div>
   </header>
+
   <main class="main">
     <div class="container">
       <section class="hero-section">
@@ -57,37 +207,36 @@ JavaScript — третий язык веба (после HTML и CSS). HTML = �
           Портал бронирования офисных комнат <span class="brand-highlight">«СмартОфис»</span>
         </h1>
         <div class="hero-bottom">
-          <p class="hero-subtitle">
-            Удобный выбор и быстрое бронирование рабочих пространств в центре города
-          </p>
+          <p class="hero-subtitle">Быстро найдите и забронируйте идеальное пространство для работы и переговоров</p>
           <div class="hero-metrics">
             <div class="metric-item">
-              <span class="metric-val">24/7</span>
-              <span class="metric-lbl">Доступ</span>
+              <span class="metric-val">120+</span>
+              <span class="metric-lbl">Офисных комнат</span>
             </div>
             <div class="metric-item">
-              <span class="metric-val">от 250 ₽</span>
-              <span class="metric-lbl">Почасовая аренда</span>
+              <span class="metric-val">15 мин</span>
+              <span class="metric-lbl">Среднее время брони</span>
             </div>
             <div class="metric-item">
-              <span class="metric-val">0 ₽</span>
-              <span class="metric-lbl">Без комиссии</span>
+              <span class="metric-val">98%</span>
+              <span class="metric-lbl">Довольных клиентов</span>
             </div>
           </div>
         </div>
       </section>
+
       <section class="popular-section">
         <h2 class="page-title">Популярные офисные комнаты</h2>
         <p class="page-subtitle">Наиболее востребованные пространства с полным техническим оснащением</p>
         <div class="rooms-grid">
           <div class="room-card">
             <div class="card-img-wrap">
-              <a href="pages/room-details.html?id=focus-1">
+              <a href="pages/catalog.html">
                 <img src="img/room-1.jpg" alt="Мини-офис Focus" class="card-img" onerror="this.src='img/no-image.svg'">
               </a>
             </div>
             <div class="card-content">
-              <h3 class="card-title"><a href="pages/room-details.html?id=focus-1" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
               <ul class="card-equipment">
                 <li>Wi-Fi 500 Мбит/с</li>
                 <li>4K Монитор</li>
@@ -96,20 +245,20 @@ JavaScript — третий язык веба (после HTML и CSS). HTML = �
               <div class="card-footer">
                 <div class="card-price">450 ₽ <span>/ час</span></div>
                 <div class="card-btns">
-                  <a href="pages/room-details.html?id=focus-1" class="btn-icon" title="Подробнее о комнате" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
-                  <a href="pages/booking.html?room=focus-1" class="btn btn-primary">Забронировать</a>
+                  <a href="pages/catalog.html" class="btn-icon" title="Подробнее" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/catalog.html" class="btn btn-primary">Забронировать</a>
                 </div>
               </div>
             </div>
           </div>
           <div class="room-card">
             <div class="card-img-wrap">
-              <a href="pages/room-details.html?id=alpha-2">
+              <a href="pages/catalog.html">
                 <img src="img/room-2.jpg" alt="Конференц-зал Alpha" class="card-img" onerror="this.src='img/no-image.svg'">
               </a>
             </div>
             <div class="card-content">
-              <h3 class="card-title"><a href="pages/room-details.html?id=alpha-2" style="text-decoration: none; color: inherit;">Конференц-зал Alpha</a></h3>
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Конференц-зал Alpha</a></h3>
               <ul class="card-equipment">
                 <li>Проектор 4K</li>
                 <li>Спикерфон</li>
@@ -118,20 +267,20 @@ JavaScript — третий язык веба (после HTML и CSS). HTML = �
               <div class="card-footer">
                 <div class="card-price">1200 ₽ <span>/ час</span></div>
                 <div class="card-btns">
-                  <a href="pages/room-details.html?id=alpha-2" class="btn-icon" title="Подробнее о комнате" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
-                  <a href="pages/booking.html?room=alpha-2" class="btn btn-primary">Забронировать</a>
+                  <a href="pages/catalog.html" class="btn-icon" title="Подробнее" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/catalog.html" class="btn btn-primary">Забронировать</a>
                 </div>
               </div>
             </div>
           </div>
           <div class="room-card">
             <div class="card-img-wrap">
-              <a href="pages/room-details.html?id=hub-3">
+              <a href="pages/catalog.html">
                 <img src="img/room-3.jpg" alt="Опенспейс Hub" class="card-img" onerror="this.src='img/no-image.svg'">
               </a>
             </div>
             <div class="card-content">
-              <h3 class="card-title"><a href="pages/room-details.html?id=hub-3" style="text-decoration: none; color: inherit;">Опенспейс Hub</a></h3>
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Опенспейс Hub</a></h3>
               <ul class="card-equipment">
                 <li>Личный стол</li>
                 <li>Wi-Fi</li>
@@ -140,8 +289,8 @@ JavaScript — третий язык веба (после HTML и CSS). HTML = �
               <div class="card-footer">
                 <div class="card-price">250 ₽ <span>/ час</span></div>
                 <div class="card-btns">
-                  <a href="pages/room-details.html?id=hub-3" class="btn-icon" title="Подробнее о комнате" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
-                  <a href="pages/booking.html?room=hub-3" class="btn btn-primary">Забронировать</a>
+                  <a href="pages/catalog.html" class="btn-icon" title="Подробнее" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/catalog.html" class="btn btn-primary">Забронировать</a>
                 </div>
               </div>
             </div>
@@ -153,22 +302,16 @@ JavaScript — третий язык веба (после HTML и CSS). HTML = �
       </section>
     </div>
   </main>
+
   <footer class="footer">
     <div class="container footer-container">
-      <div class="footer-info">
-        <p><strong>СмартОфис</strong> — Сервис бронирования офисных комнат</p>
-        <p>© 2026 СмартОфис. Все права защищены.</p>
-      </div>
       <div class="footer-contacts">
-        <p>Email: <a href="mailto:info@smartoffice.ru">info@smartoffice.ru</a></p>
-        <p>Телефон: <a href="tel:+78005553535">+7 (800) 555-35-35</a></p>
+        <p>СмартОфис — умное бронирование</p>
+        <p>Email: <a href="mailto:info@smartofis.ru">info@smartofis.ru</a></p>
       </div>
+      <p>© 2024 СмартОфис</p>
     </div>
   </footer>
 </body>
 </html>
-```
-
-```js:solution
-// СмартОфис — main.js (Модуль 4)
 ```

@@ -4,6 +4,7 @@ highlight: css
 type: practice
 ---
 
+
 # Стили тега body
 
 Тег `body` — контейнер всего видимого содержимого страницы. Здесь задаём:
@@ -25,7 +26,7 @@ body {
 }
 ```
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -39,6 +40,7 @@ body {
   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
 </head>
 <body>
+
 </body>
 </html>
 ```

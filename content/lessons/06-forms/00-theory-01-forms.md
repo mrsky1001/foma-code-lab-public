@@ -91,9 +91,23 @@ textarea {
 Создайте форму бронирования с полями: имя (text), email, дата (date), комментарий (textarea), тип комнаты (select) и кнопкой отправки.
 
 ```html:start
-<form id="bookingForm">
-  <!-- Добавьте поля: name, email, date, textarea, select, button -->
-</form>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML-формы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <form id="bookingForm">
+    <!-- Добавьте поля: name, email, date, textarea, select, button -->
+  </form>
+</body>
+</html>
 ```
 
 ```css:start

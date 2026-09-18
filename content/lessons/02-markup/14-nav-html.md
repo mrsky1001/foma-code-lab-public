@@ -31,6 +31,32 @@ nav.nav
 </nav>
 ```
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СмартОфис — Бронирование офисных комнат</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+        <span>СмартОфис</span>
+      </a>
+    </div>
+  </header>
+</body>
+</html>
+```
+
 ```html:solution
 <!DOCTYPE html>
 <html lang="ru">

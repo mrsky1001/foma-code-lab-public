@@ -26,6 +26,49 @@ type: practice
 </div>
 ```
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СмартОфис — Бронирование офисных комнат</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+        <span>СмартОфис</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active">Главная</a></li>
+          <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="hero-section">
+        <h1 class="hero-title">
+          Портал бронирования офисных комнат <span class="brand-highlight">«СмартОфис»</span>
+        </h1>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
+```
+
 ```html:solution
 <!DOCTYPE html>
 <html lang="ru">

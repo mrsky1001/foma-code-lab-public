@@ -762,6 +762,44 @@ export default function App() {
           onClose={() => setSaveToast(null)}
         />
       )}
+
+      {isMobile && !showQuiz && (
+        <button
+          className="mobile-floating-action-btn"
+          onClick={() => {
+            if (mobileView === 'lesson') setMobileView('editor');
+            else if (mobileView === 'editor') setMobileView('preview');
+            else setMobileView('editor');
+          }}
+          id="mobile-quick-action-btn"
+          aria-label={
+            mobileView === 'lesson'
+              ? 'Перейти к коду'
+              : mobileView === 'editor'
+              ? 'Смотреть результат'
+              : 'Вернуться к коду'
+          }
+        >
+          {mobileView === 'lesson' && (
+            <>
+              <Code2 size={15} />
+              <span>К коду</span>
+            </>
+          )}
+          {mobileView === 'editor' && (
+            <>
+              <Play size={15} />
+              <span>Результат</span>
+            </>
+          )}
+          {mobileView === 'preview' && (
+            <>
+              <Code2 size={15} />
+              <span>К коду</span>
+            </>
+          )}
+        </button>
+      )}
     </div>
   );
 }

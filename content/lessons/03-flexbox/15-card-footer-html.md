@@ -31,6 +31,100 @@ div.card-footer
 </div>
 ```
 
+```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СмартОфис — Бронирование офисных комнат</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <img src="img/logo.svg" alt="Логотип" class="logo-icon" onerror="this.style.display='none'">
+        <span>СмартОфис</span>
+      </a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link active">Главная</a></li>
+          <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <section class="hero-section">
+        <h1 class="hero-title">
+          Портал бронирования офисных комнат <span class="brand-highlight">«СмартОфис»</span>
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-subtitle">
+            Удобный выбор и быстрое бронирование рабочих пространств в центре города
+          </p>
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-val">24/7</span>
+              <span class="metric-lbl">Доступ</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">от 250 ₽</span>
+              <span class="metric-lbl">Почасовая аренда</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">0 ₽</span>
+              <span class="metric-lbl">Без комиссии</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular-section">
+        <h2 class="page-title">Популярные офисные комнаты</h2>
+        <p class="page-subtitle">Наиболее востребованные пространства с полным техническим оснащением</p>
+        <div class="rooms-grid">
+          <div class="room-card">
+            <div class="card-img-wrap">
+              <a href="pages/catalog.html">
+                <img src="img/room-1.jpg" alt="Мини-офис Focus" class="card-img" onerror="this.src='img/no-image.svg'">
+              </a>
+            </div>
+            <div class="card-content">
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
+              <ul class="card-equipment">
+                <li>Wi-Fi 500 Мбит/с</li>
+                <li>4K Монитор</li>
+                <li>Эргономичное кресло</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-contacts">
+        <p>СмартОфис — умное бронирование</p>
+        <p>Email: <a href="mailto:info@smartofis.ru">info@smartofis.ru</a></p>
+      </div>
+      <p>© 2024 СмартОфис</p>
+    </div>
+  </footer>
+</body>
+</html>
+```
+
 ```html:solution
 <!DOCTYPE html>
 <html lang="ru">

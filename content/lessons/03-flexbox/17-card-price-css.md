@@ -4,6 +4,7 @@ highlight: css
 type: practice
 ---
 
+
 # CSS цены карточки
 
 Цена — самый важный элемент карточки. Выделяем жирным и крупным размером.
@@ -30,7 +31,7 @@ type: practice
 }
 ```
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -47,14 +48,14 @@ type: practice
   <header class="header">
     <div class="container header-container">
       <a href="index.html" class="logo">
-        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+        <img src="img/logo.svg" alt="Логотип" class="logo-icon" onerror="this.style.display='none'">
         <span>СмартОфис</span>
       </a>
       <nav class="nav">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">Главная</a></li>
+          <li><a href="index.html" class="nav-link active">Главная</a></li>
           <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
-          <li><a href="pages/login.html" class="nav-link nav-btn">Войти</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
         </ul>
       </nav>
     </div>
@@ -90,16 +91,15 @@ type: practice
       <section class="popular-section">
         <h2 class="page-title">Популярные офисные комнаты</h2>
         <p class="page-subtitle">Наиболее востребованные пространства с полным техническим оснащением</p>
-
         <div class="rooms-grid">
           <div class="room-card">
             <div class="card-img-wrap">
-              <a href="pages/room-details.html?id=focus-1">
+              <a href="pages/catalog.html">
                 <img src="img/room-1.jpg" alt="Мини-офис Focus" class="card-img" onerror="this.src='img/no-image.svg'">
               </a>
             </div>
             <div class="card-content">
-              <h3 class="card-title"><a href="pages/room-details.html?id=focus-1" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
+              <h3 class="card-title"><a href="pages/catalog.html" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
               <ul class="card-equipment">
                 <li>Wi-Fi 500 Мбит/с</li>
                 <li>4K Монитор</li>
@@ -108,6 +108,8 @@ type: practice
               <div class="card-footer">
                 <div class="card-price">450 ₽ <span>/ час</span></div>
                 <div class="card-btns">
+                  <a href="pages/catalog.html" class="btn-icon" title="Подробнее" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/catalog.html" class="btn btn-primary">Забронировать</a>
                 </div>
               </div>
             </div>
@@ -119,14 +121,11 @@ type: practice
 
   <footer class="footer">
     <div class="container footer-container">
-      <div class="footer-info">
-        <p><strong>СмартОфис</strong> — Сервис бронирования офисных комнат</p>
-        <p>© 2026 СмартОфис. Все права защищены.</p>
-      </div>
       <div class="footer-contacts">
-        <p>Email: <a href="mailto:info@smartoffice.ru">info@smartoffice.ru</a></p>
-        <p>Телефон: <a href="tel:+78005553535">+7 (800) 555-35-35</a></p>
+        <p>СмартОфис — умное бронирование</p>
+        <p>Email: <a href="mailto:info@smartofis.ru">info@smartofis.ru</a></p>
       </div>
+      <p>© 2024 СмартОфис</p>
     </div>
   </footer>
 </body>

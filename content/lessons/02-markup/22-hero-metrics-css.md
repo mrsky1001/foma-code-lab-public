@@ -4,6 +4,7 @@ highlight: html
 type: practice
 ---
 
+
 # Метрики Hero-блока
 
 Метрики — три числа: 24/7, от 250 ₽, 0 ₽. Каждая метрика — `div.metric-item` с двумя строками:
@@ -63,7 +64,7 @@ CSS:
 }
 ```
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -80,14 +81,14 @@ CSS:
   <header class="header">
     <div class="container header-container">
       <a href="index.html" class="logo">
-        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
+        <img src="img/logo.svg" alt="Логотип" class="logo-icon" onerror="this.style.display='none'">
         <span>СмартОфис</span>
       </a>
       <nav class="nav">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">Главная</a></li>
+          <li><a href="index.html" class="nav-link active">Главная</a></li>
           <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
-          <li><a href="pages/login.html" class="nav-link nav-btn">Войти</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
         </ul>
       </nav>
     </div>

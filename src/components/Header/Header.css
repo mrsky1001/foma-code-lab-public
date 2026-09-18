@@ -190,6 +190,35 @@
   }
 }
 
+@media (max-width: 480px) {
+  .header {
+    padding: 0 10px;
+  }
+  .header-left {
+    gap: 8px;
+  }
+  .header-version-info {
+    display: none;
+  }
+  .header-logo-text {
+    font-size: 13.5px;
+  }
+  .header-badge-beta {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-toggle-btn span,
+  .dev-quiz-btn span {
+    display: none;
+  }
+  .admin-toggle-btn,
+  .dev-quiz-btn {
+    padding: 6px;
+  }
+}
+
 @media (max-width: 440px) {
   .header-notice {
     display: none;

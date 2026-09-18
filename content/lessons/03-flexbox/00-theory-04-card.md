@@ -153,13 +153,27 @@ https://placehold.co/300x200/48A999/FFF?text=Комната+3
 Допишите недостающие части карточки. В редакторе уже есть внешний контейнер и блок с изображением — добавьте `card-content` с заголовком и текстом, и `card-footer` с ценой и кнопкой.
 
 ```html:start
-<div class="card">
-  <div class="card-img-wrap">
-    <img src="https://placehold.co/300x200/4A90E2/FFF?text=Комната" alt="Переговорная" class="card-img">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI-карточка</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="card">
+    <div class="card-img-wrap">
+      <img src="https://placehold.co/300x200/4A90E2/FFF?text=Комната" alt="Переговорная" class="card-img">
+    </div>
+    <!-- Добавьте сюда card-content с h3 и p -->
+    <!-- Добавьте сюда card-footer со span.card-price и button -->
   </div>
-  <!-- Добавьте сюда card-content с h3 и p -->
-  <!-- Добавьте сюда card-footer со span.card-price и button -->
-</div>
+</body>
+</html>
 ```
 
 ```css:start

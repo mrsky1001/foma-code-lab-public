@@ -85,13 +85,28 @@ closeBtn.addEventListener('click', () => {
 3. По клику на `#closeBtn` закрывайте окно методом `.close()`.
 
 ```html:start
-<button id="openBtn" class="btn">Забронировать</button>
-
-<dialog id="confirmModal">
-  <h3>Подтвердите действие</h3>
-  <p>Вы уверены, что хотите продолжить?</p>
-  <button id="closeBtn" class="btn">Закрыть</button>
-</dialog>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модальные окна</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <button id="openModalBtn">Открыть окно</button>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <h3>Заголовок окна</h3>
+      <p>Контент модального окна</p>
+      <button id="closeModalBtn">Закрыть</button>
+    </div>
+  </div>
+</body>
+</html>
 ```
 
 ```css:start

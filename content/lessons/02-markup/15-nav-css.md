@@ -4,6 +4,7 @@ highlight: css
 type: practice
 ---
 
+
 # CSS навигации — список
 
 Превращаем вертикальный список в горизонтальное меню:
@@ -25,7 +26,7 @@ type: practice
 }
 ```
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -47,8 +48,9 @@ type: practice
       </a>
       <nav class="nav">
         <ul class="nav-list">
-          <li><a href="index.html" class="nav-link">Главная</a></li>
+          <li><a href="index.html" class="nav-link active">Главная</a></li>
           <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
+          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
         </ul>
       </nav>
     </div>
@@ -57,13 +59,12 @@ type: practice
 </html>
 ```
 
-```css:solution
+```css:start
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: 'Inter', sans-serif;
   color: #222222;
@@ -74,25 +75,21 @@ body {
   min-height: 100vh;
   min-width: 1200px;
 }
-
 .container {
   width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
 }
-
 .header {
   border-bottom: 1px solid #dddddd;
   padding: 18px 0;
   background-color: #ffffff;
 }
-
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .logo {
   display: flex;
   align-items: center;
@@ -103,12 +100,57 @@ body {
   font-weight: 800;
   letter-spacing: -0.02em;
 }
-
 .logo-icon {
   width: 32px;
   height: 32px;
 }
+```
 
+```css:solution
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  color: #222222;
+  background-color: #ffffff;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 1200px;
+}
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.header {
+  border-bottom: 1px solid #dddddd;
+  padding: 18px 0;
+  background-color: #ffffff;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #222222;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.logo-icon {
+  width: 32px;
+  height: 32px;
+}
 .nav-list {
   display: flex;
   list-style: none;

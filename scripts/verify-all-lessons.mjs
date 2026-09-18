@@ -24,8 +24,22 @@ function parseCodeBlocks(body) {
 function validateJS(code, label) {
   const issues = [];
   if (!code.trim()) return issues;
+
+  // Skip intentional syntax errors in troubleshooting exercises for start code
+  if (label.includes('syntax-error') && label.includes('start')) {
+    return issues;
+  }
+
+  // Handle ES module export/import syntax for evaluation in new Function
+  let testCode = code;
+  if (/(?:^|\n)\s*(?:import|export)\s+/.test(code)) {
+    testCode = code
+      .replace(/(?:^|\n)\s*export\s+(?:default\s+)?/g, '\n')
+      .replace(/(?:^|\n)\s*import\s+[^;]+;?/g, '\n');
+  }
+
   try {
-    new Function(code);
+    new Function(testCode);
   } catch (e) {
     issues.push(`JS syntax error in ${label}: ${e.message}`);
   }

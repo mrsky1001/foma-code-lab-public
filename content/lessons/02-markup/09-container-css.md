@@ -4,6 +4,7 @@ highlight: css
 type: practice
 ---
 
+
 # Класс .container
 
 Без ограничения ширины текст будет растягиваться на всю ширину монитора — читать неудобно.
@@ -24,7 +25,7 @@ type: practice
 }
 ```
 
-```html:solution
+```html:start
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -38,6 +39,7 @@ type: practice
   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
 </head>
 <body>
+
 </body>
 </html>
 ```
