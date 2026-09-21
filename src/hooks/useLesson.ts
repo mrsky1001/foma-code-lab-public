@@ -80,13 +80,7 @@ function getInitialLessonAndStep(): { lessonIdx: number; stepIdx: number } {
   return { lessonIdx, stepIdx };
 }
 
-export function useLesson() {
-  const [{ lessonIndex: initialLessonIdx, stepIdx: initialStepIdx }] = useState(() => {
-    const result = getInitialLessonAndStep();
-    return { lessonIndex: result.lessonIdx, stepIdx: result.stepIdx };
-  });
-  const [lessonIndex, setLessonIndex] = useState(initialLessonIdx);
-// Purge legacy broken drafts from v1 and v2
+// Purge legacy broken drafts from v1 and v2 — runs once on module load
 try {
   const keysToRemove: string[] = [];
   for (let i = 0; i < localStorage.length; i++) {
@@ -114,6 +108,13 @@ function isValidDraft(draft: unknown, startCode: CodeFiles): draft is CodeFiles 
   }
   return true;
 }
+
+export function useLesson() {
+  const [{ lessonIndex: initialLessonIdx, stepIdx: initialStepIdx }] = useState(() => {
+    const result = getInitialLessonAndStep();
+    return { lessonIndex: result.lessonIdx, stepIdx: result.stepIdx };
+  });
+  const [lessonIndex, setLessonIndex] = useState(initialLessonIdx);
 
   const [stepIndex, setStepIndex] = useState(initialStepIdx);
   const [code, setCode] = useState<CodeFiles>(() => {
@@ -350,12 +351,21 @@ function isValidDraft(draft: unknown, startCode: CodeFiles): draft is CodeFiles 
         curStep.highlight,
         curStep.title
       );
-      setCode(analysis.annotatedCode);
+
+      // Only replace the primary language file in the editor.
+      // Other files stay as the user's current code — fixing the bug where
+      // "show solution" would overwrite files not mentioned in the task.
+      const primaryLang = analysis.primaryLang;
+      const mergedCode: CodeFiles = {
+        ...code,
+        [primaryLang]: analysis.annotatedCode[primaryLang],
+      };
+      setCode(mergedCode);
       setIsShowingSolution(true);
 
-      const primaryRange = analysis.ranges[analysis.primaryLang];
+      const primaryRange = analysis.ranges[primaryLang];
       setSolutionTarget({
-        lang: analysis.primaryLang,
+        lang: primaryLang,
         fromLine: primaryRange.fromLine,
         toLine: primaryRange.toLine,
         scrollToLine: primaryRange.scrollToLine,

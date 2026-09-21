@@ -295,7 +295,10 @@ export default function App() {
     return step.type === 'practice' || hasCodeTask(step.startCode, step.solutionCode);
   }, [step.type, step.startCode, step.solutionCode]);
 
-  // Practice task similarity calculation
+  // Track previous step key to detect genuine step changes vs first mount
+  const prevStepKeyRef = useRef<string>(`${lesson.id}-${stepIndex}`);
+
+  // Practice task similarity — initialized lazily from draft code (no flash)
   const [taskSimilarity, setTaskSimilarity] = useState<number>(() => {
     if (!stepHasTask) return 100;
     return calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
@@ -303,24 +306,33 @@ export default function App() {
 
   // Re-calculate similarity when step changes or code changes
   useEffect(() => {
+    const currentKey = `${lesson.id}-${stepIndex}`;
+    const isStepChange = prevStepKeyRef.current !== currentKey;
+    prevStepKeyRef.current = currentKey;
+
     if (stepHasTask) {
       if (isShowingSolution) {
         // While solution panel is open, always show 100% visually
         setTaskSimilarity(100);
         return;
       }
-      // Always compute actual similarity so the progress bar reflects real code state.
-      // isAlreadyDone only affects whether we auto-mark completion again, not the display.
-      const sim = calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
-      setTaskSimilarity(sim);
-      if (sim >= 90) {
-        progress.markStepCompleted(lesson.id, stepIndex);
-        setCheckStatus('success');
+      // On step change: always recompute. On code change: recompute if not first render.
+      // This eliminates the flash where 0% appears before the correct value settles in.
+      if (isStepChange) {
+        // Step just changed — recompute from freshly loaded code
+        const sim = calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
+        setTaskSimilarity(sim);
+        if (sim >= 80) {
+          progress.markStepCompleted(lesson.id, stepIndex);
+          setCheckStatus('success');
+        }
       }
+      // Code edits are handled in handleCodeChange — no need to duplicate here.
     } else {
       setTaskSimilarity(100);
     }
-  }, [lesson.id, stepIndex, stepHasTask, step.startCode, step.solutionCode, step.highlight, code, isShowingSolution, progress.markStepCompleted]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.id, stepIndex, stepHasTask, isShowingSolution]);
 
   // Check button status: 'idle' | 'success' | 'error'
   const [checkStatus, setCheckStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -355,7 +367,7 @@ export default function App() {
       const updatedCode = { ...code, [lang]: value };
       const sim = calculateCodeSimilarity(updatedCode, step.startCode, step.solutionCode, step.highlight);
       setTaskSimilarity(sim);
-      if (sim >= 90) {
+      if (sim >= 80) {
         progress.markStepCompleted(lesson.id, stepIndex);
         setCheckStatus('success');
       }
@@ -367,7 +379,7 @@ export default function App() {
     clearErrorResetTimer();
     const sim = calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight);
     setTaskSimilarity(sim);
-    if (sim >= 90) {
+    if (sim >= 80) {
       setCheckStatus('success');
       progress.markStepCompleted(lesson.id, stepIndex);
     } else {
@@ -379,16 +391,33 @@ export default function App() {
     }
   }, [step, code, lesson.id, stepIndex, progress, clearErrorResetTimer]);
 
-  // Handle toggling solution - marks step as done and sets success
+  // Handle toggling solution - marks step as done when solution is shown
   const handleToggleSolution = useCallback(() => {
     clearErrorResetTimer();
+    const wasShowing = isShowingSolution;
     toggleSolution();
-    // NOTE: We intentionally do NOT mark the step as completed here.
-    // Viewing the solution is a hint, not a submission. The step is only
-    // marked done when the user's own code reaches >= 90% similarity.
-    setTaskSimilarity(100); // Show 100% while solution is visible
-    setCheckStatus('idle');
-  }, [toggleSolution, clearErrorResetTimer]);
+    if (!wasShowing) {
+      // Opening the solution: mark step completed so the Next button unlocks.
+      // Viewing the solution is a valid way to complete a step — the student
+      // is explicitly asking to see the answer, which counts as task completion.
+      progress.markStepCompleted(lesson.id, stepIndex);
+      setCheckStatus('success');
+      setTaskSimilarity(100); // Show 100% while solution is visible
+    } else {
+      // Closing the solution: restore the real similarity from the user's actual code.
+      // userCodeBeforeSolution is still set here (toggleSolution restores it).
+      // We use `code` which will be updated by toggleSolution on this render cycle,
+      // so schedule a microtask to read the restored code after state update.
+      if (stepHasTask) {
+        // After toggleSolution, code will revert to userCodeBeforeSolution.
+        // We read from the saved state before toggle. On next render the useEffect
+        // will not re-run (stepIndex unchanged), so we must set status here.
+        setCheckStatus('idle');
+        setTaskSimilarity(calculateCodeSimilarity(code, step.startCode, step.solutionCode, step.highlight));
+      }
+    }
+  }, [toggleSolution, clearErrorResetTimer, isShowingSolution, progress, lesson.id, stepIndex,
+      stepHasTask, code, step.startCode, step.solutionCode, step.highlight]);
 
   const handleSelectLesson = (id: number) => {
     if (!progress.isLessonAccessible(id)) return;
@@ -406,7 +435,7 @@ export default function App() {
   };
 
   const handleNextStep = useCallback(() => {
-    if (taskSimilarity >= 90 || !stepHasTask) {
+    if (taskSimilarity >= 80 || !stepHasTask) {
       progress.markStepCompleted(lesson.id, stepIndex);
     }
     nextStep();

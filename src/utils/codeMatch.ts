@@ -147,17 +147,19 @@ export function calculateCodeSimilarity(
 
     // ── Structural keyword guard ─────────────────────────────────────────────
     // If the solution introduces new *word* tokens (tag names, identifiers,
-    // class names, etc.), every one of them MUST appear in the user's additions.
-    // This prevents a high punctuation-token overlap from faking a passing score
-    // on structural tasks like "wrap code in <body>" where the student only
-    // pressed Enter without adding the required element.
+    // class names, etc.), missing any of them caps the score below 80% threshold.
+    // Cap is proportional: the more keywords present, the higher the allowed score.
+    // This ensures students see real progress for partial work, while preventing
+    // auto-pass when structural elements are missing.
     const requiredKeywords = [...expectedFreq.keys()].filter(t =>
       /^[a-zA-Z\u0400-\u04FF]/.test(t) // word tokens only (letters/Cyrillic)
     );
     const missingKeywords = requiredKeywords.filter(t => (userAddedFreq.get(t) || 0) === 0);
-    if (missingKeywords.length > 0) {
-      // Cap score so it never crosses the 90% completion threshold
-      pct = Math.min(pct, 70);
+    if (missingKeywords.length > 0 && requiredKeywords.length > 0) {
+      // Proportional cap: present / total keywords * 79 (always below 80% threshold)
+      const presentRatio = (requiredKeywords.length - missingKeywords.length) / requiredKeywords.length;
+      const proportionalCap = Math.floor(presentRatio * 79);
+      pct = Math.min(pct, Math.max(proportionalCap, 10)); // at least 10% for any attempt
     }
     // ────────────────────────────────────────────────────────────────────────
 

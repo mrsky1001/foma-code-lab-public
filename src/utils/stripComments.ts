@@ -20,11 +20,7 @@
  */
 function stripHtmlComments(code: string): string {
   // Remove <!-- ... --> (single-line and multi-line)
-  let result = code.replace(/<!--[\s\S]*?-->/g, (match) => {
-    // If the comment is the only content on its line(s), remove the whole line(s)
-    return match.includes('\n') ? '' : '';
-  });
-
+  const result = code.replace(/<!--[\s\S]*?-->/g, '');
   return cleanupBlankLines(trimLineEnds(result));
 }
 

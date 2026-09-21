@@ -367,7 +367,7 @@ export function Sidebar({
                                     if (stepAccessible) onSelectStep(lesson.id, i);
                                   }}
                                   disabled={!stepAccessible}
-                                  id={`step-list-${lesson.id}-${i}`}
+                                  id={`step-list-${lesson.id}-theory-${i}`}
                                   title={!stepAccessible
                                     ? 'Шаг заблокирован. Сначала пройдите предыдущий шаг'
                                     : stepDone
@@ -409,7 +409,7 @@ export function Sidebar({
                                     if (stepAccessible) onSelectStep(lesson.id, i);
                                   }}
                                   disabled={!stepAccessible}
-                                  id={`step-list-${lesson.id}-${i}`}
+                                  id={`step-list-${lesson.id}-practice-${i}`}
                                   title={!stepAccessible
                                     ? 'Шаг заблокирован. Сначала пройдите предыдущий шаг'
                                     : stepDone

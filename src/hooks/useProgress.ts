@@ -105,64 +105,21 @@ export function useProgress(
     });
   }, [currentLessonId, currentStepIdx]);
 
-  // ── 60-second accumulation timer ─────────────────────────────────────────
+  // ── Step visit marker (replaces old 60-second accumulation timer) ──────────
+  // MIN_SECONDS = 0 means every visited step is immediately "timer-done".
+  // The timer barrier was removed intentionally; this effect just ensures
+  // the timerDoneSteps set is populated on step visit so isStepFullyCompleted works.
   useEffect(() => {
     const key = getTimerKey(currentLessonId, currentStepIdx);
-    const initialAccum = getAccumTime(currentLessonId, currentStepIdx);
-    setCurrentStepSeconds(initialAccum);
-
-    // If already done, ensure state contains it and skip timer
-    if (initialAccum >= MIN_SECONDS) {
-      setCurrentStepSeconds(MIN_SECONDS);
-      setTimerDoneSteps(prev => {
-        if (prev.has(key)) return prev;
-        const next = new Set(prev);
-        next.add(key);
-        return next;
-      });
-      return;
-    }
-
-    const startTs = Date.now();
-    const tick = setInterval(() => {
-      const elapsed = Math.floor((Date.now() - startTs) / 1000);
-      const accumulated = initialAccum + elapsed;
-      const clamped = Math.min(MIN_SECONDS, accumulated);
-      setCurrentStepSeconds(clamped);
-
-      if (accumulated >= MIN_SECONDS) {
-        try { localStorage.setItem(key, String(MIN_SECONDS)); } catch { /* ignore */ }
-        setTimerDoneSteps(prev => {
-          if (prev.has(key)) return prev;
-          const next = new Set(prev);
-          next.add(key);
-          return next;
-        });
-        clearInterval(tick);
-      } else {
-        // Periodically persist so tab switch / reload doesn't lose seconds
-        if (accumulated % 5 === 0) {
-          try { localStorage.setItem(key, String(accumulated)); } catch { /* ignore */ }
-        }
-      }
-    }, 1000); // 1-second interval so the checkmark activates instantaneously at 60s
-
-    return () => {
-      // On unmount / step change: save accumulated time
-      const elapsed = Math.floor((Date.now() - startTs) / 1000);
-      const total = Math.min(MIN_SECONDS, initialAccum + elapsed);
-      try { localStorage.setItem(key, String(total)); } catch { /* ignore */ }
-      setCurrentStepSeconds(total);
-      if (total >= MIN_SECONDS) {
-        setTimerDoneSteps(prev => {
-          if (prev.has(key)) return prev;
-          const next = new Set(prev);
-          next.add(key);
-          return next;
-        });
-      }
-      clearInterval(tick);
-    };
+    // Mark as done immediately — no time gate
+    try { localStorage.setItem(key, '0'); } catch { /* ignore */ }
+    setCurrentStepSeconds(0);
+    setTimerDoneSteps(prev => {
+      if (prev.has(key)) return prev;
+      const next = new Set(prev);
+      next.add(key);
+      return next;
+    });
   }, [currentLessonId, currentStepIdx]);
 
   // ── Practice done marker ──────────────────────────────────────────────────
@@ -358,7 +315,6 @@ export function useProgress(
     practiceDone,
     timerDoneSteps,
     currentStepSeconds,
-    currentStepRemainingSeconds: Math.max(0, MIN_SECONDS - currentStepSeconds),
     getLessonProgress,
     totalStepsCount,
     totalVisitedCount,
