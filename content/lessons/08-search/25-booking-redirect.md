@@ -810,8 +810,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRoomDetails();
   initRegisterForm();
   initLoginForm();
-  initBookingCalc();
-});
+  });
 
 function showNotification(message, type = 'success') {
   let container = document.getElementById('toastContainer');

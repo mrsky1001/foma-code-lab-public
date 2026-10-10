@@ -185,17 +185,4 @@ body {
 .btn-outline:hover { background-color: #007bff; color: #ffffff; }
 .btn-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; border-radius: 4px; border: 1px solid #007bff; background-color: transparent; color: #007bff; cursor: pointer; text-decoration: none; }
 .btn-icon:hover { background-color: #eaf2ff; }
-.rooms-grid { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px; margin-bottom: 30px; }
-.room-card { width: 373px; border: 1px solid #dddddd; border-radius: 6px; overflow: hidden; background-color: #ffffff; display: flex; flex-direction: column; }
-.card-img-wrap { width: 100%; height: 200px; overflow: hidden; background-color: #f0f4f8; }
-.card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.card-content { padding: 15px; display: flex; flex-direction: column; flex: 1; }
-.card-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-.card-equipment { list-style: none; margin-bottom: 15px; flex: 1; }
-.card-equipment li { font-size: 13px; color: #555555; margin-bottom: 4px; }
-.card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eeeeee; padding-top: 10px; gap: 10px; }
-.card-price { font-size: 18px; font-weight: 700; color: #222222; }
-.card-price span { font-size: 13px; font-weight: 400; color: #666666; }
-.card-btns { display: flex; align-items: center; gap: 8px; }
-.center-action { text-align: center; margin-top: 20px; }
 ```

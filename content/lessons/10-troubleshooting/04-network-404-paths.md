@@ -1,7 +1,7 @@
 ---
 title: "Ошибки путей и 404 Not Found"
 highlight: html
-type: theory
+type: practice
 ---
 
 # Ошибки путей и 404 Not Found

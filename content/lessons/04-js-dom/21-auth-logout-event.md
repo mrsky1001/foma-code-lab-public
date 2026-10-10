@@ -12,6 +12,8 @@ type: practice
 `e.preventDefault()` — отменяем переход по ссылке `href="#"`.
 `localStorage.removeItem('currentUser')` — удаляем запись о входе.
 
+Мы используем authNavBtn.onclick вместо addEventListener, потому что это позволяет легко удалить или перезаписать обработчик при смене состояния пользователя, просто присвоив authNavBtn.onclick = null.
+
 ## 🛠 Задание
 
 Внутри блока `if (authNavBtn)` добавьте обработчик клика:

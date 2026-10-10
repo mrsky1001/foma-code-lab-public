@@ -92,6 +92,8 @@ highlight: css
 
 ```css:start
 .menu-link {
+  text-decoration: none;
+  color: #1e293b;
   /* Сделайте ссылки строчно-блочными */
   /* Задайте padding: 8px 16px */
   /* Добавьте фон #e2e8f0 и скругление 4px */
@@ -108,11 +110,11 @@ highlight: css
 
 ```css:solution
 .menu-link {
+  text-decoration: none;
+  color: #1e293b;
   display: inline-block;
   padding: 8px 16px;
   background-color: #e2e8f0;
   border-radius: 4px;
-  text-decoration: none;
-  color: #1e293b;
 }
 ```

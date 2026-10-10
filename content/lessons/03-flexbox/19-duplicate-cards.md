@@ -19,14 +19,12 @@ type: practice
 <!-- Карточка 2: Конференц-зал Alpha -->
 <div class="room-card">
   <div class="card-img-wrap">
-    <!-- Ссылка на страницу комнаты alpha-2 -->
     <a href="pages/room-details.html?id=alpha-2">
       <img src="img/room-2.jpg" alt="Конференц-зал Alpha" class="card-img" onerror="this.src='img/no-image.svg'">
     </a>
   </div>
   <div class="card-content">
     <h3 class="card-title"><a href="pages/room-details.html?id=alpha-2" style="text-decoration: none; color: inherit;">Конференц-зал Alpha</a></h3>
-    <!-- Список оснащения зала -->
     <ul class="card-equipment">
       <li>Проектор 4K</li>
       <li>Спикерфон</li>
@@ -35,7 +33,7 @@ type: practice
     <div class="card-footer">
       <div class="card-price">1200 ₽ <span>/ час</span></div>
       <div class="card-btns">
-        <a href="pages/room-details.html?id=alpha-2" class="btn-icon" ...>SVG</a>
+        <a href="pages/room-details.html?id=alpha-2" class="btn-icon" title="Подробнее о комнате" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
         <a href="pages/booking.html?room=alpha-2" class="btn btn-primary">Забронировать</a>
       </div>
     </div>
@@ -43,7 +41,32 @@ type: practice
 </div>
 ```
 
-**Карточка 3: Опенспейс Hub** (аналогично, цена 250 ₽)
+**Карточка 3: Опенспейс Hub**
+```html
+<!-- Карточка 3: Опенспейс Hub -->
+<div class="room-card">
+  <div class="card-img-wrap">
+    <a href="pages/room-details.html?id=hub-3">
+      <img src="img/room-3.jpg" alt="Опенспейс Hub" class="card-img" onerror="this.src='img/no-image.svg'">
+    </a>
+  </div>
+  <div class="card-content">
+    <h3 class="card-title"><a href="pages/room-details.html?id=hub-3" style="text-decoration: none; color: inherit;">Опенспейс Hub</a></h3>
+    <ul class="card-equipment">
+      <li>Личный стол</li>
+      <li>Wi-Fi</li>
+      <li>Кофе-поинт</li>
+    </ul>
+    <div class="card-footer">
+      <div class="card-price">250 ₽ <span>/ час</span></div>
+      <div class="card-btns">
+        <a href="pages/room-details.html?id=hub-3" class="btn-icon" title="Подробнее о комнате" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+        <a href="pages/booking.html?room=hub-3" class="btn btn-primary">Забронировать</a>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
 ```html:start
 <!DOCTYPE html>

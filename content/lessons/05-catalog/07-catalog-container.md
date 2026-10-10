@@ -150,7 +150,7 @@ const MOCK_BOOKINGS = [
         </div>
       </div>
 
-      <div class="rooms-grid" id="catalogContainer"></div>
+      
     </div>
   </main>
 

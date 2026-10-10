@@ -134,9 +134,6 @@ type: practice
             </div>
           </div>
         </div>
-        <div class="center-action">
-          <a href="pages/catalog.html" class="btn btn-outline">Больше офисов</a>
-        </div>
       </section>
     </div>
   </main>

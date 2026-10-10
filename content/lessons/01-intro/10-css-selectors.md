@@ -129,7 +129,6 @@ p {                         /* CSS тег-селектор: все теги <p> 
 .highlight {                /* CSS класс-селектор: элементы с class="highlight" */
   background: #fff3cd;      /* CSS свойство: жёлтый фон выделения */
   padding: 8px;             /* CSS свойство: внутренний отступ */
-  border-radius: 4px;       /* CSS свойство: скруглённые углы */
 }
 
 #title {                    /* CSS id-селектор: элемент с id="title" */

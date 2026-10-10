@@ -1,5 +1,5 @@
 ---
-type: practice
+type: theory
 title: "ФИНАЛ!"
 ---
 
@@ -52,7 +52,7 @@ title: "ФИНАЛ!"
         <ul class="nav-list">
           <li><a href="../index.html" class="nav-link">Главная</a></li>
           <li><a href="catalog.html" class="nav-link">Каталог</a></li>
-          <li id="myBookingsNavItem" style="display: block;"><a href="my-bookings.html" class="nav-link active">Мои бронирования</a></li>
+          <li id="myBookingsNavItem" style="display: none;"><a href="my-bookings.html" class="nav-link active">Мои бронирования</a></li>
           <li><a href="login.html" class="nav-link nav-btn" id="authNavBtn">Выйти</a></li>
         </ul>
       </nav>

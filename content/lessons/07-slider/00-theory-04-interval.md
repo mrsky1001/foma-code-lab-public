@@ -102,6 +102,7 @@ sliderElement.addEventListener('mouseleave', startAuto);
 1. В функции `start`: если `timerId` уже существует, ничего не делайте. Иначе запустите `setInterval`, который каждую секунду увеличивает `slideIndex` на 1 и обновляет `display.textContent = slideIndex`.
 2. В функции `stop`: остановите таймер через `clearInterval` и сбросьте `timerId` в `null`.
 3. Привяжите `start` к кнопке `#playBtn`, а `stop` — к кнопке `#pauseBtn`.
+4. Запустите счетчик сразу при старте страницы вызовом `start()`.
 
 ```html:start
 <!DOCTYPE html>

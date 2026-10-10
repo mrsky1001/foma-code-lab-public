@@ -85,7 +85,6 @@ type: theory
     <meta name="description" content="Аренда переговорных комнат в Москве — СмартОфис">
     <title>СмартОфис — аренда переговорных</title>  <!-- вкладка браузера -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">  <!-- иконка вкладки -->
-    <link rel="stylesheet" href="css/style.css">               <!-- стили -->
   </head>
   <body>
     <h1>СмартОфис</h1>

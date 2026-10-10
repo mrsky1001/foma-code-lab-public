@@ -1113,7 +1113,7 @@ function initLoginForm() {
         alertBox.className = 'form-alert alert-danger';
         alertBox.style.display = 'block';
       }
-      showNotification('Неверный логин или пароль', 'danger');
+      showNotification('Неверный логин или пароль', 'error');
     }
   });
 }

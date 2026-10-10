@@ -1022,7 +1022,6 @@ function initLoginForm() {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();

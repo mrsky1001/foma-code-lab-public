@@ -116,7 +116,7 @@ import showToast from './toast.js';
     <h2>ES-модули: import и export</h2>
     <div id="output" class="output-box">Модули готовы к экспорту.</div>
   </div>
-  <script src="js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
 ```

@@ -793,12 +793,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initCatalogFilters();
   initBookingCalc();
   initRoomDetails();
-  initMyBookings();
   initRegisterForm();
   initLoginForm();
+  initMyBookings();
 });
 
-// Функция всплывающих уведомлений (Toast) справа внизу
 function showNotification(message, type = 'success') {
   let container = document.getElementById('toastContainer');
   if (!container) {
@@ -821,6 +820,7 @@ function showNotification(message, type = 'success') {
     setTimeout(() => toast.remove(), 300);
   }, 3500);
 }
+
 function initNavigation() {
   const links = document.querySelectorAll('.nav-link');
   const current = window.location.pathname;
@@ -878,6 +878,7 @@ function updateAuthNav() {
     }
   }
 }
+
 function initSlider() {
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
@@ -986,11 +987,11 @@ function initCatalogFilters() {
 
   render(displayedRooms);
 }
+
 function initBookingCalc() {
   const form = document.getElementById('bookingForm');
   if (!form || typeof OFFICE_ROOMS === 'undefined') return;
 
-  // Если пользователь не вошел в систему — перенаправляем на страницу входа
   const currentUser = localStorage.getItem('currentUser');
   if (!currentUser) {
     window.location.href = 'login.html';
@@ -1049,12 +1050,13 @@ function initBookingCalc() {
     }, 1200);
   });
 }
+
 function initRoomDetails() {
   const container = document.getElementById('roomDetailsContainer');
   if (!container || typeof OFFICE_ROOMS === 'undefined') return;
 
   const urlParams = new URLSearchParams(window.location.search);
-  const roomId = urlParams.get('id') || urlParams.get('room');
+  const roomId = urlParams.get('id') || urlParams.get('room') || 'focus-1';
   const room = OFFICE_ROOMS.find(r => r.id === roomId);
 
   if (!room) {
@@ -1102,37 +1104,7 @@ function initRoomDetails() {
     </div>
   `;
 }
-function initMyBookings() {
-  const container = document.getElementById('myBookingsList');
-  if (!container || typeof MOCK_BOOKINGS === 'undefined') return;
 
-  // Если пользователь не вошел в систему — перенаправляем на страницу входа
-  const currentUser = localStorage.getItem('currentUser');
-  if (!currentUser) {
-    window.location.href = 'login.html';
-    return;
-  }
-
-  if (!MOCK_BOOKINGS || MOCK_BOOKINGS.length === 0) {
-    container.innerHTML = '<div class="empty-message">У вас пока нет бронирований</div>';
-    return;
-  }
-
-  container.innerHTML = MOCK_BOOKINGS.map(item => `
-    <div class="booking-item">
-      <div>
-        <h3 style="font-size: 16px; margin-bottom: 5px;">${item.roomTitle}</h3>
-        <div style="font-size: 13px; color: #666;">
-          Дата: <strong>${item.date}</strong> | Длительность: <strong>${item.hours} ч.</strong> | Заявка №${item.id}
-        </div>
-      </div>
-      <div style="text-align: right;">
-        <div style="font-size: 16px; font-weight: 700; color: #007bff;">${item.totalPrice} ₽</div>
-        <span style="font-size: 12px; color: #28a745;">Подтверждено</span>
-      </div>
-    </div>
-  `).join('');
-}
 function initRegisterForm() {
   const form = document.getElementById('registerForm');
   if (!form) return;
@@ -1168,6 +1140,7 @@ function initRegisterForm() {
     }
   });
 }
+
 function initLoginForm() {
   const form = document.getElementById('loginForm');
   if (!form) return;
@@ -1194,6 +1167,11 @@ function initLoginForm() {
       showNotification('Неверный логин или пароль', 'danger');
     }
   });
+}
+
+function initMyBookings() {
+  const container = document.getElementById('myBookingsList');
+  if (!container || typeof MOCK_BOOKINGS === 'undefined') return;
 }
 ```
 

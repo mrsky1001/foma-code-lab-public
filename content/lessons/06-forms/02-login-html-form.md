@@ -59,17 +59,7 @@ highlight: html
       <div class="form-card">
         <div id="loginAlert" class="form-alert"></div>
         <form id="loginForm" novalidate>
-          <div class="form-group">
-            <label class="form-label" for="login">Логин</label>
-            <input type="text" id="login" class="form-control" placeholder="admin" required>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="password">Пароль</label>
-            <input type="password" id="password" class="form-control" placeholder="12345" required>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Войти</button>
+          <!-- Поля будут добавлены на этом шаге -->
         </form>
       </div>
     </div>

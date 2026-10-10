@@ -52,18 +52,20 @@ highlight: html
 <!-- target="_blank" — открыть в новой вкладке -->
 ```
 
-**Важно:** при использовании `target="_blank"` всегда добавляйте `rel="noopener"` для безопасности:
+**Важно:** при использовании `target="_blank"` всегда добавляйте `rel="noopener noreferrer"` для безопасности:
 
 ```html
-<a href="https://google.com" target="_blank" rel="noopener">Google</a>
-<!-- rel="noopener" — защита от уязвимости при открытии в новой вкладке -->
+<a href="https://google.com" target="_blank" rel="noopener noreferrer">Google</a>
+<!-- rel="noopener noreferrer" — защита от уязвимости при открытии в новой вкладке -->
 ```
+
+*Атрибут `rel="noopener noreferrer"` защищает от уязвимости tabnabbing и блокирует передачу адреса страницы источника во внешнюю сеть.*
 
 ## 🛠 Задание
 
 После вашего списка добавьте две ссылки:
 1. Обычную ссылку с текстом `Узнать больше` и адресом `https://ru.wikipedia.org/wiki/HTML`
-2. Ту же ссылку, но с `target="_blank"` и `rel="noopener"` — чтобы открывалась в новой вкладке
+2. Ту же ссылку, но с `target="_blank"` и `rel="noopener noreferrer"` — чтобы открывалась в новой вкладке
 
 ```html:start
 <h1>Привет, мир!</h1>
@@ -89,6 +91,6 @@ highlight: html
 <a href="https://ru.wikipedia.org/wiki/HTML">Узнать больше</a>
 <!-- обычная ссылка: откроется в той же вкладке -->
 
-<a href="https://ru.wikipedia.org/wiki/HTML" target="_blank" rel="noopener">Узнать больше (новая вкладка)</a>
-<!-- target="_blank" — новая вкладка; rel="noopener" — безопасность -->
+<a href="https://ru.wikipedia.org/wiki/HTML" target="_blank" rel="noopener noreferrer">Узнать больше (новая вкладка)</a>
+<!-- target="_blank" — новая вкладка; rel="noopener noreferrer" — безопасность -->
 ```

@@ -100,7 +100,7 @@ function showNotification(text) {
 <body>
   <div class="sandbox">
     <h2>Уведомление</h2>
-    <div id="alert" class="alert-box">Бронирование успешно оформлено!</div>
+    <div id="alertBox" class="alert-box">Бронирование успешно оформлено!</div>
   </div>
   <script src="js/main.js"></script>
 </body>

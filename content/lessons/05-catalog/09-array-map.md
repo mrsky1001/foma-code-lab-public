@@ -659,6 +659,6 @@ function renderCatalog() {
 
   container.innerHTML = OFFICE_ROOMS.map(room => `
     <div class="room-card">${room.title}</div>
-  `).join('');
+  `);
 }
 ```

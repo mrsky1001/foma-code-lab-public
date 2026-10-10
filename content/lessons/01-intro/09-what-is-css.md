@@ -58,10 +58,17 @@ body {                      /* выбрать тег <body> (вся страни
 2. Для `body` — задайте светло-серый фон `#f5f5f5` и базовый шрифт `sans-serif`
 
 ```html:start
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Моя страница</title>
+</head>
 <body>
   <h1>Привет, мир!</h1>
   <p>Это мой первый сайт.</p>
 </body>
+</html>
 ```
 
 ```css:start
@@ -69,10 +76,17 @@ body {                      /* выбрать тег <body> (вся страни
 ```
 
 ```html:solution
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Моя страница</title>
+</head>
 <body>
   <h1>Привет, мир!</h1>
   <p>Это мой первый сайт.</p>
 </body>
+</html>
 ```
 
 ```css:solution

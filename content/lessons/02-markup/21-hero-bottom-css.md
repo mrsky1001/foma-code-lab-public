@@ -69,6 +69,11 @@ type: practice
         <h1 class="hero-title">
           Портал бронирования офисных комнат <span class="brand-highlight">«СмартОфис»</span>
         </h1>
+        <div class="hero-bottom">
+          <p class="hero-subtitle">
+            Удобный выбор и быстрое бронирование рабочих пространств в центре города
+          </p>
+        </div>
       </section>
     </div>
   </main>

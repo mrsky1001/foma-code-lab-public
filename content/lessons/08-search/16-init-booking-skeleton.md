@@ -995,67 +995,7 @@ function initCatalogFilters() {
   render(displayedRooms);
 }
 function initBookingCalc() {
-  const form = document.getElementById('bookingForm');
-  if (!form || typeof OFFICE_ROOMS === 'undefined') return;
-
-  // Если пользователь не вошел в систему — перенаправляем на страницу входа
-  const currentUser = localStorage.getItem('currentUser');
-  if (!currentUser) {
-    window.location.href = 'login.html';
-    return;
-  }
-
-  const roomSelect = document.getElementById('roomSelect');
-  const hoursInput = document.getElementById('hoursInput');
-  const pricePerHourSpan = document.getElementById('pricePerHour');
-  const totalPriceSpan = document.getElementById('totalPrice');
-
-  roomSelect.innerHTML = OFFICE_ROOMS.map(r => `
-    <option value="${r.id}" data-price="${r.pricePerHour}">${r.title} (${r.pricePerHour} ₽/час)</option>
-  `).join('');
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const roomId = urlParams.get('room');
-  if (roomId) roomSelect.value = roomId;
-
-  function updatePrice() {
-    const selectedOption = roomSelect.options[roomSelect.selectedIndex];
-    const price = selectedOption ? Number(selectedOption.dataset.price || 0) : 0;
-    const hours = Math.max(1, Number(hoursInput.value || 1));
-    const total = price * hours;
-
-    if (pricePerHourSpan) pricePerHourSpan.textContent = price + ' ₽';
-    if (totalPriceSpan) totalPriceSpan.textContent = total + ' ₽';
-  }
-
-  roomSelect.addEventListener('change', updatePrice);
-  hoursInput.addEventListener('input', updatePrice);
-  updatePrice();
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const appNumber = Math.floor(10000 + Math.random() * 90000);
-    const selectedRoom = OFFICE_ROOMS.find(r => r.id === roomSelect.value);
-    const bookingDate = document.getElementById('bookingDate').value || '2026-09-01';
-    const hours = Math.max(1, Number(hoursInput.value || 1));
-    const total = (selectedRoom ? selectedRoom.pricePerHour : 450) * hours;
-
-    if (typeof MOCK_BOOKINGS !== 'undefined') {
-      MOCK_BOOKINGS.unshift({
-        id: String(appNumber),
-        roomTitle: selectedRoom ? selectedRoom.title : 'Офис',
-        date: bookingDate,
-        hours: hours,
-        totalPrice: total
-      });
-    }
-
-    showNotification('Бронирование создано! Номер заявки: №' + appNumber, 'success');
-    form.reset();
-    setTimeout(() => {
-      window.location.href = 'my-bookings.html';
-    }, 1200);
-  });
+  
 }
 function initRoomDetails() {
   const container = document.getElementById('roomDetailsContainer');

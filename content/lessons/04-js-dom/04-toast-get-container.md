@@ -474,6 +474,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Функция всплывающих уведомлений (Toast) справа внизу
 function showNotification(message, type = 'success') {
-  let container = document.getElementById('toast-container');
+  let container = document.getElementById('toast-container') // Метод getElementById('id') — классический и более быстрый способ поиска элемента строго по ID (символ '#' указывать не нужно);
 }
 ```

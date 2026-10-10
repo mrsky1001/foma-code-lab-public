@@ -806,13 +806,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initSlider();
   initCatalogFilters();
-  initBookingCalc();
   initRoomDetails();
   initRegisterForm();
   initLoginForm();
+  initBookingCalc();
 });
 
-// Функция всплывающих уведомлений (Toast) справа внизу
 function showNotification(message, type = 'success') {
   let container = document.getElementById('toastContainer');
   if (!container) {
@@ -835,6 +834,7 @@ function showNotification(message, type = 'success') {
     setTimeout(() => toast.remove(), 300);
   }, 3500);
 }
+
 function initNavigation() {
   const links = document.querySelectorAll('.nav-link');
   const current = window.location.pathname;
@@ -892,6 +892,7 @@ function updateAuthNav() {
     }
   }
 }
+
 function initSlider() {
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
@@ -1000,75 +1001,13 @@ function initCatalogFilters() {
 
   render(displayedRooms);
 }
-function initBookingCalc() {
-  const form = document.getElementById('bookingForm');
-  if (!form || typeof OFFICE_ROOMS === 'undefined') return;
 
-  // Если пользователь не вошел в систему — перенаправляем на страницу входа
-  const currentUser = localStorage.getItem('currentUser');
-  if (!currentUser) {
-    window.location.href = 'login.html';
-    return;
-  }
-
-  const roomSelect = document.getElementById('roomSelect');
-  const hoursInput = document.getElementById('hoursInput');
-  const pricePerHourSpan = document.getElementById('pricePerHour');
-  const totalPriceSpan = document.getElementById('totalPrice');
-
-  roomSelect.innerHTML = OFFICE_ROOMS.map(r => `
-    <option value="${r.id}" data-price="${r.pricePerHour}">${r.title} (${r.pricePerHour} ₽/час)</option>
-  `).join('');
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const roomId = urlParams.get('room');
-  if (roomId) roomSelect.value = roomId;
-
-  function updatePrice() {
-    const selectedOption = roomSelect.options[roomSelect.selectedIndex];
-    const price = selectedOption ? Number(selectedOption.dataset.price || 0) : 0;
-    const hours = Math.max(1, Number(hoursInput.value || 1));
-    const total = price * hours;
-
-    if (pricePerHourSpan) pricePerHourSpan.textContent = price + ' ₽';
-    if (totalPriceSpan) totalPriceSpan.textContent = total + ' ₽';
-  }
-
-  roomSelect.addEventListener('change', updatePrice);
-  hoursInput.addEventListener('input', updatePrice);
-  updatePrice();
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const appNumber = Math.floor(10000 + Math.random() * 90000);
-    const selectedRoom = OFFICE_ROOMS.find(r => r.id === roomSelect.value);
-    const bookingDate = document.getElementById('bookingDate').value || '2026-09-01';
-    const hours = Math.max(1, Number(hoursInput.value || 1));
-    const total = (selectedRoom ? selectedRoom.pricePerHour : 450) * hours;
-
-    if (typeof MOCK_BOOKINGS !== 'undefined') {
-      MOCK_BOOKINGS.unshift({
-        id: String(appNumber),
-        roomTitle: selectedRoom ? selectedRoom.title : 'Офис',
-        date: bookingDate,
-        hours: hours,
-        totalPrice: total
-      });
-    }
-
-    showNotification('Бронирование создано! Номер заявки: №' + appNumber, 'success');
-    form.reset();
-    setTimeout(() => {
-      window.location.href = 'my-bookings.html';
-    }, 1200);
-  });
-}
 function initRoomDetails() {
   const container = document.getElementById('roomDetailsContainer');
   if (!container || typeof OFFICE_ROOMS === 'undefined') return;
 
   const urlParams = new URLSearchParams(window.location.search);
-  const roomId = urlParams.get('id') || urlParams.get('room');
+  const roomId = urlParams.get('id') || urlParams.get('room') || 'focus-1';
   const room = OFFICE_ROOMS.find(r => r.id === roomId);
 
   if (!room) {
@@ -1116,6 +1055,7 @@ function initRoomDetails() {
     </div>
   `;
 }
+
 function initRegisterForm() {
   const form = document.getElementById('registerForm');
   if (!form) return;
@@ -1151,6 +1091,7 @@ function initRegisterForm() {
     }
   });
 }
+
 function initLoginForm() {
   const form = document.getElementById('loginForm');
   if (!form) return;
@@ -1177,6 +1118,17 @@ function initLoginForm() {
       showNotification('Неверный логин или пароль', 'danger');
     }
   });
+}
+
+function initBookingCalc() {
+  const form = document.getElementById('bookingForm');
+  if (!form || typeof OFFICE_ROOMS === 'undefined') return;
+
+  const currentUser = localStorage.getItem('currentUser');
+  if (!currentUser) {
+    window.location.href = 'login.html';
+    return;
+  }
 }
 ```
 

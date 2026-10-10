@@ -45,7 +45,8 @@ catalog.insertAdjacentHTML('beforeend', `
 <!-- beforebegin -->
 <div class="catalog">         ← afterbegin
   [существующий контент]
-</div>                        ← afterend
+                              ← beforeend
+    </div>
 <!-- afterend -->
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: "Мастерство отладки через DevTools"
 highlight: js
-type: theory
+type: practice
 ---
 
 # Профессиональная отладка в инструментах разработчика (DevTools)

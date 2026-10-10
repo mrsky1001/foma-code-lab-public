@@ -196,13 +196,13 @@ body {
 .card-img-wrap {
   width: 100%;
   height: 180px;
-  overflow: hidden;
+  overflow: hidden;             /* скрывает выход картинки за границы карточки (подробно разберём в шаге 05) */
 }
 
 .card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;           /* масштабирует фото без искажения пропорций (подробно разберём в шаге 05) */
   display: block;
 }
 

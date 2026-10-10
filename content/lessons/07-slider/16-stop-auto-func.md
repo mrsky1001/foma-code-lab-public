@@ -1044,8 +1044,7 @@ function initSlider() {
   }
 
   function stopAuto() {
-    if (timerId) clearInterval(timerId);
-  }
+}
 
   if (nextBtn) nextBtn.addEventListener('click', () => { next(); });
   if (prevBtn) prevBtn.addEventListener('click', () => { prev(); });

@@ -12,7 +12,7 @@ type: practice
 ```
 div.card-footer
   ├── div.card-price   «450 ₽ / час»
-  └── div.card-btns   (кнопки — добавим следующим шагом)
+  └── div.card-btns   (кнопки — добавим в шаге 18)
 ```
 
 `<span>/ час</span>` внутри card-price — мелкий серый текст, стилизуем отдельно.
@@ -25,7 +25,7 @@ div.card-footer
 <div class="card-footer">
   <!-- Блок цены за час аренды -->
   <div class="card-price">450 ₽ <span>/ час</span></div>
-  <!-- Контейнер для кнопок действий (заполним на следующем шаге) -->
+  <!-- Контейнер для кнопок действий (заполним в шаге 18) -->
   <div class="card-btns">
   </div>
 </div>

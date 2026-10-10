@@ -26,7 +26,10 @@ highlight: html
 ```
 ```js
 // JavaScript: поведение
-btn.addEventListener('click', () => alert('Забронировано!'));
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', () => {
+  alert('Добро пожаловать в веб-разработку!');
+});
 ```
 
 ## Что вы построите

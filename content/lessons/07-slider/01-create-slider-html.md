@@ -15,7 +15,7 @@ highlight: html
 Мы добавим этот блок на Главную страницу, сразу под блоком "Преимущества" (о нас).
 
 ## 🛠 Задание
-Откройте вкладку `html` (`index.html`). Найдите закрывающий тег `</section>` секции преимуществ (`about-section`) и вставьте под ним новую секцию слайдера.
+Откройте вкладку `html` (`index.html`). Найдите закрывающий тег `</section>` главного блока (`hero-section`) и вставьте под ним новую секцию слайдера.
 
 ```html:start
 <!DOCTYPE html>
@@ -65,30 +65,6 @@ highlight: html
         </div>
       </section>
 
-      <section class="slider-section">
-        <div class="slider">
-          <div class="slide active">
-            <img src="img/slider-1.jpg" alt="Слайд 1" class="slide-img">
-          </div>
-          <div class="slide">
-            <img src="img/slider-2.jpg" alt="Слайд 2" class="slide-img">
-          </div>
-          <div class="slide">
-            <img src="img/slider-3.jpg" alt="Слайд 3" class="slide-img">
-          </div>
-          <div class="slide">
-            <img src="img/slider-4.jpg" alt="Слайд 4" class="slide-img">
-          </div>
-          <button class="slider-btn slider-prev">‹</button>
-          <button class="slider-btn slider-next">›</button>
-          <div class="slider-dots">
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
-      </section>
 
       <section class="popular-section">
         <h2 class="page-title">Популярные офисные комнаты</h2>
@@ -954,95 +930,7 @@ function initLoginForm() {
   <script src="js/data.js" defer></script>
   <script src="js/main.js" defer></script>
 
-  <script>
-// СмартОфис — База данных офисных комнат и бронирований
-const OFFICE_ROOMS = [
-  {
-    id: 'focus-1',
-    title: 'Мини-офис Focus',
-    pricePerHour: 450,
-    capacity: '1-2 человека',
-    area: '12 м²',
-    description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации. Оснащено эргономичной мебелью и монитором высокой четкости.',
-    equipment: ['Wi-Fi 500 Мбит/с', '4K Монитор', 'Эргономичное кресло', 'Климат-контроль'],
-    image: '../img/room-1.jpg',
-    isPopular: true
-  },
-  {
-    id: 'alpha-2',
-    title: 'Конференц-зал Alpha',
-    pricePerHour: 1200,
-    capacity: 'до 15 человек',
-    area: '45 м²',
-    description: 'Просторный зал для проведения презентаций, совещаний с партнерами и командных брейнштормов с современным мультимедиа-оборудованием.',
-    equipment: ['Проектор 4K', 'Спикерфон', 'Флипчарт', 'Аудиосистема'],
-    image: '../img/room-2.jpg',
-    isPopular: true
-  },
-  {
-    id: 'hub-3',
-    title: 'Опенспейс Hub',
-    pricePerHour: 250,
-    capacity: '1 человек',
-    area: 'Рабочее место',
-    description: 'Удобное выделенное рабочее место в современном открытом пространстве с доступом к зоне отдыха и кофе-поинту.',
-    equipment: ['Личный стол', 'Wi-Fi 500 Мбит/с', 'Розетки 220V и USB', 'Кофе-поинт'],
-    image: '../img/room-3.jpg',
-    isPopular: true
-  },
-  {
-    id: 'solo-4',
-    title: 'Переговорная Solo',
-    pricePerHour: 600,
-    capacity: 'до 4 человек',
-    area: '16 м²',
-    description: 'Компактная переговорная комната для встреч тет-а-тет или работы мини-команды. Оснащена Smart TV и удобной маркерной доской.',
-    equipment: ['Звукоизоляция', 'Smart TV 55"', 'Маркерная доска', 'Кулер с водой'],
-    image: '../img/room-4.jpg',
-    isPopular: false
-  },
-  {
-    id: 'exec-5',
-    title: 'Премиум Сьют Executive',
-    pricePerHour: 1800,
-    capacity: 'до 6 человек',
-    area: '35 м²',
-    description: 'Представительский офис повышенной комфортности с отдельной лаунж-зоной, кофемашиной и панорамным видом на город.',
-    equipment: ['Лаунж-зона', 'Кофемашина Nespresso', 'Панорамный вид', 'Сейф'],
-    image: '../img/room-5.jpg',
-    isPopular: false
-  },
-  {
-    id: 'studio-6',
-    title: 'Творческая студия Design',
-    pricePerHour: 850,
-    capacity: 'до 8 человек',
-    area: '28 м²',
-    description: 'Креативная мастерская для дизайнеров, архитекторов и разработчиков со студийным светом и большой магнитно-маркерной стеной.',
-    equipment: ['Студийный свет', 'Цветной принтер A3', 'Маркерная стена', 'Высокие столы'],
-    image: '../img/room-6.jpg',
-    isPopular: false
-  }
-];
 
-const MOCK_BOOKINGS = [
-  {
-    id: '74829',
-    roomTitle: 'Мини-офис Focus',
-    date: '2026-09-01',
-    hours: 3,
-    totalPrice: 1350
-  },
-  {
-    id: '74830',
-    roomTitle: 'Конференц-зал Alpha',
-    date: '2026-09-03',
-    hours: 2,
-    totalPrice: 2400
-  }
-];
-
-  </script>
 </head>
 <body>
   <header class="header">

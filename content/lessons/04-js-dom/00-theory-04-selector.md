@@ -141,7 +141,8 @@ const allCards = document.querySelectorAll('.card'); // NodeList всех кар
 const cardsArray = [...allCards];
 
 // Отфильтровать: оставить только те где data-available="true"
-const available = cardsArray.filter(card => card.dataset.available === 'true');
+const available = cardsArray/* .filter() мы изучим позже, здесь для примера: */
+// .filter(card => card.dataset.available === 'true');
 // dataset.available всегда строка, поэтому сравниваем с 'true' а не true
 
 console.log('Доступно:', available.length); // количество доступных карточек

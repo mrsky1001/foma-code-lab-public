@@ -173,6 +173,7 @@ body {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .catalog-item {

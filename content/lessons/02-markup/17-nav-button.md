@@ -61,7 +61,6 @@ CSS:
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link active">Главная</a></li>
           <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
-          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
         </ul>
       </nav>
     </div>

@@ -1,7 +1,7 @@
 ---
 title: "SyntaxError: Unexpected token"
 highlight: js
-type: theory
+type: practice
 ---
 
 # SyntaxError: Unexpected token и синтаксические ловушки

@@ -8,15 +8,15 @@ type: practice
 
 Содержимое карточки:
 - `<h3>` — заголовок третьего уровня (h1→ страница, h2→ секция, h3→ карточка)
-- Заголовок — это ссылка на детальную страницу (без подчёркивания через style)
-- `<ul>` — список оснащения. `list-style: none` уберём через CSS
+- Заголовок — это ссылка на детальную страницу
+- `<ul>` — список оснащения. `list-style: none` и оформление ссылки настроим через CSS
 
 ## 🛠 Задание
 
 В `div.card-content` добавьте заголовок и список:
 ```html
 <!-- Название комнаты со ссылкой на детальную страницу -->
-<h3 class="card-title"><a href="pages/room-details.html?id=focus-1" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
+<h3 class="card-title"><a href="pages/room-details.html?id=focus-1">Мини-офис Focus</a></h3>
 <!-- Список оборудования / характеристик комнаты -->
 <ul class="card-equipment">
   <li>Wi-Fi 500 Мбит/с</li>
@@ -180,7 +180,7 @@ type: practice
               </a>
             </div>
             <div class="card-content">
-              <h3 class="card-title"><a href="pages/room-details.html?id=focus-1" style="text-decoration: none; color: inherit;">Мини-офис Focus</a></h3>
+              <h3 class="card-title"><a href="pages/room-details.html?id=focus-1">Мини-офис Focus</a></h3>
               <ul class="card-equipment">
                 <li>Wi-Fi 500 Мбит/с</li>
                 <li>4K Монитор</li>

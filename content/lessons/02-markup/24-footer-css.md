@@ -105,11 +105,14 @@ type: practice
 
   <footer class="footer">
     <div class="container footer-container">
-      <div class="footer-contacts">
-        <p>СмартОфис — умное бронирование</p>
-        <p>Email: <a href="mailto:info@smartofis.ru">info@smartofis.ru</a></p>
+      <div class="footer-info">
+        <p><strong>СмартОфис</strong> — Сервис бронирования офисных комнат</p>
+        <p>© 2026 СмартОфис. Все права защищены.</p>
       </div>
-      <p>© 2024 СмартОфис</p>
+      <div class="footer-contacts">
+        <p>Email: <a href="mailto:info@smartoffice.ru">info@smartoffice.ru</a></p>
+        <p>Телефон: <a href="tel:+78005553535">+7 (800) 555-35-35</a></p>
+      </div>
     </div>
   </footer>
 </body>

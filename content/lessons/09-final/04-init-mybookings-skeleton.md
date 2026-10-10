@@ -1103,35 +1103,7 @@ function initRoomDetails() {
   `;
 }
 function initMyBookings() {
-  const container = document.getElementById('myBookingsList');
-  if (!container || typeof MOCK_BOOKINGS === 'undefined') return;
-
-  // Если пользователь не вошел в систему — перенаправляем на страницу входа
-  const currentUser = localStorage.getItem('currentUser');
-  if (!currentUser) {
-    window.location.href = 'login.html';
-    return;
-  }
-
-  if (!MOCK_BOOKINGS || MOCK_BOOKINGS.length === 0) {
-    container.innerHTML = '<div class="empty-message">У вас пока нет бронирований</div>';
-    return;
-  }
-
-  container.innerHTML = MOCK_BOOKINGS.map(item => `
-    <div class="booking-item">
-      <div>
-        <h3 style="font-size: 16px; margin-bottom: 5px;">${item.roomTitle}</h3>
-        <div style="font-size: 13px; color: #666;">
-          Дата: <strong>${item.date}</strong> | Длительность: <strong>${item.hours} ч.</strong> | Заявка №${item.id}
-        </div>
-      </div>
-      <div style="text-align: right;">
-        <div style="font-size: 16px; font-weight: 700; color: #007bff;">${item.totalPrice} ₽</div>
-        <span style="font-size: 12px; color: #28a745;">Подтверждено</span>
-      </div>
-    </div>
-  `).join('');
+  
 }
 function initRegisterForm() {
   const form = document.getElementById('registerForm');

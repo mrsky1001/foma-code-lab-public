@@ -1,7 +1,7 @@
 ---
 title: "TypeError: Cannot read properties of null"
 highlight: js
-type: theory
+type: practice
 ---
 
 # TypeError: Cannot read properties of null

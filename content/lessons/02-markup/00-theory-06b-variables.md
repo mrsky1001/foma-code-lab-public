@@ -88,10 +88,12 @@ body.dark-theme {
 
 ## 🛠 Задание
 
-1. В блоке `:root` объявите две переменные:
-   - `--brand-color` со значением `#0ea5e9`;
-   - `--brand-radius` со значением `6px`.
-2. Примените их к классу `.badge`: установите `background-color` через `var(--brand-color)` и `border-radius` через `var(--brand-radius)`.
+1. В псевдоклассе `:root` объявите две CSS-переменные:
+   - `--brand-color`: значение `#0ea5e9` (основной цвет)
+   - `--brand-dark`: значение `#0284c7` (тёмный оттенок для наведения)
+2. Задайте для заголовка `h1` цвет текста через переменную `--brand-color`.
+3. Для кнопки `.btn` задайте цвет фона через переменную `--brand-color`.
+4. Для состояния наведения кнопки `.btn:hover` задайте цвет фона через переменную `--brand-dark`.
 
 ```html:start
 <!DOCTYPE html>
@@ -198,5 +200,9 @@ p {
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--brand-dark);
 }
 ```

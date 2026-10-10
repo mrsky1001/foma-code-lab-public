@@ -7,7 +7,7 @@ type: practice
 
 # Перебор ссылок в цикле
 
-`links.forEach(link => { ... })` — перебираем все найденные ссылки.
+`navLinks.forEach(link => { ... })` — перебираем все найденные ссылки.
 
 В начале цикла снимаем `active` со всех ссылок (`classList.remove`). Потом добавляем только нужной.
 
@@ -18,7 +18,7 @@ type: practice
 Добавьте цикл после получения links:
 ```js
 // Перебираем все ссылки меню и сбрасываем класс active перед определением текущей страницы
-links.forEach(link => {
+navLinks.forEach(link => {
   const href = link.getAttribute('href'); // получаем относительный адрес ссылки
   if (!href) return;                      // если href нет — пропускаем
   link.classList.remove('active');        // убираем подсветку активности

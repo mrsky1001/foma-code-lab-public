@@ -20,7 +20,7 @@ type: practice
 display: flex;           /* body — flex-контейнер, дети (header, main, footer) встают в колонку */
 flex-direction: column;  /* направление — сверху вниз */
 min-height: 100vh;       /* минимальная высота — весь экран (viewport height) */
-min-width: 1200px;       /* минимальная ширина — не сжиматься ниже 1200px */
+min-width: 320px;        /* минимальная ширина страницы */
 ```
 
 ```html:start
@@ -40,4 +40,38 @@ min-width: 1200px;       /* минимальная ширина — не сжи�
 
 </body>
 </html>
+```
+
+```css:start
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #222222;
+  background-color: #ffffff;
+  line-height: 1.5;
+}
+```
+
+```css:solution
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #222222;
+  background-color: #ffffff;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 320px;
+}
 ```

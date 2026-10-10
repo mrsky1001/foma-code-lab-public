@@ -1,7 +1,7 @@
 ---
 title: "SecurityError и безопасный localStorage"
 highlight: js
-type: theory
+type: practice
 ---
 
 # SecurityError: доступ к localStorage заблокирован

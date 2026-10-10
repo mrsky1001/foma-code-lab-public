@@ -116,7 +116,7 @@ body.dark-theme .btn { background: #38bdf8; color: #0f172a; }
 ```
 
 ```js:start
-// HTML: <button id="themeToggle">Сменить тему</button>
+// HTML: <button id="themeToggle">Переключить тему</button>
 
 const toggleBtn = document.querySelector('#themeToggle');
 

@@ -97,7 +97,7 @@ type: practice
         <div class="rooms-grid">
           <div class="room-card">
             <div class="card-img-wrap">
-              <a href="pages/catalog.html">
+              <a href="pages/room-details.html">
                 <img src="img/room-1.jpg" alt="Мини-офис Focus" class="card-img" onerror="this.src='img/no-image.svg'">
               </a>
             </div>

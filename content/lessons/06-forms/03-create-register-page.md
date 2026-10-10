@@ -801,43 +801,7 @@ function initRoomDetails() {
 
       <div class="form-card">
         <form id="registerForm" novalidate>
-          <div class="form-group">
-            <label class="form-label" for="login">Логин</label>
-            <input type="text" id="login" class="form-control" placeholder="Введите логин" required>
-            <div class="error-text">Поле обязательно для заполнения</div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="password">Пароль</label>
-            <input type="password" id="password" class="form-control" placeholder="Минимум 6 символов" required>
-            <div class="error-text">Поле обязательно для заполнения</div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="confirmPassword">Подтверждение пароля</label>
-            <input type="password" id="confirmPassword" class="form-control" placeholder="Повторите пароль" required>
-            <div class="error-text">Пароли не совпадают</div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="fullName">ФИО</label>
-            <input type="text" id="fullName" class="form-control" placeholder="Иванов Иван Иванович" required>
-            <div class="error-text">Поле обязательно для заполнения</div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" id="email" class="form-control" placeholder="example@mail.ru" required>
-            <div class="error-text">Введите корректный email</div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="phone">Телефон</label>
-            <input type="tel" id="phone" class="form-control" placeholder="+7 (999) 000-00-00" required>
-            <div class="error-text">Поле обязательно для заполнения</div>
-          </div>
-
-          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Зарегистрироваться</button>
+          <!-- Поля будут добавлены на следующем шаге -->
         </form>
       </div>
     </div>

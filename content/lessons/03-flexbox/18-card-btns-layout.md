@@ -77,8 +77,6 @@ HTML:
               <div class="card-footer">
                 <div class="card-price">450 ₽ <span>/ час</span></div>
                 <div class="card-btns">
-                  <a href="pages/booking.html" class="btn-icon" title="Подробнее">&#8599;</a>
-                  <a href="pages/booking.html" class="btn btn-primary">Забронировать</a>
                 </div>
               </div>
             </div>
