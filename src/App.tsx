@@ -441,6 +441,28 @@ export default function App() {
     nextStep();
   }, [taskSimilarity, stepHasTask, progress, lesson.id, stepIndex, nextStep]);
 
+  const handleNextLesson = useCallback(() => {
+    const nextLessonObj = allLessons[lessonIndex + 1];
+    if (!nextLessonObj || !progress.isLessonAccessible(nextLessonObj.id)) return;
+    nextLesson();
+  }, [allLessons, lessonIndex, progress, nextLesson]);
+
+  const handleGoToStep = useCallback((target: number) => {
+    if (!progress.isStepAccessible(lesson.id, target)) return;
+    goToStep(target);
+  }, [lesson.id, progress, goToStep]);
+
+  // Guard: if current lesson is locked, redirect to the furthest accessible lesson
+  useEffect(() => {
+    if (!progress.isAdmin && !progress.isLessonAccessible(lesson.id)) {
+      const accessibleLessons = allLessons.filter(l => progress.isLessonAccessible(l.id));
+      const fallback = accessibleLessons[accessibleLessons.length - 1] ?? allLessons[0];
+      if (fallback && fallback.id !== lesson.id) {
+        goToLesson(fallback.id);
+      }
+    }
+  }, [lesson.id, progress.isLessonAccessible, progress.isAdmin, allLessons, goToLesson]);
+
   // Manual save toast state
   const [saveToast, setSaveToast] = useState<{ id: number; message: string } | null>(null);
 
@@ -687,13 +709,14 @@ export default function App() {
               hasPrevLesson={hasPrevLesson}
               hasNextLesson={hasNextLesson}
               isNextLessonAccessible={hasNextLesson ? progress.isLessonAccessible(allLessons[lessonIndex + 1]?.id ?? -1) : true}
+              isCurrentLessonAccessible={progress.isLessonAccessible(lesson.id)}
               isShowingSolution={isShowingSolution}
               onToggleSolution={handleToggleSolution}
               onPrevStep={prevStep}
               onNextStep={handleNextStep}
               onPrevLesson={prevLesson}
-              onNextLesson={nextLesson}
-              onGoToStep={goToStep}
+              onNextLesson={handleNextLesson}
+              onGoToStep={handleGoToStep}
               hasQuiz={hasQuizForLesson(lesson.id)}
               isLessonUnlocked={progress.isLessonUnlocked(lesson.id)}
               quizCompleted={progress.isQuizCompleted(lesson.id)}

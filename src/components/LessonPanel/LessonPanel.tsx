@@ -141,6 +141,7 @@ interface LessonPanelProps {
   hasPrevLesson: boolean;
   hasNextLesson: boolean;
   isNextLessonAccessible?: boolean;
+  isCurrentLessonAccessible?: boolean;
   isShowingSolution: boolean;
   onToggleSolution: () => void;
   onPrevStep: () => void;
@@ -170,6 +171,7 @@ export function LessonPanel({
   hasPrevLesson,
   hasNextLesson,
   isNextLessonAccessible = true,
+  isCurrentLessonAccessible = true,
   isShowingSolution,
   onToggleSolution,
   onPrevStep,
@@ -203,6 +205,33 @@ export function LessonPanel({
   const analysis = useMemo(() => {
     return analyzeStepSolution(step.startCode, step.solutionCode, step.highlight, step.title);
   }, [step]);
+
+  // If current lesson is locked, show locked overlay
+  if (!isCurrentLessonAccessible) {
+    return (
+      <div className="lesson-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '32px', textAlign: 'center' }}>
+        <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'rgba(249, 112, 102, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-coral, #f97066)', marginBottom: 16 }}>
+          <Lock size={26} strokeWidth={1.8} />
+        </div>
+        <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
+          Модуль заблокирован
+        </h2>
+        <p style={{ fontSize: 13, color: 'var(--text-secondary)', maxWidth: 360, lineHeight: 1.55, marginBottom: 20 }}>
+          Чтобы открыть доступ к урокам этого модуля, сначала необходимо успешно сдать тест предыдущего модуля.
+        </p>
+        {hasPrevLesson && (
+          <button
+            className="btn btn-sm btn-accent"
+            onClick={onPrevLesson}
+            style={{ display: 'flex', alignItems: 'center', gap: 6 }}
+          >
+            <ChevronLeft size={14} />
+            Вернуться к предыдущему модулю
+          </button>
+        )}
+      </div>
+    );
+  }
 
   // Target file is strictly the one being modified in this step
   const targetLang = step.highlight || analysis.primaryLang;
@@ -515,7 +544,7 @@ export function LessonPanel({
               );
             }
             if (hasNextLesson) {
-              const canGoNextLesson = Boolean(isNextLessonAccessible || canGoNext);
+              const canGoNextLesson = Boolean(isNextLessonAccessible && canGoNext);
               return (
                 <button
                   className={`btn btn-sm ${canGoNextLesson ? 'btn-accent' : ''}`}

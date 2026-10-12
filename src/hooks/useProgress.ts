@@ -330,6 +330,7 @@ export function useProgress(
     isLessonUnlocked,
     isLessonCompleted,
     isLessonAccessible,
+    isAdmin,
     resetAllProgress,
   } as const;
 }
