@@ -47,6 +47,7 @@
   --bg-card-hover:   #1c1c28;
   --bg-input:        #151520;
   --bg-editor:       #0f0f17;
+  --bg-panel:        #14161a;
 
   --border-subtle:   rgba(255, 255, 255, 0.07);
   --border-medium:   rgba(255, 255, 255, 0.14);
@@ -57,6 +58,18 @@
   --text-muted:      #787E91;
 
   --shadow-accent:   rgba(255, 122, 69, 0.45);
+
+  --scrollbar-thumb:        rgba(255, 255, 255, 0.18);
+  --scrollbar-thumb-hover:  rgba(255, 255, 255, 0.35);
+  --row-hover-bg:           rgba(255, 255, 255, 0.02);
+  --code-header-overlay:    rgba(255, 255, 255, 0.025);
+  --code-lang-bg:           rgba(255, 255, 255, 0.05);
+  --code-row-hover-bg:      rgba(255, 255, 255, 0.035);
+  --code-action-hover-bg:   rgba(255, 255, 255, 0.06);
+  --solution-header-bg:     rgba(255, 255, 255, 0.03);
+  --solution-lines-bg:      rgba(255, 255, 255, 0.04);
+  --code-line-content:      #e2e8f0;
+  --code-line-num:          #475569;
 
   /* CodeMirror */
   --cm-bg:        #0f0f17;
@@ -76,6 +89,7 @@
   --bg-card-hover:   #F0F0F5;
   --bg-input:        #FFFFFF;
   --bg-editor:       #FAFAFA;
+  --bg-panel:        #F0F0F5;
 
   --border-subtle:   rgba(0, 0, 0, 0.06);
   --border-medium:   rgba(0, 0, 0, 0.12);
@@ -86,6 +100,18 @@
   --text-muted:      #7A7A9A;
 
   --shadow-accent:   rgba(255, 122, 69, 0.25);
+
+  --scrollbar-thumb:        rgba(0, 0, 0, 0.18);
+  --scrollbar-thumb-hover:  rgba(0, 0, 0, 0.32);
+  --row-hover-bg:           rgba(0, 0, 0, 0.02);
+  --code-header-overlay:    rgba(0, 0, 0, 0.03);
+  --code-lang-bg:           rgba(0, 0, 0, 0.05);
+  --code-row-hover-bg:      rgba(0, 0, 0, 0.03);
+  --code-action-hover-bg:   rgba(0, 0, 0, 0.05);
+  --solution-header-bg:     rgba(0, 0, 0, 0.025);
+  --solution-lines-bg:      rgba(0, 0, 0, 0.03);
+  --code-line-content:      #1A1A2E;
+  --code-line-num:          #7A7A9A;
 
   /* CodeMirror */
   --cm-bg:        #FAFAFA;

@@ -1,0 +1,927 @@
+
+======================================================================
+FILE: 00-theory-01-objects.md
+======================================================================
+TASK:
+Создайте объект комнаты и используйте деструктуризацию для извлечения полей. Создайте обновлённую копию через spread.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -5,8 +5,14 @@
+   isAvailable: true
+ };
+ 
+-// 1. Деструктурируйте: извлеките name, price, capacity
++// Деструктуризация: создаём отдельные переменные из полей объекта
++const { name, price, capacity } = room;
++console.log(name);     // → 'Мини-офис «Фокус»'
++console.log(price);    // → 450
+ 
+-// 2. Создайте копию с price: 500 через spread
++// Spread: копия объекта с изменением одного поля
++const updatedRoom = { ...room, price: 500 };
++// { name: 'Фокус', price: 500, capacity: 2, isAvailable: true }
+ 
+-// 3. Выведите оба объекта
++console.log(room.price);        // → 450 — оригинал не изменился!
++console.log(updatedRoom.price); // → 500 — только в копии
+
+======================================================================
+FILE: 00-theory-02-arrays.md
+======================================================================
+TASK:
+Скопируйте массив через spread. Добавьте новую комнату в копию. Убедитесь что оригинал не изменился.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -3,6 +3,9 @@
+   { id: 2, name: 'Альфа', price: 1200 }
+ ];
+ 
+-// 1. Создайте копию через spread
+-// 2. Добавьте в копию новый объект { id: 3, name: 'VIP', price: 2000 }
+-// 3. Выведите длины обоих массивов
++// Создаём копию через spread — оригинал не тронут
++const roomsCopy = [...rooms, { id: 3, name: 'VIP', price: 2000 }];
++// spread разворачивает rooms + добавляет новый объект
++
++console.log(rooms.length);      // → 2 — оригинал не изменился
++console.log(roomsCopy.length);  // → 3 — копия с новым элементом
+
+======================================================================
+FILE: 00-theory-03-map.md
+======================================================================
+TASK:
+Преобразуйте массив комнат в HTML-разметку с помощью `.map()` и вставьте её в контейнер `#catalog`:
+1. Каждая карточка должна иметь класс `card` и атрибут `data-id`;
+2. Внутри выведите `h3.card-title` с названием комнаты и `p.card-price` с ценой;
+3. Добавьте бейдж со статусом через тернарный оператор (`isAvailable ? 'Свободна' : 'Занята'`);
+4. Не забудьте объединить строки через `.join('')`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -5,4 +5,14 @@
+ 
+ const container = document.querySelector('#catalog');
+ 
+-// Сгенерируйте HTML карточек с помощью .map() и .join('')
++// Преобразуем массив данных в единую строку HTML без запятых
++container.innerHTML = rooms.map(room => `
++  <div class="card" data-id="${room.id}">
++    <h3 class="card-title">${room.name}</h3>
++    <p class="card-price">${room.price} ₽/час</p>
++    ${room.isAvailable
++      ? '<span class="badge badge-green">Свободна</span>'
++      : '<span class="badge badge-red">Занята</span>'
++    }
++  </div>
++`).join('');
+
+======================================================================
+FILE: 00-theory-04-find.md
+======================================================================
+TASK:
+Найдите комнату с id=3. Проверьте через `.some()` есть ли хоть одна свободная комната. Проверьте через `.every()` все ли комнаты дешевле 2000 ₽.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -4,6 +4,14 @@
+   { id: 3, name: 'Хаб',   price: 800,  isAvailable: true  }
+ ];
+ 
+-// 1. Найдите комнату с id=3 через .find()
+-// 2. Проверьте есть ли хоть одна свободная (isAvailable) через .some()
+-// 3. Проверьте все ли дешевле 2000 через .every()
++// .find() — вернёт первый элемент где r.id === 3
++const room = rooms.find(r => r.id === 3);
++console.log(room); // → { id: 3, name: 'Хаб', price: 800, isAvailable: true }
++
++// .some() — true если хотя бы одна комната свободна
++const hasAvailable = rooms.some(r => r.isAvailable === true);
++console.log('Есть свободные:', hasAvailable); // → true
++
++// .every() — true только если ВСЕ дешевле 2000
++const allAffordable = rooms.every(r => r.price < 2000);
++console.log('Все дешевле 2000:', allAffordable); // → true
+
+======================================================================
+FILE: 00-theory-05-url.md
+======================================================================
+TASK:
+Прочитайте параметр `id` из URL и найдите соответствующую комнату в массиве. Используйте `parseInt` для конвертации.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,11 +1,17 @@
+-// URL: room.html?id=2
+ const rooms = [
+   { id: 1, name: 'Фокус', price: 450  },
+   { id: 2, name: 'Альфа', price: 1200 },
+   { id: 3, name: 'Хаб',   price: 800  }
+ ];
+ 
+-// 1. Прочитайте параметр id через URLSearchParams
+-// 2. Конвертируйте в число
+-// 3. Найдите комнату через .find()
+-// 4. Выведите название или 'Комната не найдена'
++const params = new URLSearchParams(window.location.search); // прочитать параметры URL
++const rawId  = params.get('id');   // → '2' — строка или null
++const id     = parseInt(rawId);    // → 2 — число; parseInt(null) → NaN
++
++const room = rooms.find(r => r.id === id); // найти комнату по id
++
++if (room) {
++  console.log('Комната:', room.name, room.price + ' ₽/час');
++} else {
++  console.log('Комната не найдена');
++}
+
+======================================================================
+FILE: 00-theory-06-fetch.md
+======================================================================
+TASK:
+Напишите асинхронную функцию `fetchPrice(url)`:
+1. Выполните запрос с помощью `await fetch(url)`;
+2. Распарсите JSON-ответ через `await response.json()`;
+3. Верните полученный объект;
+4. В блоке `catch` выведите ошибку через `console.error`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,9 +1,12 @@
+ async function fetchPrice(url) {
+   try {
+-    // 1. Выполните fetch(url)
+-    // 2. Распарсите response.json()
+-    // 3. Верните результат
++    const response = await fetch(url);
++    if (!response.ok) {
++      throw new Error(`Ошибка сети: ${response.status}`);
++    }
++    const data = await response.json();
++    return data;
+   } catch (error) {
+-    // Выведите ошибку
++    console.error('Ошибка при запросе:', error);
+   }
+ }
+
+======================================================================
+FILE: 00-theory-07-tabs.md
+======================================================================
+TASK:
+Допишите функцию `initTabs()`:
+1. Переберите кнопки `.tab-btn` и повесьте на каждую слушатель `'click'`.
+2. При клике снимайте класс `'active'` со всех кнопок и всех панелей `.tab-pane`.
+3. Добавляйте `'active'` нажатой кнопке и панели с `id === btn.dataset.tab`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -3,8 +3,17 @@
+ 
+ btns.forEach(btn => {
+   btn.addEventListener('click', () => {
+-    // 1. Снимите active со всех кнопок и панелей
+-    // 2. Активируйте btn
+-    // 3. Активируйте целевую панель
++    const targetId = btn.dataset.tab;
++
++    // Снимаем активность
++    btns.forEach(b => b.classList.remove('active'));
++    panes.forEach(p => p.classList.remove('active'));
++
++    // Назначаем активность
++    btn.classList.add('active');
++    const targetPane = document.getElementById(targetId);
++    if (targetPane) {
++      targetPane.classList.add('active');
++    }
+   });
+ });
+
+======================================================================
+FILE: 01-create-data-file.md
+======================================================================
+TASK:
+В редакторе переключитесь на вкладку `js` (в нашем проекте она будет представлять новый файл `js/data.js`).
+Объявите константу `OFFICE_ROOMS` и присвойте ей пустой массив.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,2 +1,4 @@
+-// СмартОфис — База данных офисных комнат
+-const OFFICE_ROOMS = [];
++// СмартОфис — База данных офисных комнат и бронирований
++const OFFICE_ROOMS = [
++
++];
+
+======================================================================
+FILE: 02-data-objects.md
+======================================================================
+TASK:
+Добавьте первый объект (Мини-офис Focus) внутрь вашего массива `OFFICE_ROOMS`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,4 +1,13 @@
+ // СмартОфис — База данных офисных комнат и бронирований
+ const OFFICE_ROOMS = [
+-
++  {
++    id: 'focus-1',
++    title: 'Мини-офис Focus',
++    pricePerHour: 450,
++    capacity: '1-2 человека',
++    area: '12 м²',
++    description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации.',
++    image: '../img/room-1.jpg',
++    isPopular: true
++  }
+ ];
+
+======================================================================
+FILE: 03-data-arrays-inside.md
+======================================================================
+TASK:
+Добавьте свойство `equipment` в вашу первую комнату (между `description` и `image`). Не забывайте ставить запятые между свойствами объекта!
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -7,6 +7,7 @@
+     capacity: '1-2 человека',
+     area: '12 м²',
+     description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации.',
++    equipment: ['Wi-Fi 500 Мбит/с', '4K Монитор', 'Эргономичное кресло', 'Климат-контроль'],
+     image: '../img/room-1.jpg',
+     isPopular: true
+   }
+
+======================================================================
+FILE: 04-data-full-list.md
+======================================================================
+TASK:
+Скопируйте и замените ваш массив `OFFICE_ROOMS` полным списком из решения ниже. Потратьте минутку, чтобы изучить, какие данные там хранятся.
+
+*(В этом же файле мы позже добавим массив фейковых бронирований `MOCK_BOOKINGS`, но пока ограничимся только комнатами).*
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -6,9 +6,64 @@
+     pricePerHour: 450,
+     capacity: '1-2 человека',
+     area: '12 м²',
+-    description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации.',
++    description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации. Оснащено эргономичной мебелью и монитором высокой четкости.',
+     equipment: ['Wi-Fi 500 Мбит/с', '4K Монитор', 'Эргономичное кресло', 'Климат-контроль'],
+     image: '../img/room-1.jpg',
+     isPopular: true
++  },
++  {
++    id: 'alpha-2',
++    title: 'Конференц-зал Alpha',
++    pricePerHour: 1200,
++    capacity: 'до 15 человек',
++    area: '45 м²',
++    description: 'Просторный зал для проведения презентаций, совещаний с партнерами и командных брейнштормов с современным мультимедиа-оборудованием.',
++    equipment: ['Проектор 4K', 'Спикерфон', 'Флипчарт', 'Аудиосистема'],
++    image: '../img/room-2.jpg',
++    isPopular: true
++  },
++  {
++    id: 'hub-3',
++    title: 'Опенспейс Hub',
++    pricePerHour: 250,
++    capacity: '1 человек',
++    area: 'Рабочее место',
++    description: 'Удобное выделенное рабочее место в современном открытом пространстве с доступом к зоне отдыха и кофе-поинту.',
++    equipment: ['Личный стол', 'Wi-Fi 500 Мбит/с', 'Розетки 220V и USB', 'Кофе-поинт'],
++    image: '../img/room-3.jpg',
++    isPopular: true
++  },
++  {
++    id: 'solo-4',
++    title: 'Переговорная Solo',
++    pricePerHour: 600,
++    capacity: 'до 4 человек',
++    area: '16 м²',
++    description: 'Компактная переговорная комната для встреч тет-а-тет или работы мини-команды. Оснащена Smart TV и удобной маркерной доской.',
++    equipment: ['Звукоизоляция', 'Smart TV 55"', 'Маркерная доска', 'Кулер с водой'],
++    image: '../img/room-4.jpg',
++    isPopular: false
++  },
++  {
++    id: 'exec-5',
++    title: 'Премиум Сьют Executive',
++    pricePerHour: 1800,
++    capacity: 'до 6 человек',
++    area: '35 м²',
++    description: 'Представительский офис повышенной комфортности с отдельной лаунж-зоной, кофемашиной и панорамным видом на город.',
++    equipment: ['Лаунж-зона', 'Кофемашина Nespresso', 'Панорамный вид', 'Сейф'],
++    image: '../img/room-5.jpg',
++    isPopular: false
++  },
++  {
++    id: 'studio-6',
++    title: 'Творческая студия Design',
++    pricePerHour: 850,
+... (truncated, total diff lines: 68)
+
+======================================================================
+FILE: 05-data-include-html.md
+======================================================================
+TASK:
+Перейдите во вкладку `html` (наш `index.html`). В блоке `<head>` подключите скрипт `js/data.js` с атрибутом `defer` СТРОГО перед подключением `main.js`.
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -10,6 +10,7 @@
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
++  <script src="js/data.js" defer></script>
+   <script src="js/main.js" defer></script>
+ </head>
+ <body>
+
+======================================================================
+FILE: 06-create-catalog-page.md
+======================================================================
+TASK:
+Мы уже подготовили для вас "скелет" этой страницы (с измененными путями к CSS и JS, так как файл лежит в папке `pages`).
+Изучите структуру блока `<main>` — там сейчас только заголовки и пустота.
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -3,58 +3,141 @@
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>СмартОфис — Бронирование офисных комнат</title>
++  <title>Каталог офисов — СмартОфис</title>
+   <!-- Подключение шрифта Inter через Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+-  <link rel="stylesheet" href="css/style.css">
+-  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+-  <script src="js/data.js" defer></script>
+-  <script src="js/main.js" defer></script>
++  <link rel="stylesheet" href="../css/style.css">
++  <link rel="icon" type="image/svg+xml" href="../img/logo.svg">
++  <script src="../js/data.js" defer></script>
++  <script src="../js/main.js" defer></script>
++
++  <script>
++// СмартОфис — База данных офисных комнат и бронирований
++const OFFICE_ROOMS = [
++  {
++    id: 'focus-1',
++    title: 'Мини-офис Focus',
++    pricePerHour: 450,
++    capacity: '1-2 человека',
++    area: '12 м²',
++    description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации. Оснащено эргономичной мебелью и монитором высокой четкости.',
++    equipment: ['Wi-Fi 500 Мбит/с', '4K Монитор', 'Эргономичное кресло', 'Климат-контроль'],
++    image: '../img/room-1.jpg',
++    isPopular: true
++  },
++  {
++    id: 'alpha-2',
++    title: 'Конференц-зал Alpha',
++    pricePerHour: 1200,
++    capacity: 'до 15 человек',
++    area: '45 м²',
++    description: 'Просторный зал для проведения презентаций, совещаний с партнерами и командных брейнштормов с современным мультимедиа-оборудованием.',
++    equipment: ['Проектор 4K', 'Спикерфон', 'Флипчарт', 'Аудиосистема'],
++    image: '../img/room-2.jpg',
++    isPopular: true
++  },
++  {
++    id: 'hub-3',
++    title: 'Опенспейс Hub',
++    pricePerHour: 250,
++    capacity: '1 человек',
++    area: 'Рабочее место',
++    description: 'Удобное выделенное рабочее место в современном открытом пространстве с доступом к зоне отдыха и кофе-поинту.',
++    equipment: ['Личный стол', 'Wi-Fi 500 Мбит/с', 'Розетки 220V и USB', 'Кофе-поинт'],
++    image: '../img/room-3.jpg',
++    isPopular: true
++  },
++  {
++    id: 'solo-4',
++    title: 'Переговорная Solo',
+... (truncated, total diff lines: 175)
+
+======================================================================
+FILE: 07-catalog-container.md
+======================================================================
+TASK:
+Внутри файла `catalog.html` (вкладка HTML), под абзацем с подзаголовком, добавьте пустой `div` для нашего будущего каталога.
+
+DIFF FOR html:solution (vs html:start):
+NO DIFF FOUND (Identical!)
+
+======================================================================
+FILE: 08-render-function-skeleton.md
+======================================================================
+TASK:
+1. Внизу файла `main.js` создайте функцию `renderCatalog()`.
+2. Напишите проверки внутри.
+3. Вызовите эту функцию в самом верху внутри `DOMContentLoaded`!
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,6 +1,7 @@
+ // СмартОфис — Скрипт веб-приложения
+ document.addEventListener('DOMContentLoaded', () => {
+   initNavigation();
++  renderCatalog();
+ });
+ 
+ function showNotification(message, type = 'success') {
+@@ -83,3 +84,8 @@
+     }
+   }
+ }
++
++function renderCatalog() {
++  const container = document.getElementById('catalogContainer');
++  if (!container || typeof OFFICE_ROOMS === 'undefined') return;
++}
+
+======================================================================
+FILE: 09-array-map.md
+======================================================================
+TASK:
+Внутри `renderCatalog` напишите основу: `container.innerHTML = OFFICE_ROOMS.map(room => ...)`
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -88,4 +88,8 @@
+ function renderCatalog() {
+   const container = document.getElementById('catalogContainer');
+   if (!container || typeof OFFICE_ROOMS === 'undefined') return;
++
++  container.innerHTML = OFFICE_ROOMS.map(room => `
++    <div class="room-card">${room.title}</div>
++  `).join('');
+ }
+
+======================================================================
+FILE: 10-render-card-html.md
+======================================================================
+TASK:
+Скопируйте HTML-код карточки (из нашего `index.html`) и вставьте его внутрь обратных кавычек. Сразу замените все статичные тексты на переменные из объекта `room` (например, `${room.title}`, `${room.pricePerHour}`, `${room.image}`). 
+
+*(Списки удобств пока оставим статичными, мы исправим их на следующем шаге).*
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -90,6 +90,21 @@
+   if (!container || typeof OFFICE_ROOMS === 'undefined') return;
+ 
+   container.innerHTML = OFFICE_ROOMS.map(room => `
+-    <div class="room-card">${room.title}</div>
++    <div class="room-card">
++      <div class="card-img-wrap">
++        <a href="room-details.html?id=${room.id}">
++          <img src="${room.image}" alt="${room.title}" class="card-img" onerror="this.src='../img/no-image.svg'">
++        </a>
++      </div>
++      <div class="card-content">
++        <h3 class="card-title">
++          <a href="room-details.html?id=${room.id}" style="text-decoration: none; color: inherit;">${room.title}</a>
++        </h3>
++        <div class="card-footer">
++          <div class="card-price">${room.pricePerHour} ₽ <span>/ час</span></div>
++          <a href="room-details.html?id=${room.id}" class="btn btn-primary">Подробнее</a>
++        </div>
++      </div>
++    </div>
+   `).join('');
+ }
+
+======================================================================
+FILE: 11-render-join.md
+======================================================================
+TASK:
+Добавьте вызов `.join('')` сразу после закрывающей скобки метода `map()`.
+
+DIFF FOR js:solution (vs js:start):
+NO DIFF FOUND (Identical!)
+
+======================================================================
+FILE: 12-render-nested-map.md
+======================================================================
+TASK:
+Замените статичные теги `<li>` на вложенный вызов метода `map` внутри интерполяции. 
+
+*(Теперь страница Каталога будет идеально работать и выводить все 6 комнат из базы!)*
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -100,9 +100,15 @@
+         <h3 class="card-title">
+           <a href="room-details.html?id=${room.id}" style="text-decoration: none; color: inherit;">${room.title}</a>
+         </h3>
++        <ul class="card-equipment">
++          ${room.equipment.map(item => `<li>${item}</li>`).join('')}
++        </ul>
+         <div class="card-footer">
+           <div class="card-price">${room.pricePerHour} ₽ <span>/ час</span></div>
+-          <a href="room-details.html?id=${room.id}" class="btn btn-primary">Подробнее</a>
++          <div class="card-btns">
++            <a href="room-details.html?id=${room.id}" class="btn-icon" title="Подробнее о комнате" aria-label="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
++            <a href="booking.html?room=${room.id}" class="btn btn-primary">Забронировать</a>
++          </div>
+         </div>
+       </div>
+     </div>
+
+======================================================================
+FILE: 13-update-index-links.md
+======================================================================
+TASK:
+Переключитесь на вкладку `html` (Представим, что мы снова открыли наш `index.html`). 
+Найдите все 3 карточки комнат. Измените их ссылки:
+- Везде, где было `pages/catalog.html`, поставьте `pages/room-details.html?id=ID_КОМНАТЫ`.
+- Для первой комнаты ID — `focus-1`.
+- Для второй — `alpha-2`.
+- Для третьей — `hub-3`.
+
+*(В решении ниже показан пример для первой карточки, сделайте так для всех трех!)*
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -3,29 +3,119 @@
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>Каталог офисов — СмартОфис</title>
++  <title>СмартОфис — Бронирование офисных комнат</title>
+   <!-- Подключение шрифта Inter через Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+-  <link rel="stylesheet" href="../css/style.css">
+-  <link rel="icon" type="image/svg+xml" href="../img/logo.svg">
+-  <script src="../js/data.js" defer></script>
+-  <script src="../js/main.js" defer></script>
++  <link rel="stylesheet" href="css/style.css">
++  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
++  <script src="js/data.js" defer></script>
++  <script src="js/main.js" defer></script>
++
++  <script>
++// СмартОфис — База данных офисных комнат и бронирований
++const OFFICE_ROOMS = [
++  {
++    id: 'focus-1',
++    title: 'Мини-офис Focus',
++    pricePerHour: 450,
++    capacity: '1-2 человека',
++    area: '12 м²',
++    description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации. Оснащено эргономичной мебелью и монитором высокой четкости.',
++    equipment: ['Wi-Fi 500 Мбит/с', '4K Монитор', 'Эргономичное кресло', 'Климат-контроль'],
++    image: '../img/room-1.jpg',
++    isPopular: true
++  },
++  {
++    id: 'alpha-2',
++    title: 'Конференц-зал Alpha',
++    pricePerHour: 1200,
++    capacity: 'до 15 человек',
++    area: '45 м²',
++    description: 'Просторный зал для проведения презентаций, совещаний с партнерами и командных брейнштормов с современным мультимедиа-оборудованием.',
++    equipment: ['Проектор 4K', 'Спикерфон', 'Флипчарт', 'Аудиосистема'],
++    image: '../img/room-2.jpg',
++    isPopular: true
++  },
++  {
++    id: 'hub-3',
++    title: 'Опенспейс Hub',
++    pricePerHour: 250,
++    capacity: '1 человек',
++    area: 'Рабочее место',
++    description: 'Удобное выделенное рабочее место в современном открытом пространстве с доступом к зоне отдыха и кофе-поинту.',
++    equipment: ['Личный стол', 'Wi-Fi 500 Мбит/с', 'Розетки 220V и USB', 'Кофе-поинт'],
++    image: '../img/room-3.jpg',
++    isPopular: true
++  },
++  {
++    id: 'solo-4',
++    title: 'Переговорная Solo',
+... (truncated, total diff lines: 249)
+
+======================================================================
+FILE: 14-create-details-page.md
+======================================================================
+TASK:
+Представьте, что вы открыли файл `pages/room-details.html`. Его структура тоже очень простая. В нем есть только пустой контейнер `<div class="container" id="roomDetailsContainer"></div>`.
+
+Изучите разметку.
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -3,15 +3,15 @@
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>СмартОфис — Бронирование офисных комнат</title>
++  <title>Описание комнаты — СмартОфис</title>
+   <!-- Подключение шрифта Inter через Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+-  <link rel="stylesheet" href="css/style.css">
+-  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+-  <script src="js/data.js" defer></script>
+-  <script src="js/main.js" defer></script>
++  <link rel="stylesheet" href="../css/style.css">
++  <link rel="icon" type="image/svg+xml" href="../img/logo.svg">
++  <script src="../js/data.js" defer></script>
++  <script src="../js/main.js" defer></script>
+ 
+   <script>
+ // СмартОфис — База данных офисных комнат и бронирований
+@@ -102,132 +102,36 @@
+ ];
+ 
+   </script>
++  <script>
++  // Fallback default room for room-details preview
++  if (!window.location.search) {
++    try {
++      history.replaceState(null, '', '?id=focus-1');
++    } catch(e) {}
++  }
++  </script>
+ </head>
+ <body>
+   <header class="header">
+     <div class="container header-container">
+-      <a href="index.html" class="logo">
+-        <img src="img/logo.svg" alt="Логотип" class="logo-icon">
++      <a href="../index.html" class="logo">
++        <img src="../img/logo.svg" alt="Логотип" class="logo-icon">
+         <span>СмартОфис</span>
+       </a>
+       <nav class="nav">
+         <ul class="nav-list">
+-          <li><a href="index.html" class="nav-link active">Главная</a></li>
+-          <li><a href="pages/catalog.html" class="nav-link">Каталог</a></li>
+-          
+-          <li><a href="pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
++          <li><a href="../index.html" class="nav-link active">Главная</a></li>
++          <li><a href="../pages/catalog.html" class="nav-link">Каталог</a></li>
++          <li id="myBookingsNavItem" style="display: none;"><a href="../pages/my-bookings.html" class="nav-link">Мои бронирования</a></li>
++          <li><a href="../pages/login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
+         </ul>
+       </nav>
+     </div>
+   </header>
+ 
+... (truncated, total diff lines: 172)
+
+======================================================================
+FILE: 15-details-function-skeleton.md
+======================================================================
+TASK:
+В самом низу файла `main.js` создайте эту функцию. Не забудьте также вызвать её в самом верху внутри `DOMContentLoaded` вместе с `renderCatalog()`!
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -2,6 +2,7 @@
+ document.addEventListener('DOMContentLoaded', () => {
+   initNavigation();
+   renderCatalog();
++  initRoomDetails();
+ });
+ 
+ function showNotification(message, type = 'success') {
+@@ -114,3 +115,8 @@
+     </div>
+   `).join('');
+ }
++
++function initRoomDetails() {
++  const container = document.getElementById('roomDetailsContainer');
++  if (!container || typeof OFFICE_ROOMS === 'undefined') return;
++}
+
+======================================================================
+FILE: 16-url-search-params.md
+======================================================================
+TASK:
+Внутри функции `initRoomDetails` напишите код для получения ID комнаты из URL. 
+*(Мы добавим `|| urlParams.get('room')` на всякий случай, если параметр будет называться `room`).*
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -119,4 +119,7 @@
+ function initRoomDetails() {
+   const container = document.getElementById('roomDetailsContainer');
+   if (!container || typeof OFFICE_ROOMS === 'undefined') return;
++
++  const urlParams = new URLSearchParams(window.location.search);
++  const roomId = urlParams.get('id') || urlParams.get('room') || 'focus-1';
+ }
+
+======================================================================
+FILE: 17-array-find.md
+======================================================================
+TASK:
+Сразу после получения `roomId` напишите поиск комнаты.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -122,4 +122,5 @@
+ 
+   const urlParams = new URLSearchParams(window.location.search);
+   const roomId = urlParams.get('id') || urlParams.get('room') || 'focus-1';
++  const room = OFFICE_ROOMS.find(r => r.id === roomId);
+ }
+
+======================================================================
+FILE: 18-details-not-found.md
+======================================================================
+TASK:
+Вставьте этот блок обработки ошибки.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -123,4 +123,15 @@
+   const urlParams = new URLSearchParams(window.location.search);
+   const roomId = urlParams.get('id') || urlParams.get('room') || 'focus-1';
+   const room = OFFICE_ROOMS.find(r => r.id === roomId);
++
++  if (!room) {
++    container.innerHTML = `
++      <div class="empty-message">
++        <h2>Комната не найдена</h2>
++        <p style="margin: 10px 0 20px 0;">Возможно, ссылка устарела или комната была удалена.</p>
++        <a href="catalog.html" class="btn btn-primary">Вернуться в каталог</a>
++      </div>
++    `;
++    return;
++  }
+ }
+
+======================================================================
+FILE: 19-details-render.md
+======================================================================
+TASK:
+После блока `if (!room)` вставьте HTML-код карточки деталей. Заметьте, что мы уже расставили `${room.title}`, `${room.pricePerHour}` и другие переменные!
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -134,4 +134,37 @@
+     `;
+     return;
+   }
++
++  container.innerHTML = `
++    <div class="room-details-card">
++      <div class="room-details-gallery">
++        <img src="${room.image}" alt="${room.title}" class="room-details-img" onerror="this.src='../img/no-image.svg'">
++      </div>
++      <div class="room-details-info">
++        <div class="room-details-header">
++          <h1 class="room-details-title">${room.title}</h1>
++          <div class="room-details-price">${room.pricePerHour} ₽ <span>/ час</span></div>
++        </div>
++
++        <div class="room-badges">
++          <span class="room-badge">${room.capacity}</span>
++          <span class="room-badge">${room.area}</span>
++        </div>
++
++        <p class="room-description">${room.description}</p>
++
++        <div class="room-specs">
++          <h3>Оснащение и удобства:</h3>
++          <ul class="card-equipment">
++            ${room.equipment.map(item => `<li>${item}</li>`).join('')}
++          </ul>
++        </div>
++
++        <div class="room-details-actions">
++          <a href="booking.html?room=${room.id}" class="btn btn-primary" style="padding: 10px 20px; font-size: 15px;">Забронировать эту комнату</a>
++          <a href="catalog.html" class="btn btn-outline" style="padding: 10px 18px; font-size: 15px;">← Назад в каталог</a>
++        </div>
++      </div>
++    </div>
++  `;
+ }
+
+======================================================================
+FILE: 20-details-ternary.md
+======================================================================
+TASK:
+Внутри функции `initRoomDetails`, найдите блок `room-badges` и добавьте туда строчку с тернарным оператором, чтобы у популярных комнат появился бейдж.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -149,6 +149,7 @@
+         <div class="room-badges">
+           <span class="room-badge">${room.capacity}</span>
+           <span class="room-badge">${room.area}</span>
++          ${room.isPopular ? '<span class="room-badge badge-popular">Популярное</span>' : ''}
+         </div>
+ 
+         <p class="room-description">${room.description}</p>
+
+======================================================================
+FILE: 21-data-mock-bookings.md
+======================================================================
+TASK:
+В файле `js/data.js` в самом низу добавьте массив `MOCK_BOOKINGS`. И на этом модуль официально завершен!
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,171 +1,86 @@
+-// СмартОфис — Скрипт веб-приложения
+-document.addEventListener('DOMContentLoaded', () => {
+-  initNavigation();
+-  renderCatalog();
+-  initRoomDetails();
+-});
++// СмартОфис — База данных офисных комнат и бронирований
++const OFFICE_ROOMS = [
++  {
++    id: 'focus-1',
++    title: 'Мини-офис Focus',
++    pricePerHour: 450,
++    capacity: '1-2 человека',
++    area: '12 м²',
++    description: 'Идеальное тихое пространство для индивидуальной работы, важных звонков и глубокой концентрации. Оснащено эргономичной мебелью и монитором высокой четкости.',
++    equipment: ['Wi-Fi 500 Мбит/с', '4K Монитор', 'Эргономичное кресло', 'Климат-контроль'],
++    image: '../img/room-1.jpg',
++    isPopular: true
++  },
++  {
++    id: 'alpha-2',
++    title: 'Конференц-зал Alpha',
++    pricePerHour: 1200,
++    capacity: 'до 15 человек',
++    area: '45 м²',
++    description: 'Просторный зал для проведения презентаций, совещаний с партнерами и командных брейнштормов с современным мультимедиа-оборудованием.',
++    equipment: ['Проектор 4K', 'Спикерфон', 'Флипчарт', 'Аудиосистема'],
++    image: '../img/room-2.jpg',
++    isPopular: true
++  },
++  {
++    id: 'hub-3',
++    title: 'Опенспейс Hub',
++    pricePerHour: 250,
++    capacity: '1 человек',
++    area: 'Рабочее место',
++    description: 'Удобное выделенное рабочее место в современном открытом пространстве с доступом к зоне отдыха и кофе-поинту.',
++    equipment: ['Личный стол', 'Wi-Fi 500 Мбит/с', 'Розетки 220V и USB', 'Кофе-поинт'],
++    image: '../img/room-3.jpg',
++    isPopular: true
++  },
++  {
++    id: 'solo-4',
++    title: 'Переговорная Solo',
++    pricePerHour: 600,
++    capacity: 'до 4 человек',
++    area: '16 м²',
++    description: 'Компактная переговорная комната для встреч тет-а-тет или работы мини-команды. Оснащена Smart TV и удобной маркерной доской.',
++    equipment: ['Звукоизоляция', 'Smart TV 55"', 'Маркерная доска', 'Кулер с водой'],
++    image: '../img/room-4.jpg',
++    isPopular: false
++  },
++  {
++    id: 'exec-5',
++    title: 'Премиум Сьют Executive',
++    pricePerHour: 1800,
++    capacity: 'до 6 человек',
+... (truncated, total diff lines: 258)

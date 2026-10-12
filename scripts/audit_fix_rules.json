@@ -1,0 +1,2009 @@
+[
+  {
+    "id": 1,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/01-welcome.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Низкий",
+    "title": "01-welcome.md — Небезопасный доступ к элементу без выборки из DOM",
+    "lines": "28–29",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "const btn = document.querySelector('.btn');"
+      },
+      {
+        "type": "absence_file",
+        "pattern": "btn.addEventListener('click', () => alert('Забронировано!'));"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/04-paragraphs.md",
+    "defect_type": "[ДУБЛИРОВАНИЕ]",
+    "priority": "Средний",
+    "title": "04-paragraphs.md — Преждевременная таблица блочных/строчных элементов и сбивка контекста",
+    "lines": "21–35",
+    "checks": [
+      {
+        "type": "absence_file",
+        "pattern": "## Блочные vs строчные элементы"
+      },
+      {
+        "type": "presence_file",
+        "pattern": "СмартОфис"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/06-links.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Средний",
+    "title": "06-links.md — Отсутствие `noreferrer` при `target=\"_blank\"`",
+    "lines": "55–60, 66, 92",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "rel=\"noopener noreferrer\""
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/07-images.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "07-images.md — Атрибут `loading=\"lazy\"` на изображении первого экрана (LCP anti-pattern)",
+    "lines": "36–41, 64, 80",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "loading=\"lazy\""
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/08-html-structure.md",
+    "defect_type": "[ДУБЛИРОВАНИЕ]",
+    "priority": "Высокий",
+    "title": "08-html-structure.md — Дублирование пошагового конструирования каркаса документа",
+    "lines": "42–98",
+    "checks": [
+      {
+        "type": "absence_file",
+        "pattern": "### Шаг 1: Объявление типа документа"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/09-what-is-css.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Низкий",
+    "title": "09-what-is-css.md — Неполнота стартового HTML-шаблона",
+    "lines": "60–65",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:start",
+        "pattern": "<!DOCTYPE html>"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/10-css-selectors.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "10-css-selectors.md — Лишнее свойство `border-radius` в эталонном решении",
+    "lines": "112, 132–133",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "border-radius: 4px"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "milestone": "M1",
+    "lesson": "01-intro",
+    "file_path": "content/lessons/01-intro/11-block-inline.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "11-block-inline.md — Необъявленные свойства стилей в решении и дублирование теории",
+    "lines": "83, 94–98, 115–116",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:start",
+        "pattern": "text-decoration: none;"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/00-theory-01-doctype.md",
+    "defect_type": "[ДУБЛИРОВАНИЕ]",
+    "priority": "Высокий",
+    "title": "00-theory-01-doctype.md — Повторное дублирование базового каркаса",
+    "lines": "10–75",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Quirks Mode"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/00-theory-02-head.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "00-theory-02-head.md — Подключение стилей в решении до прохождения темы стилей",
+    "lines": "65, 88",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "<link rel=\"stylesheet\" href=\"css/style.css\">"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/00-theory-06b-variables.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Средний",
+    "title": "00-theory-06b-variables.md — Критическое рассогласование задания, HTML, стартового CSS и решения",
+    "lines": "23–28, 39–49, 53–62, 66–88",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "--brand-dark"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/00-theory-07-container.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "00-theory-07-container.md — Несоответствие значения `padding` в задании и решении",
+    "lines": "91, 176",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:solution",
+        "pattern": "padding: 0 20px;"
+      },
+      {
+        "type": "absence_block",
+        "block": "css:solution",
+        "pattern": "padding: 0 16px;"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/00-theory-08-flexbox.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Средний",
+    "title": "00-theory-08-flexbox.md — Пропуск свойства выравнивания `align-items` в решении",
+    "lines": "84–85, 172–176",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:solution",
+        "pattern": "align-items: flex-start;"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/04-google-fonts.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "04-google-fonts.md — Пропущен обязательный тег preconnect к gstatic в решении",
+    "lines": "19–27, 36–39",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:solution",
+        "pattern": "family=Inter:wght@400;500;600;700&display=swap"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/08-flex-body.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Средний",
+    "title": "08-flex-body.md — Отсутствие блоков `css:start` и `css:solution` и неадаптивный `min-width`",
+    "lines": "23, 26–43",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "```css:start"
+      },
+      {
+        "type": "presence_file",
+        "pattern": "```css:solution"
+      },
+      {
+        "type": "absence_block",
+        "block": "css:solution",
+        "pattern": "min-width: 1200px;"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/09-container-css.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Средний",
+    "title": "09-container-css.md — Использование жесткой ширины `width` вместо `max-width`",
+    "lines": "20, 48",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:solution",
+        "pattern": "max-width: 1200px;"
+      },
+      {
+        "type": "absence_block",
+        "block": "css:solution",
+        "pattern": "width: 1200px;"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/15-nav-css.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "15-nav-css.md — Утечка разметки кнопки «Войти» и класса `active` в стартовом HTML",
+    "lines": "51–53",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "id=\"authNavBtn\">Войти</a>"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/16-nav-links.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Средний",
+    "title": "16-nav-links.md — Преждевременное присутствие кнопки «Войти» в стартовом HTML",
+    "lines": "52",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "id=\"authNavBtn\">Войти</a>"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/17-nav-button.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "17-nav-button.md — Элемент задания уже присутствует в стартовом коде",
+    "lines": "18–24, 62–65",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "id=\"authNavBtn\">Войти</a>"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/21-hero-bottom-css.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Средний",
+    "title": "21-hero-bottom-css.md — Потеря разметки `hero-bottom` в стартовом HTML и отсутствие `html:solution`",
+    "lines": "68–75",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:start",
+        "pattern": "<div class=\"hero-bottom\">"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "milestone": "M1",
+    "lesson": "02-markup",
+    "file_path": "content/lessons/02-markup/24-footer-css.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "24-footer-css.md — Замена и деградация разметки подвала в стартовом HTML",
+    "lines": "107–114",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:start",
+        "pattern": "footer-info"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/00-theory-03-pseudo.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Средний",
+    "title": "00-theory-03-pseudo.md — Лишнее правило `:focus` в эталонном решении",
+    "lines": "103, 179–182",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "css:solution",
+        "pattern": ".btn:focus"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/00-theory-04-card.md",
+    "defect_type": "[ПРОБЕЛ]",
+    "priority": "Средний",
+    "title": "00-theory-04-card.md — Использование `overflow` и `object-fit` до их объяснения",
+    "lines": "205–212",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "overflow: hidden"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/01-popular-section-html.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "01-popular-section-html.md — Утечка всех будущих стилей карточек и кнопок в стартовом CSS",
+    "lines": "176–196",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "css:start",
+        "pattern": ".room-card {"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/07-grid-container-html.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Низкий",
+    "title": "07-grid-container-html.md — Преждевременные стили карточек в стартовом CSS",
+    "lines": "188–201",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "css:start",
+        "pattern": ".card-content {"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/08-room-card-html.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "08-room-card-html.md — Обрыв текста: отсутствует заголовок задания и инструкция",
+    "lines": "8–10",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "## 🛠 Задание"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/10-card-image-html.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Низкий",
+    "title": "10-card-image-html.md — Упоминание `onerror` в теории при отсутствии в решении",
+    "lines": "10, 128",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "факультатив"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/11-card-image-css.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Низкий",
+    "title": "11-card-image-css.md — Несогласованность URL ссылки карточки",
+    "lines": "67",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:start",
+        "pattern": "pages/room-details.html"
+      },
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "pages/catalog.html"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/12-card-content-html.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Средний",
+    "title": "12-card-content-html.md — Навязывание инлайн-стилей в задании",
+    "lines": "18–19, 183",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:solution",
+        "pattern": "class=\"card-title-link\""
+      },
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "style=\"text-decoration: none; color: inherit;\""
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/15-card-footer-html.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Средний",
+    "title": "15-card-footer-html.md — Преждевременное наполнение кнопок в стартовом коде следующего шага",
+    "lines": "15–20, 192",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "Забронировать"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/16-card-footer-css.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Средний",
+    "title": "16-card-footer-css.md — Утечка разметки кнопок в стартовом HTML",
+    "lines": "80–85",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "Забронировать"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/18-card-btns-layout.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "18-card-btns-layout.md — Кнопки задания уже вставлены в стартовый код",
+    "lines": "18–20, 79–82",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "Забронировать"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/19-duplicate-cards.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "19-duplicate-cards.md — Неполные псевдокодовые примеры в тексте задания",
+    "lines": "38–40",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "task",
+        "pattern": "<img src=\"...\" alt=\"...\">"
+      },
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "Офис у метро"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "milestone": "M1",
+    "lesson": "03-flexbox",
+    "file_path": "content/lessons/03-flexbox/20-rooms-grid-css.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Средний",
+    "title": "20-rooms-grid-css.md — Преждевременное появление кнопки действия в стартовом HTML",
+    "lines": "145–148",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "class=\"center-action\""
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-01-js-basics.md",
+    "defect_type": "[ПРОБЕЛ]",
+    "priority": "Критический",
+    "title": "00-theory-01-js-basics.md — Отсутствие объяснения условных конструкций (`if / else`) и операторов сравнения",
+    "lines": "50-73",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "## Условные конструкции: if / else"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-01-js-basics.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Низкий",
+    "title": "00-theory-01-js-basics.md — Лишний вывод в консоль в решении задания",
+    "lines": "107-114, 169-171",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:solution",
+        "pattern": "console.log('Пользователь:', user.name);"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-03-dom.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "00-theory-03-dom.md — Использование querySelector до его объяснения",
+    "lines": "37-40, 69-71, 124, 131, 136",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Метод `querySelector`"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-04-selector.md",
+    "defect_type": "[ПРОБЕЛ]",
+    "priority": "Высокий",
+    "title": "00-theory-04-selector.md — Использование методов массивов filter/map до их изучения",
+    "lines": "49-51, 80, 140-146",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Array.from"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-05-create.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "00-theory-05-create.md — Ошибка в ASCII-схеме insertAdjacentHTML",
+    "lines": "44-50",
+    "checks": [
+      {
+        "type": "absence_file",
+        "pattern": "<!-- afterend -->\r\n</p>\r\n<!-- beforeend -->"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-05-create.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Средний",
+    "title": "00-theory-05-create.md — Использование addEventListener до темы событий",
+    "lines": "92, 155-158",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "// Слушатель событий"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-06-events.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Низкий",
+    "title": "00-theory-06-events.md — Несовпадение текста кнопки в комментарии и HTML",
+    "lines": "103, 119",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "// HTML: <button id=\"mainBtn\">Нажми меня</button>"
+      },
+      {
+        "type": "absence_file",
+        "pattern": "// HTML: <button id=\"mainBtn\">Забронировать</button>"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-07-timeout.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "00-theory-07-timeout.md — Несовпадение ID элемента alert vs alertBox — код не работает",
+    "lines": "86, 103, 117, 126, 141",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:solution",
+        "pattern": "id=\"alertBox\""
+      },
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "id=\"alert\""
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/04-toast-get-container.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Низкий",
+    "title": "04-toast-get-container.md — Необоснованное появление getElementById без методического комментария",
+    "lines": "10, 18-20, 304",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Метод `getElementById`"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/07-toast-append.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Критический",
+    "title": "07-toast-append.md — Скрытое добавление стилей и словаря colors в решении без отражения в задании",
+    "lines": "16-20, 491-494",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "toast-success"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/14-nav-links-loop.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "14-nav-links-loop.md — Несовпадение имени переменной (links vs navLinks) и потеря строк в решении",
+    "lines": "20-25, 531-534",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "navLinks"
+      },
+      {
+        "type": "absence_block",
+        "block": "task",
+        "pattern": "for (let i = 0; i < links.length; i++)"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/15-nav-highlight-index.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Высокий",
+    "title": "15-nav-highlight-index.md — Ссылка на отсутствующий код в стартовом файле",
+    "lines": "16-24",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "currentPath"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/16-nav-highlight-catalog.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "16-nav-highlight-catalog.md — Опасная подсказка по вставке закрывающей фигурной скобки",
+    "lines": "18-25",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "дополните условие"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/17-nav-highlight-others.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Критический",
+    "title": "17-nav-highlight-others.md — Полное рассогласование задания и решения",
+    "lines": "16-25, 540-548",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "link.getAttribute('href')"
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/21-auth-logout-event.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "21-auth-logout-event.md — Использование устаревшего onclick вместо addEventListener",
+    "lines": "16-24, 578-584",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Мы используем authNavBtn.onclick"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "milestone": "M2",
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/23-auth-logged-out.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "23-auth-logged-out.md — В задании пропущен код скрытия пункта «Мои бронирования»",
+    "lines": "19-28, 602",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "if (myBookingsNavItem)"
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/00-theory-06-fetch.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "00-theory-06-fetch.md — Изучение fetch/async/await без практического применения в курсе",
+    "lines": "1-139",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "симулируем работу сервера с помощью файла `js/data.js`"
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/00-theory-07-tabs.md",
+    "defect_type": "[ДУБЛИРОВАНИЕ]",
+    "priority": "Высокий",
+    "title": "00-theory-07-tabs.md — Изолированная теория табов, отсутствующая в практике",
+    "lines": "1-179",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Факультативный компонент"
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/06-create-catalog-page.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "06-create-catalog-page.md — Фатальная ошибка — дублирование объявления константы OFFICE_ROOMS",
+    "lines": "385-427",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "const OFFICE_ROOMS = ["
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/07-catalog-container.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "07-catalog-container.md — Нулевой диф — контейнер уже присутствует в стартовом коде",
+    "lines": "13-15, 153, 789",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "id=\"catalogContainer\""
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/11-render-join.md",
+    "defect_type": "[ДУБЛИРОВАНИЕ]",
+    "priority": "Критический",
+    "title": "11-render-join.md — Нулевой диф и дублирование — метод join('') уже был добавлен в шаге 09",
+    "lines": "13-17, 578, 691",
+    "checks": [
+      {
+        "type": "absence_file",
+        "pattern": "карточками появились запятые"
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/13-update-index-links.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "13-update-index-links.md — В стартовом коде передан файл catalog.html вместо index.html",
+    "lines": "30, 578-590",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:start",
+        "pattern": "<title>СмартОфис — Коворкинг</title>"
+      },
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "<title>Каталог офисов — СмартОфис</title>"
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/14-create-details-page.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "14-create-details-page.md — Дублирование объявления const OFFICE_ROOMS в room-details.html",
+    "lines": "661-670",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "const OFFICE_ROOMS = ["
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "milestone": "M2",
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/21-data-mock-bookings.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "21-data-mock-bookings.md — Неправильный файл в js:start (main.js вместо data.js)",
+    "lines": "16, 468-639, 642-729",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "js:start",
+        "pattern": "const OFFICE_ROOMS = ["
+      },
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "document.addEventListener('DOMContentLoaded'"
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/00-theory-02-submit.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "00-theory-02-submit.md — Обучение FormData без применения на практике",
+    "lines": "68-75",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Объект FormData идеален"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/00-theory-05-storage.md",
+    "defect_type": "[ДУБЛИРОВАНИЕ]",
+    "priority": "Высокий",
+    "title": "00-theory-05-storage.md — Дублирование теоретического материала из урока 04",
+    "lines": "1-150",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "remember me"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/00-theory-06-modal.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "00-theory-06-modal.md — Изучение <dialog> без практической интеграции",
+    "lines": "1-151",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "альтернативный паттерн"
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/01-create-login-page.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "01-create-login-page.md — Преждевременное включение разметки формы в решение шага 01",
+    "lines": "260-282",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "<input type=\"text\" id=\"loginUsername\""
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/02-login-html-form.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "02-login-html-form.md — Нулевой диф — форма входа уже добавлена в предыдущем шаге",
+    "lines": "1-50, diff пустой",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "<input type=\"text\" id=\"loginUsername\""
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/03-create-register-page.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "03-create-register-page.md — Преждевременное включение полей регистрации в решение шага 03",
+    "lines": "330-360",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:solution",
+        "pattern": "<input type=\"text\" id=\"regUsername\""
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/04-register-html-form.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "04-register-html-form.md — Нулевой диф — форма регистрации уже присутствует в старте",
+    "lines": "1-50, diff пустой",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "<input type=\"text\" id=\"regUsername\""
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/20-login-error-ui.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "20-login-error-ui.md — Ошибка типа уведомления — тост ошибки отображается зеленым цветом успеха",
+    "lines": "1111–1117",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "js:solution",
+        "pattern": "showToast('Неверный логин или пароль', 'error');"
+      },
+      {
+        "type": "absence_block",
+        "block": "js:solution",
+        "pattern": "showToast('Неверный логин или пароль', 'success');"
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "milestone": "M3",
+    "lesson": "06-forms",
+    "file_path": "content/lessons/06-forms/21-call-form-functions.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Средний",
+    "title": "21-call-form-functions.md — Некорректная инструкция задания о вызове «обеих» функций",
+    "lines": "13-17, 764-776",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "task",
+        "pattern": "Вызовите обе функции"
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/00-theory-01-position.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "00-theory-01-position.md — Уточнение правила точки отсчёта для absolute",
+    "lines": "33-35",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Точкой отсчёта для absolute"
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/00-theory-02-state.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Низкий",
+    "title": "00-theory-02-state.md — Требование начального вызова render",
+    "lines": "84-86, 151",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "начальный вызов render"
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/00-theory-03-classlist.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Низкий",
+    "title": "00-theory-03-classlist.md — Асимметрия текста переключателя темы",
+    "lines": "96, 123-125",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "Светлая тема"
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/00-theory-04-interval.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Средний",
+    "title": "00-theory-04-interval.md — Несоответствие задания и решения (автостарт)",
+    "lines": "100-104, 180-181",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "startAuto"
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/01-create-slider-html.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Критический",
+    "title": "01-create-slider-html.md — Слайдер уже присутствует в стартовом HTML, фантомная секция и скрипт в решении",
+    "lines": "18, 68-91, 957-1212",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "<section class=\"slider-section\">"
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/02-slider-css-container.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "02-slider-css-container.md — Преждевременный сброс всех стилей слайдера в решении",
+    "lines": "1090-1180",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "css:solution",
+        "pattern": ".slide-img"
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/03-slider-css-slides.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "03-slider-css-slides.md — Отсутствие стилей предыдущего шага в css:start",
+    "lines": "142-698, 1090-1180",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:start",
+        "pattern": ".slider-section"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/04-slider-css-active.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "04-slider-css-active.md — Отсутствие стилей шагов 02-03 в css:start",
+    "lines": "142-698, 1090-1180",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:start",
+        "pattern": ".slide-img"
+      },
+      {
+        "type": "absence_block",
+        "block": "css:solution",
+        "pattern": ".slider-btn"
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/05-slider-css-buttons.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "05-slider-css-buttons.md — Рассинхронизация css:start и доступность кнопок",
+    "lines": "82-83, 142-698",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:solution",
+        "pattern": "aria-label=\"Предыдущий слайд\""
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/06-slider-css-dots.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "06-slider-css-dots.md — Рассинхронизация css:start и интерактивность span-точек",
+    "lines": "84-89, 142-698",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:solution",
+        "pattern": "role=\"button\""
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/07-init-slider-skeleton.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Средний",
+    "title": "07-init-slider-skeleton.md — Преждевременный вызов initSlider() в DOMContentLoaded",
+    "lines": "1025",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:solution",
+        "pattern": "initSlider();"
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/15-start-auto-func.md",
+    "defect_type": "[ДУБЛИРОВАНИЕ]",
+    "priority": "Высокий",
+    "title": "15-start-auto-func.md — Преждевременная реализация функции stopAuto()",
+    "lines": "1320-1323",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:solution",
+        "pattern": "clearInterval(timerId)"
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/16-stop-auto-func.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "16-stop-auto-func.md — Ошибка Zero-Diff (+0 / -0): код уже присутствует в стартере",
+    "lines": "14-16, 1061-1341",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "clearInterval(timerId)"
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "milestone": "M3",
+    "lesson": "07-slider",
+    "file_path": "content/lessons/07-slider/20-call-init-slider.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "20-call-init-slider.md — Ошибка Zero-Diff (+0 / -0): вызов initSlider() уже в стартере",
+    "lines": "13-17, 784, 1069",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "initSlider();"
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/00-theory-04-input-event.md",
+    "defect_type": "[ПРОБЕЛ]",
+    "priority": "Средний",
+    "title": "00-theory-04-input-event.md — Дидактический пробел: изучение debounce без применения в проекте",
+    "lines": "30-75",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "почему в проекте мы обходимся без debounce"
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/00-theory-05-select.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Низкий",
+    "title": "00-theory-05-select.md — Дидактическое расхождение: optgroup vs плоский список",
+    "lines": "25-60",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "optgroup"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/00-theory-06-dates.md",
+    "defect_type": "[ПРОБЕЛ]",
+    "priority": "Средний",
+    "title": "00-theory-06-dates.md — Дидактический разрыв: объект Date не используется в калькуляторе проекта",
+    "lines": "20-55",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "два сценария: выбор времени"
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/01-catalog-toolbar-html.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Средний",
+    "title": "01-catalog-toolbar-html.md — Отсутствие доступного лейбла у поля поиска",
+    "lines": "67-68",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "html:solution",
+        "pattern": "aria-label=\"Поиск комнат\""
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/03-init-filters-skeleton.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Средний",
+    "title": "03-init-filters-skeleton.md — Инструкция по удалению renderCatalog vs повторное появление функции",
+    "lines": "14-16, 784",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "task",
+        "pattern": "заменяет renderCatalog"
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/05-displayed-rooms-state.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "05-displayed-rooms-state.md — Критическая рассинхронизация: код будущих уроков в js:start",
+    "lines": "930-1140",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "initBookingCalc"
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/09-search-event.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "09-search-event.md — Ошибка Zero-Diff (+0 / -0): слушатель input уже в стартере",
+    "lines": "14-16, 1109, 1446",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "searchInput.addEventListener('input'"
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/11-call-init-filters.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "11-call-init-filters.md — Конфликт дублирующих функций в js:start",
+    "lines": "784, 1180-1280",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "renderCatalog();"
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/13-booking-form-html.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "13-booking-form-html.md — Ошибка Zero-Diff (+0 / -0): форма уже вставлена в стартер",
+    "lines": "14-16, 152, 1412",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "<form id=\"bookingForm\">"
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/14-create-mybookings-page.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "14-create-mybookings-page.md — Противоречие в задании («Ничего вписывать не нужно») и скрытый diff",
+    "lines": "15-17, 57 строк diff",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "task",
+        "pattern": "Ничего вписывать не нужно"
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/16-init-booking-skeleton.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "16-init-booking-skeleton.md — Инвертированный стартер: удаление 66 строк готового кода",
+    "lines": "200-265, 997",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "localStorage.getItem('currentUser')"
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/17-booking-auth-guard.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "17-booking-auth-guard.md — Инвертированный стартер (шаг 2 из 5)",
+    "lines": "200-265",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "populateRoomSelect();"
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/18-populate-select.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "18-populate-select.md — Инвертированный стартер (шаг 3 из 5)",
+    "lines": "200-265",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "updateBookingTotal();"
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/19-auto-select-room.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "19-auto-select-room.md — Инвертированный стартер (шаг 4 из 5)",
+    "lines": "200-265",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "bookingForm.addEventListener('submit'"
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/20-update-price-func.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "20-update-price-func.md — Инвертированный стартер (шаг 5 из 5)",
+    "lines": "200-265",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "localStorage.setItem('myBookings'"
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "milestone": "M4",
+    "lesson": "08-search",
+    "file_path": "content/lessons/08-search/25-booking-redirect.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Средний",
+    "title": "25-booking-redirect.md — Ложное требование вызова initBookingCalc()",
+    "lines": "15-18, 813",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "task",
+        "pattern": "не забудьте вызвать initBookingCalc() в самом верху файла"
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/00-theory-03-modules.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "00-theory-03-modules.md — Критическая синтаксическая ошибка: отсутствие type=\"module\" в скрипте",
+    "lines": "119",
+    "checks": [
+      {
+        "type": "presence_file",
+        "pattern": "<script type=\"module\" src=\"js/main.js\"></script>"
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/01-bookings-list-css.md",
+    "defect_type": "[ЗАДАНИЕ]",
+    "priority": "Высокий",
+    "title": "01-bookings-list-css.md — Преждевременный сброс всех CSS-классов финала",
+    "lines": "1090-1264",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "css:solution",
+        "pattern": ".booking-card"
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/02-booking-item-css.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "02-booking-item-css.md — Отсутствие стилей шага 01 в css:start",
+    "lines": "142-698",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:start",
+        "pattern": ".bookings-list"
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/03-empty-message-css.md",
+    "defect_type": "[ПЛАВНОСТЬ]",
+    "priority": "Высокий",
+    "title": "03-empty-message-css.md — Отсутствие стилей шагов 01-02 в css:start",
+    "lines": "142-698",
+    "checks": [
+      {
+        "type": "presence_block",
+        "block": "css:start",
+        "pattern": ".booking-card"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/04-init-mybookings-skeleton.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "04-init-mybookings-skeleton.md — Инвертированный стартер: функция полностью написана в стартере",
+    "lines": "1105-1140",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "localStorage.getItem('currentUser')"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/05-mybookings-auth-guard.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "05-mybookings-auth-guard.md — Инвертированный стартер (шаг 2 из 5)",
+    "lines": "1105-1140",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "bookingsList.innerHTML"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/06-check-empty-array.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "06-check-empty-array.md — Инвертированный стартер (шаг 3 из 5)",
+    "lines": "1105-1140",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "bookings.map("
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/07-render-mock-bookings.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "07-render-mock-bookings.md — Инвертированный стартер (шаг 4 из 5)",
+    "lines": "1105-1140",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "<article class=\"booking-card\">"
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/08-booking-card-html.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "08-booking-card-html.md — Инвертированный стартер (шаг 5 из 5)",
+    "lines": "1105-1140",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "booking-delete-btn"
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/09-call-init-mybookings.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Критический",
+    "title": "09-call-init-mybookings.md — Ошибка Zero-Diff (+0 / -0): вызов уже добавлен в стартере",
+    "lines": "15-18, 796, 1212",
+    "checks": [
+      {
+        "type": "absence_block",
+        "block": "js:start",
+        "pattern": "initMyBookings();"
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "milestone": "M4",
+    "lesson": "09-final",
+    "file_path": "content/lessons/09-final/10-final-congratulations.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "10-final-congratulations.md — type: practice без задания и хардкод видимости в навигации",
+    "lines": "2, 55",
+    "checks": [
+      {
+        "type": "frontmatter",
+        "expected": {
+          "type": "theory"
+        }
+      },
+      {
+        "type": "absence_block",
+        "block": "html:start",
+        "pattern": "style=\"display: block;\""
+      },
+      {
+        "type": "presence_block",
+        "block": "html:start",
+        "pattern": "style=\"display: none;\""
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "milestone": "M4",
+    "lesson": "10-troubleshooting",
+    "file_path": "content/lessons/10-troubleshooting/01-security-error-localstorage.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "01-security-error-localstorage.md — type: theory во frontmatter и статичный вывод",
+    "lines": "4, 93, 115-126",
+    "checks": [
+      {
+        "type": "frontmatter",
+        "expected": {
+          "type": "practice"
+        }
+      },
+      {
+        "type": "presence_block",
+        "block": "js:solution",
+        "pattern": "safeReadUser('currentUser')"
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "milestone": "M4",
+    "lesson": "10-troubleshooting",
+    "file_path": "content/lessons/10-troubleshooting/02-type-error-null-dom.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "02-type-error-null-dom.md — type: theory и отсутствие вызова bindSearchEvent",
+    "lines": "4, 115-124",
+    "checks": [
+      {
+        "type": "frontmatter",
+        "expected": {
+          "type": "practice"
+        }
+      },
+      {
+        "type": "presence_block",
+        "block": "js:solution",
+        "pattern": "bindSearchEvent();"
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "milestone": "M4",
+    "lesson": "10-troubleshooting",
+    "file_path": "content/lessons/10-troubleshooting/03-syntax-error-tokens.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "03-syntax-error-tokens.md — type: theory и вывод распарсенного объекта",
+    "lines": "4, 82, 107-112",
+    "checks": [
+      {
+        "type": "frontmatter",
+        "expected": {
+          "type": "practice"
+        }
+      },
+      {
+        "type": "presence_block",
+        "block": "js:solution",
+        "pattern": "roomData.title"
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "milestone": "M4",
+    "lesson": "10-troubleshooting",
+    "file_path": "content/lessons/10-troubleshooting/04-network-404-paths.md",
+    "defect_type": "[ОШИБКА]",
+    "priority": "Высокий",
+    "title": "04-network-404-paths.md — type: theory и неполноценный тег head",
+    "lines": "4, 58-64",
+    "checks": [
+      {
+        "type": "frontmatter",
+        "expected": {
+          "type": "practice"
+        }
+      },
+      {
+        "type": "presence_block",
+        "block": "html:solution",
+        "pattern": "<meta charset=\"UTF-8\">"
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "milestone": "M4",
+    "lesson": "10-troubleshooting",
+    "file_path": "content/lessons/10-troubleshooting/05-devtools-mastery.md",
+    "defect_type": "[ПОДАЧА]",
+    "priority": "Средний",
+    "title": "05-devtools-mastery.md — type: theory и демонстрационный вызов debugFilterRooms",
+    "lines": "4, 81, 107-122",
+    "checks": [
+      {
+        "type": "frontmatter",
+        "expected": {
+          "type": "practice"
+        }
+      },
+      {
+        "type": "presence_block",
+        "block": "js:solution",
+        "pattern": "debugFilterRooms(testRooms, 900);"
+      }
+    ]
+  }
+]

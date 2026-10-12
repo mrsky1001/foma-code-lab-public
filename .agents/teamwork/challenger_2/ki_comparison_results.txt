@@ -1,0 +1,66 @@
+=== COMPARISON OF KNOWN ISSUES PREAMBLE VS DETAILED ENTRIES ===
+
+### 1. Дублирование HTML-каркаса (`01-intro/08-html-structure.md` vs `02-markup/00-theory-01-doctype.md`)
+  Preamble: Tipo=`[ДУБЛИРОВАНИЕ]` | Prio=Высокий
+### 2. Рассогласование задания и решения в `02-markup/00-theory-06b-variables.md`
+  Preamble: Tipo=`[ЗАДАНИЕ]` / `[ОШИБКА]` | Prio=**Критический** (блокирует прохождение шага)
+### 3. Anti-pattern в `01-intro/07-images.md`: атрибут `loading="lazy"` на первом экране
+  Preamble: Tipo=`[ОШИБКА]` | Prio=Высокий
+### 4. Тема тега `<br>` раскрыта дважды (`01-intro/04-paragraphs.md`)
+  Preamble: Tipo=`[ДУБЛИРОВАНИЕ]` | Prio=Средний
+### 5. Отсутствие объяснения условных операторов `if / else` в уроке 04-js-dom
+  Preamble: Tipo=`[ПРОБЕЛ]` | Prio=**Критический**
+### 6. Использование `rel="noopener"` без `noreferrer` в `01-intro/06-links.md`
+  Preamble: Tipo=`[ОШИБКА]` | Prio=Высокий
+### 7. Использование свойств `overflow` и `object-fit` до их теоретического введения
+  Preamble: Tipo=`[ПРОБЕЛ]` / `[ПОДАЧА]` | Prio=Средний
+
+--- Itemized Lesson Entries ---
+KI-1: 01-intro/08-html-structure.md:
+  Types: ['`[ДУБЛИРОВАНИЕ]`']
+  Prios: ['`Высокий`']
+  Lines: ['`42–98`']
+  Snippet: ### `08-html-structure.md` — Дублирование пошагового конструирования каркаса документа **Тип:** `[ДУБЛИРОВАНИЕ]` **Приоритет:** `Высокий` **Файл:** `content/lessons/01-intro/08-html-structure.md` **Ст
+
+KI-1: 02-markup/00-theory-01-doctype.md:
+  Types: ['`[ДУБЛИРОВАНИЕ]`']
+  Prios: ['`Высокий`']
+  Lines: ['`10–75`']
+  Snippet: ### `00-theory-01-doctype.md` — Повторное дублирование базового каркаса **Тип:** `[ДУБЛИРОВАНИЕ]` **Приоритет:** `Высокий` **Файл:** `content/lessons/02-markup/00-theory-01-doctype.md` **Строки:** `10
+
+KI-2: 02-markup/00-theory-06b-variables.md:
+  Types: ['`[ЗАДАНИЕ]`']
+  Prios: ['`Средний`']
+  Lines: ['`23–28, 39–49, 53–62, 66–88`']
+  Snippet: ### `00-theory-06b-variables.md` — Критическое рассогласование задания, HTML, стартового CSS и решения **Тип:** `[ЗАДАНИЕ]` **Приоритет:** `Средний` **Файл:** `content/lessons/02-markup/00-theory-06b-
+
+KI-3: 01-intro/07-images.md:
+  Types: ['`[ОШИБКА]`']
+  Prios: ['`Высокий`']
+  Lines: ['`36–41, 64, 80`']
+  Snippet: ### `07-images.md` — Атрибут `loading="lazy"` на изображении первого экрана (LCP anti-pattern) **Тип:** `[ОШИБКА]` **Приоритет:** `Высокий` **Файл:** `content/lessons/01-intro/07-images.md` **Строки:*
+
+KI-4: 01-intro/04-paragraphs.md:
+  Types: ['`[ДУБЛИРОВАНИЕ]`']
+  Prios: ['`Средний`']
+  Lines: ['`21–35`']
+  Snippet: ### `04-paragraphs.md` — Преждевременная таблица блочных/строчных элементов и сбивка контекста **Тип:** `[ДУБЛИРОВАНИЕ]` **Приоритет:** `Средний` **Файл:** `content/lessons/01-intro/04-paragraphs.md` 
+
+KI-5: 04-js-dom/00-theory-01-js-basics.md:
+  Types: ['`[ПРОБЕЛ]`']
+  Prios: ['`Критический`']
+  Lines: ['`50-73`']
+  Snippet: ### `00-theory-01-js-basics.md` — Комплексные замечания (2 проблемы) **Файл:** `content/lessons/04-js-dom/00-theory-01-js-basics.md` **Статус:** С замечаниями (2 проблемы)  #### Проблема 1: Отсутствие
+
+KI-6: 01-intro/06-links.md:
+  Types: ['`[ОШИБКА]`']
+  Prios: ['`Средний`']
+  Lines: ['`55–60, 66, 92`']
+  Snippet: ### `06-links.md` — Отсутствие `noreferrer` при `target="_blank"` **Тип:** `[ОШИБКА]` **Приоритет:** `Средний` **Файл:** `content/lessons/01-intro/06-links.md` **Строки:** `55–60, 66, 92` **Проблема:*
+
+KI-7: 03-flexbox/00-theory-04-card.md:
+  Types: ['`[ПРОБЕЛ]`']
+  Prios: ['`Средний`']
+  Lines: ['`205–212`']
+  Snippet: ### `00-theory-04-card.md` — Использование `overflow` и `object-fit` до их объяснения **Тип:** `[ПРОБЕЛ]` **Приоритет:** `Средний` **Файл:** `content/lessons/03-flexbox/00-theory-04-card.md` **Строки:
+

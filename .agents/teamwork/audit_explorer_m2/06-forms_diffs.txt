@@ -1,0 +1,778 @@
+
+======================================================================
+FILE: 00-theory-01-forms.md
+======================================================================
+TASK:
+Создайте форму бронирования с полями: имя (text), email, дата (date), комментарий (textarea), тип комнаты (select) и кнопкой отправки.
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -1,17 +1,22 @@
+-<!DOCTYPE html>
+-<html lang="ru">
+-<head>
+-  <meta charset="UTF-8">
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>HTML-формы</title>
+-  <link rel="preconnect" href="https://fonts.googleapis.com">
+-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+-  <link rel="stylesheet" href="css/style.css">
+-</head>
+-<body>
+-  <form id="bookingForm">
+-    <!-- Добавьте поля: name, email, date, textarea, select, button -->
+-  </form>
+-</body>
+-</html>
++<form id="bookingForm">
++  <input type="text" name="name" placeholder="Ваше имя" required>
++  <!-- required — поле обязательно для заполнения -->
++
++  <input type="email" name="email" placeholder="Email" required>
++  <!-- type="email" — браузер проверяет формат email -->
++
++  <input type="date" name="date" required>
++  <!-- type="date" — встроенный датапикер -->
++
++  <select name="roomType">
++    <option value="">-- Тип комнаты --</option>
++    <option value="meeting">Переговорная</option>
++    <option value="focus">Мини-офис</option>
++  </select>
++
++  <textarea name="comment" rows="3" placeholder="Комментарий..."></textarea>
++  <!-- rows="3" — высота 3 строки -->
++
++  <button type="submit">Забронировать</button>
++  <!-- type="submit" — нажатие отправляет форму -->
++</form>
+
+======================================================================
+FILE: 00-theory-02-submit.md
+======================================================================
+TASK:
+Перехватите submit формы. Прочитайте поля `name` и `email` через `FormData`. Выведите в консоль объект с данными.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,7 +1,14 @@
+ const form = document.querySelector('#bookingForm');
+ 
+ form.addEventListener('submit', (e) => {
+-  // Отмените поведение по умолчанию
+-  // Прочитайте name и email через FormData
+-  // Выведите через console.log
++  e.preventDefault(); // отменить перезагрузку страницы
++
++  const data  = new FormData(form);      // прочитать все поля формы
++  const name  = data.get('name');        // поле с name="name"
++  const email = data.get('email');       // поле с name="email"
++
++  console.log({ name, email });
++  // → { name: 'Иван', email: 'ivan@mail.ru' }
++
++  form.reset(); // сбросить поля после успешной обработки
+ });
+
+======================================================================
+FILE: 00-theory-03-values.md
+======================================================================
+TASK:
+Напишите функцию `validate(name, email)`. Она должна возвращать массив ошибок: пустое имя, имя < 2 символов, проверка email через regex.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,9 +1,20 @@
+ function validate(name, email) {
+   const errors = [];
+-  // Проверьте: имя не пустое, имя >= 2 символа, email через regex
+-  return errors;
++  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // паттерн email
++
++  if (!name.trim()) {                     // пустая строка или только пробелы
++    errors.push('Введите имя');
++  } else if (name.trim().length < 2) {   // имя слишком короткое
++    errors.push('Имя слишком короткое');
++  }
++
++  if (!emailRegex.test(email)) {         // проверка формата email через regex
++    errors.push('Некорректный email');
++  }
++
++  return errors; // пустой массив если ошибок нет
+ }
+ 
+-console.log(validate('', 'test'));          // ['Введите имя', 'Некорректный email']
+-console.log(validate('А', 'a@b.ru'));       // ['Имя слишком короткое']
+-console.log(validate('Иван', 'a@b.ru'));    // [] — нет ошибок
++console.log(validate('', 'test'));         // → ['Введите имя', 'Некорректный email']
++console.log(validate('А', 'a@b.ru'));      // → ['Имя слишком короткое']
++console.log(validate('Иван', 'a@b.ru'));   // → [] — валидация пройдена
+
+======================================================================
+FILE: 00-theory-04-validation.md
+======================================================================
+TASK:
+Напишите функцию `showError(input, message)` и `clearError(input)`. Используйте `closest('.field-wrap')` для поиска контейнера.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,10 +1,23 @@
+ function showError(input, message) {
+-  // Добавьте класс 'error' на input
+-  // Найдите .error-msg через closest + querySelector
+-  // Установите текст и класс 'visible'
++  input.classList.add('error');                    // красная рамка на поле
++
++  const wrap = input.closest('.field-wrap');        // ближайший предок .field-wrap
++  const msg  = wrap?.querySelector('.error-msg');   // ?. — не упадёт если wrap = null
++
++  if (msg) {
++    msg.textContent = message;                     // текст ошибки
++    msg.classList.add('visible');                  // показать с анимацией
++  }
+ }
+ 
+ function clearError(input) {
+-  // Уберите класс 'error' с input
+-  // Очистите текст .error-msg и уберите 'visible'
++  input.classList.remove('error');                 // убрать красную рамку
++
++  const wrap = input.closest('.field-wrap');
++  const msg  = wrap?.querySelector('.error-msg');
++
++  if (msg) {
++    msg.textContent = '';                          // очистить текст
++    msg.classList.remove('visible');               // скрыть
++  }
+ }
+
+======================================================================
+FILE: 00-theory-05-storage.md
+======================================================================
+TASK:
+Напишите функцию `saveUser(name, email)` которая сохраняет объект в localStorage. Напишите `loadUser()` с try/catch. Если данные есть — заполните поля формы автоматически.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,12 +1,23 @@
+ function saveUser(name, email) {
+-  // Сохраните { name, email } в localStorage под ключом 'currentUser'
++  const user = { name, email };                    // создать объект
++  localStorage.setItem('currentUser', JSON.stringify(user)); // сохранить
+ }
+ 
+ function loadUser() {
+-  // Прочитайте и распарсите данные с try/catch
+-  // Если нет — вернуть null
++  try {
++    const raw = localStorage.getItem('currentUser'); // получить строку или null
++    if (!raw) return null;                           // ключ не существует
++    return JSON.parse(raw);                          // строка → объект
++  } catch (e) {
++    console.error('Повреждённые данные:', e);
++    localStorage.removeItem('currentUser');          // удалить битые данные
++    return null;
++  }
+ }
+ 
+-// При загрузке страницы — заполнить поля если есть сохранённые данные
++// При загрузке страницы — автозаполнение если данные есть
+ const user = loadUser();
+-// Если user не null — заполните поля name и email
++if (user) {
++  document.querySelector('[name="name"]').value  = user.name;  // заполнить поле имя
++  document.querySelector('[name="email"]').value = user.email; // заполнить email
++}
+
+======================================================================
+FILE: 00-theory-06-modal.md
+======================================================================
+TASK:
+1. Найдите диалоговое окно `#confirmModal` и кнопки `#openBtn`, `#closeBtn`.
+2. По клику на `#openBtn` открывайте окно методом `.showModal()`.
+3. По клику на `#closeBtn` закрывайте окно методом `.close()`.
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -1,22 +1,7 @@
+-<!DOCTYPE html>
+-<html lang="ru">
+-<head>
+-  <meta charset="UTF-8">
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>Модальные окна</title>
+-  <link rel="preconnect" href="https://fonts.googleapis.com">
+-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+-  <link rel="stylesheet" href="css/style.css">
+-</head>
+-<body>
+-  <button id="openModalBtn">Открыть окно</button>
+-  <div class="modal-overlay" id="modalOverlay">
+-    <div class="modal-box">
+-      <h3>Заголовок окна</h3>
+-      <p>Контент модального окна</p>
+-      <button id="closeModalBtn">Закрыть</button>
+-    </div>
+-  </div>
+-</body>
+-</html>
++<button id="openBtn" class="btn">Забронировать</button>
++
++<dialog id="confirmModal">
++  <h3>Подтвердите действие</h3>
++  <p>Вы уверены, что хотите продолжить?</p>
++  <button id="closeBtn" class="btn">Закрыть</button>
++</dialog>
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -2,4 +2,12 @@
+ const openBtn = document.querySelector('#openBtn');
+ const closeBtn = document.querySelector('#closeBtn');
+ 
+-// Навесьте слушатели клика на openBtn и closeBtn
++// Открытие модального окна с затемнением
++openBtn.addEventListener('click', () => {
++  modal.showModal();
++});
++
++// Закрытие окна
++closeBtn.addEventListener('click', () => {
++  modal.close();
++});
+
+======================================================================
+FILE: 01-create-login-page.md
+======================================================================
+TASK:
+Изучите каркас страницы авторизации. Внутри `<main>` пока есть только заголовки.
+*(Скопируйте этот каркас в свой редактор, если вы пишете код локально, или просто переходите к следующему шагу).*
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -39,7 +39,17 @@
+       <div class="form-card">
+         <div id="loginAlert" class="form-alert"></div>
+         <form id="loginForm" novalidate>
+-          <!-- Поля будут добавлены на следующем шаге -->
++          <div class="form-group">
++            <label class="form-label" for="login">Логин</label>
++            <input type="text" id="login" class="form-control" placeholder="admin" required>
++          </div>
++
++          <div class="form-group">
++            <label class="form-label" for="password">Пароль</label>
++            <input type="password" id="password" class="form-control" placeholder="12345" required>
++          </div>
++
++          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Войти</button>
+         </form>
+       </div>
+     </div>
+
+======================================================================
+FILE: 02-login-html-form.md
+======================================================================
+TASK:
+Вставьте HTML-код формы входа под подзаголовком.
+
+DIFF FOR html:solution (vs html:start):
+NO DIFF FOUND (Identical!)
+
+======================================================================
+FILE: 03-create-register-page.md
+======================================================================
+TASK:
+Изучите каркас страницы регистрации.
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -3,7 +3,7 @@
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-  <title>Вход — СмартОфис</title>
++  <title>Регистрация — СмартОфис</title>
+   <!-- Подключение шрифта Inter через Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+@@ -25,7 +25,7 @@
+           <li><a href="../index.html" class="nav-link">Главная</a></li>
+           <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+           <li id="myBookingsNavItem" style="display: none;"><a href="my-bookings.html" class="nav-link">Мои бронирования</a></li>
+-          <li><a href="login.html" class="nav-link nav-btn active" id="authNavBtn">Войти</a></li>
++          <li><a href="login.html" class="nav-link nav-btn" id="authNavBtn">Войти</a></li>
+         </ul>
+       </nav>
+     </div>
+@@ -33,23 +33,48 @@
+ 
+   <main class="main">
+     <div class="container">
+-      <h1 class="page-title">Авторизация</h1>
+-      <p class="page-subtitle">Войдите в личный кабинет (тестовые данные: admin / 12345)</p>
++      <h1 class="page-title">Регистрация в СмартОфис</h1>
++      <p class="page-subtitle">Создайте аккаунт для быстрого бронирования рабочих мест</p>
+ 
+       <div class="form-card">
+-        <div id="loginAlert" class="form-alert"></div>
+-        <form id="loginForm" novalidate>
++        <form id="registerForm" novalidate>
+           <div class="form-group">
+             <label class="form-label" for="login">Логин</label>
+-            <input type="text" id="login" class="form-control" placeholder="admin" required>
++            <input type="text" id="login" class="form-control" placeholder="Введите логин" required>
++            <div class="error-text">Поле обязательно для заполнения</div>
+           </div>
+ 
+           <div class="form-group">
+             <label class="form-label" for="password">Пароль</label>
+-            <input type="password" id="password" class="form-control" placeholder="12345" required>
++            <input type="password" id="password" class="form-control" placeholder="Минимум 6 символов" required>
++            <div class="error-text">Поле обязательно для заполнения</div>
+           </div>
+ 
+-          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Войти</button>
++          <div class="form-group">
++            <label class="form-label" for="confirmPassword">Подтверждение пароля</label>
++            <input type="password" id="confirmPassword" class="form-control" placeholder="Повторите пароль" required>
++            <div class="error-text">Пароли не совпадают</div>
++          </div>
++
++          <div class="form-group">
++            <label class="form-label" for="fullName">ФИО</label>
++            <input type="text" id="fullName" class="form-control" placeholder="Иванов Иван Иванович" required>
++            <div class="error-text">Поле обязательно для заполнения</div>
++          </div>
++
+... (truncated, total diff lines: 76)
+
+======================================================================
+FILE: 04-register-html-form.md
+======================================================================
+TASK:
+Скопируйте большую форму регистрации и вставьте её под подзаголовком.
+
+DIFF FOR html:solution (vs html:start):
+NO DIFF FOUND (Identical!)
+
+======================================================================
+FILE: 05-css-form-card.md
+======================================================================
+TASK:
+Откройте вкладку `css` (`style.css`). В самом конце добавьте стили для карточки формы.
+
+DIFF FOR css:solution (vs css:start):
+--- css:start
++++ css:solution
+@@ -492,3 +492,17 @@
+   gap: 15px;
+   margin-top: auto;
+ }
++
++/* Формы регистрации и входа */
++.form-card {
++  max-width: 480px;
++  margin: 30px auto 0 auto;
++  padding: 25px;
++  border: 1px solid #dddddd;
++  border-radius: 6px;
++  background-color: #ffffff;
++}
++
++.form-group {
++  margin-bottom: 15px;
++}
+
+======================================================================
+FILE: 06-css-form-inputs.md
+======================================================================
+TASK:
+Добавьте стили для `.form-label` и `.form-control` под вашими предыдущими стилями.
+
+DIFF FOR css:solution (vs css:start):
+--- css:start
++++ css:solution
+@@ -506,3 +506,19 @@
+ .form-group {
+   margin-bottom: 15px;
+ }
++
++.form-label {
++  display: block;
++  font-size: 14px;
++  font-weight: 600;
++  margin-bottom: 5px;
++}
++
++.form-control {
++  width: 100%;
++  padding: 8px 12px;
++  border: 1px solid #dddddd;
++  border-radius: 4px;
++  font-size: 14px;
++  font-family: inherit;
++}
+
+======================================================================
+FILE: 07-css-validation-styles.md
+======================================================================
+TASK:
+Добавьте эти стили ошибок в конец файла. На этом с версткой и стилизацией форм покончено!
+
+DIFF FOR css:solution (vs css:start):
+--- css:start
++++ css:solution
+@@ -522,3 +522,35 @@
+   font-size: 14px;
+   font-family: inherit;
+ }
++
++/* Красная подсветка поля при ошибке валидации */
++.form-control.is-invalid {
++  border-color: #dc3545;
++  background-color: #fff8f8;
++}
++
++.error-text {
++  color: #dc3545;
++  font-size: 12px;
++  margin-top: 4px;
++  display: none;
++}
++
++.form-control.is-invalid + .error-text {
++  display: block;
++}
++
++.form-alert {
++  padding: 10px;
++  border-radius: 4px;
++  margin-bottom: 15px;
++  font-size: 14px;
++  display: none;
++}
++
++.form-alert.alert-danger {
++  background-color: #f8d7da;
++  color: #721c24;
++  border: 1px solid #f5c6cb;
++  display: block;
++}
+
+======================================================================
+FILE: 08-init-register-skeleton.md
+======================================================================
+TASK:
+Создайте новую функцию в самом низу вашего файла `main.js`. И сразу пропишите её вызов в событии `DOMContentLoaded` в самом верху (рядом с `initRoomDetails()`).
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -3,6 +3,7 @@
+   initNavigation();
+   renderCatalog();
+   initRoomDetails();
++  initRegisterForm();
+ });
+ 
+ function showNotification(message, type = 'success') {
+@@ -169,3 +170,8 @@
+     </div>
+   `;
+ }
++
++function initRegisterForm() {
++  const form = document.getElementById('registerForm');
++  if (!form) return;
++}
+
+======================================================================
+FILE: 09-form-submit-event.md
+======================================================================
+TASK:
+Повесьте слушатель события `submit` на вашу найденную форму.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -174,4 +174,8 @@
+ function initRegisterForm() {
+   const form = document.getElementById('registerForm');
+   if (!form) return;
++
++  form.addEventListener('submit', (e) => {
++    e.preventDefault();
++  });
+ }
+
+======================================================================
+FILE: 10-validation-flag.md
+======================================================================
+TASK:
+Объявите переменную `isValid` внутри функции-обработчика. Обратите внимание, что мы используем `let`, так как значение переменной будет меняться.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -177,5 +177,6 @@
+ 
+   form.addEventListener('submit', (e) => {
+     e.preventDefault();
++    let isValid = true;
+   });
+ }
+
+======================================================================
+FILE: 11-fields-array.md
+======================================================================
+TASK:
+Объявите массив со списком ID под вашей переменной `isValid`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -178,5 +178,6 @@
+   form.addEventListener('submit', (e) => {
+     e.preventDefault();
+     let isValid = true;
++    const fields = ['login', 'password', 'confirmPassword', 'fullName', 'email', 'phone'];
+   });
+ }
+
+======================================================================
+FILE: 12-validation-loop.md
+======================================================================
+TASK:
+Скопируйте и изучите этот умный цикл.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -179,5 +179,15 @@
+     e.preventDefault();
+     let isValid = true;
+     const fields = ['login', 'password', 'confirmPassword', 'fullName', 'email', 'phone'];
++    fields.forEach(id => {
++      const input = document.getElementById(id);
++      if (!input) return;
++      if (!input.value.trim()) {
++        input.classList.add('is-invalid');
++        isValid = false;
++      } else {
++        input.classList.remove('is-invalid');
++      }
++    });
+   });
+ }
+
+======================================================================
+FILE: 13-password-match.md
+======================================================================
+TASK:
+Добавьте эту проверку сразу после цикла.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -189,5 +189,12 @@
+         input.classList.remove('is-invalid');
+       }
+     });
++
++    const pass = document.getElementById('password');
++    const confirm = document.getElementById('confirmPassword');
++    if (pass && confirm && pass.value && confirm.value && pass.value !== confirm.value) {
++      confirm.classList.add('is-invalid');
++      isValid = false;
++    }
+   });
+ }
+
+======================================================================
+FILE: 14-register-success-toast.md
+======================================================================
+TASK:
+Добавьте итоговую проверку успешной регистрации.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -196,5 +196,10 @@
+       confirm.classList.add('is-invalid');
+       isValid = false;
+     }
++
++    if (isValid) {
++      showNotification('Пользователь зарегистрирован успешно!', 'success');
++      form.reset();
++    }
+   });
+ }
+
+======================================================================
+FILE: 15-register-redirect.md
+======================================================================
+TASK:
+Добавьте логику сброса и редиректа внутрь блока `if (isValid)`. Функция регистрации полностью готова!
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -200,6 +200,9 @@
+     if (isValid) {
+       showNotification('Пользователь зарегистрирован успешно!', 'success');
+       form.reset();
++      setTimeout(() => {
++        window.location.href = 'login.html';
++      }, 1200);
+     }
+   });
+ }
+
+======================================================================
+FILE: 16-init-login-skeleton.md
+======================================================================
+TASK:
+Создайте новую функцию в самом низу файла `main.js`. Добавьте в нее `e.preventDefault()`, чтобы страница не перезагружалась при попытке войти.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -206,3 +206,12 @@
+     }
+   });
+ }
++
++function initLoginForm() {
++  const form = document.getElementById('loginForm');
++  if (!form) return;
++
++  form.addEventListener('submit', (e) => {
++    e.preventDefault();
++  });
++}
+
+======================================================================
+FILE: 17-login-values.md
+======================================================================
+TASK:
+Внутри обработчика `submit` получите значения логина и пароля, не забыв очистить их от пробелов с помощью `.trim()`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -213,5 +213,7 @@
+ 
+   form.addEventListener('submit', (e) => {
+     e.preventDefault();
++    const login = document.getElementById('login').value.trim();
++    const pass = document.getElementById('password').value.trim();
+   });
+ }
+
+======================================================================
+FILE: 18-login-credentials-check.md
+======================================================================
+TASK:
+Напишите условие `if / else`. Если логин и пароль совпадают с эталонными, мы выполним логику успеха. Если нет — логику ошибки.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -215,5 +215,12 @@
+     e.preventDefault();
+     const login = document.getElementById('login').value.trim();
+     const pass = document.getElementById('password').value.trim();
++    const alertBox = document.getElementById('loginAlert');
++
++    if (login === 'admin' && pass === '12345') {
++      // success
++    } else {
++      // error
++    }
+   });
+ }
+
+======================================================================
+FILE: 19-login-success-storage.md
+======================================================================
+TASK:
+Вставьте логику успешной авторизации:
+1. Запись в хранилище.
+2. Скрытие алерта об ошибке (вдруг он висел с прошлой неудачной попытки).
+3. Показ зеленого тоста успеха.
+4. Редирект на пока еще несуществующую страницу `my-bookings.html` (мы создадим её в будущих модулях).
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -218,7 +218,12 @@
+     const alertBox = document.getElementById('loginAlert');
+ 
+     if (login === 'admin' && pass === '12345') {
+-      // success
++      localStorage.setItem('currentUser', login);
++      if (alertBox) alertBox.style.display = 'none';
++      showNotification('Успешный вход в систему!', 'success');
++      setTimeout(() => {
++        window.location.href = 'my-bookings.html';
++      }, 1000);
+     } else {
+       // error
+     }
+
+======================================================================
+FILE: 20-login-error-ui.md
+======================================================================
+TASK:
+Вставьте логику ошибки в блок `else`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -225,7 +225,12 @@
+         window.location.href = 'my-bookings.html';
+       }, 1000);
+     } else {
+-      // error
++      if (alertBox) {
++        alertBox.textContent = 'Неверный логин или пароль';
++        alertBox.className = 'form-alert alert-danger';
++        alertBox.style.display = 'block';
++      }
++      showNotification('Неверный логин или пароль', 'danger');
+     }
+   });
+ }
+
+======================================================================
+FILE: 21-call-form-functions.md
+======================================================================
+TASK:
+В самом верху файла `main.js` найдите слушатель события `DOMContentLoaded` и добавьте внутрь него вызов обеих новых функций.
+
+На этом Модуль 6 окончен! Вы научились круто валидировать формы. Попробуйте теперь зайти на страницу регистрации и нажать кнопку отправки, оставив поля пустыми!
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -4,6 +4,7 @@
+   renderCatalog();
+   initRoomDetails();
+   initRegisterForm();
++  initLoginForm();
+ });
+ 
+ function showNotification(message, type = 'success') {

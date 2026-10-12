@@ -45,18 +45,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
+  background: var(--scrollbar-thumb, rgba(255, 255, 255, 0.18));
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--scrollbar-thumb-hover, rgba(255, 255, 255, 0.35));
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  scrollbar-color: var(--scrollbar-thumb, rgba(255, 255, 255, 0.18)) transparent;
 }
 
 /* ── App Layout ── */
@@ -440,7 +440,7 @@ body.is-resizing-row iframe {
 }
 
 .md-content tr:hover td {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: var(--row-hover-bg, rgba(255, 255, 255, 0.02));
 }
 
 /* ── Panel Header ── */

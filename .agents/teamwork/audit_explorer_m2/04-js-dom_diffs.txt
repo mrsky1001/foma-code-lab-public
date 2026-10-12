@@ -1,0 +1,689 @@
+
+======================================================================
+FILE: 00-theory-01-js-basics.md
+======================================================================
+TASK:
+Объявите три переменные:
+1. `officeName` со значением `'СмартОфис'` (строка);
+2. `roomsCount` со значением `8` (число);
+3. `isOpen` со значением `true` (булево).
+
+Сформируйте с помощью шаблонной строки переменную `statusText`:  
+`Добро пожаловать в СмартОфис! Доступно комнат: 8.`  
+Выведите `statusText` в консоль через `console.log`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,5 +1,11 @@
+-// 1. Объявите переменные officeName, roomsCount, isOpen
++// 1. Объявляем переменные
++const officeName = 'СмартОфис';
++const roomsCount = 8;
++const isOpen = true;
+ 
+-// 2. Сформируйте шаблонную строку statusText
++// 2. Формируем строку с интерполяцией
++const statusText = `Добро пожаловать в ${officeName}! Доступно комнат: ${roomsCount}.`;
+ 
+-// 3. Выведите результат в консоль
++// 3. Выводим результат в консоль разработчика
++console.log(statusText);
++console.log('Открыт ли офис:', isOpen);
+
+======================================================================
+FILE: 00-theory-02-functions.md
+======================================================================
+TASK:
+1. Напишите функцию `calcCost(price, hours)`, которая возвращает произведение цены на количество часов.
+2. Напишите однострочную стрелочную функцию `formatBadge(name, count)`, которая возвращает строку вида: `[name]: count комнат`.
+3. Вызовите обе функции с тестовыми данными и выведите результаты в консоль через `console.log`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,5 +1,14 @@
+-// 1. Напишите функцию calcCost(price, hours)
++// 1. Обычная функция для расчёта стоимости
++function calcCost(price, hours) {
++  return price * hours;
++}
+ 
+-// 2. Напишите стрелочную функцию formatBadge(name, count)
++// 2. Стрелочная функция с неявным возвратом
++const formatBadge = (name, count) => `${name}: ${count} комнат`;
+ 
+-// 3. Вызовите их и выведите результаты
++// 3. Проверка работы
++const total = calcCost(1200, 4);
++const badge = formatBadge('Премиум', 3);
++
++console.log('Итоговая стоимость:', total); // 4800
++console.log('Бейдж:', badge);              // Премиум: 3 комнат
+
+======================================================================
+FILE: 00-theory-03-dom.md
+======================================================================
+TASK:
+Найдите элемент с атрибутом `data-id="1"`, прочитайте его `data-id` через `dataset`, измените `textContent` заголовка h3 внутри.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,6 +1,7 @@
+-// HTML: <div class="card" data-id="1"><h3>Старый заголовок</h3></div>
++const card = document.querySelector('[data-id="1"]'); // найти карточку с data-id=1
+ 
+-const card = document.querySelector('[data-id="1"]');
++const id = card.dataset.id;   // прочитать data-id через dataset → '1' (строка)
++console.log('ID карточки:', id);
+ 
+-// Прочитайте card.dataset.id
+-// Найдите h3 внутри card и измените textContent на 'Новый заголовок'
++const title = card.querySelector('h3'); // найти h3 ВНУТРИ card (не во всём document)
++title.textContent = 'Новый заголовок';  // изменить текст безопасно через textContent
+
+======================================================================
+FILE: 00-theory-04-selector.md
+======================================================================
+TASK:
+Найдите все карточки, конвертируйте NodeList в массив и отфильтруйте только доступные (с `data-available="true"`).
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,7 +1,10 @@
+-// HTML: несколько <div class="card" data-available="true/false">
++const allCards = document.querySelectorAll('.card'); // NodeList всех карточек
+ 
+-const allCards = document.querySelectorAll('.card');
++// Конвертировать NodeList → Array чтобы использовать .filter()
++const cardsArray = [...allCards];
+ 
+-// 1. Конвертируйте в массив через spread или Array.from
+-// 2. Отфильтруйте: оставьте только data-available="true"
+-// 3. Выведите количество доступных
++// Отфильтровать: оставить только те где data-available="true"
++const available = cardsArray.filter(card => card.dataset.available === 'true');
++// dataset.available всегда строка, поэтому сравниваем с 'true' а не true
++
++console.log('Доступно:', available.length); // количество доступных карточек
+
+======================================================================
+FILE: 00-theory-05-create.md
+======================================================================
+TASK:
+Напишите функцию `addItem(text)` которая создаёт `<li>` с кнопкой удаления и добавляет в `<ul>`. При клике на кнопку — `<li>` удаляется.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,9 +1,21 @@
+ const list = document.querySelector('#list');
+ 
+ function addItem(text) {
+-  // Создайте li с текстом и кнопкой удаления
+-  // Добавьте в list
+-  // Повесьте обработчик удаления
++  // insertAdjacentHTML — быстро и удобно для HTML-шаблонов
++  list.insertAdjacentHTML('beforeend', `
++    <li>
++      ${text}
++      <button class="btn-del">Удалить</button>
++    </li>
++  `);
++
++  // Найти только что добавленный li (последний дочерний элемент)
++  const newLi = list.lastElementChild;
++
++  // Повесить обработчик на кнопку удаления внутри этого li
++  newLi.querySelector('.btn-del').addEventListener('click', () => {
++    newLi.remove(); // удалить весь li
++  });
+ }
+ 
+ addItem('Первый пункт');
+
+======================================================================
+FILE: 00-theory-06-events.md
+======================================================================
+TASK:
+1. Найдите кнопку `#themeToggle`.
+2. Добавьте к ней слушатель события `'click'`.
+3. Внутри обработчика переключайте класс `'dark-theme'` у элемента `document.body` с помощью метода `classList.toggle('dark-theme')`.
+4. Выводите в консоль сообщение `'Тема переключена'`.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,6 +1,7 @@
+-// HTML: <button id="themeToggle">Сменить тему</button>
+-
+ const toggleBtn = document.querySelector('#themeToggle');
+ 
+-// Повесьте слушатель клика на toggleBtn
+-// Переключайте класс 'dark-theme' на document.body
++// Обработчик клика для смены темы
++toggleBtn.addEventListener('click', () => {
++  document.body.classList.toggle('dark-theme');
++  console.log('Тема переключена');
++});
+
+======================================================================
+FILE: 00-theory-07-timeout.md
+======================================================================
+TASK:
+Напишите функцию `autoHideAlert(selector, delay)`, которая находит блок с переданным селектором и через `delay` миллисекунд скрывает его (устанавливает свойство `element.style.display = 'none'`).
+
+Вызовите функцию для элемента `#alertBox` с задержкой `2000` мс.
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,10 +1,12 @@
+-// HTML: <div id="alertBox">Успешно сохранено!</div>
++// Функция для отложенного скрытия плашки
++function autoHideAlert(selector, delay) {
++  const element = document.querySelector(selector);
++  if (!element) return;
+ 
+-function autoHideAlert(selector, delay) {
+-  // 1. Найдите элемент по селектору
+-  
+-  // 2. Установите setTimeout на delay миллисекунд
+-  // Внутри коллбэка задайте element.style.display = 'none'
++  setTimeout(() => {
++    element.style.display = 'none';
++  }, delay);
+ }
+ 
+-// 3. Вызовите autoHideAlert('#alertBox', 2000)
++// Запускаем скрытие через 2 секунды
++autoHideAlert('#alertBox', 2000);
+
+======================================================================
+FILE: 00-theory-08-localstorage.md
+======================================================================
+TASK:
+Сохраните объект пользователя в `localStorage`. Загрузите его обратно через `JSON.parse` с защитой `try/catch`. Если данных нет — выведите «Нет сохранённых данных».
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,7 +1,18 @@
+ const user = { name: 'Студент', theme: 'dark' };
+ 
+-// 1. Сохраните user в localStorage под ключом 'user'
++// Сохранить объект: сначала преобразовать в строку через JSON.stringify
++localStorage.setItem('user', JSON.stringify(user));
+ 
+-// 2. Прочитайте сохранённые данные с try/catch
+-
+-// 3. Выведите name пользователя или 'Нет данных'
++// Безопасное чтение через try/catch
++try {
++  const raw = localStorage.getItem('user'); // получить строку или null
++  if (!raw) {
++    console.log('Нет сохранённых данных');  // ключ не найден
++  } else {
++    const loaded = JSON.parse(raw);          // строку → объект
++    console.log('Привет,', loaded.name);     // → 'Привет, Студент'
++  }
++} catch (e) {
++  console.error('Ошибка чтения:', e);
++  localStorage.removeItem('user');           // удалить повреждённые данные
++}
+
+======================================================================
+FILE: 01-create-js-file.md
+======================================================================
+TASK:
+В `<head>` после `<link rel="icon">` добавьте:
+
+DIFF FOR html:solution (vs html:start):
+--- html:start
++++ html:solution
+@@ -9,6 +9,7 @@
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
++  <script src="js/main.js" defer></script>
+ </head>
+ <body>
+   <header class="header">
+
+======================================================================
+FILE: 02-dom-content-loaded.md
+======================================================================
+TASK:
+В `js/main.js` добавьте обёртку:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1 +1,4 @@
+-
++// СмартОфис — Скрипт веб-приложения (Вебинар 4)
++document.addEventListener('DOMContentLoaded', () => {
++  
++});
+
+======================================================================
+FILE: 03-toast-function-skeleton.md
+======================================================================
+TASK:
+После блока `DOMContentLoaded` добавьте пустую функцию:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -2,3 +2,8 @@
+ document.addEventListener('DOMContentLoaded', () => {
+   
+ });
++
++// Функция всплывающих уведомлений (Toast) справа внизу
++function showNotification(message, type = 'success') {
++  
++}
+
+======================================================================
+FILE: 04-toast-get-container.md
+======================================================================
+TASK:
+Внутри функции добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -5,5 +5,5 @@
+ 
+ // Функция всплывающих уведомлений (Toast) справа внизу
+ function showNotification(message, type = 'success') {
+-  
++  let container = document.getElementById('toast-container');
+ }
+
+======================================================================
+FILE: 05-toast-create-container.md
+======================================================================
+TASK:
+После строки с `getElementById` добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -6,4 +6,10 @@
+ // Функция всплывающих уведомлений (Toast) справа внизу
+ function showNotification(message, type = 'success') {
+   let container = document.getElementById('toast-container');
++  if (!container) {
++    container = document.createElement('div');
++    container.id = 'toast-container';
++    container.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;';
++    document.body.appendChild(container);
++  }
+ }
+
+======================================================================
+FILE: 06-toast-create-element.md
+======================================================================
+TASK:
+После блока `if (!container)` добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -12,4 +12,6 @@
+     container.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px;';
+     document.body.appendChild(container);
+   }
++  const toast = document.createElement('div');
++  toast.textContent = message;
+ }
+
+======================================================================
+FILE: 07-toast-append.md
+======================================================================
+TASK:
+Добавьте строку:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -14,4 +14,7 @@
+   }
+   const toast = document.createElement('div');
+   toast.textContent = message;
++  const colors = { success: '#28a745', error: '#dc3545', info: '#17a2b8' };
++  toast.style.cssText = `background-color: ${colors[type] || colors.success}; color: #fff; padding: 12px 20px; border-radius: 6px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 1; transform: translateY(0); transition: none;`;
++  container.appendChild(toast);
+ }
+
+======================================================================
+FILE: 08-toast-timeout-skeleton.md
+======================================================================
+TASK:
+Добавьте таймер:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -17,4 +17,7 @@
+   const colors = { success: '#28a745', error: '#dc3545', info: '#17a2b8' };
+   toast.style.cssText = `background-color: ${colors[type] || colors.success}; color: #fff; padding: 12px 20px; border-radius: 6px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 1; transform: translateY(0); transition: none;`;
+   container.appendChild(toast);
++  setTimeout(() => {
++    
++  }, 3500);
+ }
+
+======================================================================
+FILE: 09-toast-animation-out.md
+======================================================================
+TASK:
+Внутри setTimeout добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -18,6 +18,8 @@
+   toast.style.cssText = `background-color: ${colors[type] || colors.success}; color: #fff; padding: 12px 20px; border-radius: 6px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 1; transform: translateY(0); transition: none;`;
+   container.appendChild(toast);
+   setTimeout(() => {
+-    
++    toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
++    toast.style.opacity = '0';
++    toast.style.transform = 'translateY(10px)';
+   }, 3500);
+ }
+
+======================================================================
+FILE: 10-toast-remove.md
+======================================================================
+TASK:
+После трёх строк анимации добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -21,5 +21,6 @@
+     toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+     toast.style.opacity = '0';
+     toast.style.transform = 'translateY(10px)';
++    setTimeout(() => toast.remove(), 300);
+   }, 3500);
+ }
+
+======================================================================
+FILE: 11-nav-css-active.md
+======================================================================
+TASK:
+В `css/style.css` добавьте:
+
+DIFF FOR css:solution (vs css:start):
+--- css:start
++++ css:solution
+@@ -279,3 +279,7 @@
+   text-align: center;
+   margin-top: 20px;
+ }
++.nav-link.active {
++  color: #007bff;
++  background-color: #eaf2ff;
++}
+
+======================================================================
+FILE: 12-init-nav-function.md
+======================================================================
+TASK:
+В `DOMContentLoaded` добавьте вызов, и создайте функцию:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,6 +1,6 @@
+ // СмартОфис — Скрипт веб-приложения (Вебинар 4)
+ document.addEventListener('DOMContentLoaded', () => {
+-  
++  initNavigation();
+ });
+ 
+ // Функция всплывающих уведомлений (Toast) справа внизу
+@@ -24,3 +24,8 @@
+     setTimeout(() => toast.remove(), 300);
+   }, 3500);
+ }
++
++// Функция подсветки активного пункта навигации
++function initNavigation() {
++  
++}
+
+======================================================================
+FILE: 13-get-nav-links.md
+======================================================================
+TASK:
+Внутри `initNavigation` добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -27,5 +27,6 @@
+ 
+ // Функция подсветки активного пункта навигации
+ function initNavigation() {
+-  
++  const navLinks = document.querySelectorAll('.nav-link');
++  const current = window.location.pathname.split('/').pop() || 'index.html';
+ }
+
+======================================================================
+FILE: 14-nav-links-loop.md
+======================================================================
+TASK:
+Добавьте цикл после получения links:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -29,4 +29,7 @@
+ function initNavigation() {
+   const navLinks = document.querySelectorAll('.nav-link');
+   const current = window.location.pathname.split('/').pop() || 'index.html';
++  navLinks.forEach(link => {
++    const href = link.getAttribute('href');
++  });
+ }
+
+======================================================================
+FILE: 15-nav-highlight-index.md
+======================================================================
+TASK:
+Внутри forEach после `classList.remove` добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -31,5 +31,8 @@
+   const current = window.location.pathname.split('/').pop() || 'index.html';
+   navLinks.forEach(link => {
+     const href = link.getAttribute('href');
++    if ((current.endsWith('index.html') || current.endsWith('/') || current === '') && (href === 'index.html' || href === '../index.html')) {
++      link.classList.add('active');
++    }
+   });
+ }
+
+======================================================================
+FILE: 16-nav-highlight-catalog.md
+======================================================================
+TASK:
+После блока index.html добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -33,6 +33,8 @@
+     const href = link.getAttribute('href');
+     if ((current.endsWith('index.html') || current.endsWith('/') || current === '') && (href === 'index.html' || href === '../index.html')) {
+       link.classList.add('active');
++    } else if ((href.includes('catalog.html') || href.includes('room-details.html')) && (current.includes('catalog.html') || current.includes('room-details.html'))) {
++      link.classList.add('active');
+     }
+   });
+ }
+
+======================================================================
+FILE: 17-nav-highlight-others.md
+======================================================================
+TASK:
+Добавьте ещё два условия и вызов updateAuthNav:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -35,6 +35,8 @@
+       link.classList.add('active');
+     } else if ((href.includes('catalog.html') || href.includes('room-details.html')) && (current.includes('catalog.html') || current.includes('room-details.html'))) {
+       link.classList.add('active');
++    } else if (href && href !== 'index.html' && href !== '../index.html' && !href.includes('catalog.html') && !href.includes('room-details.html') && current === href.split('/').pop()) {
++      link.classList.add('active');
+     }
+   });
+ }
+
+======================================================================
+FILE: 18-auth-nav-function.md
+======================================================================
+TASK:
+Добавьте функцию:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -1,6 +1,7 @@
+ // СмартОфис — Скрипт веб-приложения (Вебинар 4)
+ document.addEventListener('DOMContentLoaded', () => {
+   initNavigation();
++  updateAuthNav();
+ });
+ 
+ // Функция всплывающих уведомлений (Toast) справа внизу
+@@ -40,3 +41,8 @@
+     }
+   });
+ }
++
++// Функция обновления навигации в зависимости от авторизации
++function updateAuthNav() {
++  
++}
+
+======================================================================
+FILE: 19-local-storage-check.md
+======================================================================
+TASK:
+Внутри updateAuthNav добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -44,5 +44,7 @@
+ 
+ // Функция обновления навигации в зависимости от авторизации
+ function updateAuthNav() {
+-  
++  const currentUser = localStorage.getItem('currentUser');
++  const authNavBtn = document.getElementById('auth-nav-btn');
++  const myBookingsNavItem = document.getElementById('my-bookings-nav');
+ }
+
+======================================================================
+FILE: 20-auth-logged-in-ui.md
+======================================================================
+TASK:
+Добавьте блок для авторизованного пользователя:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -47,4 +47,11 @@
+   const currentUser = localStorage.getItem('currentUser');
+   const authNavBtn = document.getElementById('auth-nav-btn');
+   const myBookingsNavItem = document.getElementById('my-bookings-nav');
++  if (currentUser) {
++    if (myBookingsNavItem) myBookingsNavItem.style.display = 'block';
++    if (authNavBtn) {
++      authNavBtn.textContent = 'Выйти';
++      authNavBtn.href = '#';
++    }
++  }
+ }
+
+======================================================================
+FILE: 21-auth-logout-event.md
+======================================================================
+TASK:
+Внутри блока `if (authNavBtn)` добавьте обработчик клика:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -52,6 +52,11 @@
+     if (authNavBtn) {
+       authNavBtn.textContent = 'Выйти';
+       authNavBtn.href = '#';
++      authNavBtn.onclick = (e) => {
++        e.preventDefault();
++        localStorage.removeItem('currentUser');
++        showNotification('Вы вышли из системы', 'info');
++      };
+     }
+   }
+ }
+
+======================================================================
+FILE: 22-auth-logout-redirect.md
+======================================================================
+TASK:
+После строки showNotification добавьте:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -56,6 +56,10 @@
+         e.preventDefault();
+         localStorage.removeItem('currentUser');
+         showNotification('Вы вышли из системы', 'info');
++        const isPages = window.location.pathname.includes('/pages/');
++        setTimeout(() => {
++          window.location.href = isPages ? '../index.html' : 'index.html';
++        }, 1000);
+       };
+     }
+   }
+
+======================================================================
+FILE: 23-auth-logged-out.md
+======================================================================
+TASK:
+После блока `if (currentUser)` добавьте `else`:
+
+DIFF FOR js:solution (vs js:start):
+--- js:start
++++ js:solution
+@@ -62,5 +62,13 @@
+         }, 1000);
+       };
+     }
++  } else {
++    if (myBookingsNavItem) myBookingsNavItem.style.display = 'none';
++    if (authNavBtn) {
++      authNavBtn.textContent = 'Войти';
++      const isPages = window.location.pathname.includes('/pages/');
++      authNavBtn.href = isPages ? 'login.html' : 'pages/login.html';
++      authNavBtn.onclick = null;
++    }
+   }
+ }

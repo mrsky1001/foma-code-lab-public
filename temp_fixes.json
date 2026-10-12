@@ -1,0 +1,170 @@
+[
+  {
+    "id": 35,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-01-js-basics.md",
+    "problem": "В теории вводятся булевы типы (`true`/`false`), но полностью отсутствует объяснение условного оператора `if / else`, логических операторов (`&&`, `||`, `!`) и строгого сравнения (`===`, `!==`). При этом практические шаги урока 04 (шаги 05, 14, 15, 16, 17, 20, 21, 23) активно используют разветвлённые условия.",
+    "fix": "Добавить раздел `## Условные конструкции: if / else` между блоками «Базовые типы данных» и «Шаблонные строки»:\n    ```markdown\n    ## Условный оператор: if / else\n\n    Чтобы программа принимала решения на основе данных, используется конструкция `if / else`:\n\n    ```js\n    const isOpen = true;\n\n    if (isOpen) {\n      console.log('Офис открыт для посещения');\n    } else {\n      console.log('Офис закрыт');\n    }\n    ```\n\n    Операторы сравнения:\n    - `===` — строгое равенство (проверяет значение и тип);\n    - `!==` — строгое неравенство;\n    - `>`, `<`, `>=`, `<=` — сравнение чисел;\n    - `!значение` — логическое отрицание («НЕ»);\n    - `&&` («И») и `||` («ИЛИ») — объединение условий.\n    ```"
+  },
+  {
+    "id": 36,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-01-js-basics.md",
+    "problem": "Задание просит объявить 3 переменные, сформировать шаблонную строку `statusText` и вывести её через `console.log`. В решении на строке 170 содержится не требуемый вызов `console.log('Открыт ли офис:', isOpen);`.",
+    "fix": "В решении (`js:solution`) удалить строку 170:\n    ```js\n    // Было:\n    console.log(statusText);\n    console.log('Открыт ли офис:', isOpen);\n\n    // Стало:\n    console.log(statusText);\n    ```"
+  },
+  {
+    "id": 37,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-03-dom.md",
+    "problem": "В уроке про DOM-дерево для демонстрации чтения и изменения элементов вызывается `document.querySelector` и контекстный `card.querySelector('h3')`, хотя сам метод `querySelector` и синтаксис селекторов детально объясняются только в следующем файле (`00-theory-04-selector.md`).",
+    "fix": "В строках 36-37 добавить вводную сноску:\n    ```markdown\n    > [!NOTE]\n    > Для нахождения элемента в DOM используется метод `document.querySelector('селектор')`. Он принимает привычный CSS-селектор класса, ID или тега. Подробно все варианты поиска мы разберём в следующей главе.\n    ```"
+  },
+  {
+    "id": 38,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-04-selector.md",
+    "problem": "В теории и практическом задании конвертируют NodeList в массив и применяют `cardsArray.filter(...)` и `.map()`. Однако массивы и их методы высшего порядка (`filter`, `map`, `find`) по учебному плану вводятся только в Модуле 05 (`05-catalog/00-theory-02-arrays.md`). Студент на данном этапе ещё не знает сигнатуру коллбэка `.filter(card => ...)`.",
+    "fix": "В теории и задании шага 04 продемонстрировать перебор через `forEach` (который уже поддерживается у NodeList и понятен студенту), либо снабдить вызов `.filter()` подробным дидактическим комментарием с опережающим объяснением."
+  },
+  {
+    "id": 39,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-05-create.md",
+    "problem": "На схеме позиций `insertAdjacentHTML` пропущена позиция `beforeend`, а `afterend` указан дважды (и внутри перед закрывающим тегом, и снаружи):\n    ```\n    <!-- beforebegin -->\n    <div class=\"catalog\">         ← afterbegin\n      [существующий контент]\n    </div>                        ← afterend\n    <!-- afterend -->\n    ```",
+    "fix": "Исправить схему на строках 44-50:\n    ```\n    <!-- beforebegin -->\n    <div class=\"catalog\">         ← afterbegin\n      [существующий контент]\n                                  ← beforeend\n    </div>\n    <!-- afterend -->\n    ```"
+  },
+  {
+    "id": 40,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-05-create.md",
+    "problem": "В задании и решении создание кнопки удаления сопровождается навешиванием слушателя клика (`addEventListener('click', ...)`), хотя тема событий начинается только со следующего файла `00-theory-06-events.md`.",
+    "fix": "Добавить комментарий перед строкой 156: `// Слушатель события 'click' — подробно разберём в следующей главе` или упростить задание до создания и добавления элементов без слушателя удаления."
+  },
+  {
+    "id": 41,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-06-events.md",
+    "problem": "В HTML кнопка имеет текст «Переключить тему» (`<button id=\"themeToggle\" class=\"btn\">Переключить тему</button>`), а в стартовом комментарии JS написано `// HTML: <button id=\"themeToggle\">Сменить тему</button>`.",
+    "fix": "В строке 119 исправить комментарий на: `// HTML: <button id=\"themeToggle\">Переключить тему</button>`."
+  },
+  {
+    "id": 42,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/00-theory-07-timeout.md",
+    "problem": "В HTML элемент имеет атрибут `id=\"alert\"` (`<div id=\"alert\" class=\"alert-box\">`), а в тексте задания, стартовом коде и решении функция вызывается с селектором `#alertBox` (`autoHideAlert('#alertBox', 2000)`). `document.querySelector('#alertBox')` возвращает `null`, срабатывает guard `if (!element) return;`, и скрытие элемента никогда не происходит!",
+    "fix": "На строке 103 заменить `id=\"alert\"` на `id=\"alertBox\"`:\n    ```html\n    <!-- Было: -->\n    <div id=\"alert\" class=\"alert-box\">Бронирование успешно оформлено!</div>\n\n    <!-- Стало: -->\n    <div id=\"alertBox\" class=\"alert-box\">Бронирование успешно оформлено!</div>\n    ```"
+  },
+  {
+    "id": 43,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/04-toast-get-container.md",
+    "problem": "В коде используется `document.getElementById('toast-container')`, хотя вся теория 03 и 04 акцентировала `querySelector`.",
+    "fix": "Добавить в текст объяснения краткую справку: `Метод getElementById('id') — классический и более быстрый способ поиска элемента строго по ID (символ '#' указывать не нужно).`"
+  },
+  {
+    "id": 44,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/07-toast-append.md",
+    "problem": "В задании от студента требуется добавить ровно одну строку: `container.appendChild(toast);`. Однако решение содержит также объявление объекта цветов `const colors = { success: '#28a745', error: '#dc3545', info: '#17a2b8' };` и инлайн-стили `toast.style.cssText = ...`. Если студент напишет только то, что просили в задании, валидация не сойдётся с решением.",
+    "fix": "Расширить текст задания в строках 16-20, включив полный добавляемый блок:\n    ```markdown\n    ## 🛠 Задание\n\n    Перед добавлением настройте внешний вид уведомления и прикрепите его к контейнеру:\n    ```js\n    const colors = { success: '#28a745', error: '#dc3545', info: '#17a2b8' };\n    toast.style.cssText = `background-color: ${colors[type] || colors.success}; color: #fff; padding: 12px 20px; border-radius: 6px; font-size: 14px; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 1; transform: translateY(0); transition: none;`;\n    container.appendChild(toast);\n    ```\n    ```"
+  },
+  {
+    "id": 45,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/14-nav-links-loop.md",
+    "problem": "Задание предлагает студенту написать:\n    ```js\n    links.forEach(link => {\n      const href = link.getAttribute('href');\n      if (!href) return;\n      link.classList.remove('active');\n    });\n    ```\n    Во-первых, переменная из шага 13 называется `navLinks`, а не `links` (при копировании из задания будет `ReferenceError: links is not defined`).\n    Во-вторых, в решении `js:solution` строки `if (!href) return;` и `link.classList.remove('active');` вовсе отсутствуют!",
+    "fix": "В задании заменить `links` на `navLinks`, а в `js:solution` добавить пропущенные строки сброса активности:\n    ```js\n    navLinks.forEach(link => {\n      const href = link.getAttribute('href');\n      if (!href) return;\n      link.classList.remove('active');\n    });\n    ```"
+  },
+  {
+    "id": 46,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/15-nav-highlight-index.md",
+    "problem": "Задание гласит: `Внутри forEach после classList.remove добавьте:`, однако из-за ошибки в шаге 14 строчки с `classList.remove` в стартовом файле нет.",
+    "fix": "Синхронизировать со стартовым кодом после исправления шага 14, либо сформулировать: `Внутри forEach после получения href добавьте:`."
+  },
+  {
+    "id": 47,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/16-nav-highlight-catalog.md",
+    "problem": "В задании предложено: `После блока index.html добавьте: } else if ...`. Если студент буквально добавит этот сниппет после блока (который уже закрыт фигурной скобкой), возникнет синтаксическая ошибка `}} else if`.",
+    "fix": "Заменить формулировку на: `Дополните условие проверкой для каталога (замените закрывающую скобку предыдущего if на конструкцию else if):` и дать чёткий фрагмент."
+  },
+  {
+    "id": 48,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/17-nav-highlight-others.md",
+    "problem": "Задание просит добавить две ветки:\n    ```js\n    } else if (href.includes('booking.html') && current.includes('booking.html')) {\n      link.classList.add('active');\n    } else if (href.includes('login.html') && current.includes('login.html')) {\n      link.classList.add('active');\n    }\n    updateAuthNav();\n    ```\n    Однако в решении `js:solution` реализовано единое универсальное условие:\n    ```js\n    } else if (href && href !== 'index.html' && href !== '../index.html' && !href.includes('catalog.html') && !href.includes('room-details.html') && current === href.split('/').pop()) {\n      link.classList.add('active');\n    }\n    ```\n    А вызов `updateAuthNav()` в решении шага 17 вообще отсутствует (он появляется только в шаге 18).",
+    "fix": "Привести задание в полное соответствие с логикой решения: описать универсальную проверку совпадения страницы и убрать вызов `updateAuthNav()` из задания 17 шага."
+  },
+  {
+    "id": 49,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/21-auth-logout-event.md",
+    "problem": "В шаге используется присваивание свойства `authNavBtn.onclick = (e) => ...`. Во всей теории учащихся учили исключительно `addEventListener`. Использование свойства `onclick` без дидактического пояснения (что это делается ради простого сброса через `onclick = null` в шаге 23) сбивает с толку.",
+    "fix": "Добавить в теорию шага пояснение: `Мы используем authNavBtn.onclick вместо addEventListener, потому что это позволяет легко удалить или перезаписать обработчик при смене состояния пользователя, просто присвоив authNavBtn.onclick = null.`"
+  },
+  {
+    "id": 50,
+    "lesson": "04-js-dom",
+    "file_path": "content/lessons/04-js-dom/23-auth-logged-out.md",
+    "problem": "В сниппете задания для ветки `else` показано только изменение `authNavBtn`:\n    ```js\n    } else {\n      if (authNavBtn) {\n        authNavBtn.textContent = 'Войти';\n        ...\n      }\n    }\n    ```\n    А в решении первой строкой в `else` выполняется скрытие пункта меню: `if (myBookingsNavItem) myBookingsNavItem.style.display = 'none';`. Студент, следующий заданию, оставит этот пункт видимым при логауте.",
+    "fix": "В сниппет задания (строка 21) добавить строку `if (myBookingsNavItem) myBookingsNavItem.style.display = 'none';`.\n\n---"
+  },
+  {
+    "id": 51,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/00-theory-06-fetch.md",
+    "problem": "Подробно объясняется сетевой запрос `fetch()` и промисы с `async/await`. Однако ни в одном практическом шаге каталога (и во всём курсе) данные по сети не запрашиваются — используется статический мок в `js/data.js`. Это создаёт у учащегося ощущение невостребованности пройденной теории.",
+    "fix": "В начало или конец файла добавить примечание:\n    ```markdown\n    > [!IMPORTANT]\n    > **Почему в нашем учебном проекте мы пока не используем реальный `fetch`?**\n    > В тренажёре код выполняется локально в браузере без запущенного бэкенд-сервера и базы данных. Поэтому в практических заданиях мы симулируем работу сервера с помощью файла `js/data.js`. Принципы работы со списком объектов при этом остаются точно такими же!\n    ```"
+  },
+  {
+    "id": 52,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/00-theory-07-tabs.md",
+    "problem": "Теоретический шаг полностью посвящён вёрстке и JS-логике переключения вкладок (Tabs). Однако в практической части каталога табы нигде не верстаются и не программируются.",
+    "fix": "Переместить материал в раздел факультативных компонентов или синхронизировать с реальным экраном карточки товара (где табы могли бы переключать «Описание» / «Характеристики» / «Отзывы»)."
+  },
+  {
+    "id": 53,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/06-create-catalog-page.md",
+    "problem": "В `<head>` файла `catalog.html` подключён внешний скрипт `<script src=\"../js/data.js\" defer></script>`, и сразу под ним добавлен инлайн-тег `<script>`, в котором повторно объявляется `const OFFICE_ROOMS = [...]`. Браузер выбрасывает критическую ошибку: `Uncaught SyntaxError: Identifier 'OFFICE_ROOMS' has already been declared`, и выполнение скриптов на странице прекращается!",
+    "fix": "Удалить дублирующий инлайн-тег `<script>` с `OFFICE_ROOMS` из `html:solution` страницы `catalog.html`, оставив только подключение `<script src=\"../js/data.js\" defer></script>`."
+  },
+  {
+    "id": 54,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/07-catalog-container.md",
+    "problem": "Задание просит студента добавить пустой контейнер: `<div class=\"rooms-grid\" id=\"catalogContainer\"></div>`. Однако в `html:start` на строке 153 этот контейнер уже присутствует! Диф между стартовым кодом и решением равен 0 (файлы идентичны). Задание невозможно выполнить осмысленно.",
+    "fix": "Удалить строку 153 (`<div class=\"rooms-grid\" id=\"catalogContainer\"></div>`) из блока `html:start`, чтобы студент добавил её самостоятельно."
+  },
+  {
+    "id": 55,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/11-render-join.md",
+    "problem": "Шаг 11 называется «Объединение строк (join)» и просит добавить `.join('')`. Однако `.join('')` уже был добавлен в шаге 09 (`09-array-map.md`, строка 483) и сохранён в шаге 10. В результате в шаге 11 диф между стартом и решением отсутствует (0 строк изменений).",
+    "fix": "В шагах 09 и 10 убрать `.join('')` из вызова `map()`, чтобы на экране между карточками появились запятые (наглядная демонстрация проблемы преобразования массива в строку), а в шаге 11 студент осознанно устранял этот баг добавлением `.join('')`."
+  },
+  {
+    "id": 56,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/13-update-index-links.md",
+    "problem": "Задание просит: `Переключитесь на вкладку html (Представим, что мы снова открыли наш index.html). Найдите все 3 карточки комнат. Измените их ссылки...`. Однако в `html:start` загружен код `pages/catalog.html` (заголовок `<title>Каталог офисов — СмартОфис</title>`). Решение же возвращает `index.html`. Вкладка со стартовым кодом содержит не тот файл.",
+    "fix": "Заменить содержимое `html:start` на актуальный `index.html`."
+  },
+  {
+    "id": 57,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/14-create-details-page.md",
+    "problem": "Как и в шаге 06, на странице детального описания подключён `<script src=\"../js/data.js\" defer></script>` и одновременно встроен инлайн-тег `<script>` с полным объявлением `const OFFICE_ROOMS = [...]`. Это приводит к фатальной ошибке повторного объявления константы в глобальной области видимости.",
+    "fix": "Удалить инлайн-блок скрипта с `OFFICE_ROOMS` из `<head>` страницы `room-details.html`."
+  },
+  {
+    "id": 58,
+    "lesson": "05-catalog",
+    "file_path": "content/lessons/05-catalog/21-data-mock-bookings.md",
+    "problem": "Задание формулируется так: `В файле js/data.js в самом низу добавьте массив MOCK_BOOKINGS`. Однако блок `js:start` содержит код файла `main.js` (с `DOMContentLoaded`, Toast, навигацией и каталогом). Блок `js:solution` затем полностью затирает весь код `main.js` содержимым файла `data.js`. Студент видит в редакторе чужой файл и теряет написанную программу.",
+    "fix": "В блоке `js:start` разместить файл `js/data.js` (с массивом `OFFICE_ROOMS`), а в `js:solution` дополнить его массивом `MOCK_BOOKINGS`.\n\n---"
+  }
+]
