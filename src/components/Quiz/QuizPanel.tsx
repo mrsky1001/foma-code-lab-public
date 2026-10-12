@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef, Fragment } from "react";
 import { X, Send, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Clock, AlertTriangle, ShieldAlert, Check, RefreshCw, CheckCheck, ChevronDown, ChevronUp, Info } from "lucide-react";
 import confetti from "canvas-confetti";
 import { type QuizQuestion, type QuizResult, ACHIEVEMENT_RANKS } from "../../types/quiz";
+import { getQuizQuestions } from "../../data/quizzes/index";
 import { pluralize } from "../../utils/pluralize";
 import "./QuizPanel.css";
 
@@ -26,17 +27,21 @@ function formatTime(seconds: number): string {
   return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 }
 
-export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplete, locked, initialResult }: Props) {
+export function QuizPanel({ lessonId, lessonTitle, questions: initialQuestions, onClose, onComplete, locked, initialResult }: Props) {
   const [started, setStarted] = useState(false);
+  const [questions, setQuestions] = useState<QuizQuestion[]>(() => {
+    if (initialResult && initialQuestions.length > 0) return initialQuestions;
+    return initialQuestions.length > 0 ? initialQuestions : getQuizQuestions(lessonId);
+  });
   const [result, setResult] = useState<QuizResult | null>(() => {
-    if (initialResult && questions.length > 0) {
+    if (initialResult && initialQuestions.length > 0) {
       return {
         lessonId,
-        score: questions.length,
-        total: questions.length,
+        score: initialQuestions.length,
+        total: initialQuestions.length,
         timestamp: Date.now(),
         passed: true,
-        questionResults: questions.map(q => ({
+        questionResults: initialQuestions.map(q => ({
           questionId: q.id,
           topic: q.topic,
           question: q.question,
@@ -50,16 +55,17 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
     return null;
   });
 
-  // Synchronize result if initialResult or questions change
+  // Synchronize result if initialResult or initialQuestions change
   useEffect(() => {
-    if (initialResult && questions.length > 0) {
+    if (initialResult && initialQuestions.length > 0) {
+      setQuestions(initialQuestions);
       setResult({
         lessonId,
-        score: questions.length,
-        total: questions.length,
+        score: initialQuestions.length,
+        total: initialQuestions.length,
         timestamp: Date.now(),
         passed: true,
-        questionResults: questions.map(q => ({
+        questionResults: initialQuestions.map(q => ({
           questionId: q.id,
           topic: q.topic,
           question: q.question,
@@ -70,17 +76,27 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
         }))
       });
     }
-  }, [initialResult, questions, lessonId]);
+  }, [initialResult, initialQuestions, lessonId]);
 
   const handleCompleteInternal = useCallback((res: QuizResult) => {
     setResult(res);
     onComplete(res);
   }, [onComplete]);
 
+  // When starting the test, always freshly shuffle both questions list and answers for every question!
+  const handleStart = useCallback(() => {
+    const fresh = getQuizQuestions(lessonId);
+    setQuestions(fresh);
+    setStarted(true);
+  }, [lessonId]);
+
+  // When retrying the test, always freshly re-shuffle both questions list and answers for every question!
   const handleRetry = useCallback(() => {
+    const fresh = getQuizQuestions(lessonId);
+    setQuestions(fresh);
     setResult(null);
     setStarted(false);
-  }, []);
+  }, [lessonId]);
 
   // ── Locked state ────────────────────────────────────────────────
   if (locked) {
@@ -156,7 +172,7 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
             <button
               className="quiz-prestart-start-btn"
-              onClick={() => setStarted(true)}
+              onClick={handleStart}
               id="quiz-start-btn"
             >
               Начать тест
@@ -199,6 +215,7 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
   // (moved to a wrapper to avoid hooks-after-early-return issue)
   return (
     <QuizPanelActive
+      key={`${lessonId}-${questions.map(q => q.id).join('-')}`}
       lessonId={lessonId}
       lessonTitle={lessonTitle}
       questions={questions}

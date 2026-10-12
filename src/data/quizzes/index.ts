@@ -24,25 +24,39 @@ const quizMap: Record<number, QuizQuestion[]> = {
 };
 
 /** Shuffle array with Fisher-Yates */
-function shuffle<T>(arr: T[]): T[] {
+export function shuffle<T>(arr: readonly T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+    const temp = a[i];
+    a[i] = a[j];
+    a[j] = temp;
   }
   return a;
+}
+
+/** Randomize options and update correctIndex for a single question */
+export function shuffleQuestionOptions(q: QuizQuestion): QuizQuestion {
+  const correctText = q.options[q.correctIndex];
+  const optionIndices = q.options.map((_, i) => i);
+  const shuffledIndices = shuffle(optionIndices);
+  const newOptions = shuffledIndices.map(i => q.options[i]);
+  const newCorrectIndex = newOptions.indexOf(correctText);
+
+  return {
+    ...q,
+    options: newOptions,
+    correctIndex: newCorrectIndex !== -1 ? newCorrectIndex : 0,
+  };
 }
 
 /** Get 25 shuffled questions for a given lesson id, with shuffled options */
 export function getQuizQuestions(lessonId: number): QuizQuestion[] {
   const base = quizMap[lessonId] ?? [];
-  return shuffle(base).slice(0, 25).map(q => {
-    // Build index array [0,1,2,3], shuffle it
-    const indices = shuffle([0, 1, 2, 3]);
-    const newOptions = indices.map(i => q.options[i]);
-    const newCorrectIndex = indices.indexOf(q.correctIndex);
-    return { ...q, options: newOptions, correctIndex: newCorrectIndex };
-  });
+  // 1. Randomize question order
+  const shuffledQuestions = shuffle(base).slice(0, 25);
+  // 2. Randomize answer options for each question
+  return shuffledQuestions.map(q => shuffleQuestionOptions(q));
 }
 
 export function hasQuizForLesson(lessonId: number): boolean {
