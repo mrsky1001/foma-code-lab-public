@@ -1,0 +1,3272 @@
+{
+  "1": [
+    {
+      "id": 1,
+      "topic": "HTML-теги",
+      "question": "Что такое HTML-тег?",
+      "options": [
+        "Инструкция для браузера об отображении содержимого",
+        "Стиль CSS для элемента",
+        "Функция JavaScript",
+        "Переменная в коде"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"HTML-теги\",      question: \"Что такое HTML-тег?\",                                                    options: [\"Инструкция для браузера об отображении содержимого\",\"Стиль CSS для элемента\",\"Функция JavaScript\",\"Переменная в коде\"],              correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "HTML-теги",
+      "question": "Как правильно записать открывающий тег параграфа?",
+      "options": [
+        "<p>",
+        "[p]",
+        "(p)",
+        "<P/>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"HTML-теги\",      question: \"Как правильно записать открывающий тег параграфа?\",                       options: [\"<p>\",\"[p]\",\"(p)\",\"<P/>\"],                                                                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "HTML-теги",
+      "question": "Какой тег используется для создания заголовка первого уровня?",
+      "options": [
+        "<h1>",
+        "<head>",
+        "<header>",
+        "<title>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"HTML-теги\",      question: \"Какой тег используется для создания заголовка первого уровня?\",           options: [\"<h1>\",\"<head>\",\"<header>\",\"<title>\"],                                                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "Структура",
+      "question": "Какой тег обозначает корневой элемент HTML-документа?",
+      "options": [
+        "<html>",
+        "<body>",
+        "<head>",
+        "<root>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"Структура\",      question: \"Какой тег обозначает корневой элемент HTML-документа?\",                   options: [\"<html>\",\"<body>\",\"<head>\",\"<root>\"],                                                                                                     correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "Структура",
+      "question": "Где размещается видимое содержимое страницы?",
+      "options": [
+        "В теге <body>",
+        "В теге <head>",
+        "В теге <html>",
+        "В теге <title>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"Структура\",      question: \"Где размещается видимое содержимое страницы?\",                            options: [\"В теге <body>\",\"В теге <head>\",\"В теге <html>\",\"В теге <title>\"],                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "Структура",
+      "question": "Для чего служит тег <head>?",
+      "options": [
+        "Метаданные и подключение ресурсов",
+        "Отображение заголовка страницы",
+        "Навигационное меню",
+        "Основное содержимое"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"Структура\",      question: \"Для чего служит тег <head>?\",                                             options: [\"Метаданные и подключение ресурсов\",\"Отображение заголовка страницы\",\"Навигационное меню\",\"Основное содержимое\"],                          correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "Параграфы",
+      "question": "Какой тег создаёт параграф текста?",
+      "options": [
+        "<p>",
+        "<paragraph>",
+        "<text>",
+        "<div>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"Параграфы\",      question: \"Какой тег создаёт параграф текста?\",                                      options: [\"<p>\",\"<paragraph>\",\"<text>\",\"<div>\"],                                                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "Параграфы",
+      "question": "Что произойдёт, если не закрыть тег <p>?",
+      "options": [
+        "Браузер закроет его автоматически, но это плохая практика",
+        "Страница не отобразится",
+        "Весь текст исчезнет",
+        "Появится ошибка JS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"Параграфы\",      question: \"Что произойдёт, если не закрыть тег <p>?\",                                options: [\"Браузер закроет его автоматически, но это плохая практика\",\"Страница не отобразится\",\"Весь текст исчезнет\",\"Появится ошибка JS\"],           correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "Списки",
+      "question": "Какой тег создаёт ненумерованный список?",
+      "options": [
+        "<ul>",
+        "<ol>",
+        "<list>",
+        "<dl>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"Списки\",         question: \"Какой тег создаёт ненумерованный список?\",                                options: [\"<ul>\",\"<ol>\",\"<list>\",\"<dl>\"],                                                                                                           correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "Списки",
+      "question": "Какой тег создаёт нумерованный список?",
+      "options": [
+        "<ol>",
+        "<ul>",
+        "<li>",
+        "<dl>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"Списки\",         question: \"Какой тег создаёт нумерованный список?\",                                  options: [\"<ol>\",\"<ul>\",\"<li>\",\"<dl>\"],                                                                                                            correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "Списки",
+      "question": "Какой тег обозначает элемент списка?",
+      "options": [
+        "<li>",
+        "<item>",
+        "<el>",
+        "<dt>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"Списки\",         question: \"Какой тег обозначает элемент списка?\",                                    options: [\"<li>\",\"<item>\",\"<el>\",\"<dt>\"],                                                                                                           correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "Ссылки",
+      "question": "Какой тег создаёт гиперссылку?",
+      "options": [
+        "<a>",
+        "<link>",
+        "<href>",
+        "<nav>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"Ссылки\",         question: \"Какой тег создаёт гиперссылку?\",                                          options: [\"<a>\",\"<link>\",\"<href>\",\"<nav>\"],                                                                                                         correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "Ссылки",
+      "question": "Какой атрибут задаёт адрес ссылки?",
+      "options": [
+        "href",
+        "src",
+        "url",
+        "link"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"Ссылки\",         question: \"Какой атрибут задаёт адрес ссылки?\",                                      options: [\"href\",\"src\",\"url\",\"link\"],                                                                                                               correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "Ссылки",
+      "question": "Какое значение атрибута target открывает ссылку в новой вкладке?",
+      "options": [
+        "_blank",
+        "_new",
+        "_tab",
+        "_self"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"Ссылки\",         question: \"Какое значение атрибута target открывает ссылку в новой вкладке?\",        options: [\"_blank\",\"_new\",\"_tab\",\"_self\"],                                                                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "Изображения",
+      "question": "Какой тег вставляет изображение?",
+      "options": [
+        "<img>",
+        "<image>",
+        "<picture>",
+        "<src>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"Изображения\",    question: \"Какой тег вставляет изображение?\",                                        options: [\"<img>\",\"<image>\",\"<picture>\",\"<src>\"],                                                                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "Изображения",
+      "question": "Какой атрибут тега img указывает путь к изображению?",
+      "options": [
+        "src",
+        "href",
+        "path",
+        "file"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"Изображения\",    question: \"Какой атрибут тега img указывает путь к изображению?\",                    options: [\"src\",\"href\",\"path\",\"file\"],                                                                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "Изображения",
+      "question": "Зачем нужен атрибут alt у тега <img>?",
+      "options": [
+        "Текст при недоступности изображения",
+        "Заголовок изображения",
+        "Ссылка на изображение",
+        "Размер изображения"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"Изображения\",    question: \"Зачем нужен атрибут alt у тега <img>?\",                                   options: [\"Текст при недоступности изображения\",\"Заголовок изображения\",\"Ссылка на изображение\",\"Размер изображения\"],                               correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "CSS-основы",
+      "question": "Как подключить CSS через отдельный файл?",
+      "options": [
+        "<link rel='stylesheet' href='style.css'>",
+        "<css src='style.css'>",
+        "<style link='style.css'>",
+        "@import url()"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"CSS-основы\",     question: \"Как подключить CSS через отдельный файл?\",                                options: [\"<link rel='stylesheet' href='style.css'>\",\"<css src='style.css'>\",\"<style link='style.css'>\",\"@import url()\"],                             correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "CSS-основы",
+      "question": "Какое свойство CSS задаёт цвет текста?",
+      "options": [
+        "color",
+        "text-color",
+        "font-color",
+        "foreground"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"CSS-основы\",     question: \"Какое свойство CSS задаёт цвет текста?\",                                  options: [\"color\",\"text-color\",\"font-color\",\"foreground\"],                                                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "CSS-основы",
+      "question": "Какое свойство CSS задаёт цвет фона элемента?",
+      "options": [
+        "background-color",
+        "bg-color",
+        "backdrop",
+        "fill"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"CSS-основы\",     question: \"Какое свойство CSS задаёт цвет фона элемента?\",                           options: [\"background-color\",\"bg-color\",\"backdrop\",\"fill\"],                                                                                         correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "CSS-селекторы",
+      "question": "Как в CSS выбрать элемент по классу?",
+      "options": [
+        ".classname",
+        "#classname",
+        "classname",
+        "@classname"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"CSS-селекторы\",  question: \"Как в CSS выбрать элемент по классу?\",                                    options: [\".classname\",\"#classname\",\"classname\",\"@classname\"],                                                                                      correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "CSS-селекторы",
+      "question": "Как в CSS выбрать элемент по id?",
+      "options": [
+        "#idname",
+        ".idname",
+        "idname",
+        "*idname"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"CSS-селекторы\",  question: \"Как в CSS выбрать элемент по id?\",                                        options: [\"#idname\",\".idname\",\"idname\",\"*idname\"],                                                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "CSS-основы",
+      "question": "Какое свойство задаёт размер шрифта?",
+      "options": [
+        "font-size",
+        "text-size",
+        "size",
+        "font"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"CSS-основы\",     question: \"Какое свойство задаёт размер шрифта?\",                                    options: [\"font-size\",\"text-size\",\"size\",\"font\"],                                                                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "Блочная модель",
+      "question": "Что такое margin в CSS?",
+      "options": [
+        "Внешний отступ элемента",
+        "Внутренний отступ элемента",
+        "Граница элемента",
+        "Ширина элемента"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"Блочная модель\", question: \"Что такое margin в CSS?\",                                                  options: [\"Внешний отступ элемента\",\"Внутренний отступ элемента\",\"Граница элемента\",\"Ширина элемента\"],                                             correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "Блочная модель",
+      "question": "Что такое padding в CSS?",
+      "options": [
+        "Внутренний отступ элемента",
+        "Внешний отступ элемента",
+        "Граница элемента",
+        "Высота элемента"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"Блочная модель\", question: \"Что такое padding в CSS?\",                                                 options: [\"Внутренний отступ элемента\",\"Внешний отступ элемента\",\"Граница элемента\",\"Высота элемента\"],                                             correctIndex: 0 },"
+    }
+  ],
+  "2": [
+    {
+      "id": 1,
+      "topic": "DOCTYPE",
+      "question": "Зачем нужна строка <!DOCTYPE html> в начале документа?",
+      "options": [
+        "Говорит браузеру использовать стандартный режим HTML5",
+        "Подключает CSS-файл",
+        "Запускает JavaScript",
+        "Задаёт кодировку страницы"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"DOCTYPE\",        question: \"Зачем нужна строка <!DOCTYPE html> в начале документа?\",                  options: [\"Говорит браузеру использовать стандартный режим HTML5\",\"Подключает CSS-файл\",\"Запускает JavaScript\",\"Задаёт кодировку страницы\"],                           correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "DOCTYPE",
+      "question": "Где должен располагаться DOCTYPE?",
+      "options": [
+        "Самая первая строка документа",
+        "После тега <html>",
+        "После тега <head>",
+        "В теге <body>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"DOCTYPE\",        question: \"Где должен располагаться DOCTYPE?\",                                        options: [\"Самая первая строка документа\",\"После тега <html>\",\"После тега <head>\",\"В теге <body>\"],                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "head",
+      "question": "Какой тег задаёт заголовок вкладки браузера?",
+      "options": [
+        "<title>",
+        "<h1>",
+        "<header>",
+        "<meta>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"head\",           question: \"Какой тег задаёт заголовок вкладки браузера?\",                             options: [\"<title>\",\"<h1>\",\"<header>\",\"<meta>\"],                                                                                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "head",
+      "question": "Какой meta-тег задаёт кодировку UTF-8?",
+      "options": [
+        "<meta charset='UTF-8'>",
+        "<meta encoding='UTF-8'>",
+        "<charset>UTF-8</charset>",
+        "<html lang='UTF-8'>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"head\",           question: \"Какой meta-тег задаёт кодировку UTF-8?\",                                   options: [\"<meta charset='UTF-8'>\",\"<meta encoding='UTF-8'>\",\"<charset>UTF-8</charset>\",\"<html lang='UTF-8'>\"],                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "head",
+      "question": "Что делает <meta name='viewport' ...>?",
+      "options": [
+        "Настраивает отображение на мобильных устройствах",
+        "Задаёт иконку сайта",
+        "Подключает шрифты",
+        "Устанавливает язык страницы"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"head\",           question: \"Что делает <meta name='viewport' ...>?\",                                   options: [\"Настраивает отображение на мобильных устройствах\",\"Задаёт иконку сайта\",\"Подключает шрифты\",\"Устанавливает язык страницы\"],                                 correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "Шрифты",
+      "question": "Откуда подключаются Google Fonts?",
+      "options": [
+        "Через <link> в <head> с адресом fonts.googleapis.com",
+        "Через <script> в <body>",
+        "Через CSS @font-face локально",
+        "Через атрибут font= у тега body"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"Шрифты\",         question: \"Откуда подключаются Google Fonts?\",                                        options: [\"Через <link> в <head> с адресом fonts.googleapis.com\",\"Через <script> в <body>\",\"Через CSS @font-face локально\",\"Через атрибут font= у тега body\"],       correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "Шрифты",
+      "question": "Какое CSS-свойство применяет шрифт к элементу?",
+      "options": [
+        "font-family",
+        "font-name",
+        "src-font",
+        "typeface"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"Шрифты\",         question: \"Какое CSS-свойство применяет шрифт к элементу?\",                           options: [\"font-family\",\"font-name\",\"src-font\",\"typeface\"],                                                                                                            correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "CSS reset",
+      "question": "Зачем используется CSS-сброс (reset)?",
+      "options": [
+        "Убирает различия стилей браузеров по умолчанию",
+        "Удаляет весь CSS",
+        "Сбрасывает JavaScript",
+        "Обновляет страницу"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"CSS reset\",      question: \"Зачем используется CSS-сброс (reset)?\",                                    options: [\"Убирает различия стилей браузеров по умолчанию\",\"Удаляет весь CSS\",\"Сбрасывает JavaScript\",\"Обновляет страницу\"],                                          correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "CSS reset",
+      "question": "Что делает box-sizing: border-box?",
+      "options": [
+        "Включает padding и border в общий размер элемента",
+        "Убирает все отступы",
+        "Задаёт белую границу",
+        "Делает блок flex-контейнером"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"CSS reset\",      question: \"Что делает box-sizing: border-box?\",                                       options: [\"Включает padding и border в общий размер элемента\",\"Убирает все отступы\",\"Задаёт белую границу\",\"Делает блок flex-контейнером\"],                           correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "Flexbox",
+      "question": "Какое свойство включает Flexbox?",
+      "options": [
+        "display: flex",
+        "flex: on",
+        "flexbox: true",
+        "layout: flex"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"Flexbox\",        question: \"Какое свойство включает Flexbox?\",                                         options: [\"display: flex\",\"flex: on\",\"flexbox: true\",\"layout: flex\"],                                                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "Flexbox",
+      "question": "Как расположить flex-элементы по центру по горизонтали?",
+      "options": [
+        "justify-content: center",
+        "align-items: center",
+        "text-align: center",
+        "margin: 0 auto"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"Flexbox\",        question: \"Как расположить flex-элементы по центру по горизонтали?\",                  options: [\"justify-content: center\",\"align-items: center\",\"text-align: center\",\"margin: 0 auto\"],                                                                      correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "Flexbox",
+      "question": "Как расположить flex-элементы по центру по вертикали?",
+      "options": [
+        "align-items: center",
+        "justify-content: center",
+        "vertical-align: center",
+        "top: 50%"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"Flexbox\",        question: \"Как расположить flex-элементы по центру по вертикали?\",                    options: [\"align-items: center\",\"justify-content: center\",\"vertical-align: center\",\"top: 50%\"],                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "Flexbox",
+      "question": "Что делает flex-direction: column?",
+      "options": [
+        "Элементы выстраиваются в столбец сверху вниз",
+        "Элементы выстраиваются в строку",
+        "Элементы оборачиваются",
+        "Включает сетку"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"Flexbox\",        question: \"Что делает flex-direction: column?\",                                       options: [\"Элементы выстраиваются в столбец сверху вниз\",\"Элементы выстраиваются в строку\",\"Элементы оборачиваются\",\"Включает сетку\"],                              correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "Header",
+      "question": "Какой семантический тег используется для шапки сайта?",
+      "options": [
+        "<header>",
+        "<head>",
+        "<top>",
+        "<navbar>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"Header\",         question: \"Какой семантический тег используется для шапки сайта?\",                    options: [\"<header>\",\"<head>\",\"<top>\",\"<navbar>\"],                                                                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "Header",
+      "question": "Какой тег используется для навигационного меню?",
+      "options": [
+        "<nav>",
+        "<menu>",
+        "<ul>",
+        "<navigation>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"Header\",         question: \"Какой тег используется для навигационного меню?\",                          options: [\"<nav>\",\"<menu>\",\"<ul>\",\"<navigation>\"],                                                                                                                     correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "CSS классы",
+      "question": "Как добавить класс элементу в HTML?",
+      "options": [
+        "class='имя-класса'",
+        "className='имя-класса'",
+        "id='имя-класса'",
+        "style='имя-класса'"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"CSS классы\",     question: \"Как добавить класс элементу в HTML?\",                                      options: [\"class='имя-класса'\",\"className='имя-класса'\",\"id='имя-класса'\",\"style='имя-класса'\"],                                                                     correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "CSS классы",
+      "question": "Можно ли назначить элементу несколько классов?",
+      "options": [
+        "Да, через пробел: class='btn btn-primary'",
+        "Нет, только один класс",
+        "Да, через запятую",
+        "Да, через точку с запятой"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"CSS классы\",     question: \"Можно ли назначить элементу несколько классов?\",                           options: [\"Да, через пробел: class='btn btn-primary'\",\"Нет, только один класс\",\"Да, через запятую\",\"Да, через точку с запятой\"],                                     correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "Flexbox",
+      "question": "Что делает gap в Flexbox?",
+      "options": [
+        "Задаёт отступ между flex-элементами",
+        "Задаёт внешний отступ",
+        "Задаёт внутренний отступ",
+        "Задаёт размер flex-элемента"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"Flexbox\",        question: \"Что делает gap в Flexbox?\",                                                options: [\"Задаёт отступ между flex-элементами\",\"Задаёт внешний отступ\",\"Задаёт внутренний отступ\",\"Задаёт размер flex-элемента\"],                                    correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "Единицы",
+      "question": "Чем px отличается от rem?",
+      "options": [
+        "px — пиксели, rem — относительно корневого шрифта",
+        "px — проценты, rem — пиксели",
+        "Ничем",
+        "rem — пиксели экрана, px — устаревшее"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"Единицы\",        question: \"Чем px отличается от rem?\",                                                options: [\"px — пиксели, rem — относительно корневого шрифта\",\"px — проценты, rem — пиксели\",\"Ничем\",\"rem — пиксели экрана, px — устаревшее\"],                       correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "Footer",
+      "question": "Какой семантический тег используется для подвала сайта?",
+      "options": [
+        "<footer>",
+        "<bottom>",
+        "<end>",
+        "<section>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"Footer\",         question: \"Какой семантический тег используется для подвала сайта?\",                  options: [\"<footer>\",\"<bottom>\",\"<end>\",\"<section>\"],                                                                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "CSS позиционирование",
+      "question": "Что делает position: relative?",
+      "options": [
+        "Элемент позиционируется относительно своего нормального места",
+        "Элемент вырывается из потока",
+        "Элемент фиксируется при скролле",
+        "Элемент скрывается"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"CSS позиционирование\", question: \"Что делает position: relative?\",                                     options: [\"Элемент позиционируется относительно своего нормального места\",\"Элемент вырывается из потока\",\"Элемент фиксируется при скролле\",\"Элемент скрывается\"], correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "CSS позиционирование",
+      "question": "Что такое z-index?",
+      "options": [
+        "Управляет порядком наложения элементов по оси Z",
+        "Задаёт прозрачность",
+        "Управляет горизонтальным положением",
+        "Задаёт отступ сверху"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"CSS позиционирование\", question: \"Что такое z-index?\",                                                 options: [\"Управляет порядком наложения элементов по оси Z\",\"Задаёт прозрачность\",\"Управляет горизонтальным положением\",\"Задаёт отступ сверху\"],                  correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "CSS цвета",
+      "question": "Как записать цвет через HEX?",
+      "options": [
+        "#RRGGBB, например #ff0000",
+        "rgb(255,0,0)",
+        "color: red",
+        "hsl(0,100%,50%)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"CSS цвета\",      question: \"Как записать цвет через HEX?\",                                             options: [\"#RRGGBB, например #ff0000\",\"rgb(255,0,0)\",\"color: red\",\"hsl(0,100%,50%)\"],                                                                                 correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "CSS единицы",
+      "question": "Что означает % в ширине элемента?",
+      "options": [
+        "Процент от ширины родительского элемента",
+        "Процент от ширины экрана",
+        "Процент от 100px",
+        "Процент от базового шрифта"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"CSS единицы\",    question: \"Что означает % в ширине элемента?\",                                        options: [\"Процент от ширины родительского элемента\",\"Процент от ширины экрана\",\"Процент от 100px\",\"Процент от базового шрифта\"],                                    correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "CSS display",
+      "question": "Какой display используют для строчно-блочных элементов?",
+      "options": [
+        "inline-block",
+        "inline",
+        "block",
+        "flex"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"CSS display\",    question: \"Какой display используют для строчно-блочных элементов?\",                  options: [\"inline-block\",\"inline\",\"block\",\"flex\"],                                                                                                                     correctIndex: 0 },"
+    }
+  ],
+  "3": [
+    {
+      "id": 1,
+      "topic": "Flexbox align",
+      "question": "Что делает align-items: stretch?",
+      "options": [
+        "Растягивает элементы по поперечной оси",
+        "Выравнивает по центру",
+        "Прижимает к началу",
+        "Прижимает к концу"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"Flexbox align\",  question: \"Что делает align-items: stretch?\",                                         options: [\"Растягивает элементы по поперечной оси\",\"Выравнивает по центру\",\"Прижимает к началу\",\"Прижимает к концу\"],                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "Flexbox align",
+      "question": "Что делает justify-content: space-between?",
+      "options": [
+        "Крайние элементы по краям, остальные равномерно",
+        "Все элементы по центру",
+        "Все элементы в начале",
+        "Все элементы в конце"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"Flexbox align\",  question: \"Что делает justify-content: space-between?\",                               options: [\"Крайние элементы по краям, остальные равномерно\",\"Все элементы по центру\",\"Все элементы в начале\",\"Все элементы в конце\"],                                  correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "Flexbox align",
+      "question": "Что делает justify-content: space-around?",
+      "options": [
+        "Равные отступы вокруг каждого элемента",
+        "То же что space-between",
+        "Элементы сжимаются",
+        "Элементы растягиваются"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"Flexbox align\",  question: \"Что делает justify-content: space-around?\",                                options: [\"Равные отступы вокруг каждого элемента\",\"То же что space-between\",\"Элементы сжимаются\",\"Элементы растягиваются\"],                                            correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "flex-wrap",
+      "question": "Что делает flex-wrap: wrap?",
+      "options": [
+        "Элементы переносятся на следующую строку",
+        "Элементы сжимаются",
+        "Элементы выстраиваются в колонку",
+        "Элементы скрываются"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"flex-wrap\",      question: \"Что делает flex-wrap: wrap?\",                                              options: [\"Элементы переносятся на следующую строку\",\"Элементы сжимаются\",\"Элементы выстраиваются в колонку\",\"Элементы скрываются\"],                                 correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "flex-wrap",
+      "question": "Значение flex-wrap по умолчанию?",
+      "options": [
+        "nowrap",
+        "wrap",
+        "wrap-reverse",
+        "auto"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"flex-wrap\",      question: \"Значение flex-wrap по умолчанию?\",                                         options: [\"nowrap\",\"wrap\",\"wrap-reverse\",\"auto\"],                                                                                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "Псевдоклассы",
+      "question": "Что делает псевдокласс :hover?",
+      "options": [
+        "Применяет стили при наведении курсора",
+        "Применяет стили при клике",
+        "Применяет стили при фокусе",
+        "Применяет стили к первому дочернему элементу"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"Псевдоклассы\",   question: \"Что делает псевдокласс :hover?\",                                           options: [\"Применяет стили при наведении курсора\",\"Применяет стили при клике\",\"Применяет стили при фокусе\",\"Применяет стили к первому дочернему элементу\"],          correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "Псевдоклассы",
+      "question": "Что делает псевдокласс :first-child?",
+      "options": [
+        "Выбирает первый дочерний элемент",
+        "Выбирает первый элемент страницы",
+        "Выбирает первый элемент своего типа",
+        "Выбирает элемент с id=1"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"Псевдоклассы\",   question: \"Что делает псевдокласс :first-child?\",                                     options: [\"Выбирает первый дочерний элемент\",\"Выбирает первый элемент страницы\",\"Выбирает первый элемент своего типа\",\"Выбирает элемент с id=1\"],                    correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "Псевдоэлементы",
+      "question": "Что делает ::before?",
+      "options": [
+        "Вставляет псевдоэлемент перед содержимым",
+        "Вставляет после содержимого",
+        "Скрывает первый символ",
+        "Выбирает предыдущий элемент"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"Псевдоэлементы\", question: \"Что делает ::before?\",                                                     options: [\"Вставляет псевдоэлемент перед содержимым\",\"Вставляет после содержимого\",\"Скрывает первый символ\",\"Выбирает предыдущий элемент\"],                          correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "Карточки",
+      "question": "Какое свойство скругляет углы блока?",
+      "options": [
+        "border-radius",
+        "round-corners",
+        "border-curve",
+        "corner-radius"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"Карточки\",       question: \"Какое свойство скругляет углы блока?\",                                     options: [\"border-radius\",\"round-corners\",\"border-curve\",\"corner-radius\"],                                                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "Карточки",
+      "question": "Какое свойство задаёт тень блока?",
+      "options": [
+        "box-shadow",
+        "shadow",
+        "element-shadow",
+        "block-shadow"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"Карточки\",       question: \"Какое свойство задаёт тень блока?\",                                        options: [\"box-shadow\",\"shadow\",\"element-shadow\",\"block-shadow\"],                                                                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "overflow",
+      "question": "Что делает overflow: hidden?",
+      "options": [
+        "Обрезает содержимое, выходящее за границы блока",
+        "Скрывает блок",
+        "Добавляет скроллбар",
+        "Делает блок прозрачным"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"overflow\",       question: \"Что делает overflow: hidden?\",                                             options: [\"Обрезает содержимое, выходящее за границы блока\",\"Скрывает блок\",\"Добавляет скроллбар\",\"Делает блок прозрачным\"],                                         correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "overflow",
+      "question": "Что делает overflow: auto?",
+      "options": [
+        "Добавляет скролл при переполнении",
+        "Всегда показывает скролл",
+        "Скрывает переполнение",
+        "Не влияет на переполнение"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"overflow\",       question: \"Что делает overflow: auto?\",                                               options: [\"Добавляет скролл при переполнении\",\"Всегда показывает скролл\",\"Скрывает переполнение\",\"Не влияет на переполнение\"],                                       correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "CSS grid",
+      "question": "Какое свойство задаёт количество колонок в Grid?",
+      "options": [
+        "grid-template-columns",
+        "grid-columns",
+        "column-count",
+        "flex-columns"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"CSS grid\",       question: \"Какое свойство задаёт количество колонок в Grid?\",                         options: [\"grid-template-columns\",\"grid-columns\",\"column-count\",\"flex-columns\"],                                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "CSS grid",
+      "question": "Что делает repeat(3, 1fr) в grid-template-columns?",
+      "options": [
+        "3 равные колонки, каждая 1 долю доступного пространства",
+        "3 колонки по 100px",
+        "3 строки",
+        "Повторяет содержимое 3 раза"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"CSS grid\",       question: \"Что делает repeat(3, 1fr) в grid-template-columns?\",                       options: [\"3 равные колонки, каждая 1 долю доступного пространства\",\"3 колонки по 100px\",\"3 строки\",\"Повторяет содержимое 3 раза\"],                                   correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "CSS transitions",
+      "question": "Какое свойство создаёт плавные переходы CSS?",
+      "options": [
+        "transition",
+        "animation",
+        "transform",
+        "motion"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"CSS transitions\", question: \"Какое свойство создаёт плавные переходы CSS?\",                            options: [\"transition\",\"animation\",\"transform\",\"motion\"],                                                                                                                correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "CSS transitions",
+      "question": "Что означает transition: all 0.3s ease?",
+      "options": [
+        "Все свойства анимируются 0.3 сек с плавным началом и концом",
+        "Только цвет анимируется",
+        "Анимация повторяется 3 раза",
+        "Задержка 0.3 сек перед стартом"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"CSS transitions\", question: \"Что означает transition: all 0.3s ease?\",                                 options: [\"Все свойства анимируются 0.3 сек с плавным началом и концом\",\"Только цвет анимируется\",\"Анимация повторяется 3 раза\",\"Задержка 0.3 сек перед стартом\"],    correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "Кнопки",
+      "question": "Какой display лучше всего подходит для кнопки с иконкой и текстом?",
+      "options": [
+        "inline-flex",
+        "block",
+        "inline",
+        "table"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"Кнопки\",         question: \"Какой display лучше всего подходит для кнопки с иконкой и текстом?\",       options: [\"inline-flex\",\"block\",\"inline\",\"table\"],                                                                                                                     correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "Кнопки",
+      "question": "Что делает cursor: pointer?",
+      "options": [
+        "Меняет курсор на руку при наведении",
+        "Делает элемент кликабельным",
+        "Добавляет tooltip",
+        "Блокирует клик"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"Кнопки\",         question: \"Что делает cursor: pointer?\",                                              options: [\"Меняет курсор на руку при наведении\",\"Делает элемент кликабельным\",\"Добавляет tooltip\",\"Блокирует клик\"],                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "CSS img",
+      "question": "Что делает object-fit: cover у изображения?",
+      "options": [
+        "Масштабирует с сохранением пропорций, обрезая лишнее",
+        "Вписывает целиком",
+        "Растягивает без сохранения пропорций",
+        "Скрывает изображение"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"CSS img\",        question: \"Что делает object-fit: cover у изображения?\",                              options: [\"Масштабирует с сохранением пропорций, обрезая лишнее\",\"Вписывает целиком\",\"Растягивает без сохранения пропорций\",\"Скрывает изображение\"],                   correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "CSS img",
+      "question": "Что делает object-position: center?",
+      "options": [
+        "Центрирует изображение при обрезке",
+        "Центрирует блок",
+        "Задаёт позицию блока",
+        "Добавляет padding"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"CSS img\",        question: \"Что делает object-position: center?\",                                      options: [\"Центрирует изображение при обрезке\",\"Центрирует блок\",\"Задаёт позицию блока\",\"Добавляет padding\"],                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "Семантика",
+      "question": "Какой тег семантически правильно использовать для секции контента?",
+      "options": [
+        "<section>",
+        "<div>",
+        "<block>",
+        "<area>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"Семантика\",      question: \"Какой тег семантически правильно использовать для секции контента?\",       options: [\"<section>\",\"<div>\",\"<block>\",\"<area>\"],                                                                                                                     correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "Семантика",
+      "question": "Для чего используется тег <article>?",
+      "options": [
+        "Самостоятельный блок контента (новость, карточка)",
+        "Навигация",
+        "Подвал",
+        "Шапка"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"Семантика\",      question: \"Для чего используется тег <article>?\",                                     options: [\"Самостоятельный блок контента (новость, карточка)\",\"Навигация\",\"Подвал\",\"Шапка\"],                                                                            correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "flex-grow",
+      "question": "Что делает flex: 1 у flex-элемента?",
+      "options": [
+        "Элемент занимает всё доступное пространство",
+        "Элемент уменьшается",
+        "Элемент фиксируется по ширине",
+        "Элемент скрывается"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"flex-grow\",      question: \"Что делает flex: 1 у flex-элемента?\",                                      options: [\"Элемент занимает всё доступное пространство\",\"Элемент уменьшается\",\"Элемент фиксируется по ширине\",\"Элемент скрывается\"],                                  correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "CSS units",
+      "question": "Что такое vh?",
+      "options": [
+        "1% от высоты viewport (видимой области)",
+        "1% от высоты документа",
+        "1 пиксель",
+        "1% от высоты родителя"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"CSS units\",      question: \"Что такое vh?\",                                                            options: [\"1% от высоты viewport (видимой области)\",\"1% от высоты документа\",\"1 пиксель\",\"1% от высоты родителя\"],                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "CSS units",
+      "question": "Что такое vw?",
+      "options": [
+        "1% от ширины viewport",
+        "1% от ширины документа",
+        "1 пиксель по горизонтали",
+        "1% от ширины родителя"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"CSS units\",      question: \"Что такое vw?\",                                                            options: [\"1% от ширины viewport\",\"1% от ширины документа\",\"1 пиксель по горизонтали\",\"1% от ширины родителя\"],                                                       correctIndex: 0 },"
+    }
+  ],
+  "4": [
+    {
+      "id": 1,
+      "topic": "JS-основы",
+      "question": "Как подключить внешний JS-файл к HTML-странице?",
+      "options": [
+        "<script src='main.js'></script>",
+        "<js src='main.js'>",
+        "<script link='main.js'>",
+        "<javascript src='main.js'>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"JS-основы\",      question: \"Как подключить внешний JS-файл к HTML-странице?\",                          options: [\"<script src='main.js'></script>\",\"<js src='main.js'>\",\"<script link='main.js'>\",\"<javascript src='main.js'>\"],                                             correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "JS-основы",
+      "question": "Что такое DOM?",
+      "options": [
+        "Объектная модель документа — дерево HTML-элементов",
+        "База данных браузера",
+        "CSS-стили страницы",
+        "Серверное API"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"JS-основы\",      question: \"Что такое DOM?\",                                                           options: [\"Объектная модель документа — дерево HTML-элементов\",\"База данных браузера\",\"CSS-стили страницы\",\"Серверное API\"],                                       correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "DOM",
+      "question": "Какой метод находит элемент по id?",
+      "options": [
+        "document.getElementById('id')",
+        "document.find('id')",
+        "document.query('#id')",
+        "document.getElement('id')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"DOM\",            question: \"Какой метод находит элемент по id?\",                                       options: [\"document.getElementById('id')\",\"document.find('id')\",\"document.query('#id')\",\"document.getElement('id')\"],                                               correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "DOM",
+      "question": "Какой метод находит первый элемент по CSS-селектору?",
+      "options": [
+        "document.querySelector('.cls')",
+        "document.find('.cls')",
+        "document.getElement('.cls')",
+        "document.select('.cls')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"DOM\",            question: \"Какой метод находит первый элемент по CSS-селектору?\",                     options: [\"document.querySelector('.cls')\",\"document.find('.cls')\",\"document.getElement('.cls')\",\"document.select('.cls')\"],                                        correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "DOM",
+      "question": "Какой метод находит все элементы по CSS-селектору?",
+      "options": [
+        "document.querySelectorAll('.cls')",
+        "document.findAll('.cls')",
+        "document.getElements('.cls')",
+        "document.selectAll('.cls')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"DOM\",            question: \"Какой метод находит все элементы по CSS-селектору?\",                       options: [\"document.querySelectorAll('.cls')\",\"document.findAll('.cls')\",\"document.getElements('.cls')\",\"document.selectAll('.cls')\"],                             correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "DOM создание",
+      "question": "Как создать новый HTML-элемент через JS?",
+      "options": [
+        "document.createElement('div')",
+        "document.newElement('div')",
+        "document.add('div')",
+        "new Element('div')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"DOM создание\",   question: \"Как создать новый HTML-элемент через JS?\",                                 options: [\"document.createElement('div')\",\"document.newElement('div')\",\"document.add('div')\",\"new Element('div')\"],                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "DOM создание",
+      "question": "Как добавить созданный элемент в конец родителя?",
+      "options": [
+        "parent.appendChild(child)",
+        "parent.add(child)",
+        "parent.insert(child)",
+        "parent.push(child)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"DOM создание\",   question: \"Как добавить созданный элемент в конец родителя?\",                         options: [\"parent.appendChild(child)\",\"parent.add(child)\",\"parent.insert(child)\",\"parent.push(child)\"],                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "DOM создание",
+      "question": "Как задать HTML-содержимое элемента через JS?",
+      "options": [
+        "element.innerHTML = '<b>текст</b>'",
+        "element.content = 'текст'",
+        "element.html = 'текст'",
+        "element.set('html', 'текст')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"DOM создание\",   question: \"Как задать HTML-содержимое элемента через JS?\",                            options: [\"element.innerHTML = '<b>текст</b>'\",\"element.content = 'текст'\",\"element.html = 'текст'\",\"element.set('html', 'текст')\"],                               correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "События",
+      "question": "Как добавить обработчик события клика на элемент?",
+      "options": [
+        "element.addEventListener('click', fn)",
+        "element.onclick = fn (оба верны, но первый предпочтительнее)",
+        "element.on('click', fn)",
+        "element.bind('click', fn)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"События\",        question: \"Как добавить обработчик события клика на элемент?\",                        options: [\"element.addEventListener('click', fn)\",\"element.onclick = fn (оба верны, но первый предпочтительнее)\",\"element.on('click', fn)\",\"element.bind('click', fn)\"], correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "События",
+      "question": "Что такое DOMContentLoaded?",
+      "options": [
+        "Событие: DOM полностью загружен и готов",
+        "Событие: страница полностью загружена с ресурсами",
+        "Событие: пользователь нажал клавишу",
+        "Событие: скролл страницы"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"События\",        question: \"Что такое DOMContentLoaded?\",                                              options: [\"Событие: DOM полностью загружен и готов\",\"Событие: страница полностью загружена с ресурсами\",\"Событие: пользователь нажал клавишу\",\"Событие: скролл страницы\"], correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "setTimeout",
+      "question": "Что делает setTimeout(fn, 3000)?",
+      "options": [
+        "Вызывает fn через 3 секунды",
+        "Вызывает fn 3000 раз",
+        "Задерживает загрузку на 3 сек",
+        "Ждёт 3 секунды и останавливается"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"setTimeout\",     question: \"Что делает setTimeout(fn, 3000)?\",                                         options: [\"Вызывает fn через 3 секунды\",\"Вызывает fn 3000 раз\",\"Задерживает загрузку на 3 сек\",\"Ждёт 3 секунды и останавливается\"],                                  correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "setTimeout",
+      "question": "Как отменить setTimeout?",
+      "options": [
+        "clearTimeout(timerId)",
+        "cancelTimeout(timerId)",
+        "stopTimeout(timerId)",
+        "removeTimeout(timerId)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"setTimeout\",     question: \"Как отменить setTimeout?\",                                                 options: [\"clearTimeout(timerId)\",\"cancelTimeout(timerId)\",\"stopTimeout(timerId)\",\"removeTimeout(timerId)\"],                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "Классы DOM",
+      "question": "Как добавить CSS-класс к элементу через JS?",
+      "options": [
+        "element.classList.add('cls')",
+        "element.class += 'cls'",
+        "element.addClassName('cls')",
+        "element.style.class = 'cls'"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"Классы DOM\",     question: \"Как добавить CSS-класс к элементу через JS?\",                              options: [\"element.classList.add('cls')\",\"element.class += 'cls'\",\"element.addClassName('cls')\",\"element.style.class = 'cls'\"],                                     correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "Классы DOM",
+      "question": "Как удалить CSS-класс у элемента через JS?",
+      "options": [
+        "element.classList.remove('cls')",
+        "element.class -= 'cls'",
+        "element.removeClassName('cls')",
+        "element.style.class = ''"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"Классы DOM\",     question: \"Как удалить CSS-класс у элемента через JS?\",                               options: [\"element.classList.remove('cls')\",\"element.class -= 'cls'\",\"element.removeClassName('cls')\",\"element.style.class = ''\"],                                   correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "Классы DOM",
+      "question": "Что делает element.classList.toggle('cls')?",
+      "options": [
+        "Добавляет класс если нет, убирает если есть",
+        "Всегда добавляет класс",
+        "Всегда убирает класс",
+        "Проверяет наличие класса"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"Классы DOM\",     question: \"Что делает element.classList.toggle('cls')?\",                              options: [\"Добавляет класс если нет, убирает если есть\",\"Всегда добавляет класс\",\"Всегда убирает класс\",\"Проверяет наличие класса\"],                                  correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "localStorage",
+      "question": "Как сохранить данные в localStorage?",
+      "options": [
+        "localStorage.setItem('key', 'value')",
+        "localStorage.save('key', 'value')",
+        "localStorage['key'] = 'value'",
+        "storage.set('key', 'value')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"localStorage\",   question: \"Как сохранить данные в localStorage?\",                                     options: [\"localStorage.setItem('key', 'value')\",\"localStorage.save('key', 'value')\",\"localStorage['key'] = 'value'\",\"storage.set('key', 'value')\"],              correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "localStorage",
+      "question": "Как получить данные из localStorage?",
+      "options": [
+        "localStorage.getItem('key')",
+        "localStorage.get('key')",
+        "localStorage.read('key')",
+        "storage.getItem('key')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"localStorage\",   question: \"Как получить данные из localStorage?\",                                     options: [\"localStorage.getItem('key')\",\"localStorage.get('key')\",\"localStorage.read('key')\",\"storage.getItem('key')\"],                                             correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "localStorage",
+      "question": "Как удалить запись из localStorage?",
+      "options": [
+        "localStorage.removeItem('key')",
+        "localStorage.delete('key')",
+        "localStorage.clear('key')",
+        "delete localStorage['key']"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"localStorage\",   question: \"Как удалить запись из localStorage?\",                                      options: [\"localStorage.removeItem('key')\",\"localStorage.delete('key')\",\"localStorage.clear('key')\",\"delete localStorage['key']\"],                               correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "Toast",
+      "question": "Каков обычный паттерн показа уведомления (toast)?",
+      "options": [
+        "Создать элемент, добавить в DOM, удалить через setTimeout",
+        "Использовать alert()",
+        "Изменить title страницы",
+        "Показать модальное окно"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"Toast\",          question: \"Каков обычный паттерн показа уведомления (toast)?\",                        options: [\"Создать элемент, добавить в DOM, удалить через setTimeout\",\"Использовать alert()\",\"Изменить title страницы\",\"Показать модальное окно\"],                   correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "Навигация",
+      "question": "Как перенаправить пользователя на другую страницу через JS?",
+      "options": [
+        "window.location.href = 'url'",
+        "window.redirect('url')",
+        "document.navigate('url')",
+        "window.go('url')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"Навигация\",      question: \"Как перенаправить пользователя на другую страницу через JS?\",              options: [\"window.location.href = 'url'\",\"window.redirect('url')\",\"document.navigate('url')\",\"window.go('url')\"],                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "JS переменные",
+      "question": "В чём разница между let и const?",
+      "options": [
+        "let — переменная, const — константа (нельзя переприсвоить)",
+        "let хранит строки, const — числа",
+        "const быстрее let",
+        "Разницы нет"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"JS переменные\",  question: \"В чём разница между let и const?\",                                         options: [\"let — переменная, const — константа (нельзя переприсвоить)\",\"let хранит строки, const — числа\",\"const быстрее let\",\"Разницы нет\"],                       correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "JS функции",
+      "question": "Что такое стрелочная функция?",
+      "options": [
+        "Краткий синтаксис: const fn = () => {}",
+        "Функция с именем fn =>",
+        "Функция внутри for",
+        "Анонимная функция с return"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"JS функции\",     question: \"Что такое стрелочная функция?\",                                            options: [\"Краткий синтаксис: const fn = () => {}\",\"Функция с именем fn =>\",\"Функция внутри for\",\"Анонимная функция с return\"],                                       correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "JS строки",
+      "question": "Как вставить переменную в строку через шаблонный литерал?",
+      "options": [
+        "`Привет, ${name}!`",
+        "'Привет, ' + name + '!'",
+        "'Привет, {name}!'",
+        "\"Привет, $name!\""
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"JS строки\",      question: \"Как вставить переменную в строку через шаблонный литерал?\",                options: [\"`Привет, ${name}!`\",\"'Привет, ' + name + '!'\",\"'Привет, {name}!'\",\"\\\"Привет, $name!\\\"\"],                                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "JS условия",
+      "question": "Что вернёт: null || 'default'?",
+      "options": [
+        "'default'",
+        "null",
+        "false",
+        "undefined"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"JS условия\",     question: \"Что вернёт: null || 'default'?\",                                           options: [\"'default'\",\"null\",\"false\",\"undefined\"],                                                                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "JS условия",
+      "question": "Что проверяет оператор ===?",
+      "options": [
+        "Строгое равенство (значение и тип)",
+        "Равенство только по значению",
+        "Присваивание",
+        "Сравнение ссылок"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"JS условия\",     question: \"Что проверяет оператор ===?\",                                              options: [\"Строгое равенство (значение и тип)\",\"Равенство только по значению\",\"Присваивание\",\"Сравнение ссылок\"],                                                    correctIndex: 0 },"
+    }
+  ],
+  "5": [
+    {
+      "id": 1,
+      "topic": "JS объекты",
+      "question": "Как создать объект в JavaScript?",
+      "options": [
+        "const obj = { key: value }",
+        "const obj = [key: value]",
+        "const obj = <key: value>",
+        "const obj = new {}"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"JS объекты\",    question: \"Как создать объект в JavaScript?\",                                          options: [\"const obj = { key: value }\",\"const obj = [key: value]\",\"const obj = <key: value>\",\"const obj = new {}\"],                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "JS объекты",
+      "question": "Как обратиться к свойству объекта?",
+      "options": [
+        "obj.property или obj['property']",
+        "obj->property",
+        "obj::property",
+        "obj(property)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"JS объекты\",    question: \"Как обратиться к свойству объекта?\",                                        options: [\"obj.property или obj['property']\",\"obj->property\",\"obj::property\",\"obj(property)\"],                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "JS массивы",
+      "question": "Как создать массив?",
+      "options": [
+        "const arr = [1, 2, 3]",
+        "const arr = (1, 2, 3)",
+        "const arr = {1, 2, 3}",
+        "const arr = new Array(1,2,3) (оба верны, но первый предпочтительнее)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"JS массивы\",    question: \"Как создать массив?\",                                                       options: [\"const arr = [1, 2, 3]\",\"const arr = (1, 2, 3)\",\"const arr = {1, 2, 3}\",\"const arr = new Array(1,2,3) (оба верны, но первый предпочтительнее)\"],       correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "JS массивы",
+      "question": "Что делает метод Array.map()?",
+      "options": [
+        "Создаёт новый массив, применяя функцию к каждому элементу",
+        "Фильтрует массив",
+        "Находит элемент",
+        "Суммирует элементы"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"JS массивы\",    question: \"Что делает метод Array.map()?\",                                             options: [\"Создаёт новый массив, применяя функцию к каждому элементу\",\"Фильтрует массив\",\"Находит элемент\",\"Суммирует элементы\"],                                    correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "JS массивы",
+      "question": "Что делает метод Array.filter()?",
+      "options": [
+        "Создаёт новый массив из элементов, прошедших проверку",
+        "Удаляет элемент",
+        "Сортирует массив",
+        "Находит один элемент"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"JS массивы\",    question: \"Что делает метод Array.filter()?\",                                          options: [\"Создаёт новый массив из элементов, прошедших проверку\",\"Удаляет элемент\",\"Сортирует массив\",\"Находит один элемент\"],                                       correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "JS массивы",
+      "question": "Что делает метод Array.find()?",
+      "options": [
+        "Возвращает первый элемент, прошедший проверку",
+        "Возвращает все подходящие элементы",
+        "Возвращает индекс",
+        "Удаляет элемент"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"JS массивы\",    question: \"Что делает метод Array.find()?\",                                            options: [\"Возвращает первый элемент, прошедший проверку\",\"Возвращает все подходящие элементы\",\"Возвращает индекс\",\"Удаляет элемент\"],                               correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "JS массивы",
+      "question": "Как добавить элемент в конец массива?",
+      "options": [
+        "arr.push(item)",
+        "arr.add(item)",
+        "arr.append(item)",
+        "arr.insert(item)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"JS массивы\",    question: \"Как добавить элемент в конец массива?\",                                     options: [\"arr.push(item)\",\"arr.add(item)\",\"arr.append(item)\",\"arr.insert(item)\"],                                                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "URL",
+      "question": "Как получить параметры из URL строки через JS?",
+      "options": [
+        "new URLSearchParams(window.location.search)",
+        "window.location.params",
+        "document.queryString",
+        "window.url.params"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"URL\",           question: \"Как получить параметры из URL строки через JS?\",                            options: [\"new URLSearchParams(window.location.search)\",\"window.location.params\",\"document.queryString\",\"window.url.params\"],                                          correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "URL",
+      "question": "Как получить параметр id из URL ?id=5?",
+      "options": [
+        "params.get('id')",
+        "params.id",
+        "params['id']",
+        "params.query('id')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"URL\",           question: \"Как получить параметр id из URL ?id=5?\",                                    options: [\"params.get('id')\",\"params.id\",\"params['id']\",\"params.query('id')\"],                                                                                         correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "Рендеринг",
+      "question": "Что такое динамический рендеринг?",
+      "options": [
+        "Генерация HTML через JavaScript на основе данных",
+        "Загрузка страницы с сервера",
+        "Статическое HTML-содержимое",
+        "Стилизация через CSS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"Рендеринг\",     question: \"Что такое динамический рендеринг?\",                                         options: [\"Генерация HTML через JavaScript на основе данных\",\"Загрузка страницы с сервера\",\"Статическое HTML-содержимое\",\"Стилизация через CSS\"],                    correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "Рендеринг",
+      "question": "Как вставить HTML-строку в элемент без добавления потомков?",
+      "options": [
+        "element.innerHTML = htmlString",
+        "element.appendChild(htmlString)",
+        "element.textContent = htmlString",
+        "element.src = htmlString"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"Рендеринг\",     question: \"Как вставить HTML-строку в элемент без добавления потомков?\",               options: [\"element.innerHTML = htmlString\",\"element.appendChild(htmlString)\",\"element.textContent = htmlString\",\"element.src = htmlString\"],                          correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "JS массивы",
+      "question": "Что возвращает arr.join(', ')?",
+      "options": [
+        "Строку из элементов, разделённых ', '",
+        "Новый массив",
+        "Количество элементов",
+        "Первый элемент"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"JS массивы\",    question: \"Что возвращает arr.join(', ')?\",                                            options: [\"Строку из элементов, разделённых ', '\",\"Новый массив\",\"Количество элементов\",\"Первый элемент\"],                                                           correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "JS массивы",
+      "question": "Что вернёт arr.map(x => x * 2) для [1,2,3]?",
+      "options": [
+        "[2,4,6]",
+        "[1,2,3]",
+        "6",
+        "undefined"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"JS массивы\",    question: \"Что вернёт arr.map(x => x * 2) для [1,2,3]?\",                               options: [\"[2,4,6]\",\"[1,2,3]\",\"6\",\"undefined\"],                                                                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "Страницы",
+      "question": "Как сослаться на другую страницу каталога со страницы деталей?",
+      "options": [
+        "Ссылка href='catalog.html'",
+        "Ссылка href='./catalog'",
+        "Ссылка href='#catalog'",
+        "window.open('catalog')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"Страницы\",      question: \"Как сослаться на другую страницу каталога со страницы деталей?\",            options: [\"Ссылка href='catalog.html'\",\"Ссылка href='./catalog'\",\"Ссылка href='#catalog'\",\"window.open('catalog')\"],                                               correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "JS условия",
+      "question": "Что делает тернарный оператор a ? b : c?",
+      "options": [
+        "Если a истина — b, иначе c",
+        "Сравнивает a и b",
+        "Умножает",
+        "Присваивает a если b, иначе c"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"JS условия\",    question: \"Что делает тернарный оператор a ? b : c?\",                                  options: [\"Если a истина — b, иначе c\",\"Сравнивает a и b\",\"Умножает\",\"Присваивает a если b, иначе c\"],                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "JS объекты",
+      "question": "Как деструктурировать объект?",
+      "options": [
+        "const { name, age } = obj",
+        "const [name, age] = obj",
+        "const name = obj",
+        "let name, age = obj"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"JS объекты\",    question: \"Как деструктурировать объект?\",                                             options: [\"const { name, age } = obj\",\"const [name, age] = obj\",\"const name = obj\",\"let name, age = obj\"],                                                           correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "JS объекты",
+      "question": "Как деструктурировать массив?",
+      "options": [
+        "const [first, second] = arr",
+        "const { first, second } = arr",
+        "const first = arr",
+        "const first, second = arr"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"JS объекты\",    question: \"Как деструктурировать массив?\",                                             options: [\"const [first, second] = arr\",\"const { first, second } = arr\",\"const first = arr\",\"const first, second = arr\"],                                            correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "JS строки",
+      "question": "Как привести строку к нижнему регистру?",
+      "options": [
+        "str.toLowerCase()",
+        "str.lower()",
+        "str.toLower()",
+        "str.downcase()"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"JS строки\",     question: \"Как привести строку к нижнему регистру?\",                                   options: [\"str.toLowerCase()\",\"str.lower()\",\"str.toLower()\",\"str.downcase()\"],                                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "JS строки",
+      "question": "Как проверить содержит ли строка подстроку?",
+      "options": [
+        "str.includes('substr')",
+        "str.has('substr')",
+        "str.contains('substr')",
+        "str.find('substr')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"JS строки\",     question: \"Как проверить содержит ли строка подстроку?\",                               options: [\"str.includes('substr')\",\"str.has('substr')\",\"str.contains('substr')\",\"str.find('substr')\"],                                                               correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "DOM",
+      "question": "Как получить значение поля input?",
+      "options": [
+        "input.value",
+        "input.text",
+        "input.content",
+        "input.getValue()"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"DOM\",           question: \"Как получить значение поля input?\",                                         options: [\"input.value\",\"input.text\",\"input.content\",\"input.getValue()\"],                                                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "JS числа",
+      "question": "Как преобразовать строку в число?",
+      "options": [
+        "parseInt(str) или Number(str)",
+        "str.toNumber()",
+        "Number.parse(str)",
+        "+str (все верны)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"JS числа\",      question: \"Как преобразовать строку в число?\",                                         options: [\"parseInt(str) или Number(str)\",\"str.toNumber()\",\"Number.parse(str)\",\"+str (все верны)\"],                                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "JS объекты",
+      "question": "Что делает spread-оператор ...obj?",
+      "options": [
+        "Копирует свойства объекта в новый объект",
+        "Деструктурирует объект",
+        "Удаляет свойства",
+        "Объединяет два массива"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"JS объекты\",    question: \"Что делает spread-оператор ...obj?\",                                        options: [\"Копирует свойства объекта в новый объект\",\"Деструктурирует объект\",\"Удаляет свойства\",\"Объединяет два массива\"],                                          correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "Каталог",
+      "question": "Зачем данные хранить в отдельном файле data.js?",
+      "options": [
+        "Разделение ответственности, данные отдельно от логики",
+        "Ускорение загрузки",
+        "Обязательное требование браузера",
+        "Для SEO"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"Каталог\",       question: \"Зачем данные хранить в отдельном файле data.js?\",                           options: [\"Разделение ответственности, данные отдельно от логики\",\"Ускорение загрузки\",\"Обязательное требование браузера\",\"Для SEO\"],                              correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "JS for...of",
+      "question": "Что делает цикл for...of?",
+      "options": [
+        "Перебирает элементы итерируемого объекта (массива)",
+        "Перебирает ключи объекта",
+        "Работает только с числами",
+        "Выполняет код пока условие истинно"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"JS for...of\",   question: \"Что делает цикл for...of?\",                                                 options: [\"Перебирает элементы итерируемого объекта (массива)\",\"Перебирает ключи объекта\",\"Работает только с числами\",\"Выполняет код пока условие истинно\"],        correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "JS шаблоны",
+      "question": "Как вставить несколько строк в шаблонный литерал?",
+      "options": [
+        "Просто перенос строки внутри обратных кавычек",
+        "\\n в обычных кавычках",
+        "<br> в строке",
+        "Только через конкатенацию"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"JS шаблоны\",    question: \"Как вставить несколько строк в шаблонный литерал?\",                         options: [\"Просто перенос строки внутри обратных кавычек\",\"\\\\n в обычных кавычках\",\"<br> в строке\",\"Только через конкатенацию\"],                                    correctIndex: 0 },"
+    }
+  ],
+  "6": [
+    {
+      "id": 1,
+      "topic": "Формы",
+      "question": "Какой тег создаёт HTML-форму?",
+      "options": [
+        "<form>",
+        "<input>",
+        "<fieldset>",
+        "<submit>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"Формы\",         question: \"Какой тег создаёт HTML-форму?\",                                             options: [\"<form>\",\"<input>\",\"<fieldset>\",\"<submit>\"],                                                                         correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "Формы",
+      "question": "Какой тип input создаёт поле для пароля?",
+      "options": [
+        "type='password'",
+        "type='secret'",
+        "type='hidden'",
+        "type='text'"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"Формы\",         question: \"Какой тип input создаёт поле для пароля?\",                                  options: [\"type='password'\",\"type='secret'\",\"type='hidden'\",\"type='text'\"],                                                     correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "Формы",
+      "question": "Какой тип input создаёт кнопку отправки формы?",
+      "options": [
+        "type='submit'",
+        "type='button'",
+        "type='send'",
+        "type='form'"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"Формы\",         question: \"Какой тип input создаёт кнопку отправки формы?\",                            options: [\"type='submit'\",\"type='button'\",\"type='send'\",\"type='form'\"],                                                         correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "Формы",
+      "question": "Какое событие срабатывает при отправке формы?",
+      "options": [
+        "submit",
+        "click",
+        "change",
+        "input"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"Формы\",         question: \"Какое событие срабатывает при отправке формы?\",                             options: [\"submit\",\"click\",\"change\",\"input\"],                                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "Формы",
+      "question": "Как предотвратить стандартную отправку формы?",
+      "options": [
+        "event.preventDefault()",
+        "event.stop()",
+        "form.cancel()",
+        "return null"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"Формы\",         question: \"Как предотвратить стандартную отправку формы?\",                             options: [\"event.preventDefault()\",\"event.stop()\",\"form.cancel()\",\"return null\"],                                               correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "Валидация",
+      "question": "Что такое валидация формы?",
+      "options": [
+        "Проверка корректности введённых данных",
+        "Отправка данных на сервер",
+        "CSS-оформление формы",
+        "Сохранение данных"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"Валидация\",     question: \"Что такое валидация формы?\",                                                options: [\"Проверка корректности введённых данных\",\"Отправка данных на сервер\",\"CSS-оформление формы\",\"Сохранение данных\"],       correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "Валидация",
+      "question": "Как получить значение поля ввода?",
+      "options": [
+        "input.value",
+        "input.text",
+        "input.data",
+        "input.content"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"Валидация\",     question: \"Как получить значение поля ввода?\",                                         options: [\"input.value\",\"input.text\",\"input.data\",\"input.content\"],                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "Валидация",
+      "question": "Как проверить, что строка не пустая?",
+      "options": [
+        "str.trim().length > 0",
+        "str !== null",
+        "str.isEmpty()",
+        "str.length === 0"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"Валидация\",     question: \"Как проверить, что строка не пустая?\",                                      options: [\"str.trim().length > 0\",\"str !== null\",\"str.isEmpty()\",\"str.length === 0\"],                                           correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "localStorage",
+      "question": "Почему для хранения сессии используют localStorage?",
+      "options": [
+        "Данные сохраняются между перезагрузками",
+        "Данные шифруются",
+        "Данные отправляются на сервер",
+        "Данные хранятся в куки"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"localStorage\",  question: \"Почему для хранения сессии используют localStorage?\",                       options: [\"Данные сохраняются между перезагрузками\",\"Данные шифруются\",\"Данные отправляются на сервер\",\"Данные хранятся в куки\"],  correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "localStorage",
+      "question": "Как хранить объект в localStorage?",
+      "options": [
+        "JSON.stringify(obj) перед сохранением",
+        "Напрямую как объект",
+        "Через base64",
+        "Через cookie"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"localStorage\",  question: \"Как хранить объект в localStorage?\",                                        options: [\"JSON.stringify(obj) перед сохранением\",\"Напрямую как объект\",\"Через base64\",\"Через cookie\"],                         correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "localStorage",
+      "question": "Как прочитать объект из localStorage?",
+      "options": [
+        "JSON.parse(localStorage.getItem('key'))",
+        "localStorage.getObject('key')",
+        "JSON.read(localStorage,'key')",
+        "eval(localStorage.getItem('key'))"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"localStorage\",  question: \"Как прочитать объект из localStorage?\",                                     options: [\"JSON.parse(localStorage.getItem('key'))\",\"localStorage.getObject('key')\",\"JSON.read(localStorage,'key')\",\"eval(localStorage.getItem('key'))\"], correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "CSS input",
+      "question": "Как убрать стандартный синий outline у input при фокусе?",
+      "options": [
+        "outline: none в CSS",
+        "focus: none",
+        "border: 0",
+        "display: none"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"CSS input\",     question: \"Как убрать стандартный синий outline у input при фокусе?\",                  options: [\"outline: none в CSS\",\"focus: none\",\"border: 0\",\"display: none\"],                                                      correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "CSS псевдо",
+      "question": "Какой псевдокласс стилизует поле при фокусе?",
+      "options": [
+        ":focus",
+        ":active",
+        ":hover",
+        ":checked"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"CSS псевдо\",    question: \"Какой псевдокласс стилизует поле при фокусе?\",                              options: [\":focus\",\":active\",\":hover\",\":checked\"],                                                                               correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "JS цикл",
+      "question": "Как перебрать NodeList (querySelectorAll)?",
+      "options": [
+        "forEach или for...of",
+        "Только for",
+        "Только while",
+        "Нельзя перебрать"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"JS цикл\",       question: \"Как перебрать NodeList (querySelectorAll)?\",                                options: [\"forEach или for...of\",\"Только for\",\"Только while\",\"Нельзя перебрать\"],                                               correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "Редирект",
+      "question": "Как перенаправить пользователя после успешного входа?",
+      "options": [
+        "window.location.href = 'index.html'",
+        "document.redirect('index.html')",
+        "location.push('index.html')",
+        "history.go('index.html')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"Редирект\",      question: \"Как перенаправить пользователя после успешного входа?\",                     options: [\"window.location.href = 'index.html'\",\"document.redirect('index.html')\",\"location.push('index.html')\",\"history.go('index.html')\"], correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "Формы",
+      "question": "Атрибут required в input означает?",
+      "options": [
+        "Поле обязательно для заполнения",
+        "Поле нельзя изменить",
+        "Поле автоматически заполняется",
+        "Поле только для чтения"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"Формы\",         question: \"Атрибут required в input означает?\",                                        options: [\"Поле обязательно для заполнения\",\"Поле нельзя изменить\",\"Поле автоматически заполняется\",\"Поле только для чтения\"],   correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "Формы",
+      "question": "Атрибут placeholder у input задаёт?",
+      "options": [
+        "Подсказку внутри поля",
+        "Значение по умолчанию",
+        "Метку снаружи",
+        "Тип данных"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"Формы\",         question: \"Атрибут placeholder у input задаёт?\",                                       options: [\"Подсказку внутри поля\",\"Значение по умолчанию\",\"Метку снаружи\",\"Тип данных\"],                                         correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "Формы",
+      "question": "Тег <label> связывается с input через?",
+      "options": [
+        "Атрибут for, совпадающий с id input",
+        "Атрибут name",
+        "Вложением label внутрь input",
+        "Атрибут class"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"Формы\",         question: \"Тег <label> связывается с input через?\",                                    options: [\"Атрибут for, совпадающий с id input\",\"Атрибут name\",\"Вложением label внутрь input\",\"Атрибут class\"],                  correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "CSS Flexbox",
+      "question": "Как через flex выровнять login-форму по центру страницы?",
+      "options": [
+        "height:100vh + display:flex + justify/align:center на родителе",
+        "margin: auto на форме",
+        "position: absolute; top: 50%",
+        "float: center"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"CSS Flexbox\",   question: \"Как через flex выровнять login-форму по центру страницы?\",                  options: [\"height:100vh + display:flex + justify/align:center на родителе\",\"margin: auto на форме\",\"position: absolute; top: 50%\",\"float: center\"], correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "JS массивы",
+      "question": "Как проверить что хотя бы один элемент удовлетворяет условию?",
+      "options": [
+        "arr.some(fn)",
+        "arr.find(fn)",
+        "arr.includes(fn)",
+        "arr.every(fn)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"JS массивы\",    question: \"Как проверить что хотя бы один элемент удовлетворяет условию?\",             options: [\"arr.some(fn)\",\"arr.find(fn)\",\"arr.includes(fn)\",\"arr.every(fn)\"],                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "JS",
+      "question": "Что вернёт Boolean('')?",
+      "options": [
+        "false",
+        "true",
+        "null",
+        "undefined"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"JS\",            question: \"Что вернёт Boolean('')?\",                                                   options: [\"false\",\"true\",\"null\",\"undefined\"],                                                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "JS",
+      "question": "Что вернёт Boolean('0')?",
+      "options": [
+        "true",
+        "false",
+        "0",
+        "null"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"JS\",            question: \"Что вернёт Boolean('0')?\",                                                  options: [\"true\",\"false\",\"0\",\"null\"],                                                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "CSS анимация",
+      "question": "Какое CSS-свойство задаёт плавный переход цвета?",
+      "options": [
+        "transition: color 0.3s",
+        "animation: color 0.3s",
+        "color-transition: 0.3s",
+        "fade: 0.3s"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"CSS анимация\",  question: \"Какое CSS-свойство задаёт плавный переход цвета?\",                          options: [\"transition: color 0.3s\",\"animation: color 0.3s\",\"color-transition: 0.3s\",\"fade: 0.3s\"],                             correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "Безопасность",
+      "question": "Почему нельзя хранить пароли в localStorage?",
+      "options": [
+        "Любой JS-скрипт на странице может их прочитать",
+        "Там нет места",
+        "Браузер не позволяет",
+        "Пароли автоматически удаляются"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"Безопасность\",  question: \"Почему нельзя хранить пароли в localStorage?\",                              options: [\"Любой JS-скрипт на странице может их прочитать\",\"Там нет места\",\"Браузер не позволяет\",\"Пароли автоматически удаляются\"], correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "UX",
+      "question": "Зачем показывать ошибку рядом с конкретным полем, а не общее сообщение?",
+      "options": [
+        "Пользователь сразу понимает что именно исправить",
+        "Технически проще",
+        "CSS не поддерживает иное",
+        "Это стандарт HTML5"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"UX\",            question: \"Зачем показывать ошибку рядом с конкретным полем, а не общее сообщение?\",  options: [\"Пользователь сразу понимает что именно исправить\",\"Технически проще\",\"CSS не поддерживает иное\",\"Это стандарт HTML5\"],  correctIndex: 0 },"
+    }
+  ],
+  "7": [
+    {
+      "id": 1,
+      "topic": "Position",
+      "question": "Что делает position: absolute?",
+      "options": [
+        "Позиционирует относительно ближайшего не-static родителя",
+        "Фиксирует при скролле",
+        "Позиционирует по потоку",
+        "Скрывает элемент"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"Position\",      question: \"Что делает position: absolute?\",                                            options: [\"Позиционирует относительно ближайшего не-static родителя\",\"Фиксирует при скролле\",\"Позиционирует по потоку\",\"Скрывает элемент\"],                            correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "Position",
+      "question": "Что делает position: fixed?",
+      "options": [
+        "Элемент фиксируется относительно viewport при скролле",
+        "Элемент вырывается из потока",
+        "Элемент позиционируется по родителю",
+        "Элемент скрывается"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"Position\",      question: \"Что делает position: fixed?\",                                               options: [\"Элемент фиксируется относительно viewport при скролле\",\"Элемент вырывается из потока\",\"Элемент позиционируется по родителю\",\"Элемент скрывается\"],          correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "Position",
+      "question": "Какое position нужно у родителя, чтобы absolute дочерний позиционировался по нему?",
+      "options": [
+        "relative",
+        "absolute",
+        "fixed",
+        "static"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"Position\",      question: \"Какое position нужно у родителя, чтобы absolute дочерний позиционировался по нему?\",  options: [\"relative\",\"absolute\",\"fixed\",\"static\"],                                                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "Состояние",
+      "question": "Что такое состояние (state) в контексте UI?",
+      "options": [
+        "Данные, определяющие текущий вид компонента",
+        "CSS-класс элемента",
+        "Серверная переменная",
+        "Атрибут HTML"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"Состояние\",     question: \"Что такое состояние (state) в контексте UI?\",                               options: [\"Данные, определяющие текущий вид компонента\",\"CSS-класс элемента\",\"Серверная переменная\",\"Атрибут HTML\"],                                                      correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "classList",
+      "question": "Что делает classList.toggle('active')?",
+      "options": [
+        "Переключает класс active",
+        "Добавляет класс",
+        "Удаляет класс",
+        "Проверяет наличие класса"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"classList\",     question: \"Что делает classList.toggle('active')?\",                                    options: [\"Переключает класс active\",\"Добавляет класс\",\"Удаляет класс\",\"Проверяет наличие класса\"],                                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "setInterval",
+      "question": "Что делает setInterval(fn, 1000)?",
+      "options": [
+        "Вызывает fn каждую 1 секунду",
+        "Вызывает fn 1 раз через 1 сек",
+        "Задерживает на 1 сек",
+        "Останавливает анимацию на 1 сек"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"setInterval\",   question: \"Что делает setInterval(fn, 1000)?\",                                         options: [\"Вызывает fn каждую 1 секунду\",\"Вызывает fn 1 раз через 1 сек\",\"Задерживает на 1 сек\",\"Останавливает анимацию на 1 сек\"],                                   correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "setInterval",
+      "question": "Как остановить setInterval?",
+      "options": [
+        "clearInterval(id)",
+        "stopInterval(id)",
+        "clearTimeout(id)",
+        "cancelInterval(id)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"setInterval\",   question: \"Как остановить setInterval?\",                                               options: [\"clearInterval(id)\",\"stopInterval(id)\",\"clearTimeout(id)\",\"cancelInterval(id)\"],                                                                                correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "Слайдер",
+      "question": "Как реализовать переключение слайдов?",
+      "options": [
+        "Хранить индекс активного слайда, применять active-класс нужному",
+        "Скрывать все кроме первого",
+        "Использовать iframe",
+        "Перезагружать страницу"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"Слайдер\",       question: \"Как реализовать переключение слайдов?\",                                     options: [\"Хранить индекс активного слайда, применять active-класс нужному\",\"Скрывать все кроме первого\",\"Использовать iframe\",\"Перезагружать страницу\"],               correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "CSS transition",
+      "question": "Как анимировать появление/скрытие элемента через opacity?",
+      "options": [
+        "opacity: 0/1 + transition",
+        "display: none/block",
+        "visibility: hidden/visible без transition",
+        "z-index: -1/1"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"CSS transition\", question: \"Как анимировать появление/скрытие элемента через opacity?\",                options: [\"opacity: 0/1 + transition\",\"display: none/block\",\"visibility: hidden/visible без transition\",\"z-index: -1/1\"],                                              correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "CSS transform",
+      "question": "Как сдвинуть элемент вправо на 10px без изменения потока?",
+      "options": [
+        "transform: translateX(10px)",
+        "margin-left: 10px",
+        "left: 10px",
+        "padding-left: 10px"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"CSS transform\",  question: \"Как сдвинуть элемент вправо на 10px без изменения потока?\",                options: [\"transform: translateX(10px)\",\"margin-left: 10px\",\"left: 10px\",\"padding-left: 10px\"],                                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "CSS анимация",
+      "question": "Что задаёт @keyframes?",
+      "options": [
+        "Шаги CSS-анимации",
+        "Медиазапрос",
+        "Переход между состояниями",
+        "Псевдоэлемент"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"CSS анимация\",  question: \"Что задаёт @keyframes?\",                                                    options: [\"Шаги CSS-анимации\",\"Медиазапрос\",\"Переход между состояниями\",\"Псевдоэлемент\"],                                                                                 correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "CSS анимация",
+      "question": "Свойство animation: slide 0.4s ease применяет?",
+      "options": [
+        "Анимацию slide длиной 0.4с с ease-easing",
+        "Transition за 0.4с",
+        "Задержку 0.4с",
+        "Повторение 0.4 раза"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"CSS анимация\",  question: \"Свойство animation: slide 0.4s ease применяет?\",                           options: [\"Анимацию slide длиной 0.4с с ease-easing\",\"Transition за 0.4с\",\"Задержку 0.4с\",\"Повторение 0.4 раза\"],                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "DOM события",
+      "question": "Что такое event delegation (делегирование событий)?",
+      "options": [
+        "Навешивать обработчик на родителя, ловить события от потомков",
+        "Передавать событие другому элементу",
+        "Отменять всплытие",
+        "Добавлять слушатель к window"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"DOM события\",   question: \"Что такое event delegation (делегирование событий)?\",                       options: [\"Навешивать обработчик на родителя, ловить события от потомков\",\"Передавать событие другому элементу\",\"Отменять всплытие\",\"Добавлять слушатель к window\"],  correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "DOM события",
+      "question": "Как узнать на каком элементе был клик внутри обработчика?",
+      "options": [
+        "event.target",
+        "event.element",
+        "event.source",
+        "this"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"DOM события\",   question: \"Как узнать на каком элементе был клик внутри обработчика?\",                 options: [\"event.target\",\"event.element\",\"event.source\",\"this\"],                                                                                                           correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "CSS",
+      "question": "Что делает pointer-events: none?",
+      "options": [
+        "Элемент не реагирует на мышь",
+        "Скрывает курсор",
+        "Добавляет cursor: default",
+        "Блокирует drag"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"CSS\",           question: \"Что делает pointer-events: none?\",                                          options: [\"Элемент не реагирует на мышь\",\"Скрывает курсор\",\"Добавляет cursor: default\",\"Блокирует drag\"],                                                               correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "CSS",
+      "question": "Что делает user-select: none?",
+      "options": [
+        "Запрещает выделение текста",
+        "Запрещает клики",
+        "Скрывает элемент",
+        "Отключает фокус"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"CSS\",           question: \"Что делает user-select: none?\",                                             options: [\"Запрещает выделение текста\",\"Запрещает клики\",\"Скрывает элемент\",\"Отключает фокус\"],                                                                           correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "JS массивы",
+      "question": "Как получить длину массива?",
+      "options": [
+        "arr.length",
+        "arr.size()",
+        "arr.count",
+        "arr.len"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"JS массивы\",    question: \"Как получить длину массива?\",                                               options: [\"arr.length\",\"arr.size()\",\"arr.count\",\"arr.len\"],                                                                                                               correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "JS массивы",
+      "question": "Что вернёт [1,2,3].length?",
+      "options": [
+        "3",
+        "[3]",
+        "undefined",
+        "null"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"JS массивы\",    question: \"Что вернёт [1,2,3].length?\",                                                options: [\"3\",\"[3]\",\"undefined\",\"null\"],                                                                                                                               correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "Структура",
+      "question": "Зачем выносить initSlider в отдельную функцию?",
+      "options": [
+        "Организация кода, переиспользование, читаемость",
+        "Только для производительности",
+        "Требование браузера",
+        "Для SEO"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"Структура\",     question: \"Зачем выносить initSlider в отдельную функцию?\",                            options: [\"Организация кода, переиспользование, читаемость\",\"Только для производительности\",\"Требование браузера\",\"Для SEO\"],                                         correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "DOM",
+      "question": "Как получить все дочерние элементы с классом .dot?",
+      "options": [
+        "container.querySelectorAll('.dot')",
+        "container.children('.dot')",
+        "container.findAll('.dot')",
+        "container.getByClass('.dot')"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"DOM\",           question: \"Как получить все дочерние элементы с классом .dot?\",                        options: [\"container.querySelectorAll('.dot')\",\"container.children('.dot')\",\"container.findAll('.dot')\",\"container.getByClass('.dot')\"],                             correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "CSS z-index",
+      "question": "Для работы z-index обязательно нужно?",
+      "options": [
+        "position отличный от static",
+        "display: block",
+        "overflow: hidden",
+        "border: 1px solid"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"CSS z-index\",   question: \"Для работы z-index обязательно нужно?\",                                     options: [\"position отличный от static\",\"display: block\",\"overflow: hidden\",\"border: 1px solid\"],                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "JS",
+      "question": "Что делает оператор ||= ?",
+      "options": [
+        "Присваивает значение только если переменная falsy",
+        "Логическое ИЛИ",
+        "Присваивает всегда",
+        "Побитовое ИЛИ"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"JS\",            question: \"Что делает оператор ||= ?\",                                                 options: [\"Присваивает значение только если переменная falsy\",\"Логическое ИЛИ\",\"Присваивает всегда\",\"Побитовое ИЛИ\"],                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "CSS",
+      "question": "Как сделать элемент невидимым но сохранить его место в потоке?",
+      "options": [
+        "visibility: hidden",
+        "display: none",
+        "opacity: 0 (оба с opacity и visibility, но visibility сохраняет место)",
+        "z-index: -1"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"CSS\",           question: \"Как сделать элемент невидимым но сохранить его место в потоке?\",            options: [\"visibility: hidden\",\"display: none\",\"opacity: 0 (оба с opacity и visibility, но visibility сохраняет место)\",\"z-index: -1\"],                              correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "JS",
+      "question": "Что вернёт typeof null?",
+      "options": [
+        "'object' (историческая ошибка JS)",
+        "'null'",
+        "'undefined'",
+        "'boolean'"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"JS\",            question: \"Что вернёт typeof null?\",                                                   options: [\"'object' (историческая ошибка JS)\",\"'null'\",\"'undefined'\",\"'boolean'\"],                                                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "Автоплей",
+      "question": "Почему при клике на кнопку слайдера нужно сбрасывать таймер автоплея?",
+      "options": [
+        "Чтобы избежать прыжков слайда сразу после ручного переключения",
+        "Это обязательный стандарт",
+        "Иначе сломается CSS",
+        "Таймер нельзя остановить"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"Автоплей\",      question: \"Почему при клике на кнопку слайдера нужно сбрасывать таймер автоплея?\",    options: [\"Чтобы избежать прыжков слайда сразу после ручного переключения\",\"Это обязательный стандарт\",\"Иначе сломается CSS\",\"Таймер нельзя остановить\"],          correctIndex: 0 },"
+    }
+  ],
+  "8": [
+    {
+      "id": 1,
+      "topic": "filter()",
+      "question": "Что делает Array.filter()?",
+      "options": [
+        "Возвращает новый массив только с элементами прошедшими условие",
+        "Изменяет исходный массив",
+        "Сортирует элементы",
+        "Удаляет первый элемент"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"filter()\",      question: \"Что делает Array.filter()?\",                                                options: [\"Возвращает новый массив только с элементами прошедшими условие\",\"Изменяет исходный массив\",\"Сортирует элементы\",\"Удаляет первый элемент\"],                  correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "filter()",
+      "question": "Что вернёт [1,2,3,4].filter(x => x > 2)?",
+      "options": [
+        "[3,4]",
+        "[1,2]",
+        "[2,3,4]",
+        "[4]"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"filter()\",      question: \"Что вернёт [1,2,3,4].filter(x => x > 2)?\",                                  options: [\"[3,4]\",\"[1,2]\",\"[2,3,4]\",\"[4]\"],                                                                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "sort()",
+      "question": "Что делает arr.sort((a,b) => a - b)?",
+      "options": [
+        "Сортирует числа по возрастанию",
+        "Сортирует числа по убыванию",
+        "Сортирует строки",
+        "Перемешивает массив"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"sort()\",        question: \"Что делает arr.sort((a,b) => a - b)?\",                                      options: [\"Сортирует числа по возрастанию\",\"Сортирует числа по убыванию\",\"Сортирует строки\",\"Перемешивает массив\"],                                               correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "sort()",
+      "question": "Что делает arr.sort((a,b) => b - a)?",
+      "options": [
+        "Сортирует по убыванию",
+        "Сортирует по возрастанию",
+        "Удаляет дубли",
+        "Разворачивает массив"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"sort()\",        question: \"Что делает arr.sort((a,b) => b - a)?\",                                      options: [\"Сортирует по убыванию\",\"Сортирует по возрастанию\",\"Удаляет дубли\",\"Разворачивает массив\"],                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "input event",
+      "question": "Какое событие срабатывает при каждом изменении input?",
+      "options": [
+        "input",
+        "change",
+        "keyup",
+        "focus"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"input event\",   question: \"Какое событие срабатывает при каждом изменении input?\",                    options: [\"input\",\"change\",\"keyup\",\"focus\"],                                                                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "input event",
+      "question": "Чем отличается событие input от change?",
+      "options": [
+        "input — при каждом символе, change — после потери фокуса",
+        "Они одинаковы",
+        "change чаще",
+        "input — только для select"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"input event\",   question: \"Чем отличается событие input от change?\",                                  options: [\"input — при каждом символе, change — после потери фокуса\",\"Они одинаковы\",\"change чаще\",\"input — только для select\"],                                  correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "select",
+      "question": "Как получить выбранное значение тега <select>?",
+      "options": [
+        "select.value",
+        "select.selected",
+        "select.option",
+        "select.chosen"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"select\",        question: \"Как получить выбранное значение тега <select>?\",                            options: [\"select.value\",\"select.selected\",\"select.option\",\"select.chosen\"],                                                                                         correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "select",
+      "question": "Как динамически добавить опцию в <select>?",
+      "options": [
+        "Создать <option>, установить value/text, appendChild",
+        "Изменить innerHTML через join",
+        "Оба способа верны",
+        "select.addOption()"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"select\",        question: \"Как динамически добавить опцию в <select>?\",                                options: [\"Создать <option>, установить value/text, appendChild\",\"Изменить innerHTML через join\",\"Оба способа верны\",\"select.addOption()\"],                        correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "Поиск",
+      "question": "Как реализовать поиск по названию через filter?",
+      "options": [
+        "arr.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))",
+        "arr.search(query)",
+        "arr.find(query)",
+        "document.search(query)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"Поиск\",         question: \"Как реализовать поиск по названию через filter?\",                           options: [\"arr.filter(item => item.name.toLowerCase().includes(query.toLowerCase()))\",\"arr.search(query)\",\"arr.find(query)\",\"document.search(query)\"],              correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "Поиск",
+      "question": "Зачем применять toLowerCase() при сравнении строк поиска?",
+      "options": [
+        "Поиск нечувствителен к регистру",
+        "Ускоряет поиск",
+        "Обязательное требование filter",
+        "Для SEO"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"Поиск\",         question: \"Зачем применять toLowerCase() при сравнении строк поиска?\",                 options: [\"Поиск нечувствителен к регистру\",\"Ускоряет поиск\",\"Обязательное требование filter\",\"Для SEO\"],                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "Пустой стейт",
+      "question": "Что показывать если поиск не дал результатов?",
+      "options": [
+        "Сообщение 'Ничего не найдено'",
+        "Скрыть контейнер",
+        "Показать всё",
+        "Перезагрузить страницу"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"Пустой стейт\",  question: \"Что показывать если поиск не дал результатов?\",                            options: [\"Сообщение 'Ничего не найдено'\",\"Скрыть контейнер\",\"Показать всё\",\"Перезагрузить страницу\"],                                                              correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "Форма брони",
+      "question": "Зачем делать auth-guard на странице бронирования?",
+      "options": [
+        "Незарегистрированный пользователь не должен бронировать",
+        "Для красоты",
+        "Чтобы скрыть форму",
+        "Ускорение загрузки"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"Форма брони\",   question: \"Зачем делать auth-guard на странице бронирования?\",                         options: [\"Незарегистрированный пользователь не должен бронировать\",\"Для красоты\",\"Чтобы скрыть форму\",\"Ускорение загрузки\"],                                       correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "URL params",
+      "question": "Как передать id комнаты на страницу бронирования?",
+      "options": [
+        "Через URL-параметр: ?id=1",
+        "Через localStorage",
+        "Через cookie",
+        "Через форму"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"URL params\",    question: \"Как передать id комнаты на страницу бронирования?\",                         options: [\"Через URL-параметр: ?id=1\",\"Через localStorage\",\"Через cookie\",\"Через форму\"],                                                                           correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "Расчёт",
+      "question": "Как вычислить стоимость аренды: цена * количество дней?",
+      "options": [
+        "price * days в JavaScript",
+        "Через CSS calc()",
+        "Через HTML атрибут",
+        "Через URL"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"Расчёт\",        question: \"Как вычислить стоимость аренды: цена * количество дней?\",                   options: [\"price * days в JavaScript\",\"Через CSS calc()\",\"Через HTML атрибут\",\"Через URL\"],                                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "DOM",
+      "question": "Как обновить текст элемента без innerHTML?",
+      "options": [
+        "element.textContent = 'текст'",
+        "element.text = 'текст'",
+        "element.innerText = 'текст' (оба textContent и innerText работают)",
+        "element.value = 'текст'"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"DOM\",           question: \"Как обновить текст элемента без innerHTML?\",                                options: [\"element.textContent = 'текст'\",\"element.text = 'текст'\",\"element.innerText = 'текст' (оба textContent и innerText работают)\",\"element.value = 'текст'\"], correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "JS числа",
+      "question": "Как округлить число до 2 знаков после запятой?",
+      "options": [
+        "num.toFixed(2)",
+        "Math.round(num, 2)",
+        "num.round(2)",
+        "Math.ceil(num, 2)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"JS числа\",      question: \"Как округлить число до 2 знаков после запятой?\",                            options: [\"num.toFixed(2)\",\"Math.round(num, 2)\",\"num.round(2)\",\"Math.ceil(num, 2)\"],                                                                                correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "JS",
+      "question": "Что делает оператор && в условии?",
+      "options": [
+        "Логическое И — оба условия должны быть истинными",
+        "Логическое ИЛИ",
+        "Побитовое И",
+        "Строгое равенство"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"JS\",            question: \"Что делает оператор && в условии?\",                                         options: [\"Логическое И — оба условия должны быть истинными\",\"Логическое ИЛИ\",\"Побитовое И\",\"Строгое равенство\"],                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "JS массивы",
+      "question": "Как отсортировать комнаты по цене от меньшей к большей?",
+      "options": [
+        "rooms.sort((a,b) => a.price - b.price)",
+        "rooms.sort()",
+        "rooms.filter(r => r.price)",
+        "rooms.map(r => r.price)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"JS массивы\",    question: \"Как отсортировать комнаты по цене от меньшей к большей?\",                  options: [\"rooms.sort((a,b) => a.price - b.price)\",\"rooms.sort()\",\"rooms.filter(r => r.price)\",\"rooms.map(r => r.price)\"],                                        correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "CSS toolbar",
+      "question": "Как разместить элементы поиска и сортировки в одну строку?",
+      "options": [
+        "Flex-контейнер: display: flex; gap: ...",
+        "Float: left для каждого",
+        "Position: absolute",
+        "Inline-block с margin"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"CSS toolbar\",   question: \"Как разместить элементы поиска и сортировки в одну строку?\",                options: [\"Flex-контейнер: display: flex; gap: ...\",\"Float: left для каждого\",\"Position: absolute\",\"Inline-block с margin\"],                                         correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "JS",
+      "question": "Что вернёт '' || 'default'?",
+      "options": [
+        "'default'",
+        "''",
+        "true",
+        "null"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"JS\",            question: \"Что вернёт '' || 'default'?\",                                               options: [\"'default'\",\"''\",\"true\",\"null\"],                                                                                                                         correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "JS",
+      "question": "Как проверить что массив пустой?",
+      "options": [
+        "arr.length === 0",
+        "arr === []",
+        "arr.isEmpty()",
+        "!arr"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"JS\",            question: \"Как проверить что массив пустой?\",                                          options: [\"arr.length === 0\",\"arr === []\",\"arr.isEmpty()\",\"!arr\"],                                                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "JS массивы",
+      "question": "Что делает arr.includes(value)?",
+      "options": [
+        "Проверяет есть ли value в массиве",
+        "Находит индекс",
+        "Добавляет value",
+        "Возвращает новый массив"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"JS массивы\",    question: \"Что делает arr.includes(value)?\",                                           options: [\"Проверяет есть ли value в массиве\",\"Находит индекс\",\"Добавляет value\",\"Возвращает новый массив\"],                                                      correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "select",
+      "question": "Атрибут value у <option> задаёт?",
+      "options": [
+        "Значение, которое получит JS при выборе этой опции",
+        "Текст видимый пользователю",
+        "id опции",
+        "Данные для CSS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"select\",        question: \"Атрибут value у <option> задаёт?\",                                          options: [\"Значение, которое получит JS при выборе этой опции\",\"Текст видимый пользователю\",\"id опции\",\"Данные для CSS\"],                                           correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "UX",
+      "question": "Зачем нужен placeholder у поля поиска?",
+      "options": [
+        "Подсказка что ввести",
+        "Значение по умолчанию",
+        "Метаданные",
+        "Валидация"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"UX\",            question: \"Зачем нужен placeholder у поля поиска?\",                                    options: [\"Подсказка что ввести\",\"Значение по умолчанию\",\"Метаданные\",\"Валидация\"],                                                                                 correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "JS",
+      "question": "Что вернёт Number('42')?",
+      "options": [
+        "42 (число)",
+        "'42' (строка)",
+        "NaN",
+        "42.0 (дробное)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"JS\",            question: \"Что вернёт Number('42')?\",                                                  options: [\"42 (число)\",\"'42' (строка)\",\"NaN\",\"42.0 (дробное)\"],                                                                                                   correctIndex: 0 },"
+    }
+  ],
+  "9": [
+    {
+      "id": 1,
+      "topic": "Рефакторинг",
+      "question": "Зачем выносить повторяющийся код в отдельную функцию?",
+      "options": [
+        "DRY-принцип: не повторяй себя",
+        "Для ускорения браузера",
+        "Обязательное требование JS",
+        "Для SEO"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"Рефакторинг\",   question: \"Зачем выносить повторяющийся код в отдельную функцию?\",                     options: [\"DRY-принцип: не повторяй себя\",\"Для ускорения браузера\",\"Обязательное требование JS\",\"Для SEO\"],                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "Пустой стейт",
+      "question": "Что такое empty state в UI?",
+      "options": [
+        "Состояние интерфейса когда данных нет",
+        "Пустой HTML-документ",
+        "Форма без полей",
+        "Незаполненный массив"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"Пустой стейт\",  question: \"Что такое empty state в UI?\",                                               options: [\"Состояние интерфейса когда данных нет\",\"Пустой HTML-документ\",\"Форма без полей\",\"Незаполненный массив\"],                                               correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "Пустой стейт",
+      "question": "Как правильно отобразить пустой список бронирований?",
+      "options": [
+        "Показать дружелюбное сообщение вместо пустого блока",
+        "Скрыть блок",
+        "Показать null",
+        "Перенаправить на другую страницу"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"Пустой стейт\",  question: \"Как правильно отобразить пустой список бронирований?\",                      options: [\"Показать дружелюбное сообщение вместо пустого блока\",\"Скрыть блок\",\"Показать null\",\"Перенаправить на другую страницу\"],                             correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "Auth guard",
+      "question": "Что должен делать auth-guard если пользователь не авторизован?",
+      "options": [
+        "Перенаправить на страницу входа",
+        "Показать пустую страницу",
+        "Выбросить ошибку",
+        "Загрузить данные всё равно"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"Auth guard\",    question: \"Что должен делать auth-guard если пользователь не авторизован?\",            options: [\"Перенаправить на страницу входа\",\"Показать пустую страницу\",\"Выбросить ошибку\",\"Загрузить данные всё равно\"],                                         correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "CSS список",
+      "question": "Как убрать стандартные маркеры у ul?",
+      "options": [
+        "list-style: none",
+        "bullet: none",
+        "marker: hidden",
+        "list-marker: remove"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"CSS список\",    question: \"Как убрать стандартные маркеры у ul?\",                                      options: [\"list-style: none\",\"bullet: none\",\"marker: hidden\",\"list-marker: remove\"],                                                                                 correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "CSS flexbox",
+      "question": "Как сделать чтобы flex-элементы переносились на новую строку при нехватке места?",
+      "options": [
+        "flex-wrap: wrap",
+        "flex-break: auto",
+        "overflow: wrap",
+        "display: wrap"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"CSS flexbox\",   question: \"Как сделать чтобы flex-элементы переносились на новую строку при нехватке места?\", options: [\"flex-wrap: wrap\",\"flex-break: auto\",\"overflow: wrap\",\"display: wrap\"],                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "JS массивы",
+      "question": "Что делает arr.map(fn).join('')?",
+      "options": [
+        "Создаёт строку из преобразованных элементов",
+        "Фильтрует и объединяет",
+        "Сортирует и склеивает",
+        "Ничего не делает"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"JS массивы\",    question: \"Что делает arr.map(fn).join('')?\",                                          options: [\"Создаёт строку из преобразованных элементов\",\"Фильтрует и объединяет\",\"Сортирует и склеивает\",\"Ничего не делает\"],                                      correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "DOM",
+      "question": "Как добавить HTML-контент в начало элемента?",
+      "options": [
+        "element.insertAdjacentHTML('afterbegin', html)",
+        "element.prepend(html)",
+        "element.before(html)",
+        "element.innerHTML = html + element.innerHTML"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"DOM\",           question: \"Как добавить HTML-контент в начало элемента?\",                              options: [\"element.insertAdjacentHTML('afterbegin', html)\",\"element.prepend(html)\",\"element.before(html)\",\"element.innerHTML = html + element.innerHTML\"],         correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "JS объекты",
+      "question": "Как получить все ключи объекта?",
+      "options": [
+        "Object.keys(obj)",
+        "obj.keys()",
+        "Object.getKeys(obj)",
+        "for key in obj"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"JS объекты\",    question: \"Как получить все ключи объекта?\",                                           options: [\"Object.keys(obj)\",\"obj.keys()\",\"Object.getKeys(obj)\",\"for key in obj\"],                                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "JS объекты",
+      "question": "Как получить все значения объекта?",
+      "options": [
+        "Object.values(obj)",
+        "obj.values()",
+        "Object.getValues(obj)",
+        "obj.toArray()"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"JS объекты\",    question: \"Как получить все значения объекта?\",                                        options: [\"Object.values(obj)\",\"obj.values()\",\"Object.getValues(obj)\",\"obj.toArray()\"],                                                                             correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "JS",
+      "question": "Что делает оператор ?? (nullish coalescing)?",
+      "options": [
+        "Возвращает правую часть только если левая null или undefined",
+        "Как || но строже",
+        "Конкатенирует строки",
+        "Проверяет тип"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"JS\",            question: \"Что делает оператор ?? (nullish coalescing)?\",                              options: [\"Возвращает правую часть только если левая null или undefined\",\"Как || но строже\",\"Конкатенирует строки\",\"Проверяет тип\"],                              correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "Модули",
+      "question": "Как экспортировать функцию из JS-модуля?",
+      "options": [
+        "export function myFn() {}",
+        "module.exports = myFn",
+        "export default myFn (оба способа верны)",
+        "send(myFn)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"Модули\",        question: \"Как экспортировать функцию из JS-модуля?\",                                  options: [\"export function myFn() {}\",\"module.exports = myFn\",\"export default myFn (оба способа верны)\",\"send(myFn)\"],                                              correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "CSS карточка",
+      "question": "Как сделать одинаковую высоту карточек в grid?",
+      "options": [
+        "align-items: stretch у grid-контейнера (по умолчанию)",
+        "height: 100% у карточки",
+        "min-height: auto",
+        "flex: 1"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"CSS карточка\",  question: \"Как сделать одинаковую высоту карточек в grid?\",                            options: [\"align-items: stretch у grid-контейнера (по умолчанию)\",\"height: 100% у карточки\",\"min-height: auto\",\"flex: 1\"],                                        correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "JS",
+      "question": "Что вернёт typeof undefined?",
+      "options": [
+        "'undefined'",
+        "'null'",
+        "'object'",
+        "'boolean'"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"JS\",            question: \"Что вернёт typeof undefined?\",                                              options: [\"'undefined'\",\"'null'\",\"'object'\",\"'boolean'\"],                                                                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "JS",
+      "question": "Чем Array.from() полезен для работы с NodeList?",
+      "options": [
+        "Преобразует NodeList в настоящий массив с полным набором методов",
+        "Клонирует DOM",
+        "Фильтрует элементы",
+        "Ускоряет querySelectorAll"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"JS\",            question: \"Чем Array.from() полезен для работы с NodeList?\",                           options: [\"Преобразует NodeList в настоящий массив с полным набором методов\",\"Клонирует DOM\",\"Фильтрует элементы\",\"Ускоряет querySelectorAll\"],                  correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "CSS",
+      "question": "Что делает word-break: break-word?",
+      "options": [
+        "Переносит длинные слова на следующую строку",
+        "Разделяет слова дефисом",
+        "Скрывает длинный текст",
+        "Добавляет многоточие"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"CSS\",           question: \"Что делает word-break: break-word?\",                                        options: [\"Переносит длинные слова на следующую строку\",\"Разделяет слова дефисом\",\"Скрывает длинный текст\",\"Добавляет многоточие\"],                               correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "CSS",
+      "question": "Что делает text-overflow: ellipsis?",
+      "options": [
+        "Добавляет ... к обрезанному тексту (нужно overflow: hidden)",
+        "Переносит текст",
+        "Скрывает текст",
+        "Сокращает шрифт"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"CSS\",           question: \"Что делает text-overflow: ellipsis?\",                                       options: [\"Добавляет ... к обрезанному тексту (нужно overflow: hidden)\",\"Переносит текст\",\"Скрывает текст\",\"Сокращает шрифт\"],                                    correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "JS",
+      "question": "Как проверить что переменная является массивом?",
+      "options": [
+        "Array.isArray(variable)",
+        "variable instanceof Array (оба верны)",
+        "typeof variable === 'array'",
+        "variable.isArray()"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"JS\",            question: \"Как проверить что переменная является массивом?\",                           options: [\"Array.isArray(variable)\",\"variable instanceof Array (оба верны)\",\"typeof variable === 'array'\",\"variable.isArray()\"],                                   correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "JS",
+      "question": "Что делает метод arr.reduce()?",
+      "options": [
+        "Сводит массив к одному значению",
+        "Фильтрует массив",
+        "Разворачивает массив",
+        "Создаёт новый массив"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"JS\",            question: \"Что делает метод arr.reduce()?\",                                            options: [\"Сводит массив к одному значению\",\"Фильтрует массив\",\"Разворачивает массив\",\"Создаёт новый массив\"],                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "CSS responsive",
+      "question": "Как скрыть элемент на маленьких экранах через медиазапрос?",
+      "options": [
+        "@media (max-width: 768px) { element { display: none; } }",
+        "hide: mobile",
+        "@media mobile { display: none }",
+        "visibility: hidden on mobile"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"CSS responsive\", question: \"Как скрыть элемент на маленьких экранах через медиазапрос?\",              options: [\"@media (max-width: 768px) { element { display: none; } }\",\"hide: mobile\",\"@media mobile { display: none }\",\"visibility: hidden on mobile\"],           correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "Семантика",
+      "question": "Какой тег подходит для карточки бронирования?",
+      "options": [
+        "<article>",
+        "<div>",
+        "<span>",
+        "<section>"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"Семантика\",     question: \"Какой тег подходит для карточки бронирования?\",                             options: [\"<article>\",\"<div>\",\"<span>\",\"<section>\"],                                                                                                                  correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "JS дата",
+      "question": "Как получить текущую дату в JS?",
+      "options": [
+        "new Date()",
+        "Date.now() (возвращает timestamp)",
+        "Date.today()",
+        "new Date.current()"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"JS дата\",       question: \"Как получить текущую дату в JS?\",                                           options: [\"new Date()\",\"Date.now() (возвращает timestamp)\",\"Date.today()\",\"new Date.current()\"],                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "JS",
+      "question": "Что делает console.log()?",
+      "options": [
+        "Выводит значение в консоль разработчика",
+        "Выводит на страницу",
+        "Отправляет данные на сервер",
+        "Создаёт alert"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"JS\",            question: \"Что делает console.log()?\",                                                 options: [\"Выводит значение в консоль разработчика\",\"Выводит на страницу\",\"Отправляет данные на сервер\",\"Создаёт alert\"],                                         correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "JS",
+      "question": "Что вернёт [1,2,3].indexOf(2)?",
+      "options": [
+        "1 (индекс элемента)",
+        "2 (значение)",
+        "true",
+        "0"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"JS\",            question: \"Что вернёт [1,2,3].indexOf(2)?\",                                            options: [\"1 (индекс элемента)\",\"2 (значение)\",\"true\",\"0\"],                                                                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "CSS",
+      "question": "Как сделать блок с фиксированным соотношением сторон (16:9)?",
+      "options": [
+        "aspect-ratio: 16/9",
+        "width: 16; height: 9",
+        "ratio: 16:9",
+        "padding-top: 56.25%  (устаревший способ)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"CSS\",           question: \"Как сделать блок с фиксированным соотношением сторон (16:9)?\",              options: [\"aspect-ratio: 16/9\",\"width: 16; height: 9\",\"ratio: 16:9\",\"padding-top: 56.25%  (устаревший способ)\"],                                                correctIndex: 0 },"
+    }
+  ],
+  "10": [
+    {
+      "id": 1,
+      "topic": "Ошибки",
+      "question": "Что такое SecurityError в контексте localStorage?",
+      "options": [
+        "Браузер блокирует localStorage в режиме инкогнито или iframe с другим доменом",
+        "Неправильный пароль",
+        "Ошибка сети",
+        "Конфликт CSS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 1,  topic: \"Ошибки\",        question: \"Что такое SecurityError в контексте localStorage?\",                          options: [\"Браузер блокирует localStorage в режиме инкогнито или iframe с другим доменом\",\"Неправильный пароль\",\"Ошибка сети\",\"Конфликт CSS\"],                        correctIndex: 0 },"
+    },
+    {
+      "id": 2,
+      "topic": "Ошибки",
+      "question": "Как безопасно работать с localStorage?",
+      "options": [
+        "Обернуть в try/catch",
+        "Использовать только в HTTPS",
+        "Проверять typeof window",
+        "Использовать sessionStorage"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 2,  topic: \"Ошибки\",        question: \"Как безопасно работать с localStorage?\",                                    options: [\"Обернуть в try/catch\",\"Использовать только в HTTPS\",\"Проверять typeof window\",\"Использовать sessionStorage\"],                                           correctIndex: 0 },"
+    },
+    {
+      "id": 3,
+      "topic": "Ошибки",
+      "question": "Что такое TypeError: Cannot read properties of null?",
+      "options": [
+        "Попытка обратиться к свойству элемента которого нет в DOM",
+        "Неправильный тип CSS",
+        "Ошибка сети",
+        "Неверный URL"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 3,  topic: \"Ошибки\",        question: \"Что такое TypeError: Cannot read properties of null?\",                      options: [\"Попытка обратиться к свойству элемента которого нет в DOM\",\"Неправильный тип CSS\",\"Ошибка сети\",\"Неверный URL\"],                                       correctIndex: 0 },"
+    },
+    {
+      "id": 4,
+      "topic": "Ошибки",
+      "question": "Почему getElementById возвращает null?",
+      "options": [
+        "Элемент с таким id не существует в DOM на момент вызова",
+        "Неправильный синтаксис",
+        "id с большой буквы",
+        "Браузер не поддерживает"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 4,  topic: \"Ошибки\",        question: \"Почему getElementById возвращает null?\",                                    options: [\"Элемент с таким id не существует в DOM на момент вызова\",\"Неправильный синтаксис\",\"id с большой буквы\",\"Браузер не поддерживает\"],                    correctIndex: 0 },"
+    },
+    {
+      "id": 5,
+      "topic": "Ошибки",
+      "question": "Как избежать ошибки null DOM?",
+      "options": [
+        "Запускать код после DOMContentLoaded или размещать script в конце body",
+        "Использовать setTimeout",
+        "Дублировать id",
+        "Использовать querySelectorAll"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 5,  topic: \"Ошибки\",        question: \"Как избежать ошибки null DOM?\",                                             options: [\"Запускать код после DOMContentLoaded или размещать script в конце body\",\"Использовать setTimeout\",\"Дублировать id\",\"Использовать querySelectorAll\"],    correctIndex: 0 },"
+    },
+    {
+      "id": 6,
+      "topic": "Ошибки",
+      "question": "Что такое SyntaxError?",
+      "options": [
+        "Ошибка синтаксиса в коде, файл не может выполниться",
+        "Ошибка сети",
+        "Ошибка CSS",
+        "Ошибка HTML"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 6,  topic: \"Ошибки\",        question: \"Что такое SyntaxError?\",                                                    options: [\"Ошибка синтаксиса в коде, файл не может выполниться\",\"Ошибка сети\",\"Ошибка CSS\",\"Ошибка HTML\"],                                                          correctIndex: 0 },"
+    },
+    {
+      "id": 7,
+      "topic": "Ошибки",
+      "question": "Что делает try/catch?",
+      "options": [
+        "Ловит ошибки выполнения и позволяет обработать их",
+        "Предотвращает ошибки заранее",
+        "Исправляет ошибки автоматически",
+        "Логирует ошибки на сервер"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 7,  topic: \"Ошибки\",        question: \"Что делает try/catch?\",                                                     options: [\"Ловит ошибки выполнения и позволяет обработать их\",\"Предотвращает ошибки заранее\",\"Исправляет ошибки автоматически\",\"Логирует ошибки на сервер\"],      correctIndex: 0 },"
+    },
+    {
+      "id": 8,
+      "topic": "404",
+      "question": "Что такое ошибка 404 в Network?",
+      "options": [
+        "Файл или ресурс не найден по указанному пути",
+        "Ошибка сервера",
+        "Нет прав доступа",
+        "Сеть недоступна"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 8,  topic: \"404\",           question: \"Что такое ошибка 404 в Network?\",                                           options: [\"Файл или ресурс не найден по указанному пути\",\"Ошибка сервера\",\"Нет прав доступа\",\"Сеть недоступна\"],                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 9,
+      "topic": "404",
+      "question": "Почему картинки не загружаются (404)?",
+      "options": [
+        "Неправильный путь к файлу (опечатка, неверная папка)",
+        "Браузер не поддерживает",
+        "Файл слишком большой",
+        "Нет CSS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 9,  topic: \"404\",           question: \"Почему картинки не загружаются (404)?\",                                     options: [\"Неправильный путь к файлу (опечатка, неверная папка)\",\"Браузер не поддерживает\",\"Файл слишком большой\",\"Нет CSS\"],                                     correctIndex: 0 },"
+    },
+    {
+      "id": 10,
+      "topic": "DevTools",
+      "question": "Для чего используется вкладка Network в DevTools?",
+      "options": [
+        "Анализ всех сетевых запросов: файлы, ошибки, время загрузки",
+        "Просмотр DOM",
+        "Редактирование CSS",
+        "Запуск JS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 10, topic: \"DevTools\",      question: \"Для чего используется вкладка Network в DevTools?\",                         options: [\"Анализ всех сетевых запросов: файлы, ошибки, время загрузки\",\"Просмотр DOM\",\"Редактирование CSS\",\"Запуск JS\"],                                          correctIndex: 0 },"
+    },
+    {
+      "id": 11,
+      "topic": "DevTools",
+      "question": "Для чего используется вкладка Console в DevTools?",
+      "options": [
+        "Просмотр ошибок JS и вывод console.log",
+        "Редактирование HTML",
+        "Просмотр сетевых запросов",
+        "Анализ производительности"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 11, topic: \"DevTools\",      question: \"Для чего используется вкладка Console в DevTools?\",                         options: [\"Просмотр ошибок JS и вывод console.log\",\"Редактирование HTML\",\"Просмотр сетевых запросов\",\"Анализ производительности\"],                                correctIndex: 0 },"
+    },
+    {
+      "id": 12,
+      "topic": "DevTools",
+      "question": "Для чего используется вкладка Elements в DevTools?",
+      "options": [
+        "Инспектирование и редактирование DOM и CSS в реальном времени",
+        "Просмотр ошибок",
+        "Анализ сети",
+        "Просмотр хранилища"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 12, topic: \"DevTools\",      question: \"Для чего используется вкладка Elements в DevTools?\",                        options: [\"Инспектирование и редактирование DOM и CSS в реальном времени\",\"Просмотр ошибок\",\"Анализ сети\",\"Просмотр хранилища\"],                                   correctIndex: 0 },"
+    },
+    {
+      "id": 13,
+      "topic": "DevTools",
+      "question": "Как открыть DevTools в браузере?",
+      "options": [
+        "F12 или Ctrl+Shift+I (Cmd+Option+I на Mac)",
+        "Ctrl+U",
+        "Alt+F4",
+        "Ctrl+Shift+C (только Elements)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 13, topic: \"DevTools\",      question: \"Как открыть DevTools в браузере?\",                                          options: [\"F12 или Ctrl+Shift+I (Cmd+Option+I на Mac)\",\"Ctrl+U\",\"Alt+F4\",\"Ctrl+Shift+C (только Elements)\"],                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 14,
+      "topic": "Отладка",
+      "question": "Что делает breakpoint (точка останова) в DevTools?",
+      "options": [
+        "Останавливает выполнение JS в нужном месте для пошаговой отладки",
+        "Останавливает загрузку страницы",
+        "Блокирует CSS",
+        "Ломает код"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 14, topic: \"Отладка\",       question: \"Что делает breakpoint (точка останова) в DevTools?\",                        options: [\"Останавливает выполнение JS в нужном месте для пошаговой отладки\",\"Останавливает загрузку страницы\",\"Блокирует CSS\",\"Ломает код\"],                     correctIndex: 0 },"
+    },
+    {
+      "id": 15,
+      "topic": "Ошибки",
+      "question": "Что означает 'is not a function'?",
+      "options": [
+        "Вы вызываете как функцию то, что ею не является",
+        "Функция не объявлена",
+        "Синтаксическая ошибка",
+        "Ошибка импорта"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 15, topic: \"Ошибки\",        question: \"Что означает 'is not a function'?\",                                         options: [\"Вы вызываете как функцию то, что ею не является\",\"Функция не объявлена\",\"Синтаксическая ошибка\",\"Ошибка импорта\"],                                      correctIndex: 0 },"
+    },
+    {
+      "id": 16,
+      "topic": "Консоль",
+      "question": "Как вывести объект в консоль для изучения?",
+      "options": [
+        "console.log(obj) или console.table(obj)",
+        "alert(JSON.stringify(obj))",
+        "document.write(obj)",
+        "print(obj)"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 16, topic: \"Консоль\",       question: \"Как вывести объект в консоль для изучения?\",                                options: [\"console.log(obj) или console.table(obj)\",\"alert(JSON.stringify(obj))\",\"document.write(obj)\",\"print(obj)\"],                                               correctIndex: 0 },"
+    },
+    {
+      "id": 17,
+      "topic": "Пути",
+      "question": "Что означает ./ в пути к файлу?",
+      "options": [
+        "Текущая директория",
+        "Корень сайта",
+        "Родительская директория",
+        "Домашняя директория"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 17, topic: \"Пути\",          question: \"Что означает ./ в пути к файлу?\",                                           options: [\"Текущая директория\",\"Корень сайта\",\"Родительская директория\",\"Домашняя директория\"],                                                                    correctIndex: 0 },"
+    },
+    {
+      "id": 18,
+      "topic": "Пути",
+      "question": "Что означает ../ в пути к файлу?",
+      "options": [
+        "Родительская директория",
+        "Текущая директория",
+        "Корень сайта",
+        "Другой домен"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 18, topic: \"Пути\",          question: \"Что означает ../ в пути к файлу?\",                                          options: [\"Родительская директория\",\"Текущая директория\",\"Корень сайта\",\"Другой домен\"],                                                                            correctIndex: 0 },"
+    },
+    {
+      "id": 19,
+      "topic": "Ошибки",
+      "question": "Почему 'undefined is not iterable'?",
+      "options": [
+        "Попытка перебрать переменную, которая не является массивом/коллекцией",
+        "Синтаксическая ошибка",
+        "Ошибка сети",
+        "Ошибка импорта"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 19, topic: \"Ошибки\",        question: \"Почему 'undefined is not iterable'?\",                                       options: [\"Попытка перебрать переменную, которая не является массивом/коллекцией\",\"Синтаксическая ошибка\",\"Ошибка сети\",\"Ошибка импорта\"],                       correctIndex: 0 },"
+    },
+    {
+      "id": 20,
+      "topic": "Лучшие практики",
+      "question": "Зачем делать дефолтное значение для переменных?",
+      "options": [
+        "Избежать ошибок undefined при работе с данными",
+        "Ускорить JS",
+        "Обязательное требование",
+        "Для CSS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 20, topic: \"Лучшие практики\", question: \"Зачем делать дефолтное значение для переменных?\",                        options: [\"Избежать ошибок undefined при работе с данными\",\"Ускорить JS\",\"Обязательное требование\",\"Для CSS\"],                                                       correctIndex: 0 },"
+    },
+    {
+      "id": 21,
+      "topic": "HTML",
+      "question": "Почему лучше использовать семантические теги вместо div?",
+      "options": [
+        "Улучшает доступность, SEO и читаемость кода",
+        "Быстрее загрузка",
+        "Браузер требует",
+        "Меньше CSS"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 21, topic: \"HTML\",          question: \"Почему лучше использовать семантические теги вместо div?\",                  options: [\"Улучшает доступность, SEO и читаемость кода\",\"Быстрее загрузка\",\"Браузер требует\",\"Меньше CSS\"],                                                        correctIndex: 0 },"
+    },
+    {
+      "id": 22,
+      "topic": "CSS",
+      "question": "Что означает !important в CSS?",
+      "options": [
+        "Принудительно применяет стиль поверх других (избегать злоупотребления)",
+        "Скрывает элемент",
+        "Делает обязательным",
+        "Импортирует файл"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 22, topic: \"CSS\",           question: \"Что означает !important в CSS?\",                                            options: [\"Принудительно применяет стиль поверх других (избегать злоупотребления)\",\"Скрывает элемент\",\"Делает обязательным\",\"Импортирует файл\"],                correctIndex: 0 },"
+    },
+    {
+      "id": 23,
+      "topic": "Производительность",
+      "question": "Почему лучше группировать DOM-манипуляции?",
+      "options": [
+        "Меньше перерасчётов layout, страница быстрее",
+        "Требование браузера",
+        "Ускоряет CSS",
+        "Уменьшает код"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 23, topic: \"Производительность\", question: \"Почему лучше группировать DOM-манипуляции?\",                           options: [\"Меньше перерасчётов layout, страница быстрее\",\"Требование браузера\",\"Ускоряет CSS\",\"Уменьшает код\"],                                                   correctIndex: 0 },"
+    },
+    {
+      "id": 24,
+      "topic": "Итог",
+      "question": "Что такое Single Page Application (SPA)?",
+      "options": [
+        "Приложение где навигация происходит без перезагрузки страницы",
+        "Сайт из одного файла",
+        "Сайт без CSS",
+        "Сайт только с HTML"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 24, topic: \"Итог\",          question: \"Что такое Single Page Application (SPA)?\",                                  options: [\"Приложение где навигация происходит без перезагрузки страницы\",\"Сайт из одного файла\",\"Сайт без CSS\",\"Сайт только с HTML\"],                            correctIndex: 0 },"
+    },
+    {
+      "id": 25,
+      "topic": "Итог",
+      "question": "Какие три технологии составляют основу фронтенд-разработки?",
+      "options": [
+        "HTML, CSS, JavaScript",
+        "HTML, SQL, Python",
+        "CSS, PHP, MySQL",
+        "React, Vue, Angular"
+      ],
+      "correctIndex": 0,
+      "raw_line": "{ id: 25, topic: \"Итог\",          question: \"Какие три технологии составляют основу фронтенд-разработки?\",                options: [\"HTML, CSS, JavaScript\",\"HTML, SQL, Python\",\"CSS, PHP, MySQL\",\"React, Vue, Angular\"],                                                                   correctIndex: 0 },"
+    }
+  ]
+}

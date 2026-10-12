@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { X, Send, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Clock, AlertTriangle, ShieldAlert, Check, RefreshCw, CheckCheck } from "lucide-react";
+import { useState, useEffect, useCallback, useRef, Fragment } from "react";
+import { X, Send, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Clock, AlertTriangle, ShieldAlert, Check, RefreshCw, CheckCheck, ChevronDown, ChevronUp, Info } from "lucide-react";
 import confetti from "canvas-confetti";
 import { type QuizQuestion, type QuizResult, ACHIEVEMENT_RANKS } from "../../types/quiz";
 import { pluralize } from "../../utils/pluralize";
@@ -43,6 +43,7 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
           isCorrect: true,
           userAnswer: q.options[q.correctIndex],
           correctAnswer: q.options[q.correctIndex],
+          explanation: q.explanation,
         }))
       };
     }
@@ -65,6 +66,7 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
           isCorrect: true,
           userAnswer: q.options[q.correctIndex],
           correctAnswer: q.options[q.correctIndex],
+          explanation: q.explanation,
         }))
       });
     }
@@ -176,7 +178,8 @@ export function QuizPanel({ lessonId, lessonTitle, questions, onClose, onComplet
                       question: q.question,
                       isCorrect: true,
                       userAnswer: q.options[q.correctIndex],
-                      correctAnswer: q.options[q.correctIndex]
+                      correctAnswer: q.options[q.correctIndex],
+                      explanation: q.explanation,
                     }))
                   });
                 }}
@@ -254,6 +257,7 @@ function QuizPanelActive({
         isCorrect,
         userAnswer: selectedIdx !== undefined ? q.options[selectedIdx] : '— (пропущен)',
         correctAnswer: q.options[q.correctIndex],
+        explanation: q.explanation,
       });
     });
     
@@ -280,7 +284,12 @@ function QuizPanelActive({
     return () => window.removeEventListener("keydown", h);
   }, [onClose]);
 
+  const hasAnswered = answers[current] !== undefined;
+  const selectedIdx = answers[current];
+  const isCurrentCorrect = hasAnswered && selectedIdx === q.correctIndex;
+
   const selectAnswer = (optIdx: number) => {
+    if (hasAnswered) return; // Answer locked for this question
     setAnswers(prev => ({ ...prev, [current]: optIdx }));
     setShowHint(false);
   };
@@ -327,20 +336,79 @@ function QuizPanelActive({
         <span className="quiz-panel-topic">{q.topic}</span>
         <p className="quiz-panel-question">{q.question}</p>
         <div className="quiz-panel-options" role="radiogroup">
-          {q.options.map((opt, i) => (
-            <button
-              key={`${current}-${i}`}
-              className={`quiz-panel-option ${answers[current] === i ? "selected" : ""}`}
-              onClick={() => selectAnswer(i)}
-              role="radio"
-              aria-checked={answers[current] === i}
-              id={`quiz-opt-${current}-${i}`}
-            >
-              <span className="quiz-panel-option-letter">{LETTERS[i]}</span>
-              {opt}
-            </button>
-          ))}
+          {q.options.map((opt, i) => {
+            let optStateClass = "";
+            let statusIcon = null;
+
+            if (hasAnswered) {
+              if (i === q.correctIndex) {
+                optStateClass = "option-correct";
+                statusIcon = <CheckCircle2 size={16} className="opt-indicator-icon correct" />;
+              } else if (i === selectedIdx) {
+                optStateClass = "option-wrong";
+                statusIcon = <XCircle size={16} className="opt-indicator-icon wrong" />;
+              } else {
+                optStateClass = "option-dimmed";
+              }
+            }
+
+            return (
+              <button
+                key={`${current}-${i}`}
+                className={`quiz-panel-option ${optStateClass} ${selectedIdx === i ? "selected" : ""} ${hasAnswered ? "is-locked" : ""}`}
+                onClick={() => selectAnswer(i)}
+                disabled={hasAnswered}
+                role="radio"
+                aria-checked={selectedIdx === i}
+                id={`quiz-opt-${current}-${i}`}
+              >
+                <span className="quiz-panel-option-letter">{LETTERS[i]}</span>
+                <span className="quiz-panel-option-text">{opt}</span>
+                {statusIcon}
+              </button>
+            );
+          })}
         </div>
+
+        {/* Instant answer explanation feedback */}
+        {hasAnswered && (
+          <div className={`quiz-feedback-box ${isCurrentCorrect ? "feedback-correct" : "feedback-wrong"}`}>
+            <div className="quiz-feedback-header">
+              <div className="quiz-feedback-status">
+                {isCurrentCorrect ? (
+                  <>
+                    <CheckCircle2 size={18} className="feedback-status-icon correct" />
+                    <span className="feedback-status-badge correct">Верно!</span>
+                  </>
+                ) : (
+                  <>
+                    <XCircle size={18} className="feedback-status-icon wrong" />
+                    <span className="feedback-status-badge wrong">Неверно</span>
+                  </>
+                )}
+              </div>
+              {!isCurrentCorrect && (
+                <div className="feedback-correct-reminder">
+                  Правильный ответ: <strong>{LETTERS[q.correctIndex]}. {q.options[q.correctIndex]}</strong>
+                </div>
+              )}
+            </div>
+
+            {q.explanation && (
+              <div className="quiz-feedback-body">
+                <div className="quiz-feedback-label">
+                  <Info size={14} />
+                  <span>Подробный разбор задания:</span>
+                </div>
+                <div className="quiz-feedback-text">
+                  {q.explanation.split("\n\n").map((para, pIdx) => (
+                    <p key={pIdx} className="explanation-paragraph">{para}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Footer */}
@@ -356,11 +424,18 @@ function QuizPanelActive({
         )}
 
         {current < total - 1 ? (
-          <button className="quiz-panel-nav-btn" onClick={goNext}>
+          <button 
+            className={`quiz-panel-nav-btn ${hasAnswered ? "quiz-nav-next-active" : ""}`} 
+            onClick={goNext}
+          >
             Далее<ChevronRight size={13} />
           </button>
         ) : (
-          <button className="quiz-panel-submit-btn" onClick={handleSubmit} id="quiz-submit-btn">
+          <button 
+            className={`quiz-panel-submit-btn ${hasAnswered ? "quiz-submit-btn-ready" : ""}`} 
+            onClick={handleSubmit} 
+            id="quiz-submit-btn"
+          >
             <Send size={12} />Завершить
           </button>
         )}
@@ -374,6 +449,7 @@ function QuizPanelActive({
  * Always renders a full structured data table without floating cards.
  */
 function QuizPanelResult({ result, lessonTitle, onClose, onRetry }: { result: QuizResult, lessonTitle: string, onClose: () => void, onRetry: () => void }) {
+  const [expandedRow, setExpandedRow] = useState<number | null>(null);
   const pct = Math.round((result.score / result.total) * 100);
 
   useEffect(() => {
@@ -464,34 +540,75 @@ function QuizPanelResult({ result, lessonTitle, onClose, onRetry }: { result: Qu
               <th className="th-num">№</th>
               <th className="th-status">Статус</th>
               <th className="th-topic">Тема</th>
-              <th className="th-question">Вопрос</th>
+              <th className="th-question">Вопрос (нажмите для разбора)</th>
               <th className="th-user-answer">Ваш ответ</th>
             </tr>
           </thead>
           <tbody>
-            {result.questionResults.map((qr, i) => (
-              <tr key={`${qr.questionId}-${i}`} className={`quiz-result-row ${qr.isCorrect ? 'row-correct' : 'row-wrong'}`}>
-                <td className="td-num">{i + 1}</td>
-                <td className="td-status">
-                  {qr.isCorrect ? (
-                    <span className="badge-status correct">
-                      <CheckCircle2 size={12} strokeWidth={1.8} />
-                      <span>Верно</span>
-                    </span>
-                  ) : (
-                    <span className="badge-status wrong">
-                      <XCircle size={12} strokeWidth={1.8} />
-                      <span>Ошибка</span>
-                    </span>
+            {result.questionResults.map((qr, i) => {
+              const isExpanded = expandedRow === i;
+              return (
+                <Fragment key={`${qr.questionId}-${i}`}>
+                  <tr
+                    className={`quiz-result-row ${qr.isCorrect ? 'row-correct' : 'row-wrong'} ${isExpanded ? 'row-expanded' : ''}`}
+                    onClick={() => setExpandedRow(isExpanded ? null : i)}
+                    style={{ cursor: qr.explanation ? 'pointer' : 'default' }}
+                    title={qr.explanation ? "Нажмите для подробного разбора" : undefined}
+                  >
+                    <td className="td-num">{i + 1}</td>
+                    <td className="td-status">
+                      {qr.isCorrect ? (
+                        <span className="badge-status correct">
+                          <CheckCircle2 size={12} strokeWidth={1.8} />
+                          <span>Верно</span>
+                        </span>
+                      ) : (
+                        <span className="badge-status wrong">
+                          <XCircle size={12} strokeWidth={1.8} />
+                          <span>Ошибка</span>
+                        </span>
+                      )}
+                    </td>
+                    <td className="td-topic">{qr.topic || '—'}</td>
+                    <td className="td-question">
+                      <div className="td-question-wrapper">
+                        <span>{qr.question}</span>
+                        {qr.explanation && (
+                          <span className="expand-indicator-btn" aria-label="Подробнее">
+                            {isExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className={`td-user-answer ${qr.isCorrect ? 'answer-correct' : 'answer-wrong'}`}>
+                      {qr.userAnswer || '—'}
+                    </td>
+                  </tr>
+                  {isExpanded && qr.explanation && (
+                    <tr className="quiz-result-explanation-row">
+                      <td colSpan={5} className="td-explanation-cell">
+                        <div className="result-explanation-card">
+                          <div className="result-explanation-header">
+                            <Info size={14} className="result-explanation-icon" />
+                            <span className="result-explanation-title">Разбор задания #{i + 1}</span>
+                            {!qr.isCorrect && qr.correctAnswer && (
+                              <span className="result-correct-reminder">
+                                Правильный ответ: <strong>{qr.correctAnswer}</strong>
+                              </span>
+                            )}
+                          </div>
+                          <div className="result-explanation-text">
+                            {qr.explanation.split("\n\n").map((para, pIdx) => (
+                              <p key={pIdx} className="explanation-paragraph">{para}</p>
+                            ))}
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
                   )}
-                </td>
-                <td className="td-topic">{qr.topic || '—'}</td>
-                <td className="td-question">{qr.question}</td>
-                <td className={`td-user-answer ${qr.isCorrect ? 'answer-correct' : 'answer-wrong'}`}>
-                  {qr.userAnswer || '—'}
-                </td>
-              </tr>
-            ))}
+                </Fragment>
+              );
+            })}
           </tbody>
         </table>
       </div>

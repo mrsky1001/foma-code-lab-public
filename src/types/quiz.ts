@@ -5,6 +5,7 @@ export interface QuizQuestion {
   options: string[];
   correctIndex: number;
   topic: string;
+  explanation?: string;
 }
 
 export interface QuizQuestionResult {
@@ -14,6 +15,7 @@ export interface QuizQuestionResult {
   isCorrect: boolean;
   userAnswer?: string;
   correctAnswer?: string;
+  explanation?: string;
 }
 
 // Result of a completed quiz attempt
