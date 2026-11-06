@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Sun, Moon, FlaskConical, ChevronDown, ShieldOff, ShieldCheck, Eye } from 'lucide-react';
 import { BUILD_INFO } from '../../version';
+import { isLocalMachine } from '../../utils/admin';
 import './Header.css';
 
 interface HeaderProps {
@@ -17,9 +18,6 @@ interface HeaderProps {
   onToggleAdmin?: () => void;
 }
 
-const IS_LOCAL = typeof window !== 'undefined' &&
-  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '[::1]' || window.location.hostname.endsWith('.local') || window.location.hostname === '' || window.location.protocol === 'file:');
-
 export function Header({
   theme,
   onToggleTheme,
@@ -27,7 +25,7 @@ export function Header({
   lessonTitles,
   onDevQuiz,
   onDevQuizResult,
-  isLocal = IS_LOCAL,
+  isLocal = isLocalMachine(),
   isAdmin = false,
   onToggleAdmin,
 }: HeaderProps) {
