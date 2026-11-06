@@ -13,6 +13,7 @@ import { RotateCcw, Rows, Square, X, Wand2, WrapText, Lock } from 'lucide-react'
 import { linter, lintGutter } from '@codemirror/lint';
 import type { CodeFiles } from '../../types/lesson';
 import type { SolutionTarget } from '../../hooks/useLesson';
+import type { Theme } from '../../hooks/useTheme';
 import { formatCode } from '../../utils/formatCode';
 import { createLinter } from '../../utils/codeLinter';
 import { getStepFileConfig } from '../../utils/virtualFiles';
@@ -72,7 +73,7 @@ interface SingleEditorPaneProps {
   code: CodeFiles;
   onCodeChange: (lang: keyof CodeFiles, value: string) => void;
   onFormat?: () => void;
-  theme: 'dark' | 'light';
+  theme: Theme;
   wordWrap: boolean;
   headerActions?: React.ReactNode;
   className?: string;
@@ -195,7 +196,7 @@ function SingleEditorPane({
       );
     }
 
-    if (theme === 'dark') {
+    if (theme !== 'light') {
       extensions.push(oneDark);
     }
 
@@ -366,7 +367,7 @@ interface CodeEditorProps {
   code: CodeFiles;
   onCodeChange: (lang: keyof CodeFiles, value: string) => void;
   activeTab?: TabKey;
-  theme: 'dark' | 'light';
+  theme: Theme;
   onReset?: () => void;
   tabOverride?: TabKey | null;
   onTabOverrideConsumed?: () => void;

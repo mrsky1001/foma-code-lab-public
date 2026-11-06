@@ -1,16 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
 
-type Theme = 'dark' | 'light';
+export type Theme = 'azure' | 'dark' | 'light';
 
 function getInitialTheme(): Theme {
-  const stored = localStorage.getItem('foma-theme') as Theme | null;
-  if (stored === 'dark' || stored === 'light') return stored;
+  const stored = localStorage.getItem('foma-theme');
+  if (stored === 'azure' || stored === 'dark' || stored === 'coral' || stored === 'light') {
+    return (stored === 'coral' ? 'dark' : stored) as Theme;
+  }
 
   if (window.matchMedia('(prefers-color-scheme: light)').matches) {
     return 'light';
   }
 
-  return 'dark';
+  return 'azure';
 }
 
 export function useTheme() {
@@ -25,9 +27,17 @@ export function useTheme() {
     applyTheme(theme);
   }, [theme, applyTheme]);
 
-  const toggleTheme = useCallback(() => {
-    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  const setTheme = useCallback((t: Theme) => {
+    setThemeState(t);
   }, []);
 
-  return { theme, toggleTheme } as const;
+  const toggleTheme = useCallback(() => {
+    setThemeState((prev) => {
+      if (prev === 'azure') return 'dark';
+      if (prev === 'dark') return 'light';
+      return 'azure';
+    });
+  }, []);
+
+  return { theme, setTheme, toggleTheme } as const;
 }

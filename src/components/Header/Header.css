@@ -112,6 +112,101 @@
   gap: 8px;
 }
 
+/* ── Theme Mode Toggle (FOMA Ecosystem Segmented Control) ── */
+.header-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast, 120ms ease);
+  line-height: 1;
+}
+
+.mode-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-card-hover);
+}
+
+.mode-btn.active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+
+:root[data-theme="azure"] .mode-btn.active {
+  background-color: var(--accent-coral-dim);
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .mode-btn.active,
+:root[data-theme="coral"] .mode-btn.active {
+  background-color: var(--accent-coral-dim);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .mode-btn.active {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: var(--text-primary);
+}
+
+.theme-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast, 120ms ease);
+}
+
+.mode-btn:hover .theme-dot,
+.mode-btn.active .theme-dot {
+  transform: scale(1.2);
+}
+
+.theme-dot-azure {
+  background-color: #0284c7;
+  box-shadow: 0 0 6px rgba(2, 132, 199, 0.7);
+}
+
+.theme-dot-coral {
+  background-color: #ff7a45;
+  box-shadow: 0 0 6px rgba(255, 122, 69, 0.7);
+}
+
+.mode-btn-label {
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 640px) {
+  .mode-btn-label {
+    display: none;
+  }
+  .mode-btn {
+    padding: 0 6px;
+    height: 22px;
+  }
+}
+
 .theme-toggle {
   width: 32px;
   height: 32px;

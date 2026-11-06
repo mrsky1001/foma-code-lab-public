@@ -212,7 +212,9 @@
   color: #b89206;
 }
 
-[data-theme="dark"] .ft-icon-js {
+[data-theme="dark"] .ft-icon-js,
+[data-theme="coral"] .ft-icon-js,
+[data-theme="azure"] .ft-icon-js {
   color: #f0c21a;
 }
 

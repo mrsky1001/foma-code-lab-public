@@ -7,10 +7,19 @@
   --font-sans: "Forma DJR", "Inter", "Outfit", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Courier New", monospace;
 
-  /* ── Accent — «Foma Coral» — unchanged across themes ── */
-  --accent-coral:        #ff7a45;
-  --accent-coral-dim:    rgba(255, 122, 69, 0.14);
-  --accent-coral-glow:   rgba(255, 122, 69, 0.35);
+  /* ── Default Accent tokens (Ecosystem Azure fallback) ── */
+  --accent-coral:        #0284c7;
+  --accent-coral-hover:  #0369a1;
+  --accent-coral-dim:    rgba(2, 132, 199, 0.14);
+  --accent-coral-glow:   rgba(2, 132, 199, 0.35);
+  --accent-coral-rgb:    2, 132, 199;
+  --accent-coral-border: rgba(2, 132, 199, 0.45);
+
+  /* ── Ecosystem Azure Tokens ── */
+  --accent-azure:        #0284c7;
+  --accent-azure-hover:  #0369a1;
+  --accent-azure-dim:    rgba(2, 132, 199, 0.14);
+  --accent-azure-glow:   rgba(2, 132, 199, 0.35);
 
   /* ── Secondary — «Foma Blue» ── */
   --accent-blue:         #5AA0D3;
@@ -29,6 +38,7 @@
 
   /* ── Transitions ── */
   --transition-smooth: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast:   120ms ease;
 
   /* ── Layout ── */
   --sidebar-width:           260px;
@@ -38,9 +48,9 @@
 }
 
 /* ══════════════════════════════════════════════
-   DARK THEME
+   AZURE THEME (FOMA Studio Ecosystem Standard)
    ══════════════════════════════════════════════ */
-[data-theme="dark"] {
+[data-theme="azure"] {
   --bg-app:          #12121A;
   --bg-sidebar:      #12121A;
   --bg-card:         #161622;
@@ -56,6 +66,65 @@
   --text-primary:    #C5C5D2;
   --text-secondary:  #A0A0B0;
   --text-muted:      #787E91;
+
+  /* Azure Accent (#0284c7 / Sky 600) */
+  --accent-coral:        #0284c7;
+  --accent-coral-hover:  #0369a1;
+  --accent-coral-dim:    rgba(2, 132, 199, 0.14);
+  --accent-coral-glow:   rgba(2, 132, 199, 0.35);
+  --accent-coral-rgb:    2, 132, 199;
+  --accent-coral-border: rgba(2, 132, 199, 0.45);
+
+  --shadow-accent:   rgba(2, 132, 199, 0.45);
+
+  --scrollbar-thumb:        rgba(255, 255, 255, 0.18);
+  --scrollbar-thumb-hover:  rgba(255, 255, 255, 0.35);
+  --row-hover-bg:           rgba(255, 255, 255, 0.02);
+  --code-header-overlay:    rgba(255, 255, 255, 0.025);
+  --code-lang-bg:           rgba(255, 255, 255, 0.05);
+  --code-row-hover-bg:      rgba(255, 255, 255, 0.035);
+  --code-action-hover-bg:   rgba(255, 255, 255, 0.06);
+  --solution-header-bg:     rgba(255, 255, 255, 0.03);
+  --solution-lines-bg:      rgba(255, 255, 255, 0.04);
+  --code-line-content:      #e2e8f0;
+  --code-line-num:          #475569;
+
+  /* CodeMirror */
+  --cm-bg:        #0f0f17;
+  --cm-fg:        #C5C5D2;
+  --cm-gutter:    #1c1c28;
+  --cm-selection: rgba(2, 132, 199, 0.22);
+  --cm-cursor:    #0284c7;
+}
+
+/* ══════════════════════════════════════════════
+   DARK / CORAL THEME (Original Code Lab Theme)
+   ══════════════════════════════════════════════ */
+[data-theme="dark"],
+[data-theme="coral"] {
+  --bg-app:          #12121A;
+  --bg-sidebar:      #12121A;
+  --bg-card:         #161622;
+  --bg-card-hover:   #1c1c28;
+  --bg-input:        #151520;
+  --bg-editor:       #0f0f17;
+  --bg-panel:        #14161a;
+
+  --border-subtle:   rgba(255, 255, 255, 0.07);
+  --border-medium:   rgba(255, 255, 255, 0.14);
+  --border-active:   rgba(255, 255, 255, 0.22);
+
+  --text-primary:    #C5C5D2;
+  --text-secondary:  #A0A0B0;
+  --text-muted:      #787E91;
+
+  /* Coral Accent (#ff7a45 / Original Warm Theme) */
+  --accent-coral:        #ff7a45;
+  --accent-coral-hover:  #fa541c;
+  --accent-coral-dim:    rgba(255, 122, 69, 0.14);
+  --accent-coral-glow:   rgba(255, 122, 69, 0.35);
+  --accent-coral-rgb:    255, 122, 69;
+  --accent-coral-border: rgba(255, 122, 69, 0.45);
 
   --shadow-accent:   rgba(255, 122, 69, 0.45);
 
@@ -98,6 +167,13 @@
   --text-primary:    #1A1A2E;
   --text-secondary:  #4A4A6A;
   --text-muted:      #7A7A9A;
+
+  --accent-coral:        #ff7a45;
+  --accent-coral-hover:  #fa541c;
+  --accent-coral-dim:    rgba(255, 122, 69, 0.14);
+  --accent-coral-glow:   rgba(255, 122, 69, 0.35);
+  --accent-coral-rgb:    255, 122, 69;
+  --accent-coral-border: rgba(255, 122, 69, 0.45);
 
   --shadow-accent:   rgba(255, 122, 69, 0.25);
 

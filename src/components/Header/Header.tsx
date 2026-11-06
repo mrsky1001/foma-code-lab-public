@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { Sun, Moon, FlaskConical, ChevronDown, ShieldOff, ShieldCheck, Eye } from 'lucide-react';
+import { Sun, FlaskConical, ChevronDown, ShieldOff, ShieldCheck, Eye } from 'lucide-react';
 import { BUILD_INFO } from '../../version';
 import { isLocalMachine } from '../../utils/admin';
+import type { Theme } from '../../hooks/useTheme';
 import './Header.css';
 
 interface HeaderProps {
-  theme: 'dark' | 'light';
-  onToggleTheme: () => void;
+  theme: Theme;
+  onToggleTheme?: () => void;
+  onSetTheme?: (theme: Theme) => void;
   onToggleSidebar: () => void;
   // Dev quiz testing
   lessonTitles?: { id: number; title: string }[];
@@ -21,6 +23,7 @@ interface HeaderProps {
 export function Header({
   theme,
   onToggleTheme,
+  onSetTheme,
   onToggleSidebar,
   lessonTitles,
   onDevQuiz,
@@ -75,14 +78,47 @@ export function Header({
             <span className="notice-email">mrsky1001.work@gmail.com</span>
           </a>
         </div>
-        <button
-          className="theme-toggle"
-          onClick={onToggleTheme}
-          aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-          id="theme-toggle"
-        >
-          {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-        </button>
+        <div className="header-mode-toggle theme-mode-toggle" id="theme-mode-toggle" role="radiogroup" aria-label="Выбор темы">
+          <button
+            type="button"
+            className={`mode-btn ${theme === 'azure' ? 'active' : ''}`}
+            onClick={() => onSetTheme ? onSetTheme('azure') : onToggleTheme?.()}
+            title="Тема Azure (фирменный стиль экосистемы FOMA)"
+            aria-label="Тема Azure"
+            aria-checked={theme === 'azure'}
+            role="radio"
+            id={theme === 'azure' ? 'theme-toggle' : undefined}
+          >
+            <span className="theme-dot theme-dot-azure" />
+            <span className="mode-btn-label">Azure</span>
+          </button>
+          <button
+            type="button"
+            className={`mode-btn ${theme === 'dark' ? 'active' : ''}`}
+            onClick={() => onSetTheme ? onSetTheme('dark') : onToggleTheme?.()}
+            title="Классическая тема Coral (оригинальная темная)"
+            aria-label="Классическая тема Coral"
+            aria-checked={theme === 'dark'}
+            role="radio"
+            id={theme === 'dark' ? 'theme-toggle' : undefined}
+          >
+            <span className="theme-dot theme-dot-coral" />
+            <span className="mode-btn-label">Coral</span>
+          </button>
+          <button
+            type="button"
+            className={`mode-btn ${theme === 'light' ? 'active' : ''}`}
+            onClick={() => onSetTheme ? onSetTheme('light') : onToggleTheme?.()}
+            title="Светлая тема"
+            aria-label="Светлая тема"
+            aria-checked={theme === 'light'}
+            role="radio"
+            id={theme === 'light' ? 'theme-toggle' : undefined}
+          >
+            <Sun size={12} strokeWidth={1.5} />
+            <span className="mode-btn-label">Light</span>
+          </button>
+        </div>
 
         {isLocal && onToggleAdmin && (
           <button

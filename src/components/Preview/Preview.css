@@ -348,7 +348,7 @@
 .preview-console-resizer:hover,
 .preview-console-resizer.active {
   background-color: var(--accent-coral-dim);
-  border-color: rgba(255, 122, 69, 0.45);
+  border-color: var(--accent-coral-border, rgba(255, 122, 69, 0.45));
 }
 
 .preview-console-resizer:hover::before,

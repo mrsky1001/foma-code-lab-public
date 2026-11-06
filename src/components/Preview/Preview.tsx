@@ -332,7 +332,10 @@ export const Preview = memo(function Preview({
     return isNaN(parsed) || parsed < MIN_CONSOLE_HEIGHT ? DEFAULT_CONSOLE_HEIGHT : parsed;
   });
   const [consoleExpanded, setConsoleExpanded] = useState<boolean>(() => {
-    return localStorage.getItem('foma-preview-console-expanded') === 'true';
+    const saved = localStorage.getItem('foma-preview-console-expanded');
+    // По умолчанию при первом открытии консоль открыта (saved === null).
+    // Если пользователь явно свернул её, в localStorage сохраняется 'false'.
+    return saved !== 'false';
   });
   const [isDraggingConsole, setIsDraggingConsole] = useState(false);
   const isDraggingConsoleRef = useRef(false);
@@ -542,6 +545,11 @@ export const Preview = memo(function Preview({
     setRefreshKey((k) => k + 1);
     setConsoleLogs([]);
   }, []);
+
+  // Clear console on step or lesson change
+  useEffect(() => {
+    setConsoleLogs([]);
+  }, [lessonNumber, stepNumber]);
 
   // Compute base URL so that img/ paths resolve correctly both on file:// and web servers
   const baseHref = useMemo(() => {

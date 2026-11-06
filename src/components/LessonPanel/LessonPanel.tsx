@@ -261,7 +261,7 @@ export function LessonPanel({
   if (!isCurrentLessonAccessible) {
     return (
       <div className="lesson-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '32px', textAlign: 'center' }}>
-        <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'rgba(249, 112, 102, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-coral, #f97066)', marginBottom: 16 }}>
+        <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'var(--accent-coral-dim)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-coral)', marginBottom: 16 }}>
           <Lock size={26} strokeWidth={1.8} />
         </div>
         <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>

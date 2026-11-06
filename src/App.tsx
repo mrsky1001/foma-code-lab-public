@@ -28,7 +28,7 @@ export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(() => {
     return typeof window !== 'undefined' && window.innerWidth < LAYOUT.MOBILE_BREAKPOINT;
   });
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, setTheme } = useTheme();
 
   // Resize listener to track mobile breakpoint
   useEffect(() => {
@@ -577,6 +577,7 @@ export default function App() {
       <Header
         theme={theme}
         onToggleTheme={toggleTheme}
+        onSetTheme={setTheme}
         onToggleSidebar={() => setSidebarCollapsed((v) => !v)}
         lessonTitles={allLessons.map(l => ({ id: l.id, title: l.title }))}
         onDevQuiz={(id) => handleStartQuiz(id)}

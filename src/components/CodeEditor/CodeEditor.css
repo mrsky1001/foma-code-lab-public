@@ -134,7 +134,7 @@
 .editor-splitter:hover,
 .editor-splitter.dragging {
   background-color: var(--accent-coral-dim);
-  border-color: rgba(255, 122, 69, 0.4);
+  border-color: var(--accent-coral-border, rgba(255, 122, 69, 0.4));
 }
 
 .editor-splitter:hover::before,
