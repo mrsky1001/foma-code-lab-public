@@ -9,6 +9,14 @@ function stepType(step: LessonStep, lessonId: number): 'theory' | 'practice' {
   return lessonId === 1 ? 'theory' : 'practice';
 }
 
+function isDataJs(code: string): boolean {
+  if (!code) return false;
+  return (
+    /const\s+(?:OFFICE_ROOMS|MOCK_BOOKINGS)\b/.test(code) &&
+    !/addEventListener|DOMContentLoaded|function\s+init/i.test(code)
+  );
+}
+
 // ─── Accumulate practice steps only ──────────────────────────────────────────
 // Theory steps are left untouched (their own isolated sandbox code).
 // Practice steps form a continuous chain:
@@ -17,6 +25,8 @@ function stepType(step: LessonStep, lessonId: number): 'theory' | 'practice' {
 //   If the .md file's solutionCode for a lang is empty → carry forward prevPractice
 function accumulatePractice(allLessons: Lesson[]): Lesson[] {
   let prevPractice: CodeFiles = { html: '', css: '', js: '' };
+  let prevDataJs = '';
+  let prevMainJs = '';
   let hasPrev = false;
 
   for (const lesson of allLessons) {
@@ -30,6 +40,10 @@ function accumulatePractice(allLessons: Lesson[]): Lesson[] {
 
       step.type = 'practice';
 
+      const rawSolJs = step.solutionCode.js || '';
+      const rawStartJs = step.startCode.js || '';
+      const stepIsDataJs = isDataJs(rawSolJs) || isDataJs(rawStartJs);
+
       if (!hasPrev) {
         // First practice step — use its own code as baseline
         prevPractice = {
@@ -37,18 +51,29 @@ function accumulatePractice(allLessons: Lesson[]): Lesson[] {
           css:  step.solutionCode.css  || step.startCode.css  || '',
           js:   step.solutionCode.js   || step.startCode.js   || '',
         };
+        if (stepIsDataJs) prevDataJs = prevPractice.js;
+        else prevMainJs = prevPractice.js;
         hasPrev = true;
         continue;
       }
 
       // startCode = complete state of previous practice step
       step.startCode = { ...prevPractice };
+      if (stepIsDataJs) {
+        if (prevDataJs) step.startCode.js = prevDataJs;
+      } else {
+        if (prevMainJs) step.startCode.js = prevMainJs;
+      }
 
       // solutionCode = file's value if non-empty, else carry forward
+      const currentPrevJs = stepIsDataJs
+        ? (prevDataJs || prevPractice.js)
+        : (prevMainJs || prevPractice.js);
+
       step.solutionCode = {
         html: step.solutionCode.html?.trim() ? step.solutionCode.html : prevPractice.html,
         css:  step.solutionCode.css?.trim()  ? step.solutionCode.css  : prevPractice.css,
-        js:   step.solutionCode.js?.trim()   ? step.solutionCode.js   : prevPractice.js,
+        js:   step.solutionCode.js?.trim()   ? step.solutionCode.js   : currentPrevJs,
       };
 
       if (step.highlight) {
@@ -58,6 +83,12 @@ function accumulatePractice(allLessons: Lesson[]): Lesson[] {
         for (const l of otherLangs) {
           step.solutionCode[l] = step.startCode[l];
         }
+      }
+
+      if (stepIsDataJs) {
+        prevDataJs = step.solutionCode.js;
+      } else {
+        prevMainJs = step.solutionCode.js;
       }
 
       prevPractice = { ...step.solutionCode };

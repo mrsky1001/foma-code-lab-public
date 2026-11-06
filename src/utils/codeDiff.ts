@@ -17,16 +17,32 @@ export interface SolutionDiffAnalysis {
 }
 
 /**
+ * Generates an informative solution comment for the added code block.
+ */
+export function getSolutionComment(lang: 'html' | 'css' | 'js', stepTitle: string): string {
+  const title = stepTitle ? `: ${stepTitle}` : '';
+  if (lang === 'html') {
+    return `<!-- Добавлен код решения${title} -->`;
+  }
+  if (lang === 'css') {
+    return `/* Добавлен код решения${title} */`;
+  }
+  return `// Добавлен код решения${title}`;
+}
+
+/**
  * Computes diff between start and solution code, and calculates the exact
  * line range of inserted/modified code for cursor selection.
  */
 export function computeDiffRange(
   lang: 'html' | 'css' | 'js',
   rawStartCode: string,
-  rawSolutionCode: string
+  rawSolutionCode: string,
+  stepTitle = ''
 ): CodeDiffRange {
-  const formattedStart = formatCode(lang, rawStartCode || '').replace(/\r\n/g, '\n');
-  // Strip comments from solution BEFORE diffing — keeps editor clean
+  // Strip comments from BOTH before diffing — avoids comment-induced false diffs across files
+  const strippedStart = stripCodeComments(lang, rawStartCode || '');
+  const formattedStart = formatCode(lang, strippedStart).replace(/\r\n/g, '\n');
   const strippedSolution = stripCodeComments(lang, rawSolutionCode || '');
   const formattedSolution = formatCode(lang, strippedSolution).replace(/\r\n/g, '\n');
 
@@ -56,12 +72,15 @@ export function computeDiffRange(
 
   // If start is empty, all solution lines are new
   if (startLines.length === 0) {
+    const comment = getSolutionComment(lang, stepTitle);
+    const withComment = comment ? `${comment}\n${formattedSolution}` : formattedSolution;
+    const finalLines = withComment.split('\n');
     return {
       hasChanges: true,
       fromLine: 1,
-      toLine: solutionLines.length,
+      toLine: finalLines.length,
       scrollToLine: 1,
-      cleanCode: formattedSolution,
+      cleanCode: withComment,
     };
   }
 
@@ -98,12 +117,27 @@ export function computeDiffRange(
     toLine--;
   }
 
+  // Generate solution comment with proper indentation matching the target insertion point
+  const targetLine = solutionLines[fromLine - 1] || '';
+  const indent = targetLine.match(/^\s*/)?.[0] || '';
+  const comment = indent + getSolutionComment(lang, stepTitle);
+
+  // Insert comment line right before fromLine
+  const linesWithComment = [
+    ...solutionLines.slice(0, fromLine - 1),
+    comment,
+    ...solutionLines.slice(fromLine - 1),
+  ];
+
+  const newFromLine = fromLine; // comment is at fromLine
+  const newToLine = toLine + 1; // offset by 1 because comment line was added
+
   return {
     hasChanges: true,
-    fromLine,
-    toLine: Math.max(fromLine, toLine),
-    scrollToLine: fromLine,
-    cleanCode: formattedSolution,
+    fromLine: newFromLine,
+    toLine: Math.max(newFromLine, newToLine),
+    scrollToLine: newFromLine,
+    cleanCode: linesWithComment.join('\n'),
   };
 }
 
@@ -115,7 +149,7 @@ export function analyzeStepSolution(
   startCode: CodeFiles,
   solutionCode: CodeFiles,
   preferredHighlight?: 'html' | 'css' | 'js',
-  _stepTitle = ''
+  stepTitle = ''
 ): SolutionDiffAnalysis {
   const langs: ('html' | 'css' | 'js')[] = ['html', 'css', 'js'];
   const ranges = {} as Record<'html' | 'css' | 'js', CodeDiffRange>;
@@ -132,12 +166,13 @@ export function analyzeStepSolution(
     }
   }
 
-  // 2. Compute clean diff ranges without injecting comments
+  // 2. Compute diff ranges with solution comment annotation
   for (const lang of langs) {
     const diff = computeDiffRange(
       lang,
       startCode[lang] || '',
-      solutionCode[lang] || ''
+      solutionCode[lang] || '',
+      lang === primaryLang ? stepTitle : ''
     );
     ranges[lang] = diff;
     annotatedCode[lang] = diff.cleanCode;
@@ -158,3 +193,4 @@ export function analyzeStepSolution(
     ranges,
   };
 }
+

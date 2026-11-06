@@ -238,8 +238,18 @@ function stepType(step, lessonId) {
   return lessonId === 1 ? 'theory' : 'practice';
 }
 
+function isDataJs(code) {
+  if (!code) return false;
+  return (
+    /const\s+(?:OFFICE_ROOMS|MOCK_BOOKINGS)\b/.test(code) &&
+    !/addEventListener|DOMContentLoaded|function\s+init/i.test(code)
+  );
+}
+
 function accumulatePractice(allLessons) {
   let prevPractice = { html: '', css: '', js: '' };
+  let prevDataJs = '';
+  let prevMainJs = '';
   let hasPrev = false;
 
   for (const lesson of allLessons) {
@@ -253,22 +263,37 @@ function accumulatePractice(allLessons) {
 
       step.type = 'practice';
 
+      const rawSolJs = step.solutionCode.js || '';
+      const rawStartJs = step.startCode.js || '';
+      const stepIsDataJs = isDataJs(rawSolJs) || isDataJs(rawStartJs);
+
       if (!hasPrev) {
         prevPractice = {
           html: step.solutionCode.html || step.startCode.html || '',
           css:  step.solutionCode.css  || step.startCode.css  || '',
           js:   step.solutionCode.js   || step.startCode.js   || '',
         };
+        if (stepIsDataJs) prevDataJs = prevPractice.js;
+        else prevMainJs = prevPractice.js;
         hasPrev = true;
         continue;
       }
 
       step.startCode = { ...prevPractice };
+      if (stepIsDataJs) {
+        if (prevDataJs) step.startCode.js = prevDataJs;
+      } else {
+        if (prevMainJs) step.startCode.js = prevMainJs;
+      }
+
+      const currentPrevJs = stepIsDataJs
+        ? (prevDataJs || prevPractice.js)
+        : (prevMainJs || prevPractice.js);
 
       step.solutionCode = {
         html: step.solutionCode.html?.trim() ? step.solutionCode.html : prevPractice.html,
         css:  step.solutionCode.css?.trim()  ? step.solutionCode.css  : prevPractice.css,
-        js:   step.solutionCode.js?.trim()   ? step.solutionCode.js   : prevPractice.js,
+        js:   step.solutionCode.js?.trim()   ? step.solutionCode.js   : currentPrevJs,
       };
 
       if (step.highlight) {
@@ -276,6 +301,12 @@ function accumulatePractice(allLessons) {
         for (const l of otherLangs) {
           step.solutionCode[l] = step.startCode[l];
         }
+      }
+
+      if (stepIsDataJs) {
+        prevDataJs = step.solutionCode.js;
+      } else {
+        prevMainJs = step.solutionCode.js;
       }
 
       prevPractice = { ...step.solutionCode };
