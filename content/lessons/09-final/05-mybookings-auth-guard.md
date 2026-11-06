@@ -12,7 +12,15 @@ highlight: js
 Если в `localStorage` нет ключа `currentUser`, немедленно отправляем человека на страницу `login.html`.
 
 ## 🛠 Задание
-Добавьте проверку авторизации внутрь функции.
+Добавьте проверку авторизации (Auth Guard) внутрь функции `initMyBookings()`:
+
+```js
+  const currentUser = localStorage.getItem('currentUser');
+  if (!currentUser) {
+    window.location.href = 'login.html';
+    return;
+  }
+```
 
 ```html:start
 <!DOCTYPE html>

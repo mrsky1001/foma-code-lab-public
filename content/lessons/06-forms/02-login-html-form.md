@@ -15,7 +15,23 @@ highlight: html
 Обратите внимание на блок `.error-text`. По умолчанию мы скроем его с помощью CSS, а будем показывать только тогда, когда пользователь забыл заполнить поле.
 
 ## 🛠 Задание
-Вставьте HTML-код формы входа под подзаголовком.
+Вставьте HTML-код формы входа внутрь блока `<div class="form-card">`:
+
+```html
+<form id="loginForm" novalidate>
+  <div class="form-group">
+    <label class="form-label" for="login">Логин</label>
+    <input type="text" id="login" class="form-control" placeholder="admin" required>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="password">Пароль</label>
+    <input type="password" id="password" class="form-control" placeholder="12345" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Войти</button>
+</form>
+```
 
 ```html:start
 <!DOCTYPE html>

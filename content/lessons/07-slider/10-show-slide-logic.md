@@ -781,7 +781,6 @@ body {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
@@ -1037,7 +1036,6 @@ function initSlider() {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();

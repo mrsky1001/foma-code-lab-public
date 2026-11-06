@@ -13,8 +13,49 @@ highlight: html
 И самое главное — ID формы теперь `registerForm`. Именно по этому ID наш JavaScript-код будет понимать, на какой странице находится пользователь.
 
 ## 🛠 Задание
+Замените пустую форму `#registerForm` на полную форму с полями ввода и текстами ошибок:
 
-Скопируйте большую форму регистрации и вставьте её под подзаголовком.
+```html
+<form id="registerForm" novalidate>
+  <div class="form-group">
+    <label class="form-label" for="login">Логин</label>
+    <input type="text" id="login" class="form-control" placeholder="Введите логин" required>
+    <div class="error-text">Поле обязательно для заполнения</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="password">Пароль</label>
+    <input type="password" id="password" class="form-control" placeholder="Минимум 6 символов" required>
+    <div class="error-text">Поле обязательно для заполнения</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="confirmPassword">Подтверждение пароля</label>
+    <input type="password" id="confirmPassword" class="form-control" placeholder="Повторите пароль" required>
+    <div class="error-text">Пароли не совпадают</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="fullName">ФИО</label>
+    <input type="text" id="fullName" class="form-control" placeholder="Иванов Иван Иванович" required>
+    <div class="error-text">Поле обязательно для заполнения</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="phone">Телефон</label>
+    <input type="tel" id="phone" class="form-control" placeholder="+7 (999) 000-00-00" required>
+    <div class="error-text">Поле обязательно для заполнения</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="email">E-mail</label>
+    <input type="email" id="email" class="form-control" placeholder="name@company.ru" required>
+    <div class="error-text">Поле обязательно для заполнения</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Зарегистрироваться</button>
+</form>
+```
 
 ```html:start
 <!DOCTYPE html>

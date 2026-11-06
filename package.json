@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test:static": "node scripts/test-static-deployment.mjs"
+    "test:static": "node scripts/test-static-deployment.mjs",
+    "test:lessons": "node scripts/audit_runtime_lessons.mjs",
+    "test:quizzes": "node scripts/audit_all_quizzes.mjs",
+    "test": "npm run test:lessons && npm run test:quizzes && npm run test:static"
   },
   "devDependencies": {
     "@types/js-beautify": "^1.14.3",

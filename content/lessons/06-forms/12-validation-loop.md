@@ -17,7 +17,20 @@ highlight: js
 4. Если поле заполнено (блок `else`), мы снимаем красный класс (вдруг пользователь исправил ошибку).
 
 ## 🛠 Задание
-Скопируйте и изучите этот умный цикл.
+Вставьте цикл проверки обязательных полей внутрь обработчика `submit`:
+
+```js
+    fields.forEach(id => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      if (!input.value.trim()) {
+        input.classList.add('is-invalid');
+        isValid = false;
+      } else {
+        input.classList.remove('is-invalid');
+      }
+    });
+```
 
 ```html:start
 <!DOCTYPE html>

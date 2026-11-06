@@ -1,6 +1,6 @@
 ---
 title: "Метрики Hero-блока"
-highlight: html
+highlight: css
 type: practice
 ---
 

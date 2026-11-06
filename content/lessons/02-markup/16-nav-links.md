@@ -30,6 +30,17 @@ type: practice
   color: #007bff;              /* синий цвет при наведении */
   background-color: #eaf2ff;   /* голубоватый фон при наведении */
 }
+
+.nav-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-btn:hover {
+  background-color: #0056b3;
+  color: #ffffff;
+}
 ```
 
 ```html:start

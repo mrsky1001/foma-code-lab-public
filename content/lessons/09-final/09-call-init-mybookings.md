@@ -10,7 +10,11 @@ highlight: js
 Вы уже знаете, что нужно делать! Идем в самый-самый верх файла `main.js` и добавляем вызов `initMyBookings()` внутрь главного обработчика `DOMContentLoaded`.
 
 ## 🛠 Задание
-Добавьте этот вызов! Это последняя строчка кода, которую вы напишете в этом курсе по фронтенду.
+Добавьте вызов `initMyBookings();` в самый конец файла `main.js`:
+
+```js
+initMyBookings();
+```
 
 ```html:start
 <!DOCTYPE html>
@@ -1612,4 +1616,6 @@ function initMyBookings() {
     </div>
   `).join('');
 }
+
+initMyBookings();
 ```

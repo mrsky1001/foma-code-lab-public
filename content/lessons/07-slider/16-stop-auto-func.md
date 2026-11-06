@@ -12,7 +12,18 @@ highlight: js
 Чтобы убить таймер, нужно отдать этот номерок в специальную функцию `clearInterval(номерок)`. 
 
 ## 🛠 Задание
-Заполните внутренности функции `stopAuto()`.
+Добавьте функцию `stopAuto()` и вызывайте её перед запуском нового таймера:
+
+```js
+  function startAuto() {
+    stopAuto();
+    timerId = setInterval(next, 3000);
+  }
+
+  function stopAuto() {
+    if (timerId) clearInterval(timerId);
+  }
+```
 
 ```html:start
 <!DOCTYPE html>
@@ -780,7 +791,6 @@ body {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
@@ -1061,7 +1071,6 @@ function initSlider() {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();

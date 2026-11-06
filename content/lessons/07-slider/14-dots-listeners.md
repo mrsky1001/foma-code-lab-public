@@ -12,7 +12,15 @@ highlight: js
 Метод `.forEach((dot, idx)` в качестве второго аргумента всегда отдает индекс (порядковый номер) элемента в цикле. Мы просто передадим этот индекс `idx` в нашу всемогущую функцию `showSlide()`!
 
 ## 🛠 Задание
-Добавьте этот красивый цикл под вашими событиями кнопок.
+Добавьте обработчики кликов по точкам под слушателями кнопок:
+
+```js
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      showSlide(idx);
+    });
+  });
+```
 
 ```html:start
 <!DOCTYPE html>
@@ -780,7 +788,6 @@ body {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
@@ -1047,7 +1054,6 @@ function initSlider() {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();

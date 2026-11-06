@@ -1408,8 +1408,6 @@ function initCatalogFilters() {
     render(displayedRooms);
   }
 
-  if (searchInput) searchInput.addEventListener('input', applyFilter);
-
   render(displayedRooms);
 }
 ```

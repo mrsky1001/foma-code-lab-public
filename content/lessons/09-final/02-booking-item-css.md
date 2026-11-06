@@ -10,7 +10,19 @@ highlight: css
 Мы используем `display: flex` и `justify-content: space-between`, чтобы информация о комнате (название, дата) прижалась влево, а цена и статус ("Подтверждено") — вправо.
 
 ## 🛠 Задание
-Добавьте стили для класса `.booking-item`.
+Добавьте стили для отдельной карточки бронирования в конец файла `style.css`:
+
+```css
+.booking-item {
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  padding: 15px 20px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+```
 
 ```html:start
 <!DOCTYPE html>
@@ -1166,13 +1178,5 @@ body {
   align-items: center;
 }
 
-.empty-message {
-  text-align: center;
-  padding: 30px;
-  color: #666666;
-  border: 1px dashed #dddddd;
-  border-radius: 6px;
-  max-width: 600px;
-  margin: 30px auto 0 auto;
-}
+
 ```

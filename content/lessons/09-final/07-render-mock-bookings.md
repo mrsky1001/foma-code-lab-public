@@ -12,7 +12,13 @@ highlight: js
 Он возьмет каждый объект из массива (мы назовем его переменной `item`) и превратит в кусок HTML-кода с классом `.booking-item`. В конце, мы склеим этот массив кусков с помощью `.join('')` и запишем результат в `container.innerHTML`.
 
 ## 🛠 Задание
-Напишите каркас маппинга.
+Напишите вывод массива заявок через `.map()` внутрь `container.innerHTML`:
+
+```js
+  container.innerHTML = MOCK_BOOKINGS.map(item => `
+    <div class="booking-item">${item.roomTitle} - ${item.totalPrice} ₽</div>
+  `).join('');
+```
 
 ```html:start
 <!DOCTYPE html>

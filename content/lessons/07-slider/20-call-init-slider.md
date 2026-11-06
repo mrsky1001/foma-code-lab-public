@@ -11,9 +11,18 @@ highlight: js
 По нашей старой традиции, мы добавляем вызов всех глобальных функций внутрь обработчика события `DOMContentLoaded` в самом верху нашего файла `main.js`.
 
 ## 🛠 Задание
-Найдите `DOMContentLoaded` в верху файла и добавьте вызов `initSlider()`.
+Найдите обработчик `DOMContentLoaded` в начале файла `main.js` и добавьте вызов `initSlider();`:
 
-Поздравляем! Ваш слайдер готов. Перейдите на Главную страницу и насладитесь результатом: он листается сам, по клику на кнопки и по клику на точки.
+```js
+document.addEventListener('DOMContentLoaded', () => {
+  initNavigation();
+  renderCatalog();
+  initRoomDetails();
+  initRegisterForm();
+  initLoginForm();
+  initSlider();
+});
+```
 
 ```html:start
 <!DOCTYPE html>
@@ -785,6 +794,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initRoomDetails();
   initRegisterForm();
   initLoginForm();
+  initSlider();
 });
 
 function showNotification(message, type = 'success') {

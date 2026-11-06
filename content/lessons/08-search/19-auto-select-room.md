@@ -13,7 +13,13 @@ highlight: js
 Для этого в JS есть встроенный инструмент `URLSearchParams`. Мы читаем параметр `room` и присваиваем его в `roomSelect.value`.
 
 ## 🛠 Задание
-Прочитайте параметр из адресной строки.
+Прочитайте параметр комнаты `room` из адресной строки и выберите её в списке:
+
+```js
+  const urlParams = new URLSearchParams(window.location.search);
+  const roomId = urlParams.get('room');
+  if (roomId) roomSelect.value = roomId;
+```
 
 ```html:start
 <!DOCTYPE html>

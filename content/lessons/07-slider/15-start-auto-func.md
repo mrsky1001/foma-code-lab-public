@@ -13,7 +13,13 @@ highlight: js
 В нашем случае, действием будет функция `next`, а временем — 3000 мс (3 секунды).
 
 ## 🛠 Задание
-Объявите функцию `startAuto` и `stopAuto` над вашими слушателями кликов. Обратите внимание, что внутри `startAuto` мы сначала вызываем `stopAuto()`. Зачем? Чтобы случайно не запустить два таймера одновременно, которые будут перелистывать слайдер со скоростью пулемета!
+Добавьте функцию `startAuto()` для автоматического перелистывания каждые 3 секунды:
+
+```js
+  function startAuto() {
+    timerId = setInterval(next, 3000);
+  }
+```
 
 ```html:start
 <!DOCTYPE html>
@@ -781,7 +787,6 @@ body {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
@@ -1054,7 +1059,6 @@ function initSlider() {
 // СмартОфис — Скрипт веб-приложения
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initSlider();
   renderCatalog();
   initRoomDetails();
   initRegisterForm();
@@ -1313,12 +1317,7 @@ function initSlider() {
   function prev() { showSlide(currentSlide - 1); }
 
   function startAuto() {
-    stopAuto();
     timerId = setInterval(next, 3000);
-  }
-
-  function stopAuto() {
-    if (timerId) clearInterval(timerId);
   }
 
   if (nextBtn) nextBtn.addEventListener('click', () => { next(); });

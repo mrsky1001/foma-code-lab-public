@@ -12,7 +12,14 @@ highlight: js
 Её задача: найти контейнер `myBookingsList`, и если он существует (и база данных `MOCK_BOOKINGS` подключена без ошибок), начать работу.
 
 ## 🛠 Задание
-Вставьте эту функцию в самый низ вашего файла.
+Вставьте функцию инициализации страницы в самый низ файла `main.js`:
+
+```js
+function initMyBookings() {
+  const container = document.getElementById('myBookingsList');
+  if (!container || typeof MOCK_BOOKINGS === 'undefined') return;
+}
+```
 
 ```html:start
 <!DOCTYPE html>

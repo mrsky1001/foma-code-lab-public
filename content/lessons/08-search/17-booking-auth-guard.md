@@ -12,7 +12,15 @@ highlight: js
 Если ключа нет (`!currentUser`), мы бесцеремонно перекидываем пользователя на страницу входа `login.html` и прерываем выполнение функции (`return`)!
 
 ## 🛠 Задание
-Добавьте этот кусок кода (защиту) сразу после проверки наличия формы.
+Добавьте проверку авторизации (Auth Guard) в начале функции `initBookingCalc()`:
+
+```js
+  const currentUser = localStorage.getItem('currentUser');
+  if (!currentUser) {
+    window.location.href = 'login.html';
+    return;
+  }
+```
 
 ```html:start
 <!DOCTYPE html>

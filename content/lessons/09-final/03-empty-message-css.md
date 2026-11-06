@@ -11,7 +11,19 @@ highlight: css
 Мы нарисуем красивую заглушку `.empty-message` с пунктирной рамкой (`border: 1px dashed #dddddd`), внутри которой выведем ободряющий текст.
 
 ## 🛠 Задание
-Добавьте стиль для пустого сообщения. Это последние CSS-строчки в этом проекте!
+Добавьте стиль для пустого списка бронирований в конец файла `style.css`:
+
+```css
+.empty-message {
+  text-align: center;
+  padding: 30px;
+  color: #666666;
+  border: 1px dashed #dddddd;
+  border-radius: 6px;
+  max-width: 600px;
+  margin: 30px auto 0 auto;
+}
+```
 
 ```html:start
 <!DOCTYPE html>

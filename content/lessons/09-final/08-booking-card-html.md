@@ -15,7 +15,22 @@ highlight: js
 - `totalPrice` (итоговая стоимость)
 
 ## 🛠 Задание
-Вставьте этот кусок HTML внутрь вашего блока `.booking-item`. Здесь мы используем интерполяцию строк (знаки доллара и фигурные скобки `${ }`), чтобы вставить переменные JS прямо в разметку HTML.
+Вставьте расширенный HTML-шаблон карточки внутрь `.map(item => ...)`:
+
+```html
+    <div class="booking-item">
+      <div>
+        <h3 style="font-size: 16px; margin-bottom: 5px;">${item.roomTitle}</h3>
+        <div style="font-size: 13px; color: #666;">
+          Дата: <strong>${item.date}</strong> | Длительность: <strong>${item.hours} ч.</strong> | Заявка №${item.id}
+        </div>
+      </div>
+      <div style="text-align: right;">
+        <div style="font-size: 16px; font-weight: 700; color: #007bff;">${item.totalPrice} ₽</div>
+        <span style="font-size: 12px; color: #28a745;">Подтверждено</span>
+      </div>
+    </div>
+```
 
 ```html:start
 <!DOCTYPE html>

@@ -15,7 +15,41 @@ highlight: css
 `.form-control.is-invalid + .error-text` означает: "Найди элемент с классом `error-text`, который находится СРАЗУ ПОСЛЕ инпута с ошибкой, и покажи его (`display: block`)".
 
 ## 🛠 Задание
-Добавьте эти стили ошибок в конец файла. На этом с версткой и стилизацией форм покончено!
+Добавьте стили валидации и ошибок в конец файла `style.css`:
+
+```css
+/* Красная подсветка поля при ошибке валидации */
+.form-control.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff8f8;
+}
+
+.error-text {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
+
+.form-control.is-invalid + .error-text {
+  display: block;
+}
+
+.form-alert {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  display: none;
+}
+
+.form-alert.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  display: block;
+}
+```
 
 ```html:start
 <!DOCTYPE html>

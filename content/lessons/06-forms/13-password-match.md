@@ -12,7 +12,16 @@ highlight: js
 Мы находим оба поля. Если они оба заполнены, но их значения `!==` (не равны), мы "красним" поле подтверждения и снова опускаем флаг `isValid = false`.
 
 ## 🛠 Задание
-Добавьте эту проверку сразу после цикла.
+Добавьте проверку совпадения паролей сразу после цикла `fields.forEach`:
+
+```js
+    const pass = document.getElementById('password');
+    const confirm = document.getElementById('confirmPassword');
+    if (pass && confirm && pass.value && confirm.value && pass.value !== confirm.value) {
+      confirm.classList.add('is-invalid');
+      isValid = false;
+    }
+```
 
 ```html:start
 <!DOCTYPE html>

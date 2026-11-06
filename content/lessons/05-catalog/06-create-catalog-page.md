@@ -704,8 +704,6 @@ const MOCK_BOOKINGS = [
           <button id="sortDesc" class="btn btn-outline">Цена: по убыванию ↓</button>
         </div>
       </div>
-
-      <div class="rooms-grid" id="catalogContainer"></div>
     </div>
   </main>
 

@@ -12,7 +12,41 @@ highlight: html
 В самом низу формы мы сделаем красивый блок `.calc-summary`, где будет выводиться общая стоимость (`#totalPrice`).
 
 ## 🛠 Задание
-Вставьте эту форму внутрь вашей карточки `.form-card` на странице `booking.html`.
+Вставьте полную разметку формы бронирования внутрь блока `<div class="form-card">`:
+
+```html
+<form id="bookingForm">
+  <div class="form-group">
+    <label class="form-label" for="roomSelect">Выберите комнату</label>
+    <select id="roomSelect" class="form-control" required></select>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="bookingDate">Дата бронирования</label>
+    <input type="date" id="bookingDate" class="form-control" required>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="hoursInput">Количество часов</label>
+    <input type="number" id="hoursInput" class="form-control" min="1" max="24" value="2" required>
+  </div>
+
+  <div class="form-group">
+    <label class="form-label" for="commentInput">Комментарий (необязательно)</label>
+    <textarea id="commentInput" class="form-control" rows="3" placeholder="Пожелания к рассадке, оборудованию..."></textarea>
+  </div>
+
+  <div class="calc-summary">
+    <div>
+      <div>Тариф: <span id="pricePerHour">0 ₽</span>/час</div>
+      <div style="font-size: 12px; color: #666;">Без скрытых комиссий</div>
+    </div>
+    <div class="calc-total" id="totalPrice">0 ₽</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" style="width: 100%;">Забронировать</button>
+</form>
+```
 
 ```html:start
 <!DOCTYPE html>
