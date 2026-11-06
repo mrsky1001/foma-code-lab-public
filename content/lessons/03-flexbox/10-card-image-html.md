@@ -13,7 +13,15 @@ highlight: html
 
 ## 🛠 Задание
 
-В `div.card-img-wrap` добавьте:
+Внутри `<div class="room-card">` добавьте блок с изображением комнаты:
+
+```html
+<div class="card-img-wrap">
+  <a href="pages/room-details.html">
+    <img src="img/room-1.jpg" alt="Мини-офис Focus" class="card-img">
+  </a>
+</div>
+```
 
 ```html:start
 <!DOCTYPE html>

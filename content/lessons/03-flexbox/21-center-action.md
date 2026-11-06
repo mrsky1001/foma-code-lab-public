@@ -13,9 +13,15 @@ highlight: html
 
 ## 🛠 Задание
 
-После `</div>` (rooms-grid) добавьте + CSS:
+После закрывающего тега `</div>` сетки `.rooms-grid` добавьте блок с кнопкой перехода в каталог:
 
-HTML:
+```html
+<div class="center-action">
+  <a href="pages/catalog.html" class="btn btn-outline">Больше офисов</a>
+</div>
+```
+
+*(Стили для класса `.center-action` уже подготовлены в CSS)*
 
 ```html:start
 <!DOCTYPE html>
@@ -247,7 +253,7 @@ body {
 .card-price { font-size: 18px; font-weight: 700; color: #222222; }
 .card-price span { font-size: 13px; font-weight: 400; color: #666666; }
 .card-btns { display: flex; align-items: center; gap: 8px; }
-/* Задание: добавьте стили для .center-action */
+.center-action { text-align: center; margin-top: 20px; }
 ```
 
 ```css:solution

@@ -13,7 +13,13 @@ highlight: html
 
 ## 🛠 Задание
 
-Внутри `section.popular-section` после `<p>` добавьте:
+Внутри `section.popular-section` после `<p>` добавьте контейнер для сетки комнат:
+
+```html
+<div class="rooms-grid">
+
+</div>
+```
 
 ```html:start
 <!DOCTYPE html>

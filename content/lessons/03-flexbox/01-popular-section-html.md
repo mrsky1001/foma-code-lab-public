@@ -15,7 +15,15 @@ highlight: html
 
 ## 🛠 Задание
 
-После `</section>` Hero-блока добавьте:
+После закрывающего тега `</section>` блока Hero (на месте комментария) добавьте разметку новой секции:
+
+```html
+<section class="popular-section">
+  <h2 class="page-title">Популярные офисные комнаты</h2>
+  <p class="page-subtitle">Наиболее востребованные пространства с полным техническим оснащением</p>
+
+</section>
+```
 
 ```html:start
 <!DOCTYPE html>

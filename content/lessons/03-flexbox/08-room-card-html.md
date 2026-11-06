@@ -9,7 +9,13 @@ highlight: html
 
 ## 🛠 Задание
 
-Внутри контейнера `<div class="rooms-grid">` создайте элемент карточки `<div class="room-card"></div>`.
+Внутри контейнера `<div class="rooms-grid">` создайте элемент карточки:
+
+```html
+<div class="room-card">
+
+</div>
+```
 
 ```html:start
 <!DOCTYPE html>

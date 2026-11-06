@@ -19,11 +19,40 @@ function stripComments(code: string, lang: 'html' | 'css' | 'js'): string {
 }
 
 /**
- * Normalizes code: strips comments and collapses whitespace.
+ * Normalizes quotes across single quotes, double quotes, backticks (without ${}),
+ * and typographic/smart quotes, making quote style agnostic during validation.
+ */
+function normalizeQuotes(code: string): string {
+  if (!code) return '';
+  // 1. Replace typographic / smart quotes
+  let res = code
+    .replace(/[\u201C\u201D\u00AB\u00BB]/g, '"') // “ ” « » -> "
+    .replace(/[\u2018\u2019]/g, "'");            // ‘ ’ -> '
+
+  // 2. Normalize simple backtick strings without interpolation: `hello` -> "hello"
+  res = res.replace(/`([^`\\$]*(?:\\.[^`\\$]*)*)`/g, (match, inner) => {
+    if (match.includes('${') || match.includes('\n')) return match;
+    const escapedInner = inner.replace(/"/g, '\\"');
+    return `"${escapedInner}"`;
+  });
+
+  // 3. Normalize single-quoted strings: 'hello' -> "hello"
+  res = res.replace(/'([^'\\]*(?:\\.[^'\\]*)*)'/g, (_match, inner) => {
+    const unescapedSingle = inner.replace(/\\'/g, "'");
+    const escapedDouble = unescapedSingle.replace(/"/g, '\\"');
+    return `"${escapedDouble}"`;
+  });
+
+  return res;
+}
+
+/**
+ * Normalizes code: strips comments, normalizes quotes, and collapses whitespace.
  */
 function normalizeCode(code: string, lang: 'html' | 'css' | 'js'): string {
   const noComments = stripComments(code, lang);
-  return noComments.replace(/\s+/g, ' ').trim();
+  const normalizedQuotes = normalizeQuotes(noComments);
+  return normalizedQuotes.replace(/\s+/g, ' ').trim();
 }
 
 /**
@@ -32,8 +61,10 @@ function normalizeCode(code: string, lang: 'html' | 'css' | 'js'): string {
 function tokenize(code: string): string[] {
   if (!code) return [];
   // Matches words (including Cyrillic, numbers, hyphens) or single punctuation/special chars
-  const matches = code.match(/[a-zA-Z0-9_\u0400-\u04FF\-]+|[<>{}/=;:"'().,#%]/g);
-  return matches || [];
+  const matches = code.match(/[a-zA-Z0-9_\u0400-\u04FF\-]+|[<>{}/=;:"'`().,#%]/g);
+  if (!matches) return [];
+  // Treat all quote types equivalently in token frequency comparison
+  return matches.map(t => (t === "'" || t === '`' ? '"' : t));
 }
 
 /**

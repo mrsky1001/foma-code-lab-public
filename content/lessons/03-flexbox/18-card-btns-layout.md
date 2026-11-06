@@ -15,9 +15,15 @@ SVG-иконка рисуется прямо в HTML — это векторна
 
 ## 🛠 Задание
 
-В `div.card-btns` добавьте кнопки и CSS:
+В файле `css/style.css` добавьте стили для выравнивания кнопок в блоке `.card-btns`:
 
-HTML:
+```css
+.card-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+```
 
 ```html:start
 <!DOCTYPE html>
@@ -77,6 +83,8 @@ HTML:
               <div class="card-footer">
                 <div class="card-price">450 ₽ <span>/ час</span></div>
                 <div class="card-btns">
+                  <a href="pages/room-details.html" class="btn-icon" title="Подробнее"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+                  <a href="pages/booking.html" class="btn btn-primary">Забронировать</a>
                 </div>
               </div>
             </div>
