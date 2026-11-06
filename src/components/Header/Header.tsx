@@ -1,12 +1,17 @@
-import { useState } from 'react';
-import { Sun, FlaskConical, ChevronDown, ShieldOff, ShieldCheck, Eye } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Sun, Moon, FlaskConical, ChevronDown, Check, ShieldOff, ShieldCheck, Eye } from 'lucide-react';
 import { BUILD_INFO } from '../../version';
 import { isLocalMachine } from '../../utils/admin';
-import type { Theme } from '../../hooks/useTheme';
+import type { Theme, ThemePalette, ThemeMode } from '../../hooks/useTheme';
 import './Header.css';
 
 interface HeaderProps {
   theme: Theme;
+  palette?: ThemePalette;
+  mode?: ThemeMode;
+  onSetPalette?: (palette: ThemePalette) => void;
+  onSetMode?: (mode: ThemeMode) => void;
+  onToggleMode?: () => void;
   onToggleTheme?: () => void;
   onSetTheme?: (theme: Theme) => void;
   onToggleSidebar: () => void;
@@ -20,8 +25,20 @@ interface HeaderProps {
   onToggleAdmin?: () => void;
 }
 
+const PALETTES: { id: ThemePalette; name: string; dotClass: string }[] = [
+  { id: 'azure', name: 'Azure', dotClass: 'theme-dot-azure' },
+  { id: 'coral', name: 'Coral', dotClass: 'theme-dot-coral' },
+  { id: 'emerald', name: 'Emerald', dotClass: 'theme-dot-emerald' },
+  { id: 'purple', name: 'Purple', dotClass: 'theme-dot-purple' },
+];
+
 export function Header({
   theme,
+  palette,
+  mode,
+  onSetPalette,
+  onSetMode,
+  onToggleMode,
   onToggleTheme,
   onSetTheme,
   onToggleSidebar,
@@ -33,6 +50,36 @@ export function Header({
   onToggleAdmin,
 }: HeaderProps) {
   const [devMenuOpen, setDevMenuOpen] = useState(false);
+  const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
+  const themeDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Derive current palette and mode with fallback to theme prop
+  const currentPalette: ThemePalette =
+    palette ||
+    (theme === 'coral' || theme === 'dark'
+      ? 'coral'
+      : theme === 'emerald'
+      ? 'emerald'
+      : theme === 'purple'
+      ? 'purple'
+      : 'azure');
+
+  const currentMode: ThemeMode = mode || (theme === 'light' ? 'light' : 'dark');
+
+  const currentPaletteObj = PALETTES.find((p) => p.id === currentPalette) || PALETTES[0];
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    if (!themeDropdownOpen) return;
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (themeDropdownRef.current && !themeDropdownRef.current.contains(e.target as Node)) {
+        setThemeDropdownOpen(false);
+      }
+    };
+    document.addEventListener('pointerdown', handleOutsideClick);
+    return () => document.removeEventListener('pointerdown', handleOutsideClick);
+  }, [themeDropdownOpen]);
+
   return (
     <header className="header" id="app-header">
       <div className="header-left">
@@ -65,7 +112,7 @@ export function Header({
       </div>
       <div className="header-right">
         <div className="header-notice" id="header-dev-notice">
-          <span className="notice-text">Сервис находится в разработке. По поводу ошибок и вопросов  пишите:</span>
+          <span className="notice-text">Сервис находится в разработке. По поводу ошибок и вопросов пишите:</span>
           <a
             href="mailto:mrsky1001.work@gmail.com"
             className="notice-link"
@@ -78,45 +125,85 @@ export function Header({
             <span className="notice-email">mrsky1001.work@gmail.com</span>
           </a>
         </div>
-        <div className="header-mode-toggle theme-mode-toggle" id="theme-mode-toggle" role="radiogroup" aria-label="Выбор темы">
+
+        {/* 1. Theme Palette Dropdown */}
+        <div className="theme-dropdown-wrap" ref={themeDropdownRef} style={{ position: 'relative' }}>
           <button
             type="button"
-            className={`mode-btn ${theme === 'azure' ? 'active' : ''}`}
-            onClick={() => onSetTheme ? onSetTheme('azure') : onToggleTheme?.()}
-            title="Тема Azure (фирменный стиль экосистемы FOMA)"
-            aria-label="Тема Azure"
-            aria-checked={theme === 'azure'}
-            role="radio"
-            id={theme === 'azure' ? 'theme-toggle' : undefined}
+            className="theme-dropdown-btn"
+            onClick={() => setThemeDropdownOpen((v) => !v)}
+            title="Выбор темы (палитры)"
+            aria-label="Выбор темы"
+            id="theme-select-toggle"
+            aria-expanded={themeDropdownOpen}
           >
-            <span className="theme-dot theme-dot-azure" />
-            <span className="mode-btn-label">Azure</span>
+            <span className={`theme-dot ${currentPaletteObj.dotClass}`} />
+            <span className="theme-dropdown-label">{currentPaletteObj.name}</span>
+            <ChevronDown size={12} strokeWidth={1.5} className={`theme-chevron ${themeDropdownOpen ? 'open' : ''}`} />
+          </button>
+          {themeDropdownOpen && (
+            <div className="theme-dropdown-menu" role="menu">
+              {PALETTES.map((p) => {
+                const isSelected = p.id === currentPalette;
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    className={`theme-dropdown-item ${isSelected ? 'active' : ''}`}
+                    onClick={() => {
+                      if (onSetPalette) onSetPalette(p.id);
+                      else onSetTheme?.(p.id);
+                      setThemeDropdownOpen(false);
+                    }}
+                    role="menuitem"
+                  >
+                    <span className={`theme-dot ${p.dotClass}`} />
+                    <span className="theme-item-name">{p.name}</span>
+                    {isSelected && <Check size={12} strokeWidth={2} className="theme-item-check" />}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* 2. Light / Dark Mode Toggle */}
+        <div className="header-mode-toggle theme-mode-toggle" id="theme-mode-toggle" role="radiogroup" aria-label="Светлая или тёмная тема">
+          <button
+            type="button"
+            className={`mode-btn ${currentMode === 'dark' ? 'active' : ''}`}
+            onClick={() => {
+              if (onSetMode) onSetMode('dark');
+              else if (onToggleMode) onToggleMode();
+              else if (onToggleTheme) onToggleTheme();
+              else onSetTheme?.('dark');
+            }}
+            title="Тёмный режим интерфейса"
+            aria-label="Тёмная тема"
+            aria-checked={currentMode === 'dark'}
+            role="radio"
+            id="theme-mode-dark"
+          >
+            <Moon size={12} strokeWidth={1.5} />
+            <span className="mode-btn-label">Тёмная</span>
           </button>
           <button
             type="button"
-            className={`mode-btn ${theme === 'dark' ? 'active' : ''}`}
-            onClick={() => onSetTheme ? onSetTheme('dark') : onToggleTheme?.()}
-            title="Классическая тема Coral (оригинальная темная)"
-            aria-label="Классическая тема Coral"
-            aria-checked={theme === 'dark'}
-            role="radio"
-            id={theme === 'dark' ? 'theme-toggle' : undefined}
-          >
-            <span className="theme-dot theme-dot-coral" />
-            <span className="mode-btn-label">Coral</span>
-          </button>
-          <button
-            type="button"
-            className={`mode-btn ${theme === 'light' ? 'active' : ''}`}
-            onClick={() => onSetTheme ? onSetTheme('light') : onToggleTheme?.()}
-            title="Светлая тема"
+            className={`mode-btn ${currentMode === 'light' ? 'active' : ''}`}
+            onClick={() => {
+              if (onSetMode) onSetMode('light');
+              else if (onToggleMode) onToggleMode();
+              else if (onToggleTheme) onToggleTheme();
+              else onSetTheme?.('light');
+            }}
+            title="Светлый режим интерфейса"
             aria-label="Светлая тема"
-            aria-checked={theme === 'light'}
+            aria-checked={currentMode === 'light'}
             role="radio"
-            id={theme === 'light' ? 'theme-toggle' : undefined}
+            id="theme-mode-light"
           >
             <Sun size={12} strokeWidth={1.5} />
-            <span className="mode-btn-label">Light</span>
+            <span className="mode-btn-label">Светлая</span>
           </button>
         </div>
 

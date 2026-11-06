@@ -28,7 +28,7 @@ export default function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(() => {
     return typeof window !== 'undefined' && window.innerWidth < LAYOUT.MOBILE_BREAKPOINT;
   });
-  const { theme, toggleTheme, setTheme } = useTheme();
+  const { theme, palette, mode, setPalette, setMode, toggleMode, toggleTheme, setTheme } = useTheme();
 
   // Resize listener to track mobile breakpoint
   useEffect(() => {
@@ -573,9 +573,14 @@ export default function App() {
   }, [code, lesson.id, stepIndex, isTheory]);
 
   return (
-    <div className={`app ${theme}`} id="app-root">
+    <div className={`app ${mode} ${palette}`} id="app-root">
       <Header
         theme={theme}
+        palette={palette}
+        mode={mode}
+        onSetPalette={setPalette}
+        onSetMode={setMode}
+        onToggleMode={toggleMode}
         onToggleTheme={toggleTheme}
         onSetTheme={setTheme}
         onToggleSidebar={() => setSidebarCollapsed((v) => !v)}
@@ -727,6 +732,7 @@ export default function App() {
               taskSimilarity={taskSimilarity}
               onCheckSolution={handleCheckSolution}
               checkStatus={checkStatus}
+              mode={mode}
             />
           )}
         </div>
@@ -759,6 +765,7 @@ export default function App() {
                   onCodeChange={(lang, value) => handleCodeChange(lang, value)}
                   activeTab={step.highlight}
                   theme={theme}
+                  mode={mode}
                   onReset={resetCode}
                   tabOverride={tabOverride}
                   onTabOverrideConsumed={handleTabOverrideConsumed}

@@ -13,7 +13,7 @@ import { RotateCcw, Rows, Square, X, Wand2, WrapText, Lock } from 'lucide-react'
 import { linter, lintGutter } from '@codemirror/lint';
 import type { CodeFiles } from '../../types/lesson';
 import type { SolutionTarget } from '../../hooks/useLesson';
-import type { Theme } from '../../hooks/useTheme';
+import type { Theme, ThemeMode } from '../../hooks/useTheme';
 import { formatCode } from '../../utils/formatCode';
 import { createLinter } from '../../utils/codeLinter';
 import { getStepFileConfig } from '../../utils/virtualFiles';
@@ -74,6 +74,7 @@ interface SingleEditorPaneProps {
   onCodeChange: (lang: keyof CodeFiles, value: string) => void;
   onFormat?: () => void;
   theme: Theme;
+  mode?: ThemeMode;
   wordWrap: boolean;
   headerActions?: React.ReactNode;
   className?: string;
@@ -93,6 +94,7 @@ function SingleEditorPane({
   onCodeChange,
   onFormat,
   theme,
+  mode,
   wordWrap,
   headerActions,
   className = '',
@@ -196,7 +198,8 @@ function SingleEditorPane({
       );
     }
 
-    if (theme !== 'light') {
+    const isLight = mode === 'light' || theme === 'light';
+    if (!isLight) {
       extensions.push(oneDark);
     }
 
@@ -368,6 +371,7 @@ interface CodeEditorProps {
   onCodeChange: (lang: keyof CodeFiles, value: string) => void;
   activeTab?: TabKey;
   theme: Theme;
+  mode?: ThemeMode;
   onReset?: () => void;
   tabOverride?: TabKey | null;
   onTabOverrideConsumed?: () => void;
@@ -385,6 +389,7 @@ export function CodeEditor({
   onCodeChange,
   activeTab,
   theme,
+  mode,
   onReset,
   tabOverride,
   onTabOverrideConsumed,
@@ -619,6 +624,7 @@ export function CodeEditor({
           onCodeChange={onCodeChange}
           onFormat={handleFormatTop}
           theme={theme}
+          mode={mode}
           wordWrap={wordWrap}
           headerActions={topHeaderActions}
           className="top-pane"
@@ -646,6 +652,7 @@ export function CodeEditor({
               onCodeChange={onCodeChange}
               onFormat={handleFormatBottom}
               theme={theme}
+              mode={mode}
               wordWrap={wordWrap}
               headerActions={bottomHeaderActions}
               className="bottom-pane"

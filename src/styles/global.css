@@ -277,7 +277,7 @@ body.is-resizing-row iframe {
 .btn-accent:hover {
   background-color: var(--accent-coral-dim);
   border-color: transparent;
-  color: #ff8c5a;
+  color: var(--accent-coral-hover, var(--accent-coral));
 }
 
 .btn-solution {
@@ -289,7 +289,7 @@ body.is-resizing-row iframe {
 .btn-solution:hover {
   background-color: var(--accent-coral-dim);
   border-color: transparent;
-  color: #ff8c5a;
+  color: var(--accent-coral-hover, var(--accent-coral));
 }
 
 .btn-danger {

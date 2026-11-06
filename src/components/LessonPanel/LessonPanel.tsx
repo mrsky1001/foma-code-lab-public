@@ -42,13 +42,47 @@ const appCodeTheme: { [key: string]: React.CSSProperties } = {
   'rule-name': { color: '#38bdf8' },
 };
 
+// Custom light theme with high-contrast text and crisp syntax coloring
+const appCodeThemeLight: { [key: string]: React.CSSProperties } = {
+  'code[class*="language-"]': {
+    color: '#0f172a', fontFamily: 'var(--font-mono)', fontSize: '13px',
+    lineHeight: '1.6', background: 'transparent',
+  },
+  'pre[class*="language-"]': { background: 'transparent', margin: 0, padding: 0 },
+  comment: { color: '#64748b', fontStyle: 'italic' },
+  prolog: { color: '#64748b' },
+  doctype: { color: '#64748b' },
+  cdata: { color: '#64748b' },
+  punctuation: { color: '#475569' },
+  property: { color: '#7c3aed' },      // purple — css properties
+  keyword: { color: '#0284c7' },       // azure — html tags, js keywords
+  tag: { color: '#e11d48' },           // rose/pink — html tags
+  'attr-name': { color: '#7c3aed' },   // purple — html attributes
+  'attr-value': { color: '#059669' },  // emerald — string values
+  string: { color: '#059669' },        // emerald — strings
+  selector: { color: '#0284c7' },      // azure — css selectors
+  'class-name': { color: '#0d9488' },  // teal — class names
+  function: { color: '#2563eb' },      // blue — js functions
+  number: { color: '#ea580c' },        // orange — numbers
+  operator: { color: '#475569' },      // slate — operators
+  boolean: { color: '#ea580c' },       // orange — true/false
+  variable: { color: '#0f172a' },      // slate-900 — variables
+  builtin: { color: '#0d9488' },       // teal — built-ins
+  unit: { color: '#ea580c' },          // orange — css units
+  important: { color: '#dc2626', fontWeight: 'bold' },
+  atrule: { color: '#0284c7' },        // azure — @media, @keyframes
+  'rule-name': { color: '#0284c7' },
+};
+
 interface TheoryCodeBlockProps {
   language: string;
   code: string;
+  mode?: 'dark' | 'light';
 }
 
-function TheoryCodeBlock({ language, code }: TheoryCodeBlockProps) {
+function TheoryCodeBlock({ language, code, mode = 'dark' }: TheoryCodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const activeCodeTheme = mode === 'light' ? appCodeThemeLight : appCodeTheme;
 
   const cleanCode = code.replace(/\n$/, '');
 
@@ -83,7 +117,7 @@ function TheoryCodeBlock({ language, code }: TheoryCodeBlockProps) {
       <div className="theory-code-body">
         <SyntaxHighlighter
           language={language}
-          style={appCodeTheme}
+          style={activeCodeTheme}
           useInlineStyles={true}
           PreTag="div"
           customStyle={{
@@ -160,6 +194,7 @@ interface LessonPanelProps {
   taskSimilarity?: number;
   onCheckSolution?: () => void;
   checkStatus?: 'idle' | 'success' | 'error';
+  mode?: 'dark' | 'light';
 }
 
 export function LessonPanel({
@@ -188,11 +223,13 @@ export function LessonPanel({
   taskSimilarity = 0,
   onCheckSolution,
   checkStatus = 'idle',
+  mode = 'dark',
 }: LessonPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const solutionRef = useRef<HTMLDivElement>(null);
   const previewBodyRef = useRef<HTMLDivElement>(null);
   const [snippetCopied, setSnippetCopied] = useState(false);
+  const activeCodeTheme = mode === 'light' ? appCodeThemeLight : appCodeTheme;
 
   // Scroll to top when switching steps
   useEffect(() => {
@@ -357,7 +394,7 @@ export function LessonPanel({
                 }
                 const lang = match[1] || 'text';
                 const codeString = String(children);
-                return <TheoryCodeBlock language={lang} code={codeString} />;
+                return <TheoryCodeBlock language={lang} code={codeString} mode={mode} />;
               },
             }}
           >
@@ -466,7 +503,7 @@ export function LessonPanel({
                 <div className="solution-preview-body" ref={previewBodyRef}>
                   <SyntaxHighlighter
                     language={targetLang}
-                    style={appCodeTheme}
+                    style={activeCodeTheme}
                     useInlineStyles={true}
                     PreTag="div"
                     customStyle={{
